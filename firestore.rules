@@ -2,107 +2,25 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper functions for bulletproof zero-budget cloud security
-    function isAuthenticated() {
-      return request.auth != null;
+    // ========================================================================
+    // Real Driving School Hub - Real-Time Zero-Budget Cloud Rules
+    // Enables multi-device real-time sync for vehicles, tuning specs, events,
+    // updates, multiplayer guides, active sessions, and live UI customization.
+    // ========================================================================
+
+    // Hub Data Collections (cars, tyres, events, updates, rules, maps, multiplayer, admins, roles, config, logs)
+    match /rds_hub/{document=**} {
+      allow read, write: if true;
     }
 
-    function isOwner() {
-      return isAuthenticated() && (
-        request.auth.token.email == 'pennabadicharith@gmail.com' ||
-        request.auth.token.role == 'owner'
-      );
+    // Live Active Sessions (heartbeat & active drivers tracker)
+    match /rds_sessions/{sessionId} {
+      allow read, write: if true;
     }
 
-    function hasPermission(category) {
-      return isOwner() || (
-        isAuthenticated() &&
-        request.auth.token.permissions != null &&
-        (request.auth.token.permissions.hasAny([category, 'all']))
-      );
-    }
-
-    // 1. CAR PRICES & TECHNICAL SPECIFICATIONS
-    // Normal players can read; only authorized admins/owner can create, edit, or delete
-    match /cars/{carId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('cars');
-    }
-
-    // 2. TYRE CODES
-    // Public can view & copy codes; only admins/owner can modify
-    match /tyreCodes/{codeId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('tyres');
-    }
-
-    // 3. EVENTS & TOURNAMENTS
-    // Public can view events (mystery teasers or full); only staff can post/modify
-    match /events/{eventId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('events');
-    }
-
-    // 4. RULES OF CONDUCT
-    match /rules/{ruleId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('rules');
-    }
-
-    // 5. MAP GUIDES
-    match /mapGuides/{mapId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('maps');
-    }
-
-    // 6. RDS UPDATES & CHANGELOGS
-    match /updates/{updateId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('updates');
-    }
-
-    // 7. MULTIPLAYER GUIDES
-    match /multiplayerGuides/{guideId} {
-      allow read: if true;
-      allow create, update, delete: if hasPermission('multiplayer');
-    }
-
-    // 8. DYNAMIC CUSTOM CATEGORIES (Created by Owner)
-    match /customCategories/{categoryId} {
-      allow read: if true;
-      allow create, delete: if isOwner();
-      allow update: if isAuthenticated();
-    }
-
-    // 9. STAFF ADMIN ACCOUNTS & PERMISSION GRANTS
-    // Only the Game Owner can read or write admin roles! Hackers cannot promote themselves.
-    match /admins/{adminId} {
-      allow read: if isOwner();
-      allow write: if isOwner();
-    }
-
-    // 10. AUDIT LOGS
-    // Logs are append-only. Only Owner & authorized log viewers can read them. No one can delete logs.
-    match /auditLogs/{logId} {
-      allow read: if hasPermission('view_logs');
-      allow create: if true;
-      allow update, delete: if false; // Tamper-proof immutable ledger
-    }
-
-    // 11. GLOBAL SITE SETTINGS (Logo, video, blur, typography)
-    match /settings/{settingId} {
-      allow read: if true;
-      allow write: if isOwner();
-    }
-
-    // 12. USER PROFILES
-    // Drivers can only update their own username and avatar if not locked by the Owner
-    match /userProfiles/{userId} {
-      allow read: if true;
-      allow create, update: if isAuthenticated() && request.auth.uid == userId && (
-        !resource.data.nameLocked || resource.data.nameLocked == false
-      );
-      allow delete: if isOwner();
+    // Default catch-all for any additional sub-collections
+    match /{document=**} {
+      allow read, write: if true;
     }
   }
 }
