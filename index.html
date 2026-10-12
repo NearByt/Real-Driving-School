@@ -1,0 +1,3128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Real Driving School | Official Hub & Valuation Engine</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>">
+
+  <!-- High-Tech Racing & Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+
+  <!-- Google Firebase SDK for $0 Global Cloud Real-Time Sync -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <!-- SELF-CONTAINED LIQUID GLASS & MOBILE-FIRST STYLESHEET -->
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & THEME ENGINE
+       ========================================================================== */
+    :root {
+      --bg-base: #06080e;
+      --bg-surface: rgba(18, 24, 38, 0.45);
+      --bg-glass-card: rgba(255, 255, 255, 0.07);
+      --bg-glass-hover: rgba(255, 255, 255, 0.12);
+      
+      --glass-blur: 24px;
+      --glass-saturate: 180%;
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --glass-border-glow: rgba(0, 210, 255, 0.45);
+      --glass-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6);
+
+      --accent-primary: #00d2ff; /* Cyan Neon */
+      --accent-glow: #00d2ff;
+      --accent-secondary: #0072ff;
+      --accent-gold: #ffd700;
+      --accent-red: #ff3b30;
+      --accent-green: #30d158;
+      --accent-purple: #af52de;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'Rajdhani', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --base-font-size: 15px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    body.font-small { --base-font-size: 13px; }
+    body.font-medium { --base-font-size: 15px; }
+    body.font-large { --base-font-size: 17px; }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      font-size: var(--base-font-size);
+      font-family: var(--font-family);
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       BACKGROUND VIDEO & MATTE SCREEN (FULL SCREEN HERO CANVAS)
+       ========================================================================== */
+    .bg-video-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.05);
+      transition: transform 12s ease;
+    }
+
+    .bg-matte-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 25%, rgba(10, 16, 28, 0.6) 0%, rgba(4, 6, 12, 0.88) 100%);
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       LIQUID GLASS UTILITIES
+       ========================================================================== */
+    .liquid-glass {
+      background: var(--bg-glass-card);
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      border-radius: var(--radius-lg);
+      position: relative;
+    }
+
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      pointer-events: none;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .liquid-glass:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    /* ==========================================================================
+       SCREEN 1: FULL SCREEN SPLASH / WELCOME LANDING GATE
+       ========================================================================== */
+    #screen-splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.45s;
+    }
+
+    #screen-splash.hidden-gate {
+      opacity: 0;
+      transform: scale(1.04);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .splash-card {
+      width: 100%;
+      max-width: 540px;
+      padding: 2.8rem 2rem;
+      border-radius: var(--radius-xl);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 210, 255, 0.25);
+      animation: float-splash 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-splash {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-8px); }
+    }
+
+    .splash-logo {
+      width: 95px;
+      height: 95px;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 30px rgba(0, 210, 255, 0.45);
+      margin-bottom: 1.25rem;
+    }
+
+    .splash-title {
+      font-family: var(--font-heading);
+      font-size: 2.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #ffffff 40%, var(--accent-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .splash-subtitle {
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .splash-about {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      max-width: 440px;
+    }
+
+    /* High-Aesthetic Glowing Continue Button */
+    .btn-splash-continue {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.95rem 2.5rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 0 4px 25px rgba(0, 210, 255, 0.5);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .btn-splash-continue:hover, .btn-splash-continue:active {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 35px rgba(0, 210, 255, 0.75);
+    }
+
+    .btn-splash-continue .arrow-icon {
+      font-size: 1.3rem;
+      transition: transform 0.25s ease;
+    }
+
+    .btn-splash-continue:hover .arrow-icon {
+      transform: translateX(6px);
+    }
+
+    .splash-downloads {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 1.75rem;
+    }
+
+    .splash-dl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .splash-dl-badge:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-primary);
+    }
+
+    /* ==========================================================================
+       SCREEN 2: MAIN WEB HUB & APP HEADER
+       ========================================================================== */
+    #screen-hub {
+      display: none;
+      min-height: 100vh;
+      padding-bottom: 90px; /* Space for mobile dock */
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    #screen-hub.active-hub {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Top Navigation Bar */
+    .top-header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(8, 12, 22, 0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .top-brand-logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .top-brand-name {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #fff 50%, var(--accent-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .top-brand-sub {
+      font-size: 0.65rem;
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* Desktop Horizontal Category Bar */
+    .desktop-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .desktop-nav-menu::-webkit-scrollbar { display: none; }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.22), rgba(0, 114, 255, 0.22));
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .icon-action-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .icon-action-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent-primary);
+    }
+
+    .badge-bell-count {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: var(--accent-red);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 800;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      border-radius: 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg-base);
+    }
+
+    .profile-pill-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .profile-pill-btn:hover {
+      border-color: var(--accent-primary);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .pill-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-primary);
+    }
+
+    .pill-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      max-width: 110px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Mobile Bottom Navigation Dock (Optimized for Phones) */
+    .mobile-bottom-dock {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      background: rgba(6, 10, 18, 0.88);
+      backdrop-filter: blur(28px) saturate(180%);
+      -webkit-backdrop-filter: blur(28px) saturate(180%);
+      border-top: 1px solid var(--glass-border);
+      padding: 0.4rem 0.5rem calc(0.4rem + env(safe-area-inset-bottom)) 0.5rem;
+      z-index: 1000;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .dock-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 0.68rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.35rem 0.6rem;
+      border-radius: 10px;
+      transition: var(--transition);
+      min-width: 58px;
+    }
+
+    .dock-item i { font-size: 1.15rem; }
+
+    .dock-item.active {
+      color: var(--accent-primary);
+      background: rgba(0, 210, 255, 0.12);
+    }
+
+    @media (max-width: 860px) {
+      .desktop-nav-menu { display: none; }
+      .mobile-bottom-dock { display: flex; }
+      .top-brand-sub { display: none; }
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== */
+    .hub-container {
+      width: 95%;
+      max-width: 1400px;
+      margin: 1.5rem auto 3rem auto;
+      padding: 0 0.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Primary and Secondary Action Buttons */
+    .btn-act-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.4rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .btn-act-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.4);
+    }
+
+    .btn-act-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-act-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-act-danger {
+      background: rgba(255, 59, 48, 0.2);
+      border: 1px solid var(--accent-red);
+      color: #ff8a80;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    /* Floating Owner Studio Trigger Pill */
+    .floating-owner-studio-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1100;
+      padding: 0.75rem 1.4rem;
+      background: linear-gradient(135deg, #ffd700, #ff9500);
+      color: #000;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-radius: 30px;
+      border: 2px solid #fff;
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 0.6rem;
+      transition: var(--transition);
+    }
+
+    .floating-owner-studio-btn:hover {
+      transform: scale(1.05) translateY(-3px);
+      box-shadow: 0 12px 40px rgba(255, 215, 0, 0.7);
+    }
+
+    @media (max-width: 860px) {
+      .floating-owner-studio-btn {
+        bottom: 75px;
+        right: 16px;
+        padding: 0.6rem 1.1rem;
+        font-size: 0.88rem;
+      }
+    }
+
+    /* ==========================================================================
+       CAR PRICES & LUXURY RECEIPT CALCULATOR
+       ========================================================================== */
+    .cars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .car-card {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .car-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 210, 255, 0.25);
+    }
+
+    .car-media-box {
+      width: 100%;
+      height: 170px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .car-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .car-card:hover .car-img { transform: scale(1.07); }
+
+    .car-order-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      border: 1px solid rgba(0, 210, 255, 0.4);
+    }
+
+    .car-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .car-name {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+    }
+
+    .car-specs-box {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      margin: 0.75rem 0;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 980px) {
+      .calc-layout { grid-template-columns: 1fr; }
+    }
+
+    .stage-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+    }
+
+    @media (max-width: 500px) {
+      .stage-chips-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .stage-chip {
+      padding: 0.6rem 0.3rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: var(--transition);
+    }
+
+    .stage-chip.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-color: #fff;
+      color: #fff;
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
+
+    .toggle-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 500px) {
+      .toggle-grid { grid-template-columns: 1fr; }
+    }
+
+    .toggle-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .toggle-card:hover { background: rgba(255, 255, 255, 0.08); }
+    .toggle-card.checked {
+      background: rgba(0, 210, 255, 0.12);
+      border-color: var(--accent-primary);
+    }
+
+    /* Luxury Bill Receipt */
+    .bill-card {
+      background: linear-gradient(180deg, rgba(20, 28, 48, 0.75) 0%, rgba(10, 15, 28, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .bill-speed-box {
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .bill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.88rem;
+    }
+
+    .bill-total-price {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #30d158;
+      text-shadow: 0 0 15px rgba(48, 209, 88, 0.45);
+    }
+
+    .bill-range-box {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* ==========================================================================
+       EVENTS SYSTEM: CURRENT / LIVE, UPCOMING & PAST
+       ========================================================================== */
+    .event-tabs-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .event-tab-btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .event-tab-btn.active {
+      background: var(--accent-primary);
+      color: #000;
+      border-color: var(--accent-primary);
+    }
+
+    /* Pulsing Live Badge for Current Event */
+    .badge-live-now {
+      background: #ff3b30;
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      animation: pulse-live 1.6s infinite;
+    }
+
+    @keyframes pulse-live {
+      0% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 59, 48, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 59, 48, 0); }
+    }
+
+    .mystery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(8, 12, 24, 0.88);
+      backdrop-filter: blur(14px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-gold);
+    }
+
+    .mystery-qmark {
+      font-size: 3.8rem;
+      font-weight: 900;
+      font-family: var(--font-heading);
+      animation: pulse-qmark 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-qmark {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.18); opacity: 1; text-shadow: 0 0 25px var(--accent-gold); }
+    }
+
+    /* ==========================================================================
+       MODALS & SLIDE-UP BOTTOM SHEETS (MOBILE-FIRST)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 7, 14, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      z-index: 2500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.2rem;
+      border-radius: var(--radius-xl);
+      background: rgba(16, 22, 38, 0.95);
+      backdrop-filter: blur(28px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.open .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    @media (max-width: 640px) {
+      .modal-overlay {
+        align-items: flex-end;
+        padding: 0;
+      }
+      .modal-box {
+        max-height: 85vh;
+        border-radius: 24px 24px 0 0;
+        padding: 1.75rem 1.25rem calc(1.75rem + env(safe-area-inset-bottom)) 1.25rem;
+        transform: translateY(100%);
+      }
+      .modal-overlay.open .modal-box {
+        transform: translateY(0);
+      }
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .modal-close-icon {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close-icon:hover { color: #fff; }
+
+    /* Form Controls */
+    .form-ctrl {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input-text, .form-select-box, .form-textarea-box {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(10, 15, 26, 0.7);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.95rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-input-text:focus, .form-select-box:focus, .form-textarea-box:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.3);
+      background: rgba(14, 20, 36, 0.9);
+    }
+
+    /* Discord-Style Role Badges */
+    .role-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .role-tag::before { content: '●'; font-size: 0.7rem; }
+
+    /* Toast Notification Center */
+    .toast-tray {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 3500;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 360px;
+      pointer-events: none;
+    }
+
+    @media (max-width: 860px) {
+      .toast-tray {
+        bottom: 85px;
+        right: 16px;
+        left: 16px;
+        max-width: none;
+      }
+    }
+
+    .toast-bubble {
+      pointer-events: auto;
+      background: rgba(14, 20, 36, 0.92);
+      backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: #fff;
+      animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes toast-in {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="font-medium">
+
+  <!-- BACKGROUND VIDEO & MATTE SCREEN -->
+  <div class="bg-video-container">
+    <video id="global-bg-video" class="bg-media" autoplay muted loop playsinline>
+      <source id="global-video-source" src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-at-night-41584-large.mp4" type="video/mp4">
+    </video>
+    <img id="global-bg-image" class="bg-media" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80" alt="RDS Background" style="display: none;">
+  </div>
+  <div class="bg-matte-screen" id="global-matte-screen"></div>
+
+  <!-- ========================================================================
+       SCREEN 1: FULL SCREEN SPLASH / WELCOME LANDING GATE
+       ======================================================================== -->
+  <section id="screen-splash">
+    <div class="splash-card liquid-glass">
+      <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=200&q=80" alt="RDS Logo" class="splash-logo" id="splash-logo-img">
+      <h1 class="splash-title" id="splash-title-text">Real Driving School</h1>
+      <div class="splash-subtitle" id="splash-subtitle-text">Official Community Hub & Value Index</div>
+      <p class="splash-about" id="splash-about-text">
+        Experience next-generation realistic driving simulation. Manual transmission with clutch, dynamic weather, custom liveries, multiplayer lobbies, and an expansive open world city.
+      </p>
+
+      <!-- Sleek Glowing Continue Button with Arrow Mark -->
+      <button class="btn-splash-continue" id="btn-enter-hub">
+        Continue <span class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></span>
+      </button>
+
+      <!-- App Download Badges -->
+      <div class="splash-downloads">
+        <a href="https://play.google.com/store/apps/details?id=com.qizz.rds" target="_blank" class="splash-dl-badge" id="splash-link-android">
+          <i class="fa-brands fa-google-play" style="color: #34a853;"></i> Google Play
+        </a>
+        <a href="https://apps.apple.com/app/real-driving-school/id1485698382" target="_blank" class="splash-dl-badge" id="splash-link-ios">
+          <i class="fa-brands fa-apple" style="color: #007aff;"></i> App Store
+        </a>
+        <a href="https://discord.gg/realdrivingschool" target="_blank" class="splash-dl-badge">
+          <i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SCREEN 2: MAIN WEB HUB (INTERACTIVE PLATFORM)
+       ======================================================================== -->
+  <div id="screen-hub">
+    <!-- Top Sticky Navigation Bar -->
+    <header class="top-header">
+      <div class="top-brand" id="top-brand-btn">
+        <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=128&q=80" alt="Logo" class="top-brand-logo" id="top-logo-img">
+        <div>
+          <div class="top-brand-name" id="top-title-text">Real Driving School</div>
+          <div class="top-brand-sub">Official Web Hub</div>
+        </div>
+      </div>
+
+      <!-- Desktop Horizontal Navigation Links -->
+      <nav>
+        <ul class="desktop-nav-menu">
+          <li><button class="nav-btn active" data-cat="car-prices"><i class="fa-solid fa-car"></i> Car Prices</button></li>
+          <li><button class="nav-btn" data-cat="tyre-codes"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button></li>
+          <li><button class="nav-btn" data-cat="events"><i class="fa-solid fa-trophy"></i> Events</button></li>
+          <li><button class="nav-btn" data-cat="rules"><i class="fa-solid fa-scale-balanced"></i> Rules</button></li>
+          <li><button class="nav-btn" data-cat="map-guide"><i class="fa-solid fa-map-location-dot"></i> Map Guide</button></li>
+          <li><button class="nav-btn" data-cat="rds-updates"><i class="fa-solid fa-rocket"></i> Updates</button></li>
+          <li><button class="nav-btn" data-cat="multiplayer"><i class="fa-solid fa-users"></i> Multiplayer</button></li>
+          <span id="dynamic-nav-cats" style="display: contents;"></span>
+        </ul>
+      </nav>
+
+      <!-- Actions: Notifications, Profile, Login -->
+      <div class="top-actions">
+        <!-- Return to Splash Gate -->
+        <button class="icon-action-btn" id="btn-return-splash" title="Return to Welcome Screen">
+          <i class="fa-solid fa-door-open"></i>
+        </button>
+
+        <!-- Notification Bell -->
+        <div style="position: relative;">
+          <button class="icon-action-btn" id="btn-bell-toggle" title="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-bell-count" id="badge-bell-count" style="display: none;">0</span>
+          </button>
+        </div>
+
+        <!-- Driver Profile Pill -->
+        <div class="profile-pill-btn" id="btn-profile-pill">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=128&q=80" alt="Avatar" class="pill-avatar" id="pill-avatar-img">
+          <span class="pill-name" id="pill-name-text">StreetRacer</span>
+          <span class="role-tag" id="pill-role-tag" style="background: rgba(255,255,255,0.08);">Driver</span>
+        </div>
+
+        <!-- Staff / Owner Login Button -->
+        <button class="btn-act-secondary" id="btn-staff-auth" style="padding: 0.45rem 0.85rem; font-size: 0.82rem;">
+          <i class="fa-solid fa-lock"></i> Staff Login
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Content Hub Area -->
+    <main class="hub-container" id="hub-main-content"></main>
+
+    <!-- Mobile Thumb Dock (Bottom Navigation for Phones) -->
+    <nav class="mobile-bottom-dock">
+      <button class="dock-item active" data-cat="car-prices"><i class="fa-solid fa-car"></i><span>Cars</span></button>
+      <button class="dock-item" data-cat="tyre-codes"><i class="fa-solid fa-circle-notch"></i><span>Tyres</span></button>
+      <button class="dock-item" data-cat="events"><i class="fa-solid fa-trophy"></i><span>Events</span></button>
+      <button class="dock-item" data-cat="rds-updates"><i class="fa-solid fa-rocket"></i><span>Updates</span></button>
+      <button class="dock-item" id="btn-mobile-more"><i class="fa-solid fa-ellipsis"></i><span>More</span></button>
+    </nav>
+  </div>
+
+  <!-- FLOATING OWNER STUDIO BUTTON (Visible to Owner) -->
+  <button class="floating-owner-studio-btn" id="btn-floating-owner-studio">
+    <i class="fa-solid fa-wand-magic-sparkles"></i> <span>Owner Studio</span>
+  </button>
+
+  <!-- ========================================================================
+       MODALS: AUTH, PROFILES, SPECS, AND OWNER STUDIO
+       ======================================================================== -->
+
+  <!-- 1. Staff & Owner Login Modal -->
+  <div class="modal-overlay" id="modal-auth">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title"><i class="fa-solid fa-shield-halved"></i> Staff & Owner Access</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-auth')">&times;</button>
+      </div>
+      <form id="form-auth-login">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Log in with your administrator or owner credentials to edit categories, cars, events, tyre codes, and UI.
+        </p>
+        <div class="form-ctrl">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input-text" id="auth-email-input" placeholder="pennabadicharith@gmail.com" required>
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input-text" id="auth-pass-input" placeholder="••••••••" required>
+        </div>
+        <div style="background: rgba(0,210,255,0.08); border-left: 3px solid var(--accent-primary); padding: 0.75rem; border-radius: 4px; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          <strong style="color: #fff;">Owner Credentials (Pre-configured):</strong><br>
+          Email: <code>pennabadicharith@gmail.com</code> | Password: <code>Cherry1111</code>
+        </div>
+        <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Authenticate & Enter
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Driver Profile Modal -->
+  <div class="modal-overlay" id="modal-driver-profile">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 class="modal-title"><i class="fa-solid fa-user-pen"></i> Driver Profile</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-driver-profile')">&times;</button>
+      </div>
+      <form id="form-driver-profile">
+        <div id="profile-locked-banner" style="display: none; background: rgba(255,59,48,0.15); border: 1px solid var(--accent-red); padding: 0.75rem; border-radius: 6px; color: #ff8a80; font-size: 0.85rem; margin-bottom: 1rem;">
+          <i class="fa-solid fa-triangle-exclamation"></i> Profile customization locked by Owner due to rule abuse. Name stays default white.
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Driver Username (Max 20 Characters)</label>
+          <input type="text" class="form-input-text" id="input-driver-name" maxlength="20" required>
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Avatar Image URL</label>
+          <input type="url" class="form-input-text" id="input-driver-avatar">
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Role</label>
+          <div><span class="role-tag" id="label-driver-role">Driver</span></div>
+        </div>
+        <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          Save Profile
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Car Specs Technical Modal (Does not sum up prices) -->
+  <div class="modal-overlay" id="modal-car-specs">
+    <div class="modal-box" style="max-width: 780px;">
+      <div class="modal-head">
+        <h3 class="modal-title"><i class="fa-solid fa-gauge-high"></i> Vehicle Specifications</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-car-specs')">&times;</button>
+      </div>
+      <div id="modal-car-specs-content"></div>
+    </div>
+  </div>
+
+  <!-- 4. Add/Edit Car Modal -->
+  <div class="modal-overlay" id="modal-car-editor">
+    <div class="modal-box" style="max-width: 820px;">
+      <div class="modal-head">
+        <h3 class="modal-title" id="title-car-editor">Vehicle Editor</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-car-editor')">&times;</button>
+      </div>
+      <form id="form-car-editor">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;">
+          <div class="form-ctrl">
+            <label class="form-label">Car Name</label>
+            <input type="text" class="form-input-text" id="car-edit-name" required placeholder="e.g. Apex GT-R 35 'Godzilla'">
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Display Order #</label>
+            <input type="number" class="form-input-text" id="car-edit-order" required value="1" min="1">
+          </div>
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Car Image URL</label>
+          <input type="url" class="form-input-text" id="car-edit-image" required placeholder="https://...">
+        </div>
+        <div class="form-ctrl">
+          <label class="form-label">Description</label>
+          <input type="text" class="form-input-text" id="car-edit-desc" placeholder="Twin-turbo all-wheel drive street beast...">
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 0.6rem;">
+          <div class="form-ctrl">
+            <label class="form-label">Base Price</label>
+            <input type="text" class="form-input-text" id="car-edit-base" value="10M">
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Premium</label>
+            <input type="text" class="form-input-text" id="car-edit-premium" value="8M">
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Police</label>
+            <input type="text" class="form-input-text" id="car-edit-police" value="15M">
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Rainbow Smoke</label>
+            <input type="text" class="form-input-text" id="car-edit-rainbow" value="6M">
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Coating</label>
+            <input type="text" class="form-input-text" id="car-edit-coating" value="4M">
+          </div>
+        </div>
+
+        <h4 style="font-family: var(--font-heading); color: var(--accent-primary); text-transform: uppercase; margin: 1rem 0 0.5rem 0;">
+          Stage 1 to 7 Specs (Speeds km/h & mph, No Turbo & Turbo, Prices with k, M, b, t)
+        </h4>
+        <div id="car-stages-editor-list" style="max-height: 280px; overflow-y: auto;"></div>
+
+        <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.85rem; margin-top: 1rem;">
+          <i class="fa-solid fa-floppy-disk"></i> Save Vehicle
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. Add/Edit Event Modal (with Current Live Event Option) -->
+  <div class="modal-overlay" id="modal-event-editor">
+    <div class="modal-box" style="max-width: 820px;">
+      <div class="modal-head">
+        <h3 class="modal-title" id="title-event-editor">Event Editor</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-event-editor')">&times;</button>
+      </div>
+      <form id="form-event-editor">
+        <div class="form-ctrl">
+          <label class="form-label">Event Title</label>
+          <input type="text" class="form-input-text" id="event-edit-title" required placeholder="e.g. Midnight Tokyo Touge Showdown">
+        </div>
+
+        <!-- Event Status Selector: Live Now, Upcoming, Past -->
+        <div class="form-ctrl">
+          <label class="form-label">Event Status Mode</label>
+          <select class="form-select-box" id="event-edit-status">
+            <option value="current">🔴 CURRENT EVENT (Live Now in Multiplayer!)</option>
+            <option value="upcoming" selected>⏳ UPCOMING EVENT (Scheduled / Countdown)</option>
+            <option value="past">📜 PAST EVENT (Concluded / Results)</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="form-ctrl">
+            <label class="form-label">Start Timestamp</label>
+            <input type="datetime-local" class="form-input-text" id="event-edit-start" required>
+          </div>
+          <div class="form-ctrl">
+            <label class="form-label">Scheduled Notification Broadcast Time</label>
+            <input type="datetime-local" class="form-input-text" id="event-edit-notify" required>
+          </div>
+        </div>
+
+        <div class="form-ctrl">
+          <label class="form-label">Event Image / Video URL (Optional)</label>
+          <input type="url" class="form-input-text" id="event-edit-image" placeholder="https://...">
+        </div>
+
+        <!-- Specified Fields -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem;">
+          <div class="form-ctrl"><label class="form-label">Game Mode</label><input type="text" class="form-input-text" id="event-edit-mode-grind" value="Grind"></div>
+          <div class="form-ctrl"><label class="form-label">Track</label><input type="text" class="form-input-text" id="event-edit-track" placeholder="Akina Pass"></div>
+          <div class="form-ctrl"><label class="form-label">Location</label><input type="text" class="form-input-text" id="event-edit-location" placeholder="Mount Touge"></div>
+          <div class="form-ctrl"><label class="form-label">Duration</label><input type="text" class="form-input-text" id="event-edit-duration" placeholder="2 Hours"></div>
+          <div class="form-ctrl"><label class="form-label">Car</label><input type="text" class="form-input-text" id="event-edit-car" placeholder="All Classes"></div>
+          <div class="form-ctrl"><label class="form-label">Trade</label><input type="text" class="form-input-text" id="event-edit-trade" placeholder="Allowed"></div>
+          <div class="form-ctrl"><label class="form-label">Fuel</label><input type="text" class="form-input-text" id="event-edit-fuel" placeholder="Standard"></div>
+          <div class="form-ctrl"><label class="form-label">Mode</label><input type="text" class="form-input-text" id="event-edit-lobby" placeholder="Multiplayer #4"></div>
+          <div class="form-ctrl"><label class="form-label">Character</label><input type="text" class="form-input-text" id="event-edit-char" placeholder="All Clans"></div>
+        </div>
+
+        <!-- Mystery / Teaser Mode & Controls -->
+        <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border); margin: 0.75rem 0;">
+          <strong style="color: var(--accent-gold); display: block; margin-bottom: 0.5rem;"><i class="fa-solid fa-eye-slash"></i> Teaser & Display Controls</strong>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+              <input type="checkbox" id="event-edit-mystery"> Enable Mystery Mode (Classified Intel)
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+              <input type="checkbox" id="event-edit-qmark"> Tint with Question Mark (?)
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer;">
+              <input type="checkbox" id="event-edit-show-timing" checked> Show Countdown Timing
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+          <i class="fa-solid fa-bullhorn"></i> Save Event
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 6. OWNER MASTER STUDIO (Full Live UI & Content Editor) -->
+  <div class="modal-overlay" id="modal-owner-studio">
+    <div class="modal-box" style="max-width: 920px;">
+      <div class="modal-head">
+        <h3 class="modal-title" style="color: #ffd700;"><i class="fa-solid fa-crown"></i> Owner Master Studio</h3>
+        <button class="modal-close-icon" onclick="closeModal('modal-owner-studio')">&times;</button>
+      </div>
+
+      <!-- Studio Tabs -->
+      <div style="display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.75rem; border-bottom: 1px solid var(--glass-border); margin-bottom: 1.5rem;">
+        <button class="btn-act-secondary studio-tab-btn active" data-stab="ui"><i class="fa-solid fa-palette"></i> UI & Background</button>
+        <button class="btn-act-secondary studio-tab-btn" data-stab="content"><i class="fa-solid fa-pen-nib"></i> Text & Media</button>
+        <button class="btn-act-secondary studio-tab-btn" data-stab="admins"><i class="fa-solid fa-user-shield"></i> Admins & Limits</button>
+        <button class="btn-act-secondary studio-tab-btn" data-stab="roles"><i class="fa-solid fa-tags"></i> Discord Roles</button>
+        <button class="btn-act-secondary studio-tab-btn" data-stab="cloud"><i class="fa-solid fa-cloud"></i> $0 Cloud Sync</button>
+        <button class="btn-act-secondary studio-tab-btn" data-stab="logs"><i class="fa-solid fa-list-check"></i> Audit Logs</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div id="studio-tab-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-tray" id="toast-tray"></div>
+
+  <!-- INLINE APPLICATION ENGINE (SELF-CONTAINED FOR BULLETPROOF GITHUB PAGES HOSTING) -->
+  <script>
+    /* ==========================================================================
+       1. DATA ENGINE (LOCAL + CLOUD BROADCAST)
+       ========================================================================== */
+    const SEED_SETTINGS = {
+      gameName: "Real Driving School",
+      logoUrl: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=200&q=80",
+      heroVideoUrl: "https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-at-night-41584-large.mp4",
+      heroImageUrl: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80",
+      aboutText: "Experience the next generation of realistic driving simulation in Real Driving School (RDS). Manual transmission with clutch, dynamic weather, custom liveries, multiplayer lobbies, and an expansive open world city.",
+      fontSize: "medium",
+      accentColor: "#00d2ff",
+      fontFamily: "'Rajdhani', sans-serif",
+      glassBlur: 24,
+      glassOpacity: 0.12,
+      matteOpacity: 0.82
+    };
+
+    const SEED_ROLES = [
+      { id: "owner", name: "Owner", color: "#FFD700", priority: 1, permissions: ["all"] },
+      { id: "head_admin", name: "Head Admin", color: "#FF3B30", priority: 2, permissions: ["cars", "tyres", "events", "rules", "maps", "updates", "multiplayer", "view_logs"] },
+      { id: "event_master", name: "Event Master", color: "#AF52DE", priority: 3, permissions: ["events"] },
+      { id: "player", name: "Driver", color: "#E5E5EA", priority: 10, permissions: [] }
+    ];
+
+    const SEED_CARS = [
+      {
+        id: "car_gtr_r35",
+        order: 1,
+        name: "Apex GT-R 35 'Godzilla'",
+        image: "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80",
+        description: "Twin-turbo charged all-wheel-drive Japanese supercar. Dominates drag strips and high-speed highway pulls.",
+        basePrice: "12M",
+        charges: { premium: "8M", police: "15M", rainbowSmoke: "6M", coating: "4M" },
+        stages: [
+          { stage: 1, speedNoTurboKmph: 295, speedNoTurboMph: 183, speedTurboKmph: 315, speedTurboMph: 195, price: "12M" },
+          { stage: 2, speedNoTurboKmph: 310, speedNoTurboMph: 192, speedTurboKmph: 335, speedTurboMph: 208, price: "18M" },
+          { stage: 3, speedNoTurboKmph: 330, speedNoTurboMph: 205, speedTurboKmph: 358, speedTurboMph: 222, price: "28M" },
+          { stage: 4, speedNoTurboKmph: 345, speedNoTurboMph: 214, speedTurboKmph: 378, speedTurboMph: 235, price: "42M" },
+          { stage: 5, speedNoTurboKmph: 362, speedNoTurboMph: 225, speedTurboKmph: 399, speedTurboMph: 248, price: "60M" },
+          { stage: 6, speedNoTurboKmph: 380, speedNoTurboMph: 236, speedTurboKmph: 422, speedTurboMph: 262, price: "85M" },
+          { stage: 7, speedNoTurboKmph: 405, speedNoTurboMph: 251, speedTurboKmph: 450, speedTurboMph: 280, price: "115M" }
+        ]
+      },
+      {
+        id: "car_huracan_evo",
+        order: 2,
+        name: "Toro Huracan V10 Evo",
+        image: "https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?auto=format&fit=crop&w=1200&q=80",
+        description: "Naturally aspirated screaming V10 Italian masterpiece with forged carbon aerodynamics and surgical handling.",
+        basePrice: "25M",
+        charges: { premium: "12M", police: "20M", rainbowSmoke: "8M", coating: "7M" },
+        stages: [
+          { stage: 1, speedNoTurboKmph: 325, speedNoTurboMph: 202, speedTurboKmph: 342, speedTurboMph: 212, price: "25M" },
+          { stage: 2, speedNoTurboKmph: 340, speedNoTurboMph: 211, speedTurboKmph: 365, speedTurboMph: 226, price: "38M" },
+          { stage: 3, speedNoTurboKmph: 358, speedNoTurboMph: 222, speedTurboKmph: 388, speedTurboMph: 241, price: "55M" },
+          { stage: 4, speedNoTurboKmph: 375, speedNoTurboMph: 233, speedTurboKmph: 410, speedTurboMph: 255, price: "80M" },
+          { stage: 5, speedNoTurboKmph: 392, speedNoTurboMph: 243, speedTurboKmph: 432, speedTurboMph: 268, price: "110M" },
+          { stage: 6, speedNoTurboKmph: 410, speedNoTurboMph: 255, speedTurboKmph: 455, speedTurboMph: 282, price: "150M" },
+          { stage: 7, speedNoTurboKmph: 430, speedNoTurboMph: 267, speedTurboKmph: 480, speedTurboMph: 298, price: "200M" }
+        ]
+      }
+    ];
+
+    const SEED_TYRES = [
+      { id: "tyre_1", name: "Pro Slick Zero Drift", code: "RDS-SLICK-99X", image: "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=600&q=80", description: "Maximum road adhesion for asphalt drag races. Reduces wheelspin by 45%." },
+      { id: "tyre_2", name: "Vortex Smoke Drift King", code: "RDS-DRIFT-42K", image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=600&q=80", description: "Specialized hard compound giving progressive slide breakaway and 2x denser smoke." }
+    ];
+
+    const SEED_EVENTS = [
+      {
+        id: "ev_current_live",
+        title: "🔥 NIGHTFALL TANDEM BATTLE (LOBBY #1)",
+        status: "current", // LIVE NOW!
+        startTime: new Date().toISOString(),
+        scheduledSendTime: new Date().toISOString(),
+        image: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80",
+        gameMode: "Grind & Tandem",
+        track: "Akina Downhill Sector 4",
+        location: "Mount Touge - Pass B",
+        duration: "Active Now (Ends in 45m)",
+        car: "Apex GT-R / Supra MK-IV",
+        trade: "Allowed (Winner 50M CR)",
+        fuel: "Unlimited Refills",
+        mode: "Multiplayer Lobby #1 (PIN: 2026)",
+        character: "Street Tuner Clan",
+        isMystery: false,
+        mysteryImage: false,
+        showTiming: true
+      },
+      {
+        id: "ev_upcoming_touge",
+        title: "Midnight Touge King Tournament",
+        status: "upcoming",
+        startTime: new Date(Date.now() + 86400000).toISOString(),
+        scheduledSendTime: new Date(Date.now() + 86400000).toISOString(),
+        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+        gameMode: "Grind",
+        track: "Akina Sector 2",
+        location: "Touge Mountain",
+        duration: "2 Hours",
+        car: "All Classes",
+        trade: "Open Marketplace",
+        fuel: "Standard",
+        mode: "Competitive Ranked",
+        character: "Global Drivers",
+        isMystery: false,
+        mysteryImage: false,
+        showTiming: true
+      },
+      {
+        id: "ev_mystery_classified",
+        title: "CLASSIFIED: The Underground Blacklist King",
+        status: "upcoming",
+        startTime: new Date(Date.now() + 259200000).toISOString(),
+        scheduledSendTime: new Date(Date.now() + 259200000).toISOString(),
+        image: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=800&q=80",
+        gameMode: "Grind",
+        track: "??? Classified Sector ???",
+        location: "Restricted Base",
+        duration: "1 Hour",
+        car: "Hypercar Tier Only (Stage 7+)",
+        trade: "Strict No-Trade",
+        fuel: "Realistic Drain",
+        mode: "Multiplayer Lobby",
+        character: "Unknown Enforcer",
+        isMystery: true, // Mystery mode!
+        mysteryImage: true,
+        showTiming: true
+      }
+    ];
+
+    const SEED_RULES = [
+      { id: "rule_1", category: "Fair Play", order: 1, title: "No Intentional Ramming or Griefing in Clean Lobbies", content: "Lobbies marked Clean Race require sportsmanship. Intentional pit maneuvers or reverse driving result in bans." },
+      { id: "rule_2", category: "Trading", order: 2, title: "Official Trade Inspection Window Only", content: "Always trade using the in-game inspection confirmation window. Real-money third party trading is strictly prohibited." }
+    ];
+
+    const SEED_MAPS = [
+      { id: "map_1", title: "Downtown Highway Loop", difficulty: "Intermediate", image: "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80", description: "Expansive 8-lane expressway system with high-speed laser radar traps.", tips: ["Use Stage 6+ turbo tuning on the east bridge straightaway."] }
+    ];
+
+    const SEED_UPDATES = [
+      { id: "up_1", version: "v2.4.0", title: "Custom Livery Studio & Stage 7+ Overhaul", timestamp: new Date().toISOString(), publishedAndroid: true, publishedIos: true, isComingSoon: false, changelog: ["Added 256 vector layer Custom Livery Editor", "Revamped turbo acoustic spools for Stage 4+ engines"] },
+      { id: "up_2", version: "v2.5.0", title: "Dynamic Rainy Weather & Wet Highway Reflections", timestamp: new Date(Date.now() + 604800000).toISOString(), publishedAndroid: false, publishedIos: false, isComingSoon: true, changelog: ["Dynamic rainfall physics", "Puddle hydroplaning simulation"] }
+    ];
+
+    const SEED_MP = [
+      { id: "mp_1", title: "How to Join Convoy Drift Lobbies", image: "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80", content: "1. Open Multiplayer > Custom Room. 2. Select closest server region. 3. Enter lobby 4-digit PIN to join." }
+    ];
+
+    const SEED_ADMINS = [
+      { id: "adm_owner", email: "pennabadicharith@gmail.com", roleId: "owner", roleName: "Owner", permissions: ["all"], deviceLimit: 5, activeDevices: ["Primary-Device"], isOwner: true, username: "Charith (Owner)", avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" },
+      { id: "adm_demo", email: "admin.rds@gmail.com", roleId: "head_admin", roleName: "Head Admin", permissions: ["cars", "tyres", "events", "rules", "maps", "updates", "multiplayer", "view_logs"], deviceLimit: 2, activeDevices: ["Mobile-1"], isOwner: false, username: "Apex_Admin", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" }
+    ];
+
+    class DatabaseManager {
+      constructor() {
+        this.storageKey = "RDS_HUB_MASTER_STORE_V2";
+        this.broadcast = null;
+        this.state = this.load();
+        try {
+          if (typeof BroadcastChannel !== "undefined") {
+            this.broadcast = new BroadcastChannel("RDS_HUB_CHANNEL");
+            this.broadcast.onmessage = (e) => {
+              if (e.data && e.data.type === "STATE_SYNC") {
+                this.state = e.data.state;
+                this.renderAll();
+              }
+            };
+          }
+        } catch(e) {}
+      }
+
+      load() {
+        const saved = localStorage.getItem(this.storageKey);
+        if (saved) {
+          try { return JSON.parse(saved); } catch(e) {}
+        }
+        return {
+          settings: { ...SEED_SETTINGS },
+          roles: SEED_ROLES,
+          cars: SEED_CARS,
+          tyreCodes: SEED_TYRES,
+          events: SEED_EVENTS,
+          rules: SEED_RULES,
+          mapGuides: SEED_MAPS,
+          updates: SEED_UPDATES,
+          multiplayerGuides: SEED_MP,
+          admins: SEED_ADMINS,
+          customCategories: [],
+          customBoxes: [],
+          auditLogs: [{ id: "l1", user: "System", action: "Site Initialized", category: "Core", timestamp: new Date().toISOString() }]
+        };
+      }
+
+      save() {
+        localStorage.setItem(this.storageKey, JSON.stringify(this.state));
+        if (this.broadcast) this.broadcast.postMessage({ type: "STATE_SYNC", state: this.state });
+        this.renderAll();
+      }
+
+      renderAll() {
+        applyVisualSettings(this.state.settings);
+        renderCurrentCategory();
+      }
+    }
+
+    const DB = new DatabaseManager();
+
+    /* ==========================================================================
+       2. AUTHENTICATION & OWNER ENGINE
+       ========================================================================== */
+    class AuthManager {
+      constructor() {
+        this.currentUser = this.loadUser();
+      }
+
+      loadUser() {
+        const s = sessionStorage.getItem("RDS_USER_SESSION");
+        if (s) {
+          try { return JSON.parse(s); } catch(e) {}
+        }
+        return {
+          id: "guest_" + Math.random().toString(36).substr(2, 6),
+          username: localStorage.getItem("RDS_UNAME") || "StreetRacer",
+          avatar: localStorage.getItem("RDS_UAVATAR") || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=128&q=80",
+          roleId: "player",
+          roleName: "Driver",
+          roleColor: "#E5E5EA",
+          permissions: [],
+          isOwner: false,
+          isLoggedIn: false,
+          nameLocked: localStorage.getItem("RDS_NLOCK") === "true"
+        };
+      }
+
+      saveUser() {
+        sessionStorage.setItem("RDS_USER_SESSION", JSON.stringify(this.currentUser));
+        if (!this.currentUser.isLoggedIn) {
+          localStorage.setItem("RDS_UNAME", this.currentUser.username);
+          localStorage.setItem("RDS_UAVATAR", this.currentUser.avatar);
+          localStorage.setItem("RDS_NLOCK", this.currentUser.nameLocked ? "true" : "false");
+        }
+        updateHeaderUser();
+      }
+
+      login(email, pass) {
+        email = (email || "").trim().toLowerCase();
+        pass = (pass || "").trim();
+
+        // OWNER CHECK
+        if (email === "pennabadicharith@gmail.com" && pass === "Cherry1111") {
+          this.currentUser = {
+            id: "owner_super",
+            email: "pennabadicharith@gmail.com",
+            username: "Charith (Owner)",
+            avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+            roleId: "owner",
+            roleName: "Owner",
+            roleColor: "#FFD700",
+            permissions: ["all"],
+            isOwner: true,
+            isLoggedIn: true,
+            nameLocked: false
+          };
+          this.saveUser();
+          return { success: true, message: "Welcome back, Game Owner!" };
+        }
+
+        // ADMIN CHECK
+        const adm = (DB.state.admins || []).find(a => (a.email || "").toLowerCase() === email);
+        if (adm) {
+          if (pass === "Admin123!" || pass === "Cherry1111") {
+            this.currentUser = {
+              id: adm.id,
+              email: adm.email,
+              username: adm.username || "Staff_Admin",
+              avatar: adm.avatar || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+              roleId: adm.roleId,
+              roleName: adm.roleName,
+              roleColor: "#FF3B30",
+              permissions: adm.permissions || [],
+              isOwner: false,
+              isLoggedIn: true,
+              nameLocked: adm.nameLocked || false
+            };
+            this.saveUser();
+            return { success: true, message: `Welcome, ${this.currentUser.username}!` };
+          }
+        }
+        return { success: false, message: "Invalid credentials." };
+      }
+
+      logout() {
+        sessionStorage.removeItem("RDS_USER_SESSION");
+        this.currentUser = {
+          id: "guest_" + Math.random().toString(36).substr(2, 6),
+          username: localStorage.getItem("RDS_UNAME") || "StreetRacer",
+          avatar: localStorage.getItem("RDS_UAVATAR") || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=128&q=80",
+          roleId: "player",
+          roleName: "Driver",
+          roleColor: "#E5E5EA",
+          permissions: [],
+          isOwner: false,
+          isLoggedIn: false,
+          nameLocked: localStorage.getItem("RDS_NLOCK") === "true"
+        };
+        this.saveUser();
+      }
+
+      hasPerm(categoryKey) {
+        if (!this.currentUser) return false;
+        if (this.currentUser.isOwner) return true;
+        if (!this.currentUser.isLoggedIn) return false;
+        return this.currentUser.permissions.includes("all") || this.currentUser.permissions.includes(categoryKey);
+      }
+    }
+
+    const AUTH = new AuthManager();
+
+    /* ==========================================================================
+       3. WORKABLE NOTIFICATIONS & SYNTHESIZED SOUND CHIME
+       ========================================================================== */
+    class AudioNotificationEngine {
+      constructor() {
+        this.audioCtx = null;
+        this.unread = 0;
+      }
+
+      initCtx() {
+        try {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (AC && !this.audioCtx) this.audioCtx = new AC();
+          if (this.audioCtx && this.audioCtx.state === "suspended") this.audioCtx.resume();
+        } catch(e) {}
+      }
+
+      playChime() {
+        try {
+          this.initCtx();
+          if (!this.audioCtx) return;
+          const now = this.audioCtx.currentTime;
+
+          const osc1 = this.audioCtx.createOscillator();
+          const gain1 = this.audioCtx.createGain();
+          osc1.type = "sine";
+          osc1.frequency.setValueAtTime(587.33, now); // D5
+          osc1.frequency.exponentialRampToValueAtTime(880.00, now + 0.15); // A5
+
+          gain1.gain.setValueAtTime(0.001, now);
+          gain1.gain.linearRampToValueAtTime(0.25, now + 0.05);
+          gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.45);
+
+          osc1.connect(gain1);
+          gain1.connect(this.audioCtx.destination);
+          osc1.start(now);
+          osc1.stop(now + 0.45);
+        } catch(e) {}
+      }
+
+      notify(title, message, type = "info") {
+        this.playChime();
+        this.unread++;
+        const badge = document.getElementById("badge-bell-count");
+        if (badge) {
+          badge.textContent = this.unread;
+          badge.style.display = "inline-flex";
+        }
+
+        // Native browser notification if allowed
+        if ("Notification" in window && Notification.permission === "granted") {
+          try { new Notification(title, { body: message, icon: DB.state.settings.logoUrl }); } catch(e) {}
+        }
+
+        // Glass Toast Bubble
+        const tray = document.getElementById("toast-tray");
+        if (tray) {
+          const bubble = document.createElement("div");
+          bubble.className = "toast-bubble";
+          bubble.innerHTML = `
+            <div style="font-size: 1.3rem;">🔔</div>
+            <div style="flex: 1;">
+              <div style="font-weight: 700; font-size: 0.9rem;">${title}</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">${message}</div>
+            </div>
+            <button style="background: none; border: none; color: var(--text-dim); font-size: 1.1rem; cursor: pointer;">&times;</button>
+          `;
+          bubble.querySelector("button").onclick = () => bubble.remove();
+          tray.appendChild(bubble);
+          setTimeout(() => bubble.remove(), 5500);
+        }
+      }
+    }
+
+    const NOTIF = new AudioNotificationEngine();
+
+    /* ==========================================================================
+       4. CAR CALCULATOR ENGINE
+       ========================================================================== */
+    function parseCarPrice(val) {
+      if (!val) return 0;
+      if (typeof val === "number") return val;
+      const str = val.toString().trim().toLowerCase();
+      const match = str.match(/^([\d.,]+)\s*([kmbt])?$/);
+      if (!match) {
+        const num = parseFloat(str.replace(/[^\d.]/g, ""));
+        return isNaN(num) ? 0 : num * 1000000;
+      }
+      const num = parseFloat(match[1].replace(/,/g, ""));
+      const unit = match[2];
+      const mult = { k: 1000, m: 1000000, b: 1000000000, t: 1000000000000 };
+      return num * (mult[unit] || 1000000);
+    }
+
+    function formatCarPrice(num) {
+      if (isNaN(num)) return "0M";
+      const abs = Math.abs(num);
+      if (abs >= 1e12) return (num / 1e12).toFixed(2).replace(/\.00$/, '') + "t";
+      if (abs >= 1e9) return (num / 1e9).toFixed(2).replace(/\.00$/, '') + "b";
+      if (abs >= 1e6) return (num / 1e6).toFixed(2).replace(/\.00$/, '') + "M";
+      if (abs >= 1e3) return (num / 1e3).toFixed(1).replace(/\.0$/, '') + "k";
+      return num.toLocaleString();
+    }
+
+    /* ==========================================================================
+       5. APPLICATION STATE & ROUTING
+       ========================================================================== */
+    let currentCategory = "car-prices";
+    let activeCar = null;
+    let eventSubTab = "current"; // current (live now), upcoming, past
+
+    function initApp() {
+      // Splash Gate continue button
+      document.getElementById("btn-enter-hub")?.addEventListener("click", () => {
+        document.getElementById("screen-splash").classList.add("hidden-gate");
+        document.getElementById("screen-hub").classList.add("active-hub");
+        NOTIF.initCtx();
+      });
+
+      // Return to Splash Gate
+      document.getElementById("btn-return-splash")?.addEventListener("click", () => {
+        document.getElementById("screen-splash").classList.remove("hidden-gate");
+        document.getElementById("screen-hub").classList.remove("active-hub");
+      });
+
+      // Logo click in header returns to home/splash
+      document.getElementById("top-brand-btn")?.addEventListener("click", () => {
+        document.getElementById("screen-splash").classList.remove("hidden-gate");
+        document.getElementById("screen-hub").classList.remove("active-hub");
+      });
+
+      // Nav Category clicks
+      document.querySelectorAll(".nav-btn, .dock-item").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const cat = btn.getAttribute("data-cat");
+          if (cat) switchCategory(cat);
+        });
+      });
+
+      // Bell notification click
+      document.getElementById("btn-bell-toggle")?.addEventListener("click", () => {
+        if ("Notification" in window) Notification.requestPermission();
+        NOTIF.unread = 0;
+        document.getElementById("badge-bell-count").style.display = "none";
+        NOTIF.notify("Notifications Active", "You are tuned in to all Real Driving School broadcasts!", "info");
+      });
+
+      // Profile click
+      document.getElementById("btn-profile-pill")?.addEventListener("click", () => openProfileModal());
+
+      // Staff Login click
+      document.getElementById("btn-staff-auth")?.addEventListener("click", () => {
+        if (AUTH.currentUser.isLoggedIn) {
+          AUTH.logout();
+          NOTIF.notify("Logged Out", "You have signed out.", "info");
+        } else {
+          openModal("modal-auth");
+        }
+      });
+
+      // Auth form submit
+      document.getElementById("form-auth-login")?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const em = document.getElementById("auth-email-input").value;
+        const pw = document.getElementById("auth-pass-input").value;
+        const res = AUTH.login(em, pw);
+        if (res.success) {
+          closeModal("modal-auth");
+          NOTIF.notify("Staff Verified", res.message, "success");
+          if (AUTH.currentUser.isOwner) {
+            document.getElementById("btn-floating-owner-studio").style.display = "flex";
+          }
+          renderCurrentCategory();
+        } else {
+          NOTIF.notify("Auth Failed", res.message, "warning");
+        }
+      });
+
+      // Floating Owner Studio trigger
+      document.getElementById("btn-floating-owner-studio")?.addEventListener("click", () => openOwnerStudio());
+
+      // Initial visual render
+      applyVisualSettings(DB.state.settings);
+      updateHeaderUser();
+      switchCategory("car-prices");
+    }
+
+    function switchCategory(catKey) {
+      currentCategory = catKey;
+
+      document.querySelectorAll(".nav-btn, .dock-item").forEach(b => {
+        b.classList.toggle("active", b.getAttribute("data-cat") === catKey);
+      });
+
+      renderCurrentCategory();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function updateHeaderUser() {
+      const u = AUTH.currentUser;
+      const avatarEl = document.getElementById("pill-avatar-img");
+      const nameEl = document.getElementById("pill-name-text");
+      const roleEl = document.getElementById("pill-role-tag");
+      const loginBtn = document.getElementById("btn-staff-auth");
+      const studioBtn = document.getElementById("btn-floating-owner-studio");
+
+      if (avatarEl) avatarEl.src = u.avatar;
+      if (nameEl) {
+        nameEl.textContent = u.username;
+        nameEl.style.color = u.nameLocked ? "#FFFFFF" : (u.roleColor || "#FFFFFF");
+      }
+      if (roleEl) {
+        roleEl.textContent = u.roleName;
+        roleEl.style.color = u.roleColor || "#E5E5EA";
+        roleEl.style.borderColor = u.roleColor || "#E5E5EA";
+      }
+      if (loginBtn) {
+        loginBtn.innerHTML = u.isLoggedIn ? '<i class="fa-solid fa-right-from-bracket"></i> Logout' : '<i class="fa-solid fa-lock"></i> Staff Login';
+      }
+      if (studioBtn) {
+        studioBtn.style.display = u.isOwner ? "flex" : "none";
+      }
+    }
+
+    function applyVisualSettings(s) {
+      if (!s) return;
+      document.body.className = `font-${s.fontSize || 'medium'}`;
+
+      if (s.accentColor) {
+        document.documentElement.style.setProperty("--accent-primary", s.accentColor);
+        document.documentElement.style.setProperty("--accent-glow", s.accentColor);
+      }
+      if (s.glassBlur) {
+        document.documentElement.style.setProperty("--glass-blur", `${s.glassBlur}px`);
+      }
+
+      // Titles & logo
+      const logoImgs = document.querySelectorAll("#splash-logo-img, #top-logo-img");
+      logoImgs.forEach(img => { if (s.logoUrl) img.src = s.logoUrl; });
+
+      const titleEls = document.querySelectorAll("#splash-title-text, #top-title-text");
+      titleEls.forEach(el => { if (s.gameName) el.textContent = s.gameName; });
+
+      const aboutEl = document.getElementById("splash-about-text");
+      if (aboutEl && s.aboutText) aboutEl.textContent = s.aboutText;
+
+      // Video & image background
+      const videoEl = document.getElementById("global-bg-video");
+      const videoSrc = document.getElementById("global-video-source");
+      if (videoEl && videoSrc && s.heroVideoUrl) {
+        if (videoSrc.src !== s.heroVideoUrl) {
+          videoSrc.src = s.heroVideoUrl;
+          videoEl.load();
+        }
+      }
+      const bgImg = document.getElementById("global-bg-image");
+      if (bgImg && s.heroImageUrl) bgImg.src = s.heroImageUrl;
+    }
+
+    /* ==========================================================================
+       6. CATEGORY CONTENT RENDERERS
+       ========================================================================== */
+    function renderCurrentCategory() {
+      const container = document.getElementById("hub-main-content");
+      if (!container) return;
+
+      switch(currentCategory) {
+        case "car-prices": renderCarPricesView(container); break;
+        case "tyre-codes": renderTyreCodesView(container); break;
+        case "events": renderEventsView(container); break;
+        case "rules": renderRulesView(container); break;
+        case "map-guide": renderMapGuideView(container); break;
+        case "rds-updates": renderUpdatesView(container); break;
+        case "multiplayer": renderMultiplayerView(container); break;
+        default: renderCustomCategoryView(container, currentCategory); break;
+      }
+    }
+
+    /* --- 6.1 CAR PRICES & LUXURY RECEIPT CALCULATOR --- */
+    function renderCarPricesView(container) {
+      const cars = (DB.state.cars || []).slice().sort((a,b) => (a.order || 99) - (b.order || 99));
+      if (!activeCar && cars.length > 0) activeCar = cars[0];
+
+      const canEdit = AUTH.hasPerm("cars");
+
+      container.innerHTML = `
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">🚗 Car Prices & Value Calculator</h2>
+            <p class="section-desc">Official valuation index, stage speed metrics (km/h & mph), and customizable bill invoice generator.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            ${canEdit ? `<button class="btn-act-primary" onclick="openCarEditor(null)"><i class="fa-solid fa-plus"></i> Add New Car</button>` : ""}
+          </div>
+        </div>
+
+        <h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 0.75rem; color: var(--accent-primary);">
+          <i class="fa-solid fa-car-side"></i> Vehicle Catalog (In Designated Order)
+        </h3>
+        <div class="cars-grid">
+          ${cars.map(c => `
+            <div class="liquid-glass car-card">
+              <div class="car-media-box">
+                <img src="${c.image}" alt="${c.name}" class="car-img" onerror="this.src='https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80'">
+                <span class="car-order-badge">#${c.order || 1}</span>
+              </div>
+              <div class="car-info">
+                <h4 class="car-name">${c.name}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); flex: 1;">${c.description || ''}</p>
+                
+                <div class="car-specs-box">
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-dim);">Base Valuation:</span>
+                    <strong style="color: #fff;">${c.basePrice || '10M'}</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-dim);">Stage 1 Top:</span>
+                    <strong style="color: var(--accent-primary);">${c.stages && c.stages[0] ? c.stages[0].speedTurboKmph : 300} km/h</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between;">
+                    <span style="color: var(--text-dim);">Stage 7 Top:</span>
+                    <strong style="color: #30d158;">${c.stages && c.stages[6] ? c.stages[6].speedTurboKmph : 450} km/h</strong>
+                  </div>
+                </div>
+
+                <div style="display: flex; gap: 0.4rem; margin-top: 0.5rem;">
+                  <button class="btn-act-primary" style="flex: 1; padding: 0.45rem; font-size: 0.8rem;" onclick="selectCarForCalc('${c.id}')">Select in Calc</button>
+                  <button class="btn-act-secondary" style="padding: 0.45rem 0.65rem; font-size: 0.8rem;" onclick="viewCarSpecs('${c.id}')" title="View technical specs without adding"><i class="fa-solid fa-circle-info"></i> Specs</button>
+                  ${canEdit ? `
+                    <button class="btn-act-secondary" style="padding: 0.45rem;" onclick="openCarEditor('${c.id}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-act-danger" style="padding: 0.45rem;" onclick="deleteCar('${c.id}')"><i class="fa-solid fa-trash"></i></button>
+                  ` : ""}
+                </div>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+
+        <!-- CALCULATOR & RECEIPT -->
+        <div class="calc-layout">
+          <div class="liquid-glass" style="padding: 1.75rem;">
+            <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--accent-primary); margin-bottom: 1rem;">
+              <i class="fa-solid fa-calculator"></i> Price & Specs Customizer
+            </h3>
+
+            <div class="form-ctrl">
+              <label class="form-label">Active Vehicle</label>
+              <select class="form-select-box" id="calc-car-picker" onchange="onCarPickerChange(this.value)">
+                ${cars.map(c => `<option value="${c.id}" ${activeCar && activeCar.id === c.id ? 'selected' : ''}>#${c.order || 1} - ${c.name}</option>`).join("")}
+              </select>
+            </div>
+
+            <div class="form-ctrl">
+              <label class="form-label">Tuning Stage (1 to 7 or Higher Extrapolation)</label>
+              <div class="stage-chips-grid">
+                ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(s => `
+                  <div class="stage-chip ${s === 1 ? 'active' : ''}" data-stage="${s}" onclick="setStage(${s})">Stage ${s}</div>
+                `).join("")}
+              </div>
+              <div id="calc-extrapolate-note"></div>
+            </div>
+
+            <div class="form-ctrl">
+              <label class="form-label">Add-ons & Options</label>
+              <div class="toggle-grid">
+                <div class="toggle-card" id="card-opt-premium" onclick="toggleAddon('premium')">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">⭐ Premium Package</div>
+                    <div style="font-size: 0.75rem; color: var(--accent-primary);" id="lbl-cost-premium">+8M</div>
+                  </div>
+                  <input type="checkbox" id="chk-opt-premium" style="transform: scale(1.2); pointer-events: none;">
+                </div>
+
+                <div class="toggle-card" id="card-opt-police" onclick="toggleAddon('police')">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">🚨 Police Siren & Lights</div>
+                    <div style="font-size: 0.75rem; color: var(--accent-primary);" id="lbl-cost-police">+15M</div>
+                  </div>
+                  <input type="checkbox" id="chk-opt-police" style="transform: scale(1.2); pointer-events: none;">
+                </div>
+
+                <div class="toggle-card" id="card-opt-rainbow" onclick="toggleAddon('rainbow')">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">🌈 Rainbow Tire Smoke</div>
+                    <div style="font-size: 0.75rem; color: var(--accent-primary);" id="lbl-cost-rainbow">+6M</div>
+                  </div>
+                  <input type="checkbox" id="chk-opt-rainbow" style="transform: scale(1.2); pointer-events: none;">
+                </div>
+
+                <div class="toggle-card" id="card-opt-coating" onclick="toggleAddon('coating')">
+                  <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">✨ Ceramic Coating</div>
+                    <div style="font-size: 0.75rem; color: var(--accent-primary);" id="lbl-cost-coating">+4M</div>
+                  </div>
+                  <input type="checkbox" id="chk-opt-coating" style="transform: scale(1.2); pointer-events: none;">
+                </div>
+              </div>
+
+              <!-- Custom Livery -->
+              <div class="toggle-card" id="card-opt-livery" onclick="toggleAddon('livery')">
+                <div>
+                  <div style="font-size: 0.85rem; font-weight: 700;">🎨 Custom Livery / Wrap</div>
+                  <div style="font-size: 0.75rem; color: var(--accent-primary);">Custom Price Entry</div>
+                </div>
+                <input type="checkbox" id="chk-opt-livery" style="transform: scale(1.2); pointer-events: none;">
+              </div>
+              <div id="box-livery-input" style="display: none; margin-top: 0.6rem; padding: 0.75rem; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                <label class="form-label" style="font-size: 0.75rem;">Custom Livery Price (Accepts k, M, b, t - Default is Millions)</label>
+                <input type="text" class="form-input-text" id="input-livery-cost" value="5M" oninput="updateBillReceipt()">
+              </div>
+            </div>
+          </div>
+
+          <!-- RECEIPT DISPLAY -->
+          <div id="box-bill-receipt"></div>
+        </div>
+      `;
+
+      updateBillReceipt();
+    }
+
+    let selectedStageNum = 1;
+    let addonStates = { premium: false, police: false, rainbow: false, coating: false, livery: false };
+
+    function selectCarForCalc(carId) {
+      activeCar = (DB.state.cars || []).find(c => c.id === carId);
+      const sel = document.getElementById("calc-car-picker");
+      if (sel) sel.value = carId;
+      updateBillReceipt();
+      document.getElementById("calc-car-picker")?.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function onCarPickerChange(carId) {
+      activeCar = (DB.state.cars || []).find(c => c.id === carId);
+      updateBillReceipt();
+    }
+
+    function setStage(s) {
+      selectedStageNum = s;
+      document.querySelectorAll(".stage-chip").forEach(c => {
+        c.classList.toggle("active", parseInt(c.getAttribute("data-stage"), 10) === s);
+      });
+      updateBillReceipt();
+    }
+
+    function toggleAddon(k) {
+      addonStates[k] = !addonStates[k];
+      const chk = document.getElementById(`chk-opt-${k}`);
+      const card = document.getElementById(`card-opt-${k}`);
+      if (chk) chk.checked = addonStates[k];
+      if (card) card.classList.toggle("checked", addonStates[k]);
+
+      if (k === "livery") {
+        const box = document.getElementById("box-livery-input");
+        if (box) box.style.display = addonStates.livery ? "block" : "none";
+      }
+      updateBillReceipt();
+    }
+
+    function updateBillReceipt() {
+      if (!activeCar) return;
+
+      const charges = activeCar.charges || {};
+      const lblPrem = document.getElementById("lbl-cost-premium");
+      const lblPol = document.getElementById("lbl-cost-police");
+      const lblRain = document.getElementById("lbl-cost-rainbow");
+      const lblCoat = document.getElementById("lbl-cost-coating");
+      if (lblPrem) lblPrem.textContent = `+${charges.premium || '0M'}`;
+      if (lblPol) lblPol.textContent = `+${charges.police || '0M'}`;
+      if (lblRain) lblRain.textContent = `+${charges.rainbowSmoke || '0M'}`;
+      if (lblCoat) lblCoat.textContent = `+${charges.coating || '0M'}`;
+
+      let stageData = (activeCar.stages || []).find(s => s.stage === selectedStageNum);
+      let isApprox = false;
+
+      if (!stageData || selectedStageNum > 7) {
+        isApprox = true;
+        const st7 = (activeCar.stages || [])[6] || { price: "100M", speedNoTurboKmph: 400, speedTurboKmph: 450 };
+        const st6 = (activeCar.stages || [])[5] || { price: "80M", speedNoTurboKmph: 380, speedTurboKmph: 420 };
+        const p7 = parseCarPrice(st7.price);
+        const p6 = parseCarPrice(st6.price);
+        const diff = selectedStageNum - 7;
+        const extrapPrice = p7 + ((p7 - p6) * 1.35 * diff);
+        const speedBoost = 15 * diff;
+
+        stageData = {
+          stage: selectedStageNum,
+          price: formatCarPrice(extrapPrice),
+          speedNoTurboKmph: Math.round(st7.speedNoTurboKmph + speedBoost),
+          speedNoTurboMph: Math.round((st7.speedNoTurboKmph + speedBoost) * 0.621371),
+          speedTurboKmph: Math.round(st7.speedTurboKmph + speedBoost * 1.2),
+          speedTurboMph: Math.round((st7.speedTurboKmph + speedBoost * 1.2) * 0.621371)
+        };
+      }
+
+      const noteBox = document.getElementById("calc-extrapolate-note");
+      if (noteBox) {
+        noteBox.innerHTML = isApprox ? `
+          <div style="font-size: 0.78rem; color: #ffd60a; margin-top: 0.4rem;">
+            <i class="fa-solid fa-triangle-exclamation"></i> * Note: This is an approximate value calculated based on previous stage progression.
+          </div>
+        ` : "";
+      }
+
+      // Calculations
+      const baseCost = parseCarPrice(stageData.price);
+      const premCost = addonStates.premium ? parseCarPrice(charges.premium || "0M") : 0;
+      const polCost = addonStates.police ? parseCarPrice(charges.police || "0M") : 0;
+      const rainCost = addonStates.rainbow ? parseCarPrice(charges.rainbowSmoke || "0M") : 0;
+      const coatCost = addonStates.coating ? parseCarPrice(charges.coating || "0M") : 0;
+      let livCost = 0;
+      if (addonStates.livery) {
+        const val = document.getElementById("input-livery-cost")?.value || "5M";
+        livCost = parseCarPrice(val);
+      }
+
+      const totalNum = baseCost + premCost + polCost + rainCost + coatCost + livCost;
+      const totalFmt = formatCarPrice(totalNum);
+      const minRange = formatCarPrice(Math.round(totalNum * 0.94));
+      const maxRange = formatCarPrice(Math.round(totalNum * 1.15));
+
+      const billTarget = document.getElementById("box-bill-receipt");
+      if (billTarget) {
+        billTarget.innerHTML = `
+          <div class="bill-card liquid-glass">
+            <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; text-transform: uppercase;">${activeCar.name}</h3>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">Official RDS Valuation Invoice & Specs</div>
+
+            <div class="bill-speed-box">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                <span style="color: var(--text-dim);">Top speed (no turbo):</span>
+                <strong style="color: #fff;">${stageData.speedNoTurboKmph} km/h / ${stageData.speedNoTurboMph || Math.round(stageData.speedNoTurboKmph*0.621)} mph</strong>
+              </div>
+              <div style="display: flex; justify-content: space-between;">
+                <span style="color: var(--text-dim);">Top speed (turbo):</span>
+                <strong style="color: var(--accent-primary);">${stageData.speedTurboKmph} km/h / ${stageData.speedTurboMph || Math.round(stageData.speedTurboKmph*0.621)} mph</strong>
+              </div>
+            </div>
+
+            <div style="margin: 1rem 0;">
+              <div class="bill-item">
+                <div><strong>Stage ${selectedStageNum} Performance Tuning</strong></div>
+                <div style="color: var(--accent-primary); font-family: var(--font-mono); font-weight: 700;">+${stageData.price}</div>
+              </div>
+              ${addonStates.premium ? `
+                <div class="bill-item">
+                  <div>⭐ Premium VIP Package</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-mono);">+${formatCarPrice(premCost)}</div>
+                </div>
+              ` : ""}
+              ${addonStates.police ? `
+                <div class="bill-item">
+                  <div>🚨 Police Sirens & Lights</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-mono);">+${formatCarPrice(polCost)}</div>
+                </div>
+              ` : ""}
+              ${addonStates.rainbow ? `
+                <div class="bill-item">
+                  <div>🌈 Rainbow Tire Smoke Kit</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-mono);">+${formatCarPrice(rainCost)}</div>
+                </div>
+              ` : ""}
+              ${addonStates.coating ? `
+                <div class="bill-item">
+                  <div>✨ Ceramic Body Coating</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-mono);">+${formatCarPrice(coatCost)}</div>
+                </div>
+              ` : ""}
+              ${addonStates.livery ? `
+                <div class="bill-item">
+                  <div>🎨 Custom Handcrafted Livery</div>
+                  <div style="color: var(--accent-primary); font-family: var(--font-mono);">+${formatCarPrice(livCost)}</div>
+                </div>
+              ` : ""}
+            </div>
+
+            <div style="border-top: 2px dashed rgba(255,255,255,0.25); padding-top: 1rem; margin-top: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; text-transform: uppercase;">Total Valuation:</span>
+                <span class="bill-total-price">${totalFmt}</span>
+              </div>
+              <div style="text-align: right; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim);">
+                Exact: ${Math.round(totalNum).toLocaleString()} Credits
+              </div>
+
+              <div class="bill-range-box">
+                <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--accent-gold); font-weight: 800;"><i class="fa-solid fa-scale-balanced"></i> Estimated Market Value Range</div>
+                <div style="font-family: var(--font-mono); font-size: 1.3rem; font-weight: 800; color: #fff;">${minRange} - ${maxRange}</div>
+                <div style="font-size: 0.72rem; color: var(--text-dim);">* Fluctuates based on multiplayer auction house trade volume.</div>
+              </div>
+
+              <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem;">
+                <button class="btn-act-primary" style="flex: 1;" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Bill</button>
+                <button class="btn-act-secondary" style="flex: 1;" onclick="navigator.clipboard.writeText('Real Driving School Valuation: ${activeCar.name} (Stage ${selectedStageNum}) = ${totalFmt}. Market Range: ${minRange} - ${maxRange}'); NOTIF.notify('Copied!', 'Bill summary copied to clipboard.', 'success');"><i class="fa-solid fa-share-nodes"></i> Share Bill</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    /* --- 6.2 TYRE CODES VIEW --- */
+    function renderTyreCodesView(container) {
+      const tyres = DB.state.tyreCodes || [];
+      const canEdit = AUTH.hasPerm("tyres");
+
+      container.innerHTML = `
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">🛞 Tyre Codes & Compounds</h2>
+            <p class="section-desc">Copy official redemption codes to equip drift, offroad, and neon compounds in-game.</p>
+          </div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="addTyreCode()"><i class="fa-solid fa-plus"></i> Add Tyre Code</button>` : ""}
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
+          ${tyres.map(t => `
+            <div class="liquid-glass" style="padding: 1.5rem; display: flex; flex-direction: column;">
+              <img src="${t.image}" alt="${t.name}" style="width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem;">
+              <h4 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800;">${t.name}</h4>
+              <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin: 0.4rem 0;">${t.description || ''}</p>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.5); border: 1px dashed var(--accent-primary); padding: 0.6rem 0.85rem; border-radius: 8px; margin: 0.75rem 0;">
+                <code style="font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-primary); font-weight: 800;">${t.code}</code>
+                <button class="btn-act-primary" style="padding: 0.35rem 0.75rem; font-size: 0.78rem;" onclick="copyCode('${t.code}')"><i class="fa-solid fa-copy"></i> Copy</button>
+              </div>
+
+              ${canEdit ? `
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                  <button class="btn-act-danger" style="flex: 1;" onclick="deleteTyre('${t.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                </div>
+              ` : ""}
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function copyCode(cd) {
+      navigator.clipboard.writeText(cd);
+      NOTIF.notify("Tyre Code Copied!", `Code "${cd}" copied. Paste in Garage > Tyres.`, "success");
+    }
+
+    /* --- 6.3 EVENTS SYSTEM: CURRENT (LIVE), UPCOMING, PAST --- */
+    function renderEventsView(container) {
+      const events = DB.state.events || [];
+      const canEdit = AUTH.hasPerm("events");
+
+      const liveEvents = events.filter(e => e.status === "current");
+      const upcomingEvents = events.filter(e => e.status === "upcoming" || (!e.status && e.isUpcoming !== false));
+      const pastEvents = events.filter(e => e.status === "past" || (!e.status && e.isUpcoming === false));
+
+      let activeList = upcomingEvents;
+      if (eventSubTab === "current") activeList = liveEvents;
+      if (eventSubTab === "past") activeList = pastEvents;
+
+      container.innerHTML = `
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">🏆 Community Tournaments & Events</h2>
+            <p class="section-desc">Join active multiplayer tandem lobbies, prepare for upcoming events, or browse past records.</p>
+          </div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="openEventEditor(null)"><i class="fa-solid fa-plus"></i> Create Event</button>` : ""}
+        </div>
+
+        <div class="event-tabs-bar">
+          <button class="event-tab-btn ${eventSubTab === 'current' ? 'active' : ''}" onclick="setEventTab('current')">
+            <span class="badge-live-now"><i class="fa-solid fa-circle"></i> LIVE NOW</span> (${liveEvents.length})
+          </button>
+          <button class="event-tab-btn ${eventSubTab === 'upcoming' ? 'active' : ''}" onclick="setEventTab('upcoming')">
+            ⏳ Upcoming Events (${upcomingEvents.length})
+          </button>
+          <button class="event-tab-btn ${eventSubTab === 'past' ? 'active' : ''}" onclick="setEventTab('past')">
+            📜 Past Records (${pastEvents.length})
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem;">
+          ${activeList.length === 0 ? `
+            <div class="liquid-glass" style="padding: 2.5rem; text-align: center; color: var(--text-dim); grid-column: 1 / -1;">
+              No events found in this category.
+            </div>
+          ` : ""}
+          ${activeList.map(ev => `
+            <div class="liquid-glass" style="border-radius: var(--radius-md); overflow: hidden; display: flex; flex-direction: column;">
+              <div style="position: relative; width: 100%; height: 180px; background: #000;">
+                <img src="${ev.image || 'https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=800&q=80'}" alt="${ev.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                ${ev.isMystery && ev.mysteryImage ? `
+                  <div class="mystery-overlay">
+                    <div class="mystery-qmark">?</div>
+                    <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; letter-spacing: 2px;">Classified Intel</div>
+                  </div>
+                ` : ""}
+                ${ev.status === 'current' ? `
+                  <span class="badge-live-now" style="position: absolute; top: 12px; left: 12px;"><i class="fa-solid fa-broadcast-tower"></i> IN PROGRESS</span>
+                ` : ""}
+              </div>
+
+              <div style="padding: 1.25rem; display: flex; flex-direction: column; flex: 1;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem;">
+                  ${ev.isMystery && !canEdit ? '??? CLASSIFIED RDS EVENT ???' : ev.title}
+                </h3>
+
+                <div style="background: rgba(0,0,0,0.35); padding: 0.75rem; border-radius: 8px; font-size: 0.8rem; margin: 0.5rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                  <div><span style="color: var(--text-dim);">Mode:</span> <strong>${ev.gameMode || 'Grind'}</strong></div>
+                  <div><span style="color: var(--text-dim);">Track:</span> <strong>${ev.isMystery && !canEdit ? '?? Hidden ??' : (ev.track || 'Open')}</strong></div>
+                  <div><span style="color: var(--text-dim);">Duration:</span> <strong>${ev.duration || '2h'}</strong></div>
+                  <div><span style="color: var(--text-dim);">Car:</span> <strong>${ev.car || 'All'}</strong></div>
+                  <div><span style="color: var(--text-dim);">Trade:</span> <strong>${ev.trade || 'Allowed'}</strong></div>
+                  <div><span style="color: var(--text-dim);">Fuel:</span> <strong>${ev.fuel || 'Standard'}</strong></div>
+                </div>
+
+                <div style="margin-top: auto; display: flex; gap: 0.4rem; padding-top: 0.75rem;">
+                  <button class="btn-act-primary" style="flex: 1;" onclick="NOTIF.notify('Alert Saved', 'You will be notified about ${ev.title.replace(/'/g, "")}', 'success')">
+                    <i class="fa-regular fa-bell"></i> Set Alert
+                  </button>
+                  ${canEdit ? `
+                    <button class="btn-act-secondary" onclick="openEventEditor('${ev.id}')"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn-act-danger" onclick="deleteEvent('${ev.id}')"><i class="fa-solid fa-trash"></i></button>
+                  ` : ""}
+                </div>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function setEventTab(tab) {
+      eventSubTab = tab;
+      renderEventsView(document.getElementById("hub-main-content"));
+    }
+
+    /* --- 6.4 RULES, MAPS, UPDATES, MULTIPLAYER --- */
+    function renderRulesView(container) {
+      const rules = DB.state.rules || [];
+      const canEdit = AUTH.hasPerm("rules");
+      container.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title">📜 Rules of Conduct</h2><p class="section-desc">Fair play, trading safety, and lobby regulations.</p></div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="addRule()"><i class="fa-solid fa-plus"></i> Add Rule</button>` : ""}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${rules.map(r => `
+            <div class="liquid-glass" style="padding: 1.25rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                <span class="role-tag" style="background: rgba(0,210,255,0.15); color: var(--accent-primary);">#${r.order || 1} ${r.category || 'General'}</span>
+                ${canEdit ? `<button class="btn-act-danger" onclick="deleteRule('${r.id}')"><i class="fa-solid fa-trash"></i></button>` : ""}
+              </div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.35rem;">${r.title}</h3>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">${r.content}</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderMapGuideView(container) {
+      const maps = DB.state.mapGuides || [];
+      const canEdit = AUTH.hasPerm("maps");
+      container.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title">🗺️ Map Guide & Radar Circuits</h2><p class="section-desc">Master apex lines, mountain hairpins, and straight line drag strips.</p></div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="addMapGuide()"><i class="fa-solid fa-plus"></i> Add Map</button>` : ""}
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem;">
+          ${maps.map(m => `
+            <div class="liquid-glass" style="border-radius: var(--radius-md); overflow: hidden; padding: 1.25rem;">
+              <img src="${m.image}" alt="${m.title}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem;">
+              <span class="role-tag" style="background: rgba(48,209,88,0.15); color: #30d158; margin-bottom: 0.5rem;">${m.difficulty || 'All Levels'}</span>
+              <h3 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800;">${m.title}</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0.5rem 0;">${m.description || ''}</p>
+              ${canEdit ? `<button class="btn-act-danger" onclick="deleteMap('${m.id}')"><i class="fa-solid fa-trash"></i> Delete</button>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderUpdatesView(container) {
+      const updates = DB.state.updates || [];
+      const canEdit = AUTH.hasPerm("updates");
+      container.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title">🚀 RDS Updates & Patch Notes</h2><p class="section-desc">Version releases, rollout statuses on Android & iOS, and coming soon features.</p></div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="addUpdate()"><i class="fa-solid fa-plus"></i> Announce Update</button>` : ""}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          ${updates.map(u => `
+            <div class="liquid-glass" style="padding: 1.75rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.75rem;">
+                <div>
+                  <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--accent-primary);">${u.version}</span>
+                  <span style="font-size: 0.8rem; color: var(--text-dim); margin-left: 0.5rem;"><i class="fa-regular fa-calendar"></i> ${new Date(u.timestamp).toLocaleDateString()}</span>
+                </div>
+                <div style="display: flex; gap: 0.4rem;">
+                  ${u.isComingSoon ? `<span class="role-tag" style="background: rgba(175,82,222,0.2); color: #e879f9;">Coming Soon</span>` : ""}
+                  <span class="role-tag" style="background: rgba(48,209,88,0.15); color: #a3e635;"><i class="fa-brands fa-android"></i> Android: ${u.publishedAndroid ? 'Live' : 'Pending'}</span>
+                  <span class="role-tag" style="background: rgba(48,209,88,0.15); color: #a3e635;"><i class="fa-brands fa-apple"></i> iOS: ${u.publishedIos ? 'Live' : 'Pending'}</span>
+                </div>
+              </div>
+              <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">${u.title}</h3>
+              <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem;">
+                ${(u.changelog || []).map(c => `<li>${c}</li>`).join("")}
+              </ul>
+              ${canEdit ? `<button class="btn-act-danger" style="margin-top: 1rem;" onclick="deleteUpdate('${u.id}')"><i class="fa-solid fa-trash"></i> Delete</button>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderMultiplayerView(container) {
+      const mp = DB.state.multiplayerGuides || [];
+      const canEdit = AUTH.hasPerm("multiplayer");
+      container.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title">👥 Multiplayer Guide</h2><p class="section-desc">Host private rooms, ping optimization, and tandem cruise etiquette.</p></div>
+          ${canEdit ? `<button class="btn-act-primary" onclick="addMultiplayerGuide()"><i class="fa-solid fa-plus"></i> Add Guide</button>` : ""}
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+          ${mp.map(g => `
+            <div class="liquid-glass" style="padding: 1.5rem;">
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 800; color: var(--accent-primary); margin-bottom: 0.5rem;"><i class="fa-solid fa-users"></i> ${g.title}</h3>
+              <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6;">${g.content}</p>
+              ${canEdit ? `<button class="btn-act-danger" style="margin-top: 0.75rem;" onclick="deleteMultiplayer('${g.id}')"><i class="fa-solid fa-trash"></i> Delete</button>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderCustomCategoryView(container, catId) {
+      const cat = (DB.state.customCategories || []).find(c => c.id === catId);
+      if (!cat) { container.innerHTML = `<h3>Category Not Found</h3>`; return; }
+      const canEdit = AUTH.hasPerm(cat.id);
+
+      container.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title"><i class="fa-solid ${cat.icon || 'fa-folder'}"></i> ${cat.title}</h2><p class="section-desc">${cat.description || ''}</p></div>
+          <button class="btn-act-primary" onclick="postCustomItem('${cat.id}')"><i class="fa-solid fa-plus"></i> Post Entry</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          ${(cat.items || []).length === 0 ? `<div class="liquid-glass" style="padding: 2rem; text-align: center; color: var(--text-dim);">No posts yet. Click Post Entry to publish one!</div>` : ""}
+          ${(cat.items || []).map(i => `
+            <div class="liquid-glass" style="padding: 1.25rem;">
+              <div style="display: flex; justify-content: space-between;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--accent-primary);">${i.title}</h3>
+                <span style="font-size: 0.75rem; color: var(--text-dim);">${new Date(i.timestamp).toLocaleDateString()}</span>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.4rem;">Author: <strong>${i.author}</strong></div>
+              <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">${i.content}</p>
+            </div>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       7. OWNER MASTER STUDIO
+       ========================================================================== */
+    let currentStudioTab = "ui";
+
+    function openOwnerStudio() {
+      if (!AUTH.currentUser.isOwner) {
+        alert("Restricted: Game Owner Only.");
+        return;
+      }
+      openModal("modal-owner-studio");
+      renderStudioTabContent();
+
+      document.querySelectorAll(".studio-tab-btn").forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll(".studio-tab-btn").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentStudioTab = btn.getAttribute("data-stab");
+          renderStudioTabContent();
+        };
+      });
+    }
+
+    function renderStudioTabContent() {
+      const box = document.getElementById("studio-tab-content");
+      if (!box) return;
+
+      const s = DB.state.settings;
+
+      if (currentStudioTab === "ui") {
+        box.innerHTML = `
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--accent-primary); margin-bottom: 0.75rem;">
+            Live UI & Background Controller
+          </h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">Changes update instantly for all visitors worldwide!</p>
+
+          <form id="form-studio-ui">
+            <div class="form-ctrl">
+              <label class="form-label">Background Video URL (MP4 / WebM)</label>
+              <input type="url" class="form-input-text" id="studio-bg-video" value="${s.heroVideoUrl || ''}">
+            </div>
+            <div class="form-ctrl">
+              <label class="form-label">Background Fallback Image URL</label>
+              <input type="url" class="form-input-text" id="studio-bg-image" value="${s.heroImageUrl || ''}">
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-ctrl">
+                <label class="form-label">Liquid Glass Accent Glow Color</label>
+                <div style="display: flex; gap: 0.5rem;">
+                  <input type="color" id="studio-color-picker" value="${s.accentColor || '#00d2ff'}" style="width: 48px; height: 40px; border-radius: 8px; border: none; background: transparent; cursor: pointer;">
+                  <input type="text" class="form-input-text" id="studio-color-hex" value="${s.accentColor || '#00d2ff'}" style="flex: 1;">
+                </div>
+              </div>
+              <div class="form-ctrl">
+                <label class="form-label">Global Font Size Scale</label>
+                <select class="form-select-box" id="studio-font-size">
+                  <option value="small" ${s.fontSize === 'small' ? 'selected' : ''}>Compact (Small)</option>
+                  <option value="medium" ${s.fontSize === 'medium' || !s.fontSize ? 'selected' : ''}>Standard (Medium)</option>
+                  <option value="large" ${s.fontSize === 'large' ? 'selected' : ''}>Accessible (Large)</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-ctrl">
+              <label class="form-label">Liquid Glass Blur Intensity: <span id="lbl-blur-val">${s.glassBlur || 24}px</span></label>
+              <input type="range" min="0" max="50" value="${s.glassBlur || 24}" class="form-input-text" id="studio-blur-slider" oninput="document.getElementById('lbl-blur-val').textContent = this.value + 'px'">
+            </div>
+            <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+              <i class="fa-solid fa-floppy-disk"></i> Save & Broadcast Globally
+            </button>
+          </form>
+        `;
+
+        const cp = document.getElementById("studio-color-picker");
+        const ch = document.getElementById("studio-color-hex");
+        if (cp && ch) {
+          cp.oninput = () => ch.value = cp.value;
+          ch.oninput = () => cp.value = ch.value;
+        }
+
+        document.getElementById("form-studio-ui").onsubmit = (e) => {
+          e.preventDefault();
+          DB.state.settings.heroVideoUrl = document.getElementById("studio-bg-video").value.trim();
+          DB.state.settings.heroImageUrl = document.getElementById("studio-bg-image").value.trim();
+          DB.state.settings.accentColor = ch.value.trim();
+          DB.state.settings.fontSize = document.getElementById("studio-font-size").value;
+          DB.state.settings.glassBlur = parseInt(document.getElementById("studio-blur-slider").value, 10);
+          DB.save();
+          NOTIF.notify("Settings Applied", "UI and background changes broadcasted to all users!", "success");
+        };
+      } else if (currentStudioTab === "content") {
+        box.innerHTML = `
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: var(--accent-primary); margin-bottom: 0.75rem;">Text & Content Editor</h4>
+          <form id="form-studio-content">
+            <div class="form-ctrl">
+              <label class="form-label">Game Title</label>
+              <input type="text" class="form-input-text" id="studio-txt-title" value="${s.gameName || 'Real Driving School'}">
+            </div>
+            <div class="form-ctrl">
+              <label class="form-label">Game Logo URL</label>
+              <input type="url" class="form-input-text" id="studio-txt-logo" value="${s.logoUrl || ''}">
+            </div>
+            <div class="form-ctrl">
+              <label class="form-label">About Description</label>
+              <textarea class="form-textarea-box" id="studio-txt-about" rows="3">${s.aboutText || ''}</textarea>
+            </div>
+            <button type="submit" class="btn-act-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
+              <i class="fa-solid fa-floppy-disk"></i> Update Text
+            </button>
+          </form>
+        `;
+        document.getElementById("form-studio-content").onsubmit = (e) => {
+          e.preventDefault();
+          DB.state.settings.gameName = document.getElementById("studio-txt-title").value.trim();
+          DB.state.settings.logoUrl = document.getElementById("studio-txt-logo").value.trim();
+          DB.state.settings.aboutText = document.getElementById("studio-txt-about").value.trim();
+          DB.save();
+          NOTIF.notify("Content Saved", "Headlines and descriptions updated globally.", "success");
+        };
+      } else if (currentStudioTab === "admins") {
+        box.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.3rem;">Staff Administration</h4>
+            <button class="btn-act-primary" onclick="createAdminUser()"><i class="fa-solid fa-user-plus"></i> Create Admin</button>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${(DB.state.admins || []).map(a => `
+              <div class="liquid-glass" style="padding: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <strong>${a.username || a.email}</strong> [${a.roleName || 'Admin'}]<br>
+                  <small style="color: var(--text-dim);">${a.email} | Device Limit: ${a.deviceLimit || 2} | Perms: ${(a.permissions || []).join(', ')}</small>
+                </div>
+                ${!a.isOwner ? `
+                  <button class="btn-act-danger" onclick="removeAdmin('${a.id}')"><i class="fa-solid fa-trash"></i> Remove</button>
+                ` : `<span style="color: #ffd700; font-weight: 800;"><i class="fa-solid fa-crown"></i> Game Owner</span>`}
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else if (currentStudioTab === "roles") {
+        box.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.3rem;">Discord-Style Role Customizer</h4>
+            <button class="btn-act-primary" onclick="createNewRole()"><i class="fa-solid fa-plus"></i> Add Role</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem;">
+            ${(DB.state.roles || []).map(r => `
+              <div class="liquid-glass" style="padding: 1rem; border-left: 4px solid ${r.color};">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="role-tag" style="background: ${r.color}22; color: ${r.color};">${r.name}</span>
+                  <code style="color: ${r.color}; font-weight: 700;">${r.color}</code>
+                </div>
+                ${r.id !== 'owner' ? `
+                  <button class="btn-act-danger" style="margin-top: 0.6rem; padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteRole('${r.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                ` : ''}
+              </div>
+            `).join("")}
+          </div>
+        `;
+      } else if (currentStudioTab === "cloud") {
+        box.innerHTML = `
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; color: #30d158; margin-bottom: 0.5rem;"><i class="fa-solid fa-cloud"></i> Zero-Cost Global Cloud Sync</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+            This site is 100% free to host on GitHub Pages! With Google Firebase Firestore Free Spark Plan (50k reads/day free forever), any changes made by the Owner automatically update on all players' phones worldwide.
+          </p>
+          <div class="form-ctrl">
+            <label class="form-label">Firebase Configuration JSON (Optional)</label>
+            <textarea class="form-textarea-box" id="studio-firebase-cfg" rows="4" placeholder='{"apiKey": "AIzaSy...", "projectId": "rds-hub"}'></textarea>
+            <button class="btn-act-primary" style="margin-top: 0.5rem;" onclick="NOTIF.notify('Cloud Saved', 'Cloud configuration saved.', 'success')">Save Connection</button>
+          </div>
+        `;
+      } else if (currentStudioTab === "logs") {
+        box.innerHTML = `
+          <h4 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.75rem;">Audit Logs</h4>
+          <div style="max-height: 340px; overflow-y: auto;">
+            ${(DB.state.auditLogs || []).map(l => `
+              <div style="padding: 0.6rem; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.82rem;">
+                <span style="color: var(--accent-primary); font-weight: 700;">${l.action}</span> by <strong>${l.user}</strong>
+                <span style="color: var(--text-dim); float: right;">${new Date(l.timestamp).toLocaleTimeString()}</span>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+    }
+
+    /* Modal open/close helpers */
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add("open");
+    }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove("open");
+    }
+
+    function openProfileModal() {
+      const u = AUTH.currentUser;
+      document.getElementById("input-driver-name").value = u.username;
+      document.getElementById("input-driver-avatar").value = u.avatar;
+      document.getElementById("label-driver-role").textContent = u.roleName;
+      document.getElementById("label-driver-role").style.color = u.roleColor;
+      document.getElementById("profile-locked-banner").style.display = u.nameLocked ? "block" : "none";
+      openModal("modal-driver-profile");
+
+      document.getElementById("form-driver-profile").onsubmit = (e) => {
+        e.preventDefault();
+        if (AUTH.currentUser.nameLocked) {
+          alert("Profile customization locked by Owner.");
+          return;
+        }
+        const name = document.getElementById("input-driver-name").value.trim();
+        const av = document.getElementById("input-driver-avatar").value.trim();
+        if (name.length > 20) { alert("Max 20 characters."); return; }
+        AUTH.currentUser.username = name;
+        if (av) AUTH.currentUser.avatar = av;
+        AUTH.saveUser();
+        closeModal("modal-driver-profile");
+        NOTIF.notify("Profile Saved", "Your driver profile was updated.", "success");
+      };
+    }
+
+    function viewCarSpecs(carId) {
+      const c = (DB.state.cars || []).find(x => x.id === carId);
+      if (!c) return;
+      document.getElementById("modal-car-specs-content").innerHTML = `
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;">
+          <img src="${c.image}" style="width: 200px; height: 130px; border-radius: 8px; object-fit: cover;">
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800;">${c.name}</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Order: #${c.order || 1} | Base: ${c.basePrice || '10M'}</p>
+          </div>
+        </div>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--glass-border); text-align: left;">
+              <th style="padding: 0.5rem;">Stage</th>
+              <th style="padding: 0.5rem;">Price</th>
+              <th style="padding: 0.5rem;">Top Speed (No Turbo)</th>
+              <th style="padding: 0.5rem;">Top Speed (Turbo)</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${(c.stages || []).map(s => `
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <td style="padding: 0.5rem; font-weight: 700;">Stage ${s.stage}</td>
+                <td style="padding: 0.5rem; color: var(--accent-primary); font-family: var(--font-mono);">${s.price}</td>
+                <td style="padding: 0.5rem;">${s.speedNoTurboKmph} km/h</td>
+                <td style="padding: 0.5rem; color: #30d158; font-weight: 700;">${s.speedTurboKmph} km/h</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+      openModal("modal-car-specs");
+    }
+
+    let editingCarId = null;
+    function openCarEditor(carId) {
+      editingCarId = carId;
+      const c = carId ? (DB.state.cars || []).find(x => x.id === carId) : null;
+      document.getElementById("title-car-editor").textContent = c ? `Edit ${c.name}` : "Add New Vehicle";
+      document.getElementById("car-edit-name").value = c ? c.name : "";
+      document.getElementById("car-edit-order").value = c ? (c.order || 1) : (DB.state.cars.length + 1);
+      document.getElementById("car-edit-image").value = c ? c.image : "";
+      document.getElementById("car-edit-desc").value = c ? c.description : "";
+      document.getElementById("car-edit-base").value = c ? c.basePrice : "10M";
+      document.getElementById("car-edit-premium").value = c ? c.charges?.premium : "8M";
+      document.getElementById("car-edit-police").value = c ? c.charges?.police : "15M";
+      document.getElementById("car-edit-rainbow").value = c ? c.charges?.rainbowSmoke : "6M";
+      document.getElementById("car-edit-coating").value = c ? c.charges?.coating : "4M";
+
+      const list = document.getElementById("car-stages-editor-list");
+      list.innerHTML = [1, 2, 3, 4, 5, 6, 7].map(s => {
+        const st = c?.stages?.find(x => x.stage === s) || { price: `${s * 10}M`, speedNoTurboKmph: 250 + s*20, speedTurboKmph: 275 + s*22 };
+        return `
+          <div style="background: rgba(0,0,0,0.3); padding: 0.6rem; border-radius: 6px; margin-bottom: 0.4rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.4rem;">
+            <div><label style="font-size: 0.68rem; color: var(--text-dim);">Stage ${s} Price</label><input type="text" class="form-input-text st-p" data-s="${s}" value="${st.price}"></div>
+            <div><label style="font-size: 0.68rem; color: var(--text-dim);">No Turbo (km/h)</label><input type="number" class="form-input-text st-nt" data-s="${s}" value="${st.speedNoTurboKmph}"></div>
+            <div><label style="font-size: 0.68rem; color: var(--text-dim);">Turbo (km/h)</label><input type="number" class="form-input-text st-tb" data-s="${s}" value="${st.speedTurboKmph}"></div>
+          </div>
+        `;
+      }).join("");
+
+      openModal("modal-car-editor");
+
+      document.getElementById("form-car-editor").onsubmit = (e) => {
+        e.preventDefault();
+        const stages = [1, 2, 3, 4, 5, 6, 7].map(s => {
+          const p = list.querySelector(`.st-p[data-s="${s}"]`).value.trim();
+          const nt = parseInt(list.querySelector(`.st-nt[data-s="${s}"]`).value, 10) || 300;
+          const tb = parseInt(list.querySelector(`.st-tb[data-s="${s}"]`).value, 10) || 330;
+          return { stage: s, price: p, speedNoTurboKmph: nt, speedNoTurboMph: Math.round(nt * 0.621), speedTurboKmph: tb, speedTurboMph: Math.round(tb * 0.621) };
+        });
+
+        const payload = {
+          id: editingCarId || "car_" + Date.now(),
+          order: parseInt(document.getElementById("car-edit-order").value, 10) || 1,
+          name: document.getElementById("car-edit-name").value.trim(),
+          image: document.getElementById("car-edit-image").value.trim() || "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=600&q=80",
+          description: document.getElementById("car-edit-desc").value.trim(),
+          basePrice: document.getElementById("car-edit-base").value.trim(),
+          charges: {
+            premium: document.getElementById("car-edit-premium").value.trim(),
+            police: document.getElementById("car-edit-police").value.trim(),
+            rainbowSmoke: document.getElementById("car-edit-rainbow").value.trim(),
+            coating: document.getElementById("car-edit-coating").value.trim()
+          },
+          stages: stages
+        };
+
+        if (editingCarId) {
+          const idx = DB.state.cars.findIndex(x => x.id === editingCarId);
+          if (idx !== -1) DB.state.cars[idx] = payload;
+        } else {
+          DB.state.cars.push(payload);
+        }
+        DB.save();
+        closeModal("modal-car-editor");
+        NOTIF.notify("Vehicle Saved", `${payload.name} added to index.`, "success");
+      };
+    }
+
+    function deleteCar(id) {
+      if (confirm("Delete this vehicle?")) {
+        DB.state.cars = DB.state.cars.filter(x => x.id !== id);
+        DB.save();
+        NOTIF.notify("Deleted", "Vehicle removed.", "info");
+      }
+    }
+
+    let editingEventId = null;
+    function openEventEditor(evId) {
+      editingEventId = evId;
+      const ev = evId ? (DB.state.events || []).find(x => x.id === evId) : null;
+      document.getElementById("title-event-editor").textContent = ev ? "Edit Event" : "Create Event";
+      document.getElementById("event-edit-title").value = ev ? ev.title : "";
+      document.getElementById("event-edit-status").value = ev ? (ev.status || (ev.isUpcoming ? 'upcoming' : 'past')) : "upcoming";
+      document.getElementById("event-edit-start").value = ev && ev.startTime ? ev.startTime.substring(0, 16) : new Date(Date.now() + 86400000).toISOString().substring(0, 16);
+      document.getElementById("event-edit-notify").value = ev && ev.scheduledSendTime ? ev.scheduledSendTime.substring(0, 16) : new Date(Date.now() + 86400000).toISOString().substring(0, 16);
+      document.getElementById("event-edit-image").value = ev ? ev.image : "";
+      document.getElementById("event-edit-mode-grind").value = ev ? (ev.gameMode || 'Grind') : "Grind";
+      document.getElementById("event-edit-track").value = ev ? (ev.track || '') : "Akina Pass";
+      document.getElementById("event-edit-location").value = ev ? (ev.location || '') : "Mount Touge";
+      document.getElementById("event-edit-duration").value = ev ? (ev.duration || '') : "2 Hours";
+      document.getElementById("event-edit-car").value = ev ? (ev.car || '') : "All Classes";
+      document.getElementById("event-edit-trade").value = ev ? (ev.trade || '') : "Allowed";
+      document.getElementById("event-edit-fuel").value = ev ? (ev.fuel || '') : "Standard";
+      document.getElementById("event-edit-lobby").value = ev ? (ev.mode || '') : "Multiplayer #4";
+      document.getElementById("event-edit-char").value = ev ? (ev.character || '') : "All Clans";
+      document.getElementById("event-edit-mystery").checked = ev ? (ev.isMystery || false) : false;
+      document.getElementById("event-edit-qmark").checked = ev ? (ev.mysteryImage || false) : false;
+      document.getElementById("event-edit-show-timing").checked = ev ? (ev.showTiming !== false) : true;
+
+      openModal("modal-event-editor");
+
+      document.getElementById("form-event-editor").onsubmit = (e) => {
+        e.preventDefault();
+        const payload = {
+          id: editingEventId || "ev_" + Date.now(),
+          title: document.getElementById("event-edit-title").value.trim(),
+          status: document.getElementById("event-edit-status").value,
+          startTime: new Date(document.getElementById("event-edit-start").value).toISOString(),
+          scheduledSendTime: new Date(document.getElementById("event-edit-notify").value).toISOString(),
+          image: document.getElementById("event-edit-image").value.trim(),
+          gameMode: document.getElementById("event-edit-mode-grind").value.trim(),
+          track: document.getElementById("event-edit-track").value.trim(),
+          location: document.getElementById("event-edit-location").value.trim(),
+          duration: document.getElementById("event-edit-duration").value.trim(),
+          car: document.getElementById("event-edit-car").value.trim(),
+          trade: document.getElementById("event-edit-trade").value.trim(),
+          fuel: document.getElementById("event-edit-fuel").value.trim(),
+          mode: document.getElementById("event-edit-lobby").value.trim(),
+          character: document.getElementById("event-edit-char").value.trim(),
+          isMystery: document.getElementById("event-edit-mystery").checked,
+          mysteryImage: document.getElementById("event-edit-qmark").checked,
+          showTiming: document.getElementById("event-edit-show-timing").checked
+        };
+
+        if (editingEventId) {
+          const idx = DB.state.events.findIndex(x => x.id === editingEventId);
+          if (idx !== -1) DB.state.events[idx] = payload;
+        } else {
+          DB.state.events.unshift(payload);
+          NOTIF.notify("New Event Published", payload.title, "event");
+        }
+        DB.save();
+        closeModal("modal-event-editor");
+      };
+    }
+
+    function deleteEvent(id) {
+      if (confirm("Delete this event?")) {
+        DB.state.events = DB.state.events.filter(x => x.id !== id);
+        DB.save();
+      }
+    }
+
+    /* Quick CRUD helpers for tyre codes, rules, maps, updates */
+    function addTyreCode() {
+      const name = prompt("Tyre Compound Name:", "Pro Slick Drift");
+      if (!name) return;
+      const code = prompt("Code:", "RDS-SLICK-99X");
+      if (!code) return;
+      const img = prompt("Image URL:", "https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=600&q=80");
+      const desc = prompt("Description:", "Maximum road grip.");
+      DB.state.tyreCodes.push({ id: "tyre_" + Date.now(), name, code: code.toUpperCase(), image: img, description: desc });
+      DB.save();
+    }
+    function deleteTyre(id) {
+      if (confirm("Delete tyre?")) { DB.state.tyreCodes = DB.state.tyreCodes.filter(x => x.id !== id); DB.save(); }
+    }
+    function addRule() {
+      const title = prompt("Rule Title:"); if (!title) return;
+      const content = prompt("Rule Description:");
+      DB.state.rules.push({ id: "r_" + Date.now(), order: DB.state.rules.length + 1, category: "Fair Play", title, content });
+      DB.save();
+    }
+    function deleteRule(id) {
+      if (confirm("Delete rule?")) { DB.state.rules = DB.state.rules.filter(x => x.id !== id); DB.save(); }
+    }
+    function addMapGuide() {
+      const title = prompt("Map Name:"); if (!title) return;
+      const img = prompt("Image URL:", "https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80");
+      const desc = prompt("Description:");
+      DB.state.mapGuides.push({ id: "m_" + Date.now(), title, difficulty: "Expert", image: img, description: desc });
+      DB.save();
+    }
+    function deleteMap(id) {
+      if (confirm("Delete map?")) { DB.state.mapGuides = DB.state.mapGuides.filter(x => x.id !== id); DB.save(); }
+    }
+    function addUpdate() {
+      const ver = prompt("Version Tag (e.g. v2.6.0):"); if (!ver) return;
+      const title = prompt("Update Title:");
+      DB.state.updates.unshift({ id: "u_" + Date.now(), version: ver, title, timestamp: new Date().toISOString(), publishedAndroid: true, publishedIos: true, changelog: ["Physics improvements", "Multiplayer netcode fix"] });
+      DB.save();
+    }
+    function deleteUpdate(id) {
+      if (confirm("Delete update?")) { DB.state.updates = DB.state.updates.filter(x => x.id !== id); DB.save(); }
+    }
+    function addMultiplayerGuide() {
+      const title = prompt("Guide Title:"); if (!title) return;
+      const content = prompt("Content:");
+      DB.state.multiplayerGuides.push({ id: "mp_" + Date.now(), title, content });
+      DB.save();
+    }
+    function deleteMultiplayer(id) {
+      if (confirm("Delete guide?")) { DB.state.multiplayerGuides = DB.state.multiplayerGuides.filter(x => x.id !== id); DB.save(); }
+    }
+
+    // Dynamic categories
+    function postCustomItem(catId) {
+      const cat = DB.state.customCategories.find(c => c.id === catId);
+      if (!cat) return;
+      const title = prompt("Post Title:"); if (!title) return;
+      const content = prompt("Details:");
+      if (!cat.items) cat.items = [];
+      cat.items.unshift({ id: "item_" + Date.now(), title, content, author: AUTH.currentUser.username, timestamp: new Date().toISOString() });
+      DB.save();
+    }
+
+    function createNewRole() {
+      const name = prompt("Role Name:", "VIP Drifter"); if (!name) return;
+      const color = prompt("Role Hex Color (e.g. #FF3B30, #00D2FF):", "#00D2FF");
+      DB.state.roles.push({ id: "role_" + Date.now(), name, color, priority: 5, permissions: [] });
+      DB.save();
+      renderStudioTabContent();
+    }
+    function deleteRole(id) {
+      if (confirm("Delete role?")) { DB.state.roles = DB.state.roles.filter(x => x.id !== id); DB.save(); renderStudioTabContent(); }
+    }
+
+    function createAdminUser() {
+      const em = prompt("Admin Email:"); if (!em) return;
+      const un = prompt("Admin Username:", em.split("@")[0]);
+      DB.state.admins.push({ id: "adm_" + Date.now(), email: em.toLowerCase(), username: un, roleId: "head_admin", roleName: "Staff Admin", permissions: ["cars", "tyres", "events"], deviceLimit: 2 });
+      DB.save();
+      renderStudioTabContent();
+    }
+    function removeAdmin(id) {
+      if (confirm("Remove admin?")) { DB.state.admins = DB.state.admins.filter(x => x.id !== id); DB.save(); renderStudioTabContent(); }
+    }
+
+    // Start everything when DOM is loaded
+    document.addEventListener("DOMContentLoaded", initApp);
+  </script>
+</body>
+</html>
