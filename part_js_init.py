@@ -1,4 +1,4 @@
-# part_js_init.py - Modals, CRUD, Handlers & Bootstrap for Real Driving School Portal v1.2.120
+# part_js_init.py - Modals, CRUD Handlers & Bootstrap for Real Driving School Portal v1.2.120
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -49,7 +49,7 @@ JS_INIT_CONTENT = r'''
           font-size: 0.85rem;
           font-weight: 600;
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-          border: 1px solid rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.2);
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -74,7 +74,7 @@ JS_INIT_CONTENT = r'''
       if (pillText) pillText.textContent = text;
       if (pill) {
         pill.style.display = "inline-flex";
-        pill.style.borderColor = "rgba(22, 163, 74, 0.4)";
+        pill.style.borderColor = "rgba(22, 163, 74, 0.5)";
       }
     }
 
@@ -167,7 +167,6 @@ JS_INIT_CONTENT = r'''
       const avatar = document.getElementById("user-pill-avatar-img");
       const name = document.getElementById("user-pill-name-span");
       const role = document.getElementById("user-pill-role-span");
-      const ownerTab = document.getElementById("nav-owner-tab");
       const settingsUser = document.getElementById("settings-user-display");
       const settingsRole = document.getElementById("settings-role-display");
       const settingsLogout = document.getElementById("settings-logout-row");
@@ -179,10 +178,6 @@ JS_INIT_CONTENT = r'''
       if (settingsUser) settingsUser.textContent = u.username;
       if (settingsRole) settingsRole.textContent = `Role: ${u.roleName}`;
       if (settingsLogout) settingsLogout.style.display = u.isLoggedIn ? "block" : "none";
-
-      if (ownerTab) {
-        ownerTab.style.display = (u.isOwner || (u.permissions && u.permissions.length > 0)) ? "inline-flex" : "none";
-      }
     }
 
     /* ==========================================================================
@@ -204,26 +199,11 @@ JS_INIT_CONTENT = r'''
     function applyNavPosition() {
       const pos = localStorage.getItem("RDS_NAV_POS") || "auto";
       document.body.classList.remove("nav-pos-bottom", "nav-pos-top");
-      const dock = document.getElementById("hub-main-category-dock");
 
       if (pos === "bottom") {
         document.body.classList.add("nav-pos-bottom");
-        if (dock) {
-          dock.classList.remove("nav-dock-top");
-          dock.classList.add("nav-dock-bottom");
-        }
       } else if (pos === "top") {
         document.body.classList.add("nav-pos-top");
-        if (dock) {
-          dock.classList.remove("nav-dock-bottom");
-          dock.classList.add("nav-dock-top");
-        }
-      } else {
-        // Auto: Top on PC, Bottom Dock on mobile (handled by media query)
-        if (dock) {
-          dock.classList.remove("nav-dock-bottom");
-          dock.classList.add("nav-dock-top");
-        }
       }
       const sel = document.getElementById("setting-nav-position");
       if (sel) sel.value = pos;
@@ -343,14 +323,18 @@ JS_INIT_CONTENT = r'''
       document.getElementById("car-name-input").value = car ? car.name : "";
       document.getElementById("car-order-input").value = car ? car.order || 1 : (STORE.state.cars.length + 1);
       document.getElementById("car-image-input").value = car ? car.image : "";
-      
-      const prevImg = document.getElementById("preview-car-editor-img");
-      if (prevImg) {
+
+      const statusBox = document.getElementById("status-car-image");
+      if (statusBox) {
         if (car && car.image) {
-          prevImg.src = car.image;
-          prevImg.style.display = "block";
+          statusBox.innerHTML = `
+            <div class="media-selected-status-badge">
+              <i class="fa-solid fa-circle-check"></i> Current Photo Attached:
+              <img src="${car.image}" class="media-selected-thumb" alt="Preview">
+            </div>
+          `;
         } else {
-          prevImg.style.display = "none";
+          statusBox.innerHTML = "";
         }
       }
 
@@ -373,7 +357,7 @@ JS_INIT_CONTENT = r'''
           };
 
           return `
-            <div style="background: var(--bg-base); border: 1px solid var(--glass-border-subtle); border-radius: var(--radius-sm); padding: 0.75rem;">
+            <div style="background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); border-radius: var(--radius-sm); padding: 0.75rem;">
               <div style="font-weight: 800; font-size: 0.88rem; color: var(--brand-orange); margin-bottom: 0.5rem;">
                 STAGE ${s}
               </div>
@@ -495,7 +479,7 @@ JS_INIT_CONTENT = r'''
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
               <thead>
-                <tr style="background: var(--bg-base); border-bottom: 2px solid var(--glass-border-subtle);">
+                <tr style="background: rgba(255,255,255,0.4); border-bottom: 2px solid var(--glass-border-subtle);">
                   <th style="padding: 0.5rem;">Stage</th>
                   <th style="padding: 0.5rem;">Valuation</th>
                   <th style="padding: 0.5rem;">Top Speed (No Turbo)</th>
@@ -517,6 +501,268 @@ JS_INIT_CONTENT = r'''
         `;
       }
       openAppModal("modal-car-specs-viewer");
+    }
+
+    /* ==========================================================================
+       TYRE CODES, MAPS, RULES, MULTIPLAYER, ROLES, CATEGORIES CRUD
+       ========================================================================== */
+    function openTyreModal(tyreId = null) {
+      const t = tyreId ? (STORE.state.tyres || []).find(x => x.id === tyreId) : null;
+      document.getElementById("tyre-edit-id").value = t ? t.id : "";
+      document.getElementById("tyre-name-input").value = t ? t.name : "";
+      document.getElementById("tyre-category-input").value = t ? t.category : "Track & Circuit";
+      document.getElementById("tyre-code-input").value = t ? t.code : "RDS-GRIP-99X";
+      document.getElementById("tyre-friction-input").value = t ? t.frictionIndex : "0.98 Lateral G";
+      document.getElementById("tyre-surface-input").value = t ? t.surface : "Asphalt & Dry Track";
+      document.getElementById("tyre-description-input").value = t ? t.description : "";
+      openAppModal("modal-tyre-editor");
+    }
+
+    function saveTyreFromModal() {
+      const editId = document.getElementById("tyre-edit-id").value;
+      const name = document.getElementById("tyre-name-input").value.trim();
+      const category = document.getElementById("tyre-category-input").value.trim();
+      const code = document.getElementById("tyre-code-input").value.trim();
+      const frictionIndex = document.getElementById("tyre-friction-input").value.trim();
+      const surface = document.getElementById("tyre-surface-input").value.trim();
+      const description = document.getElementById("tyre-description-input").value.trim();
+
+      if (!STORE.state.tyres) STORE.state.tyres = [];
+
+      if (editId) {
+        const existing = STORE.state.tyres.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { name, category, code, frictionIndex, surface, description });
+        STORE.addLog("tyres", AUTH.user.username, "Edit Tyre", `Updated tyre code ${code}.`);
+      } else {
+        STORE.state.tyres.push({
+          id: "tyre_" + Date.now(),
+          name, category, code, frictionIndex, surface, description
+        });
+        STORE.addLog("tyres", AUTH.user.username, "Add Tyre", `Created tyre compound ${name} (${code}).`);
+      }
+
+      STORE.syncCollection("tyres");
+      closeAppModal("modal-tyre-editor");
+      renderHubView();
+      showToast("Tyre code saved successfully!");
+    }
+
+    function deleteTyre(id) {
+      if (!confirm("Delete this tyre code?")) return;
+      STORE.state.tyres = (STORE.state.tyres || []).filter(x => x.id !== id);
+      STORE.syncCollection("tyres");
+      renderHubView();
+      showToast("Tyre code deleted.");
+    }
+
+    function openMapModal(mapId = null) {
+      const m = mapId ? (STORE.state.maps || []).find(x => x.id === mapId) : null;
+      document.getElementById("map-edit-id").value = m ? m.id : "";
+      document.getElementById("map-title-input").value = m ? m.title : "";
+      document.getElementById("map-tag-input").value = m ? m.tag : "Drift Zone";
+      document.getElementById("map-image-input").value = m ? m.image : "";
+      document.getElementById("map-description-input").value = m ? m.description : "";
+      openAppModal("modal-map-editor");
+    }
+
+    function saveMapFromModal() {
+      const editId = document.getElementById("map-edit-id").value;
+      const title = document.getElementById("map-title-input").value.trim();
+      const tag = document.getElementById("map-tag-input").value.trim();
+      const image = document.getElementById("map-image-input").value.trim();
+      const description = document.getElementById("map-description-input").value.trim();
+
+      if (!STORE.state.maps) STORE.state.maps = [];
+      if (editId) {
+        const existing = STORE.state.maps.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, tag, image, description });
+      } else {
+        STORE.state.maps.push({ id: "map_" + Date.now(), title, tag, image, description });
+      }
+
+      STORE.syncCollection("maps");
+      closeAppModal("modal-map-editor");
+      renderHubView();
+      showToast("Map location saved!");
+    }
+
+    function deleteMap(id) {
+      if (!confirm("Delete this map location?")) return;
+      STORE.state.maps = (STORE.state.maps || []).filter(x => x.id !== id);
+      STORE.syncCollection("maps");
+      renderHubView();
+      showToast("Location removed.");
+    }
+
+    function openRuleModal(ruleId = null) {
+      const r = ruleId ? (STORE.state.rules || []).find(x => x.id === ruleId) : null;
+      document.getElementById("rule-edit-id").value = r ? r.id : "";
+      document.getElementById("rule-title-input").value = r ? r.title : "";
+      document.getElementById("rule-content-input").value = r ? r.content : "";
+      openAppModal("modal-rule-editor");
+    }
+
+    function saveRuleFromModal() {
+      const editId = document.getElementById("rule-edit-id").value;
+      const title = document.getElementById("rule-title-input").value.trim();
+      const content = document.getElementById("rule-content-input").value.trim();
+
+      if (!STORE.state.rules) STORE.state.rules = [];
+      if (editId) {
+        const existing = STORE.state.rules.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, content });
+      } else {
+        STORE.state.rules.push({ id: "rule_" + Date.now(), title, content });
+      }
+
+      STORE.syncCollection("rules");
+      closeAppModal("modal-rule-editor");
+      renderHubView();
+      showToast("Conduct rule saved!");
+    }
+
+    function deleteRule(id) {
+      if (!confirm("Delete this rule?")) return;
+      STORE.state.rules = (STORE.state.rules || []).filter(x => x.id !== id);
+      STORE.syncCollection("rules");
+      renderHubView();
+      showToast("Rule removed.");
+    }
+
+    function openMpModal(mpId = null) {
+      const m = mpId ? (STORE.state.multiplayerGuides || []).find(x => x.id === mpId) : null;
+      document.getElementById("mp-edit-id").value = m ? m.id : "";
+      document.getElementById("mp-title-input").value = m ? m.title : "";
+      document.getElementById("mp-content-input").value = m ? m.content : "";
+      openAppModal("modal-multiplayer-editor");
+    }
+
+    function saveMpFromModal() {
+      const editId = document.getElementById("mp-edit-id").value;
+      const title = document.getElementById("mp-title-input").value.trim();
+      const content = document.getElementById("mp-content-input").value.trim();
+
+      if (!STORE.state.multiplayerGuides) STORE.state.multiplayerGuides = [];
+      if (editId) {
+        const existing = STORE.state.multiplayerGuides.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, content });
+      } else {
+        STORE.state.multiplayerGuides.push({ id: "mp_" + Date.now(), title, content });
+      }
+
+      STORE.syncCollection("multiplayer");
+      closeAppModal("modal-multiplayer-editor");
+      renderHubView();
+      showToast("Clan guide saved!");
+    }
+
+    function deleteMp(id) {
+      if (!confirm("Delete this multiplayer guide?")) return;
+      STORE.state.multiplayerGuides = (STORE.state.multiplayerGuides || []).filter(x => x.id !== id);
+      STORE.syncCollection("multiplayer");
+      renderHubView();
+      showToast("Guide removed.");
+    }
+
+    function openRoleModal(roleId = null) {
+      const r = roleId ? (STORE.state.roles || []).find(x => x.id === roleId) : null;
+      document.getElementById("role-edit-id").value = r ? r.id : "";
+      document.getElementById("role-name-input").value = r ? r.name : "";
+      document.getElementById("role-color-input").value = r ? r.color : "#ff6b00";
+      openAppModal("modal-role-editor");
+    }
+
+    function saveRoleFromModal() {
+      const editId = document.getElementById("role-edit-id").value;
+      const name = document.getElementById("role-name-input").value.trim();
+      const color = document.getElementById("role-color-input").value;
+      const perms = [];
+      if (document.getElementById("role-perm-cars").checked) perms.push("cars");
+      if (document.getElementById("role-perm-events").checked) perms.push("events");
+      if (document.getElementById("role-perm-updates").checked) perms.push("updates");
+      if (document.getElementById("role-perm-tyres").checked) perms.push("tyres");
+
+      if (!STORE.state.roles) STORE.state.roles = [];
+      if (editId) {
+        const existing = STORE.state.roles.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { name, color, perms });
+      } else {
+        STORE.state.roles.push({ id: "role_" + Date.now(), name, color, perms });
+      }
+
+      STORE.syncCollection("roles");
+      closeAppModal("modal-role-editor");
+      renderHubView();
+      showToast("Role saved!");
+    }
+
+    function deleteRole(id) {
+      if (!confirm("Delete this role?")) return;
+      STORE.state.roles = (STORE.state.roles || []).filter(x => x.id !== id);
+      STORE.syncCollection("roles");
+      renderHubView();
+      showToast("Role deleted.");
+    }
+
+    function openCategoryModal(catId = null) {
+      const c = catId ? (STORE.state.customCategories || []).find(x => x.id === catId) : null;
+      document.getElementById("category-edit-id").value = c ? c.id : "";
+      document.getElementById("category-title-input").value = c ? c.title : "";
+      document.getElementById("category-icon-input").value = c ? c.icon : "fa-solid fa-star";
+      document.getElementById("category-content-input").value = c ? c.content : "";
+      openAppModal("modal-category-editor");
+    }
+
+    function saveCategoryFromModal() {
+      const editId = document.getElementById("category-edit-id").value;
+      const title = document.getElementById("category-title-input").value.trim();
+      const icon = document.getElementById("category-icon-input").value.trim() || "fa-solid fa-star";
+      const content = document.getElementById("category-content-input").value.trim();
+
+      if (!STORE.state.customCategories) STORE.state.customCategories = [];
+      if (editId) {
+        const existing = STORE.state.customCategories.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, icon, content });
+      } else {
+        const newCat = { id: "cat_" + Date.now(), title, icon, content };
+        STORE.state.customCategories.push(newCat);
+      }
+
+      STORE.syncCollection("custom_cats");
+      rebuildCustomCategoryNav();
+      closeAppModal("modal-category-editor");
+      renderHubView();
+      showToast("Category added to portal navigation!");
+    }
+
+    function deleteCategory(id) {
+      if (!confirm("Delete this category?")) return;
+      STORE.state.customCategories = (STORE.state.customCategories || []).filter(x => x.id !== id);
+      STORE.syncCollection("custom_cats");
+      rebuildCustomCategoryNav();
+      renderHubView();
+      showToast("Category deleted.");
+    }
+
+    function rebuildCustomCategoryNav() {
+      const dock = document.getElementById("hub-main-category-dock");
+      if (!dock) return;
+
+      // Remove existing custom buttons
+      dock.querySelectorAll(".custom-nav-btn").forEach(b => b.remove());
+
+      const cats = STORE.state.customCategories || [];
+      const ownerBtn = document.getElementById("nav-owner-tab");
+
+      cats.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "hub-nav-btn custom-nav-btn";
+        btn.setAttribute("data-view", `custom_${c.id}`);
+        btn.innerHTML = `<i class="${c.icon || 'fa-solid fa-star'}"></i> ${c.title}`;
+        btn.onclick = () => switchHubView(`custom_${c.id}`);
+        if (ownerBtn) dock.insertBefore(btn, ownerBtn);
+        else dock.appendChild(btn);
+      });
     }
 
     /* ==========================================================================
@@ -593,6 +839,14 @@ JS_INIT_CONTENT = r'''
       showToast("Event published!");
     }
 
+    function deleteEvent(id) {
+      if (!confirm("Delete this event?")) return;
+      STORE.state.events = STORE.state.events.filter(e => e.id !== id);
+      STORE.syncCollection("events");
+      renderHubView();
+      showToast("Event removed.");
+    }
+
     function saveAdminFromModal() {
       const name = document.getElementById("admin-name-input").value.trim();
       const email = document.getElementById("admin-email-input").value.trim().toLowerCase();
@@ -634,10 +888,6 @@ JS_INIT_CONTENT = r'''
       STORE.syncCollection("admins");
       renderHubView();
       showToast("Admin revoked.");
-    }
-
-    function toggleUiBgTypeInputs(val) {
-      // Toggle inputs if necessary
     }
 
     function saveUiCustomization() {
@@ -745,28 +995,31 @@ JS_INIT_CONTENT = r'''
         }, { passive: false });
       }
 
-      // 4. Apply UI Config
+      // 4. Rebuild Custom Categories
+      rebuildCustomCategoryNav();
+
+      // 5. Apply UI Config
       applyHubConfigToUI();
 
-      // 5. Initialize Motion Canvas Engine
+      // 6. Initialize Motion Canvas Engine
       MOTION.init();
 
-      // 6. Update Sound State
+      // 7. Update Sound State
       updateSoundIcon();
 
-      // 7. Update User Header UI
+      // 8. Update User Header UI
       updateHeaderUserUI();
 
-      // 8. Render Initial View
+      // 9. Render Initial View
       renderHubView();
 
-      // 9. Check Mobile for PWA Install container
+      // 10. Check Mobile for PWA Install container
       if (/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)) {
         const pwaBox = document.getElementById("pwa-install-container");
         if (pwaBox) pwaBox.style.display = "block";
       }
 
-      // 10. Pre-fill UI editor inputs if owner
+      // 11. Pre-fill UI editor inputs if owner
       const uiGameName = document.getElementById("ui-game-name-input");
       if (uiGameName && STORE.state.hubConfig) {
         uiGameName.value = STORE.state.hubConfig.title || "REAL DRIVING SCHOOL";

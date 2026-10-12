@@ -29,49 +29,50 @@
 
   <style>
     /* ==========================================================================
-       MULTI-THEME LIQUID GLASS DESIGN SYSTEM
-       Game Name is strictly ORANGE (#ff6b00); the UI uses slate & frosted glass.
+       AUTHENTIC LIQUID GLASS DESIGN SYSTEM (TRANSLUCENT & REFRACTIVE)
+       Cards, Dock, Header, and Modals allow the background wallpaper/video
+       to shine and move through them dynamically!
        ========================================================================== */
     :root, [data-theme="frost"] {
-      /* Theme 1: Liquid Frost (Default Frosted Slate) */
-      --bg-base: #f1f5f9;
-      --bg-surface: rgba(255, 255, 255, 0.88);
-      --bg-surface-elevated: rgba(255, 255, 255, 0.95);
-      --bg-glass-matte: rgba(255, 255, 255, 0.65);
-      --card-bg: #ffffff;
+      /* Theme 1: Liquid Frost (Default Pure Translucent Frosted Glass) */
+      --bg-base: #0b1120;
+      --bg-surface: rgba(255, 255, 255, 0.28);
+      --bg-surface-elevated: rgba(255, 255, 255, 0.42);
+      --bg-glass-matte: rgba(255, 255, 255, 0.12);
+      --card-bg: rgba(255, 255, 255, 0.32);
 
       --glass-blur: 24px;
-      --glass-border: rgba(255, 255, 255, 0.85);
-      --glass-border-subtle: rgba(226, 232, 240, 0.85);
-      --glass-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.08);
-      --glass-shadow-lg: 0 16px 48px 0 rgba(15, 23, 42, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.65);
+      --glass-border-subtle: rgba(255, 255, 255, 0.38);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.14), inset 0 1px 1px 0 rgba(255, 255, 255, 0.7);
+      --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
 
       --text-main: #0f172a;
-      --text-muted: #475569;
-      --text-dim: #94a3b8;
+      --text-muted: #1e293b;
+      --text-dim: #475569;
 
       /* ONLY GAME NAME & ACCENTS ARE ORANGE */
       --brand-orange: #ff6b00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.35);
+      --brand-orange-glow: rgba(255, 107, 0, 0.45);
 
-      /* BUTTONS USE SLEEK MIDNIGHT SLATE */
+      /* BUTTONS USE SLEEK MIDNIGHT SLATE & TRANSLUCENT GLASS */
       --btn-primary-bg: #0f172a;
       --btn-primary-hover: #1e293b;
       --btn-primary-text: #ffffff;
 
-      --btn-secondary-bg: rgba(255, 255, 255, 0.85);
-      --btn-secondary-hover: #ffffff;
+      --btn-secondary-bg: rgba(255, 255, 255, 0.45);
+      --btn-secondary-hover: rgba(255, 255, 255, 0.75);
       --btn-secondary-text: #0f172a;
-      --btn-secondary-border: rgba(203, 213, 225, 0.85);
+      --btn-secondary-border: rgba(255, 255, 255, 0.65);
 
-      --accent-green: #16a34a;
+      --accent-green: #15803d;
       --accent-blue: #0284c7;
       --accent-purple: #9333ea;
       --accent-red: #dc2626;
 
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
       --radius-pill: 9999px;
 
       --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -82,94 +83,94 @@
     }
 
     [data-theme="stealth"] {
-      /* Theme 2: Midnight Stealth */
-      --bg-base: #070a13;
-      --bg-surface: rgba(15, 23, 42, 0.85);
-      --bg-surface-elevated: rgba(23, 33, 56, 0.95);
-      --bg-glass-matte: rgba(11, 17, 33, 0.75);
-      --card-bg: #0f172a;
+      /* Theme 2: Midnight Stealth (Deep Obsidian Liquid Glass) */
+      --bg-base: #030712;
+      --bg-surface: rgba(15, 23, 42, 0.45);
+      --bg-surface-elevated: rgba(30, 41, 59, 0.6);
+      --bg-glass-matte: rgba(3, 7, 18, 0.35);
+      --card-bg: rgba(15, 23, 42, 0.5);
 
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-border-subtle: rgba(255, 255, 255, 0.08);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
-      --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.22);
+      --glass-border-subtle: rgba(255, 255, 255, 0.12);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
+      --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.75), inset 0 1px 1px 0 rgba(255, 255, 255, 0.35);
 
       --text-main: #f8fafc;
       --text-muted: #cbd5e1;
-      --text-dim: #64748b;
+      --text-dim: #94a3b8;
 
       --brand-orange: #ff6b00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.45);
+      --brand-orange-glow: rgba(255, 107, 0, 0.55);
 
       --btn-primary-bg: #1e293b;
       --btn-primary-hover: #334155;
       --btn-primary-text: #ffffff;
 
-      --btn-secondary-bg: rgba(255, 255, 255, 0.08);
-      --btn-secondary-hover: rgba(255, 255, 255, 0.15);
+      --btn-secondary-bg: rgba(255, 255, 255, 0.15);
+      --btn-secondary-hover: rgba(255, 255, 255, 0.28);
       --btn-secondary-text: #f8fafc;
-      --btn-secondary-border: rgba(255, 255, 255, 0.15);
+      --btn-secondary-border: rgba(255, 255, 255, 0.25);
     }
 
     [data-theme="velocity"] {
-      /* Theme 3: Cyber Velocity */
-      --bg-base: #0a0e1a;
-      --bg-surface: rgba(14, 22, 41, 0.88);
-      --bg-surface-elevated: rgba(20, 31, 58, 0.95);
-      --bg-glass-matte: rgba(10, 16, 32, 0.7);
-      --card-bg: #0f1c38;
+      /* Theme 3: Cyber Velocity (Neon Cyan & Indigo Liquid Glass) */
+      --bg-base: #050b1a;
+      --bg-surface: rgba(14, 22, 45, 0.5);
+      --bg-surface-elevated: rgba(20, 35, 70, 0.65);
+      --bg-glass-matte: rgba(5, 11, 26, 0.3);
+      --card-bg: rgba(14, 22, 45, 0.52);
 
-      --glass-border: rgba(56, 189, 248, 0.25);
-      --glass-border-subtle: rgba(56, 189, 248, 0.15);
-      --glass-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.5);
+      --glass-border: rgba(56, 189, 248, 0.45);
+      --glass-border-subtle: rgba(56, 189, 248, 0.25);
+      --glass-shadow: 0 8px 32px 0 rgba(2, 6, 23, 0.6), inset 0 1px 1px 0 rgba(56, 189, 248, 0.4);
 
       --text-main: #f0f9ff;
       --text-muted: #bae6fd;
       --text-dim: #7dd3fc;
 
       --brand-orange: #ff6b00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.45);
+      --brand-orange-glow: rgba(255, 107, 0, 0.55);
 
       --btn-primary-bg: #0369a1;
       --btn-primary-hover: #0284c7;
       --btn-primary-text: #ffffff;
 
-      --btn-secondary-bg: rgba(56, 189, 248, 0.12);
-      --btn-secondary-hover: rgba(56, 189, 248, 0.22);
+      --btn-secondary-bg: rgba(56, 189, 248, 0.18);
+      --btn-secondary-hover: rgba(56, 189, 248, 0.3);
       --btn-secondary-text: #f0f9ff;
-      --btn-secondary-border: rgba(56, 189, 248, 0.3);
+      --btn-secondary-border: rgba(56, 189, 248, 0.4);
     }
 
     [data-theme="carbon"] {
-      /* Theme 4: Carbon GT */
-      --bg-base: #111111;
-      --bg-surface: rgba(24, 24, 27, 0.9);
-      --bg-surface-elevated: rgba(39, 39, 42, 0.95);
-      --bg-glass-matte: rgba(18, 18, 18, 0.75);
-      --card-bg: #1c1c1f;
+      /* Theme 4: Carbon GT (Smoked Race Glass) */
+      --bg-base: #0a0a0a;
+      --bg-surface: rgba(24, 24, 27, 0.55);
+      --bg-surface-elevated: rgba(39, 39, 42, 0.7);
+      --bg-glass-matte: rgba(10, 10, 10, 0.35);
+      --card-bg: rgba(24, 24, 27, 0.58);
 
-      --glass-border: rgba(255, 255, 255, 0.14);
-      --glass-border-subtle: rgba(255, 255, 255, 0.08);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --glass-border-subtle: rgba(255, 255, 255, 0.14);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7), inset 0 1px 1px 0 rgba(255, 255, 255, 0.25);
 
       --text-main: #fafafa;
       --text-muted: #d4d4d8;
-      --text-dim: #71717a;
+      --text-dim: #a1a1aa;
 
       --brand-orange: #ff6b00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.45);
+      --brand-orange-glow: rgba(255, 107, 0, 0.55);
 
       --btn-primary-bg: #27272a;
       --btn-primary-hover: #3f3f46;
       --btn-primary-text: #ffffff;
 
-      --btn-secondary-bg: rgba(255, 255, 255, 0.07);
-      --btn-secondary-hover: rgba(255, 255, 255, 0.14);
+      --btn-secondary-bg: rgba(255, 255, 255, 0.14);
+      --btn-secondary-hover: rgba(255, 255, 255, 0.25);
       --btn-secondary-text: #fafafa;
-      --btn-secondary-border: rgba(255, 255, 255, 0.12);
+      --btn-secondary-border: rgba(255, 255, 255, 0.22);
     }
 
-    /* Base Reset */
+    /* Global Reset */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -223,7 +224,7 @@
     }
     #bg-motion-canvas.motion-disabled { display: none; }
 
-    /* Frost Matte Overlay */
+    /* Frost Matte Optical Blur Layer (Soft Luminous Veil) */
     .bg-white-matte-layer {
       position: fixed;
       top: 0;
@@ -232,23 +233,23 @@
       height: 100vh;
       z-index: -1;
       background: var(--bg-glass-matte);
-      backdrop-filter: blur(var(--glass-blur)) saturate(170%);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
       pointer-events: none;
     }
 
     /* Reusable Liquid Glass Cards */
     .liquid-glass {
-      background: var(--bg-surface);
-      backdrop-filter: blur(var(--glass-blur)) saturate(180%);
-      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+      background: var(--card-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(190%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(190%);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-md);
       box-shadow: var(--glass-shadow);
       transition: var(--transition);
     }
     .liquid-glass:hover {
-      border-color: rgba(255, 107, 0, 0.4);
+      border-color: rgba(255, 107, 0, 0.55);
       box-shadow: var(--glass-shadow-lg);
     }
 
@@ -261,7 +262,7 @@
       padding: 0.65rem 1.25rem;
       background: var(--btn-primary-bg);
       color: var(--btn-primary-text);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-sm);
       font-size: 0.88rem;
       font-weight: 600;
@@ -274,7 +275,7 @@
     .btn-brand-primary:hover {
       background: var(--btn-primary-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
     }
     .btn-brand-primary:active { transform: translateY(0); }
 
@@ -288,6 +289,8 @@
       color: var(--btn-secondary-text);
       border: 1px solid var(--btn-secondary-border);
       border-radius: var(--radius-sm);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       font-size: 0.88rem;
       font-weight: 600;
       font-family: var(--font-main);
@@ -306,10 +309,11 @@
       align-items: center;
       gap: 0.45rem;
       padding: 0.5rem 0.95rem;
-      background: rgba(220, 38, 38, 0.1);
+      background: rgba(220, 38, 38, 0.15);
       color: var(--accent-red);
-      border: 1px solid rgba(220, 38, 38, 0.25);
+      border: 1px solid rgba(220, 38, 38, 0.35);
       border-radius: var(--radius-sm);
+      backdrop-filter: blur(12px);
       font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
@@ -353,20 +357,22 @@
       align-items: center;
       gap: 0.45rem;
       padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.35);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-pill);
       color: var(--text-main);
       font-size: 0.82rem;
-      font-weight: 600;
+      font-weight: 700;
       text-decoration: none;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
       transition: var(--transition);
     }
     .splash-social-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      background: #fff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.65);
     }
 
     .splash-left-block {
@@ -388,7 +394,7 @@
       height: 76px;
       border-radius: 18px;
       object-fit: cover;
-      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.35);
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.4);
       border: 2px solid var(--brand-orange);
       user-select: none;
     }
@@ -411,6 +417,7 @@
       line-height: 1.6;
       color: var(--text-muted);
       max-width: 620px;
+      font-weight: 500;
     }
 
     .splash-continue-container {
@@ -436,13 +443,13 @@
       border: none;
       border-radius: var(--radius-pill);
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.45);
+      box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
       transition: var(--transition);
       user-select: none;
     }
     .btn-splash-continue:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 16px 40px rgba(255, 107, 0, 0.65);
+      box-shadow: 0 16px 45px rgba(255, 107, 0, 0.75);
     }
     .btn-splash-continue .arrow-icon {
       font-size: 1.3rem;
@@ -466,17 +473,17 @@
       opacity: 1;
     }
 
-    /* Top Sticky Header - Stays still on scroll */
+    /* Top Sticky Header - Liquid Glass that stays still on scroll */
     .hub-sticky-header {
       position: sticky;
       top: 0;
       width: 100%;
       z-index: 1000;
       background: var(--bg-surface);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
       border-bottom: 1px solid var(--glass-border-subtle);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      box-shadow: var(--glass-shadow);
       padding: 0.65rem 1.5rem;
       display: flex;
       align-items: center;
@@ -523,8 +530,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-base);
-      border: 1px solid var(--glass-border-subtle);
+      background: var(--bg-surface-elevated);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
       color: var(--text-main);
       cursor: pointer;
@@ -533,7 +542,7 @@
       position: relative;
     }
     .hub-icon-btn:hover {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.7);
       transform: translateY(-1px);
     }
 
@@ -558,8 +567,10 @@
       align-items: center;
       gap: 0.4rem;
       padding: 0.35rem 0.75rem;
-      background: rgba(22, 163, 74, 0.12);
-      border: 1px solid rgba(22, 163, 74, 0.25);
+      background: rgba(22, 163, 74, 0.2);
+      border: 1px solid rgba(22, 163, 74, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: var(--radius-pill);
       font-size: 0.76rem;
       font-weight: 700;
@@ -580,11 +591,13 @@
       gap: 0.5rem;
       padding: 0.35rem 0.85rem 0.35rem 0.4rem;
       background: var(--bg-surface-elevated);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-pill);
       cursor: pointer;
       transition: var(--transition);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
     .hub-user-pill:hover {
       transform: translateY(-1px);
@@ -615,31 +628,66 @@
     }
 
     /* ==========================================================================
-       CATEGORY NAVIGATION BAR / DOCK
+       CATEGORY NAVIGATION DOCK WITH VISIBLE SCROLL ARROWS
        ========================================================================== */
+    .hub-dock-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 980px;
+      margin: 0.75rem auto;
+      padding: 0 1rem;
+    }
+
+    .nav-dock-scroll-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10002;
+      transition: var(--transition);
+      font-size: 0.8rem;
+    }
+    .nav-dock-scroll-arrow.arrow-left { left: 0px; }
+    .nav-dock-scroll-arrow.arrow-right { right: 0px; }
+    .nav-dock-scroll-arrow:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.1);
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+    }
+
     .hub-category-dock {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       overflow-x: auto;
       scrollbar-width: none;
-      padding: 0.35rem 0.65rem;
+      padding: 0.4rem 0.75rem;
       background: var(--bg-surface);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid var(--glass-border-subtle);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius-pill);
       box-shadow: var(--glass-shadow);
       user-select: none;
+      width: 100%;
       transition: var(--transition);
     }
     .hub-category-dock::-webkit-scrollbar { display: none; }
-
-    /* Top Bar Position (Desktop Default) */
-    .nav-dock-top {
-      max-width: 900px;
-      margin: 0.6rem auto;
-    }
 
     .hub-nav-btn {
       display: inline-flex;
@@ -651,31 +699,30 @@
       border-radius: var(--radius-pill);
       color: var(--text-muted);
       font-size: 0.88rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       white-space: nowrap;
     }
     .hub-nav-btn:hover {
       color: var(--text-main);
-      background: rgba(0, 0, 0, 0.04);
+      background: rgba(255, 255, 255, 0.3);
     }
     .hub-nav-btn.active {
       background: var(--btn-primary-bg);
       color: var(--btn-primary-text);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
     }
 
     /* Bottom Dock Mode (For Desktop if chosen) */
-    body.nav-pos-bottom .hub-category-dock {
+    body.nav-pos-bottom .hub-dock-wrapper {
       position: fixed !important;
-      bottom: 20px !important;
-      left: 16px !important;
-      right: 16px !important;
-      max-width: 680px !important;
+      bottom: 18px !important;
+      left: 14px !important;
+      right: 14px !important;
+      max-width: 720px !important;
       margin: 0 auto !important;
       z-index: 9999 !important;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22) !important;
     }
     body.nav-pos-bottom .hub-content-container {
       padding-bottom: 95px !important;
@@ -685,7 +732,7 @@
     .hub-content-container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 1.75rem 1.5rem 4rem 1.5rem;
+      padding: 1.5rem 1.5rem 4rem 1.5rem;
     }
 
     .view-header-bar {
@@ -708,6 +755,7 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       margin-top: 0.25rem;
+      font-weight: 500;
     }
 
     /* Catalog Grids (PC: 3 or 4 columns) */
@@ -721,11 +769,13 @@
       gap: 1.25rem;
     }
 
-    /* Vehicle Display Card */
+    /* Vehicle Display Card - Liquid Glass */
     .car-display-card {
       background: var(--card-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(190%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(190%);
       border-radius: var(--radius-md);
-      border: 1px solid var(--glass-border-subtle);
+      border: 1px solid var(--glass-border);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -735,7 +785,7 @@
     .car-display-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--glass-shadow-lg);
-      border-color: rgba(255, 107, 0, 0.4);
+      border-color: rgba(255, 107, 0, 0.5);
     }
 
     .car-photo-box {
@@ -767,7 +817,7 @@
       font-weight: 800;
       font-size: 0.85rem;
       border-radius: var(--radius-sm);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .car-card-body {
@@ -778,12 +828,15 @@
     }
     .car-title-heading {
       font-size: 1.15rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 0.35rem;
       color: var(--text-main);
     }
     .car-quick-specs {
-      background: var(--bg-base);
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-sm);
       padding: 0.65rem;
       margin: 0.75rem 0;
@@ -810,7 +863,8 @@
     }
     .stage-choice-chip {
       padding: 0.45rem 0.95rem;
-      background: var(--bg-base);
+      background: rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
@@ -821,19 +875,21 @@
       user-select: none;
     }
     .stage-choice-chip:hover {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.65);
       color: var(--text-main);
     }
     .stage-choice-chip.active {
       background: var(--btn-primary-bg);
       color: #fff;
       border-color: var(--btn-primary-bg);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     /* Luxury Bill / Valuation Breakdown */
     .luxury-receipt-container {
       background: var(--card-bg);
+      backdrop-filter: blur(var(--glass-blur)) saturate(190%);
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(190%);
       border-radius: var(--radius-md);
       border: 1px solid var(--glass-border);
       padding: 1.75rem;
@@ -887,8 +943,10 @@
     .input-box-field, .select-box-field, .textarea-box-field {
       width: 100%;
       padding: 0.75rem 1rem;
-      background: var(--card-bg);
-      border: 1px solid var(--glass-border-subtle);
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius-sm);
       color: var(--text-main);
       font-family: var(--font-main);
@@ -898,20 +956,43 @@
     }
     .input-box-field:focus, .select-box-field:focus, .textarea-box-field:focus {
       border-color: var(--brand-orange);
-      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+      background: rgba(255, 255, 255, 0.65);
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
     }
 
-    /* Modals */
+    /* Media Feedback & Status Thumbnail */
+    .media-selected-status-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.45rem;
+      padding: 0.4rem 0.75rem;
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(22, 163, 74, 0.35);
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+    .media-selected-thumb {
+      width: 44px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid var(--accent-green);
+    }
+
+    /* Modals - Liquid Glass Layers */
     .app-modal-layer {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 8000;
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      z-index: 12000;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -921,12 +1002,14 @@
       display: flex;
     }
     .app-modal-window {
-      background: var(--card-bg);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(32px) saturate(200%);
+      -webkit-backdrop-filter: blur(32px) saturate(200%);
       border-radius: var(--radius-lg);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.28);
+      box-shadow: var(--glass-shadow-lg);
       width: 100%;
-      max-width: 620px;
+      max-width: 680px;
       max-height: 90vh;
       overflow-y: auto;
       padding: 2rem;
@@ -969,8 +1052,8 @@
     }
     .update-tab-btn {
       padding: 0.55rem 1.25rem;
-      background: transparent;
-      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-pill);
       font-size: 0.9rem;
       font-weight: 700;
@@ -983,13 +1066,32 @@
       color: #fff;
     }
 
+    /* Subtabs in Owner Panel */
+    .admin-subtab-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .admin-subtab-btn.active {
+      background: var(--btn-primary-bg);
+      color: #fff;
+      border-color: var(--btn-primary-bg);
+    }
+
     /* Secret Version Click Pill */
     .version-click-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding: 0.45rem 1rem;
-      background: var(--bg-base);
+      background: rgba(255, 255, 255, 0.4);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-pill);
       font-size: 0.78rem;
@@ -998,7 +1100,7 @@
       cursor: pointer;
       user-select: none;
     }
-    .version-click-pill:active { background: rgba(0, 0, 0, 0.08); }
+    .version-click-pill:active { background: rgba(0, 0, 0, 0.1); }
 
     /* ==========================================================================
        MOBILE RESPONSIVE OVERRIDES (MOBILE 2-COLUMNS & DETACHED FLOATING DOCK)
@@ -1067,24 +1169,28 @@
       }
 
       /* DETACHED FLOATING BOTTOM ISLAND DOCK ON MOBILE */
-      .hub-category-dock {
+      .hub-dock-wrapper {
         position: fixed !important;
         bottom: 14px !important;
-        left: 12px !important;
-        right: 12px !important;
+        left: 10px !important;
+        right: 10px !important;
         width: auto !important;
-        max-width: 540px !important;
+        max-width: 560px !important;
         margin: 0 auto !important;
         z-index: 9999 !important;
+        padding: 0 !important;
+      }
+      .nav-dock-scroll-arrow {
+        display: none !important; /* Hide arrows on touch mobile where swipe works */
+      }
+      .hub-category-dock {
         background: var(--bg-surface-elevated) !important;
-        backdrop-filter: blur(28px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+        backdrop-filter: blur(28px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
         border: 1px solid var(--glass-border) !important;
         border-radius: var(--radius-pill) !important;
-        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18) !important;
+        box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25) !important;
         padding: 0.35rem 0.6rem !important;
-        display: flex !important;
-        overflow-x: auto !important;
       }
 
       /* Mobile 2-by-2 Grid (At least 2 items side by side) */
@@ -1143,7 +1249,7 @@
   <div class="bg-white-matte-layer"></div>
 
   <!-- ========================================================================
-       SCREEN 1: FULL SCREEN SPLASH LANDING (NO BOX LOOK)
+       SCREEN 1: FULL SCREEN SPLASH LANDING (CLEAN LIQUID GLASS)
        ======================================================================== -->
   <section id="splash-screen">
     <!-- Top Bar with Social Links (No UTC Timezone) -->
@@ -1232,18 +1338,29 @@
       </div>
     </header>
 
-    <!-- Horizontally Scrollable Category Bar (Detached Island Dock on Mobile) -->
-    <nav class="hub-category-dock nav-dock-top" id="hub-main-category-dock">
-      <button class="hub-nav-btn active" data-view="car-prices" onclick="switchHubView('car-prices')"><i class="fa-solid fa-car"></i> Car Prices</button>
-      <button class="hub-nav-btn" data-view="tyre-codes" onclick="switchHubView('tyre-codes')"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button>
-      <button class="hub-nav-btn" data-view="events" onclick="switchHubView('events')"><i class="fa-solid fa-trophy"></i> Events</button>
-      <button class="hub-nav-btn" data-view="updates" onclick="switchHubView('updates')"><i class="fa-solid fa-rocket"></i> RDS Updates</button>
-      <button class="hub-nav-btn" data-view="maps" onclick="switchHubView('maps')"><i class="fa-solid fa-map-location-dot"></i> Maps & Secrets</button>
-      <button class="hub-nav-btn" data-view="multiplayer" onclick="switchHubView('multiplayer')"><i class="fa-solid fa-users"></i> Multiplayer & Clans</button>
-      <button class="hub-nav-btn" data-view="rules" onclick="switchHubView('rules')"><i class="fa-solid fa-scale-balanced"></i> Rules</button>
-      <button class="hub-nav-btn" data-view="grinders" onclick="switchHubView('grinders')"><i class="fa-solid fa-chart-line"></i> Active Grinders</button>
-      <button class="hub-nav-btn" data-view="owner" id="nav-owner-tab" onclick="switchHubView('owner')" style="display: none;"><i class="fa-solid fa-crown"></i> Owner & Staff</button>
-    </nav>
+    <!-- Horizontally Scrollable Category Bar With Left and Right Arrows -->
+    <div class="hub-dock-wrapper" id="hub-dock-wrapper-el">
+      <button class="nav-dock-scroll-arrow arrow-left" onclick="scrollNavDock(-220)" title="Scroll Left">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <nav class="hub-category-dock nav-dock-top" id="hub-main-category-dock">
+        <button class="hub-nav-btn active" data-view="car-prices" onclick="switchHubView('car-prices')"><i class="fa-solid fa-car"></i> Car Prices</button>
+        <button class="hub-nav-btn" data-view="tyre-codes" onclick="switchHubView('tyre-codes')"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button>
+        <button class="hub-nav-btn" data-view="events" onclick="switchHubView('events')"><i class="fa-solid fa-trophy"></i> Events</button>
+        <button class="hub-nav-btn" data-view="updates" onclick="switchHubView('updates')"><i class="fa-solid fa-rocket"></i> RDS Updates</button>
+        <button class="hub-nav-btn" data-view="maps" onclick="switchHubView('maps')"><i class="fa-solid fa-map-location-dot"></i> Maps & Secrets</button>
+        <button class="hub-nav-btn" data-view="multiplayer" onclick="switchHubView('multiplayer')"><i class="fa-solid fa-users"></i> Multiplayer & Clans</button>
+        <button class="hub-nav-btn" data-view="rules" onclick="switchHubView('rules')"><i class="fa-solid fa-scale-balanced"></i> Rules</button>
+        <button class="hub-nav-btn" data-view="grinders" onclick="switchHubView('grinders')"><i class="fa-solid fa-chart-line"></i> Active Grinders</button>
+        <!-- Owner and Staff Panel is ALWAYS in the Category Bar -->
+        <button class="hub-nav-btn" data-view="owner" id="nav-owner-tab" onclick="switchHubView('owner')"><i class="fa-solid fa-crown"></i> Owner & Staff</button>
+      </nav>
+
+      <button class="nav-dock-scroll-arrow arrow-right" onclick="scrollNavDock(220)" title="Scroll Right">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
 
     <!-- Main View Content Area -->
     <main class="hub-content-container" id="hub-main-content">
@@ -1252,7 +1369,7 @@
   </div>
 
   <!-- ========================================================================
-       MODALS SYSTEM
+       MODALS SYSTEM (COMPLETE WITH LIVE MEDIA FEEDBACK & FULL CRUD)
        ======================================================================== -->
 
   <!-- 1. Driver Onboarding Modal (Prompted on Continue) -->
@@ -1263,14 +1380,14 @@
         <button class="modal-close-cross" onclick="closeAppModal('modal-driver-onboarding')">&times;</button>
       </div>
       <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-        <div style="background: rgba(255, 107, 0, 0.08); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 107, 0, 0.25); font-size: 0.88rem; line-height: 1.5;">
+        <div style="background: rgba(255, 107, 0, 0.12); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 107, 0, 0.35); font-size: 0.88rem; line-height: 1.5;">
           Copy your ID from inside <strong>Real Driving School</strong> and paste below (e.g. <code>「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2</code>). The portal extracts and displays only your clean name!
         </div>
 
         <div class="form-group-item">
           <label class="form-field-label">Game ID or Driver Name</label>
           <input type="text" class="input-box-field" id="onboarding-input-id" placeholder="Paste game ID or enter username" oninput="handleOnboardingInput(this.value)">
-          <div id="onboarding-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.1); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.25); display: none;">
+          <div id="onboarding-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.15); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.35); display: none;">
             <div style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">DETECTED IN-GAME NAME:</div>
             <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="onboarding-extracted-name"></div>
           </div>
@@ -1283,7 +1400,7 @@
     </div>
   </div>
 
-  <!-- 2. Staff & Owner Login Modal (Unlocked via 10 Taps on v1.2.120) -->
+  <!-- 2. Staff & Owner Login Modal (Unlocked via 10 Taps on v1.2.120 or Owner Category) -->
   <div class="app-modal-layer" id="modal-staff-login">
     <div class="app-modal-window">
       <div class="modal-headline-row">
@@ -1293,7 +1410,7 @@
       <form id="form-staff-login" onsubmit="event.preventDefault(); submitStaffLogin();">
         <div class="form-group-item">
           <label class="form-field-label">Staff / Owner Email</label>
-          <input type="email" class="input-box-field" id="staff-email-input" placeholder="admin@realdrivingschool.com" required>
+          <input type="email" class="input-box-field" id="staff-email-input" placeholder="pennabadicharith@gmail.com" required>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Password</label>
@@ -1317,9 +1434,9 @@
       <div style="display: flex; flex-direction: column; gap: 1.25rem;">
         <!-- Theme Switcher -->
         <div class="form-group-item">
-          <label class="form-field-label"><i class="fa-solid fa-palette"></i> Theme & Visual Style</label>
+          <label class="form-field-label"><i class="fa-solid fa-palette"></i> Liquid Glass Theme Style</label>
           <select class="select-box-field" id="setting-theme-select" onchange="changeAppTheme(this.value)">
-            <option value="frost">❄️ Liquid Frost (Default Frosted Slate)</option>
+            <option value="frost">❄️ Liquid Frost (Pure Frosted Translucent Glass)</option>
             <option value="stealth">🌑 Midnight Stealth (Deep Obsidian Glass)</option>
             <option value="velocity">🏎️ Cyber Velocity (Neon Indigo / Speed Cyan)</option>
             <option value="carbon">🏁 Carbon GT (Ultra-Dark Carbon Fiber)</option>
@@ -1353,9 +1470,9 @@
         <!-- Ambient Motion Effects Option -->
         <div class="form-group-item">
           <label class="form-field-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Background Motion Effects</label>
-          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.35); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
             <div>
-              <div style="font-weight: 600; font-size: 0.88rem;">Ambient Dynamic Lighting</div>
+              <div style="font-weight: 700; font-size: 0.88rem;">Ambient Dynamic Lighting</div>
               <div style="font-size: 0.75rem; color: var(--text-dim);">Floating glowing speed particles & trails</div>
             </div>
             <input type="checkbox" id="setting-motion-toggle" checked onchange="toggleBackgroundMotions(this.checked)" style="transform: scale(1.3);">
@@ -1365,9 +1482,9 @@
         <!-- Sound Effects Option -->
         <div class="form-group-item">
           <label class="form-field-label"><i class="fa-solid fa-volume-high"></i> Audio Synthesizer & Chimes</label>
-          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.35); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
             <div>
-              <div style="font-weight: 600; font-size: 0.88rem;">Sound Alerts & Feedback</div>
+              <div style="font-weight: 700; font-size: 0.88rem;">Sound Alerts & Feedback</div>
               <div style="font-size: 0.75rem; color: var(--text-dim);">In-browser Web Audio chimes</div>
             </div>
             <input type="checkbox" id="setting-sound-toggle" checked onchange="toggleSound(this.checked)" style="transform: scale(1.3);">
@@ -1375,7 +1492,7 @@
         </div>
 
         <!-- Account Session Info -->
-        <div style="background: var(--bg-base); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+        <div style="background: rgba(255, 255, 255, 0.35); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <div style="font-size: 0.85rem; font-weight: 700;" id="settings-user-display">Driver</div>
@@ -1394,7 +1511,7 @@
 
         <!-- Secret Staff Gate: Tap v1.2.120 for 10 times to unlock Staff Login -->
         <div class="settings-about-footer" style="margin-top: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--glass-border-subtle); text-align: center;">
-          <p style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem;">Real Driving School Community Hub</p>
+          <p style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">Real Driving School Community Hub</p>
           <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.85rem;">Official vehicle valuation index, tuning speed calculators, and multiplayer clan guide.</p>
           
           <div class="version-click-pill" id="web-version-pill" onclick="handleVersionSecretClick()" title="Tap 10 times for staff gate">
@@ -1414,7 +1531,7 @@
       </div>
       <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem; line-height: 1.6;">
         <p>To install <strong>Real Driving School Portal</strong> on your iOS device:</p>
-        <div style="background: var(--bg-base); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+        <div style="background: rgba(255, 255, 255, 0.4); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
           <div style="margin-bottom: 0.75rem;"><strong>1.</strong> Tap the <strong>Share</strong> icon <i class="fa-solid fa-arrow-up-from-bracket" style="color: var(--accent-blue);"></i> at the bottom of Safari.</div>
           <div style="margin-bottom: 0.75rem;"><strong>2.</strong> Scroll down and select <strong>'Add to Home Screen'</strong> <i class="fa-regular fa-square-plus"></i>.</div>
           <div><strong>3.</strong> Tap <strong>'Add'</strong> in the top-right corner.</div>
@@ -1439,7 +1556,7 @@
             Paste your full RDS ID (e.g. <code>「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2</code>). The portal displays only your clean name!
           </div>
           <input type="text" class="input-box-field" id="profile-name-input" placeholder="Paste game ID or enter username" oninput="handlePlayerIdInput(this.value)" required>
-          <div id="profile-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.1); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.25); display: none;">
+          <div id="profile-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.15); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.35); display: none;">
             <div style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">DETECTED IN-GAME NAME:</div>
             <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="profile-extracted-display"></div>
           </div>
@@ -1449,14 +1566,12 @@
           <label class="form-field-label">Avatar Photo</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="profile-avatar-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('profile-avatar-input', 'preview-profile-avatar')" title="Choose from Gallery or Files">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('profile-avatar-input', 'status-profile-avatar')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
-          <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
-            <img id="preview-profile-avatar" src="" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: none; border: 2px solid var(--brand-orange);">
-            <span style="font-size: 0.75rem; color: var(--text-dim);">Supported: JPG, PNG, WEBP (Auto-compressed)</span>
-          </div>
+          <!-- Live Media Status Feedback Container -->
+          <div id="status-profile-avatar" style="margin-top: 0.45rem;"></div>
         </div>
 
         <div class="form-group-item">
@@ -1476,11 +1591,11 @@
     <div style="position: relative; max-width: 90vw; max-height: 90vh;" onclick="event.stopPropagation()">
       <button class="modal-close-cross" style="position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem;" onclick="closePhotoViewer()">&times;</button>
       <img id="photo-viewer-image" src="" style="max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.7);">
-      <div id="photo-viewer-caption" style="color: #fff; text-align: center; margin-top: 0.75rem; font-size: 0.95rem; font-weight: 600;"></div>
+      <div id="photo-viewer-caption" style="color: #fff; text-align: center; margin-top: 0.75rem; font-size: 0.95rem; font-weight: 700;"></div>
     </div>
   </div>
 
-  <!-- 7. Add/Edit Car Modal (Complete with Add-ons & Stage 1-7 Specs) -->
+  <!-- 7. Add/Edit Car Modal -->
   <div class="app-modal-layer" id="modal-car-editor">
     <div class="app-modal-window" style="max-width: 840px;">
       <div class="modal-headline-row">
@@ -1505,21 +1620,22 @@
           <label class="form-field-label">Car Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="car-image-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('car-image-input', 'preview-car-editor-img')" title="Choose from Gallery or Files">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('car-image-input', 'status-car-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
-          <img id="preview-car-editor-img" src="" style="width: 100%; max-height: 140px; border-radius: 8px; object-fit: cover; margin-top: 0.5rem; display: none;">
+          <!-- Live Media Status Feedback Container -->
+          <div id="status-car-image" style="margin-top: 0.45rem;"></div>
         </div>
 
-        <!-- Add-on Charges Required -->
+        <!-- Add-on Charges (Words package, ceramic, edition strictly removed) -->
         <h4 style="font-family: var(--font-heading); color: var(--brand-orange); margin: 1.25rem 0 0.5rem 0; text-transform: uppercase;">
           <i class="fa-solid fa-tags"></i> Add-on Pricing (Default Millions, support k, m, b, t)
         </h4>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
           <div class="form-group-item">
             <label class="form-field-label">⭐ Premium Charge</label>
-            <input type="text" class="input-box-field" id="car-premium-price-input" placeholder="e.g. 5M" required>
+            <input type="text" class="input-box-field" id="car-premium-price-input" placeholder="e.g. 10M" required>
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🛡️ Coating Charge</label>
@@ -1527,11 +1643,11 @@
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🚓 Police Charge</label>
-            <input type="text" class="input-box-field" id="car-police-price-input" placeholder="e.g. 15M" required>
+            <input type="text" class="input-box-field" id="car-police-price-input" placeholder="e.g. 20M" required>
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🌈 Rainbow Smoke Charge</label>
-            <input type="text" class="input-box-field" id="car-rainbow-price-input" placeholder="e.g. 12M" required>
+            <input type="text" class="input-box-field" id="car-rainbow-price-input" placeholder="e.g. 15M" required>
           </div>
         </div>
 
@@ -1595,20 +1711,21 @@
           <label class="form-field-label">Cover Image (Optional)</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="update-image-input" placeholder="https://...">
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('update-image-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('update-image-input', 'status-update-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-update-image" style="margin-top: 0.45rem;"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Release Notes (One per line)</label>
           <textarea class="textarea-box-field" id="update-notes-input" rows="4" placeholder="- Added Bugatti Chiron Pur Sport&#10;- Fixed clutch slipping in multiplayer&#10;- Improved dynamic night lighting" required></textarea>
         </div>
         <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer;">
             <input type="checkbox" id="update-android-check" checked> Android Live
           </label>
-          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer;">
             <input type="checkbox" id="update-ios-check" checked> iOS Live
           </label>
         </div>
@@ -1636,10 +1753,11 @@
           <label class="form-field-label">Event Banner Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="event-image-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('event-image-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('event-image-input', 'status-event-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-event-image" style="margin-top: 0.45rem;"></div>
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
           <div class="form-group-item">
@@ -1656,7 +1774,7 @@
           <input type="text" class="input-box-field" id="event-prize-input" placeholder="1st: $500M in-game cash + Exclusive Livery" required>
         </div>
         <div class="form-group-item">
-          <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem;">
+          <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; cursor: pointer;">
             <input type="checkbox" id="event-is-live-check"> Mark as Currently Live Event
           </label>
         </div>
@@ -1667,7 +1785,204 @@
     </div>
   </div>
 
-  <!-- 11. Admin Creation & Management Modal -->
+  <!-- 11. Tyre Code Editor Modal (FIXED & FULLY IMPLEMENTED) -->
+  <div class="app-modal-layer" id="modal-tyre-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Tyre Compound Code</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-tyre-editor')">&times;</button>
+      </div>
+      <form id="form-tyre-editor" onsubmit="event.preventDefault(); saveTyreFromModal();">
+        <input type="hidden" id="tyre-edit-id">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Tyre Name</label>
+            <input type="text" class="input-box-field" id="tyre-name-input" placeholder="e.g. Tokyo Grip Pro-Spec" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Category</label>
+            <input type="text" class="input-box-field" id="tyre-category-input" placeholder="Track & Circuit" required>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">RDS Tuning Code</label>
+            <input type="text" class="input-box-field" id="tyre-code-input" placeholder="RDS-GRIP-99X" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Friction Index / G-Rating</label>
+            <input type="text" class="input-box-field" id="tyre-friction-input" placeholder="0.98 Lateral G" required>
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Surface Compatibility</label>
+          <input type="text" class="input-box-field" id="tyre-surface-input" placeholder="Asphalt & Dry Track" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Description / Handling Notes</label>
+          <textarea class="textarea-box-field" id="tyre-description-input" rows="3" placeholder="Engineered for extreme downforce and maximum corner entry speed." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-floppy-disk"></i> Save Tyre Compound Code
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 12. Map Location Editor Modal -->
+  <div class="app-modal-layer" id="modal-map-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Map Location</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-map-editor')">&times;</button>
+      </div>
+      <form id="form-map-editor" onsubmit="event.preventDefault(); saveMapFromModal();">
+        <input type="hidden" id="map-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Location Name</label>
+            <input type="text" class="input-box-field" id="map-title-input" placeholder="e.g. Mount Akina Touge Pass" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Tag / Type</label>
+            <input type="text" class="input-box-field" id="map-tag-input" placeholder="Drift Zone" required>
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Cover Image</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="url" class="input-box-field" id="map-image-input" placeholder="https://..." required>
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('map-image-input', 'status-map-image')">
+              <i class="fa-solid fa-folder-open"></i> Gallery
+            </button>
+          </div>
+          <div id="status-map-image" style="margin-top: 0.45rem;"></div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Description / Route Tips</label>
+          <textarea class="textarea-box-field" id="map-description-input" rows="3" placeholder="Technical mountain pass with five hairpins and narrow guardrails." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-map-pin"></i> Save Map Location
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 13. Rule of Conduct Editor Modal -->
+  <div class="app-modal-layer" id="modal-rule-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Conduct Rule</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-rule-editor')">&times;</button>
+      </div>
+      <form id="form-rule-editor" onsubmit="event.preventDefault(); saveRuleFromModal();">
+        <input type="hidden" id="rule-edit-id">
+        <div class="form-group-item">
+          <label class="form-field-label">Rule Title / Header</label>
+          <input type="text" class="input-box-field" id="rule-title-input" placeholder="e.g. Anti-Griefing & Clean Racing" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Rule Guidelines & Enforcement Policy</label>
+          <textarea class="textarea-box-field" id="rule-content-input" rows="4" placeholder="Intentional ramming or blocking line during drift battles results in a room ban." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-scale-balanced"></i> Save Conduct Rule
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 14. Multiplayer Guide Editor Modal -->
+  <div class="app-modal-layer" id="modal-multiplayer-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Multiplayer & Clan Guide</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-multiplayer-editor')">&times;</button>
+      </div>
+      <form id="form-mp-editor" onsubmit="event.preventDefault(); saveMpFromModal();">
+        <input type="hidden" id="mp-edit-id">
+        <div class="form-group-item">
+          <label class="form-field-label">Guide Title</label>
+          <input type="text" class="input-box-field" id="mp-title-input" placeholder="e.g. Lobby Hosting & Connection Setup" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Guidelines & Procedures</label>
+          <textarea class="textarea-box-field" id="mp-content-input" rows="4" placeholder="Select the optimal server region and limit room capacity to 16 players for 60 FPS physics." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-users"></i> Save Multiplayer Guide
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 15. Role Editor Modal -->
+  <div class="app-modal-layer" id="modal-role-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Create / Edit Discord Role</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-role-editor')">&times;</button>
+      </div>
+      <form id="form-role-editor" onsubmit="event.preventDefault(); saveRoleFromModal();">
+        <input type="hidden" id="role-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Role Name</label>
+            <input type="text" class="input-box-field" id="role-name-input" placeholder="e.g. Lead Tuner" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Role Color</label>
+            <input type="color" class="input-box-field" id="role-color-input" value="#ff6b00" style="padding: 0.35rem 0.5rem; height: 42px;">
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Permissions Assigned</label>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; background: rgba(255,255,255,0.3); padding: 0.75rem; border-radius: var(--radius-sm);">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-cars" checked> Manage Vehicles & Valuation</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-events" checked> Manage Events</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-updates" checked> Publish Updates</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-tyres" checked> Manage Tyre Codes</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-shield"></i> Save Role
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 16. Custom Category Editor Modal -->
+  <div class="app-modal-layer" id="modal-category-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Create New Portal Category</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-category-editor')">&times;</button>
+      </div>
+      <form id="form-category-editor" onsubmit="event.preventDefault(); saveCategoryFromModal();">
+        <input type="hidden" id="category-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Category Title</label>
+            <input type="text" class="input-box-field" id="category-title-input" placeholder="e.g. Drift Builds" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Icon Class</label>
+            <input type="text" class="input-box-field" id="category-icon-input" placeholder="fa-solid fa-flag" value="fa-solid fa-star">
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Category Body Content (Markdown / HTML)</label>
+          <textarea class="textarea-box-field" id="category-content-input" rows="5" placeholder="Enter content or instructions for this custom category..." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-folder-plus"></i> Add Category to Portal
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 17. Admin Creation & Management Modal -->
   <div class="app-modal-layer" id="modal-admin-editor">
     <div class="app-modal-window">
       <div class="modal-headline-row">
@@ -1699,7 +2014,7 @@
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Permissions Assigned</label>
-          <div style="display: grid; grid-template-columns: 1fr; gap: 0.45rem; background: var(--bg-base); padding: 0.75rem; border-radius: var(--radius-sm);">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.45rem; background: rgba(255,255,255,0.3); padding: 0.75rem; border-radius: var(--radius-sm);">
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-cars" checked> Manage Vehicles & Calculator</label>
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-events" checked> Manage Events</label>
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-updates" checked> Publish Updates (Public & Beta)</label>
@@ -1715,7 +2030,7 @@
     </div>
   </div>
 
-  <!-- 12. UI Customization Modal (For Owner) -->
+  <!-- 18. UI Customization Modal (For Owner) -->
   <div class="app-modal-layer" id="modal-ui-editor">
     <div class="app-modal-window" style="max-width: 720px;">
       <div class="modal-headline-row">
@@ -1731,10 +2046,11 @@
           <label class="form-field-label">Portal Logo Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="ui-logo-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-logo-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-logo-input', 'status-ui-logo')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-ui-logo" style="margin-top: 0.45rem;"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">About the Game Summary</label>
@@ -1742,7 +2058,7 @@
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Background Media Type</label>
-          <select class="select-box-field" id="ui-bg-type-select" onchange="toggleUiBgTypeInputs(this.value)">
+          <select class="select-box-field" id="ui-bg-type-select">
             <option value="video">Full Screen Video (.mp4)</option>
             <option value="image">Full Screen Photo / Wallpaper</option>
           </select>
@@ -1751,10 +2067,11 @@
           <label class="form-field-label">Background Media Source</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="ui-bg-media-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-bg-media-input', null, document.getElementById('ui-bg-type-select').value === 'video')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-bg-media-input', 'status-ui-bg', document.getElementById('ui-bg-type-select').value === 'video')">
               <i class="fa-solid fa-folder-open"></i> Gallery / Files
             </button>
           </div>
+          <div id="status-ui-bg" style="margin-top: 0.45rem;"></div>
         </div>
         <h4 style="font-family: var(--font-heading); color: var(--brand-orange); margin: 1rem 0 0.5rem 0;">Social & Download Links</h4>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
@@ -1782,7 +2099,7 @@
     </div>
   </div>
 
-  <!-- 13. Notifications History Modal -->
+  <!-- 19. Notifications History Modal -->
   <div class="app-modal-layer" id="modal-notifications-list">
     <div class="app-modal-window">
       <div class="modal-headline-row">
@@ -1849,12 +2166,12 @@
     }
 
     /* ==========================================================================
-       CANVAS IMAGE COMPRESSOR ($0 Free Tier - Shrinks uploads to 50KB-90KB)
+       CANVAS IMAGE COMPRESSOR ($0 Free Tier - Shrinks uploads to 35KB-50KB)
        ========================================================================== */
-    async function compressImageFile(file, maxDimension = 1200, quality = 0.72) {
+    async function compressImageFile(file, maxDimension = 900, quality = 0.65) {
       return new Promise((resolve, reject) => {
         if (!file.type.startsWith("image/")) {
-          // If video or other file, return as data url or raw
+          // If video or other file, return as data url
           const reader = new FileReader();
           reader.onload = () => resolve(reader.result);
           reader.onerror = reject;
@@ -1895,8 +2212,8 @@
       });
     }
 
-    // Unified Gallery/Files Picker with Canvas Auto-Compression
-    function openLocalFilePicker(targetInputId, previewId = null, isVideo = false) {
+    // Unified Gallery/Files Picker with Live Visual Feedback Badge & Thumbnail
+    function openLocalFilePicker(targetInputId, statusContainerId = null, isVideo = false) {
       const fileInput = document.createElement("input");
       fileInput.type = "file";
       fileInput.accept = isVideo ? "video/*,image/*" : "image/*,video/*";
@@ -1904,7 +2221,16 @@
         const file = e.target.files && e.target.files[0];
         if (!file) return;
 
-        showToast("Processing & optimizing media...");
+        const statusEl = statusContainerId ? document.getElementById(statusContainerId) : null;
+        if (statusEl) {
+          statusEl.innerHTML = `
+            <div class="media-selected-status-badge" style="background: rgba(255, 107, 0, 0.15); color: var(--brand-orange); border-color: rgba(255, 107, 0, 0.35);">
+              <i class="fa-solid fa-spinner fa-spin"></i> Optimizing & attaching ${file.name}...
+            </div>
+          `;
+        }
+
+        showToast("Processing media...");
         try {
           const compressedData = await compressImageFile(file);
           let mediaUrl = compressedData;
@@ -1913,11 +2239,10 @@
           if (FIREBASE && FIREBASE.storage) {
             try {
               const storageRef = FIREBASE.storage.ref(`uploads/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`);
-              // If data URL, upload as string
               const snapshot = await storageRef.putString(compressedData, 'data_url');
               mediaUrl = await snapshot.ref.getDownloadURL();
             } catch(stErr) {
-              console.warn("Storage upload notice (falling back to compressed data URL):", stErr);
+              console.warn("Storage upload notice (using optimized data URL):", stErr);
             }
           }
 
@@ -1926,16 +2251,30 @@
             inp.value = mediaUrl;
             inp.dispatchEvent(new Event("change"));
           }
-          if (previewId) {
-            const prev = document.getElementById(previewId);
-            if (prev) {
-              prev.src = mediaUrl;
-              prev.style.display = "block";
-            }
+
+          // Show prominent success badge with live thumbnail
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <div class="media-selected-status-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  Selected: ${file.name} (${Math.round(file.size / 1024)} KB)
+                </span>
+                ${file.type.startsWith("image/") ? `<img src="${mediaUrl}" class="media-selected-thumb" alt="Preview">` : '<i class="fa-solid fa-film"></i> Video Attached'}
+              </div>
+            `;
           }
-          showToast("Media ready and attached!");
+
+          showToast("Media attached successfully!");
         } catch(err) {
           console.error("File processing error:", err);
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <div class="media-selected-status-badge" style="background: rgba(220, 38, 38, 0.15); color: var(--accent-red); border-color: rgba(220, 38, 38, 0.35);">
+                <i class="fa-solid fa-triangle-exclamation"></i> Error attaching file. Please retry.
+              </div>
+            `;
+          }
           showToast("Error processing file", "error");
         }
       };
@@ -1944,7 +2283,6 @@
 
     /* ==========================================================================
        MULTI-DOCUMENT REAL-TIME FIREBASE SYNC ENGINE ($0 Global Multi-Device Sync)
-       Splits collections into separate documents to never exceed Firestore 1MiB limit.
        ========================================================================== */
     class FirebaseSyncEngine {
       constructor() {
@@ -1983,15 +2321,15 @@
         }
       }
 
-      // Listen to all sub-documents under rds_hub/
+      // Listen to all collections under rds_hub/
       listenToHubCollections() {
         if (!this.db) return;
         try {
           this.db.collection("rds_hub").onSnapshot(snapshot => {
             let hasChanges = false;
-            snapshot.docChanges().forEach(change => {
-              const docId = change.doc.id;
-              const data = change.doc.data();
+            snapshot.forEach(doc => {
+              const docId = doc.id;
+              const data = doc.data();
               if (!data) return;
 
               if (docId === "cars" && Array.isArray(data.items)) {
@@ -2020,6 +2358,9 @@
                 hasChanges = true;
               } else if (docId === "roles" && Array.isArray(data.items)) {
                 STORE.state.roles = data.items;
+                hasChanges = true;
+              } else if (docId === "custom_cats" && Array.isArray(data.items)) {
+                STORE.state.customCategories = data.items;
                 hasChanges = true;
               } else if (docId === "logs" && Array.isArray(data.items)) {
                 STORE.state.auditLogs = data.items;
@@ -2052,7 +2393,7 @@
               }
             });
             STORE.activeOnlineDrivers = list;
-            if (currentHubView === "grinders") renderHubView();
+            if (currentHubView === "grinders" || currentHubView === "owner") renderHubView();
           }, err => {});
         } catch(e) {}
       }
@@ -2067,6 +2408,30 @@
           return true;
         } catch(err) {
           console.warn(`Firestore sync write error for ${docName}:`, err);
+          return false;
+        }
+      }
+
+      // Push all collections to cloud
+      async syncAll() {
+        if (!this.db) return false;
+        try {
+          await this.syncDoc("cars", { items: STORE.state.cars });
+          await this.syncDoc("events", { items: STORE.state.events });
+          await this.syncDoc("updates", { items: STORE.state.updates });
+          await this.syncDoc("tyres", { items: STORE.state.tyres });
+          await this.syncDoc("maps", { items: STORE.state.maps });
+          await this.syncDoc("rules", { items: STORE.state.rules });
+          await this.syncDoc("multiplayer", { items: STORE.state.multiplayerGuides });
+          await this.syncDoc("admins", { items: STORE.state.admins });
+          await this.syncDoc("roles", { items: STORE.state.roles });
+          await this.syncDoc("custom_cats", { items: STORE.state.customCategories || [] });
+          await this.syncDoc("config", STORE.state.hubConfig);
+          showToast("Global Cloud Sync completed successfully!");
+          return true;
+        } catch(e) {
+          console.error(e);
+          showToast("Sync encountered an error", "error");
           return false;
         }
       }
@@ -2352,6 +2717,7 @@
         googlePlayUrl: "https://play.google.com/store/apps/details?id=com.qizz.rds",
         appStoreUrl: "https://apps.apple.com/app/real-driving-school/id1498327827"
       },
+      isEditingMode: false,
       cars: [
         {
           id: "car_chiron",
@@ -2557,7 +2923,7 @@
             "Introduced Bugatti Chiron Pur Sport with Stage 1-7 tuning specs.",
             "Complete audio synthesizer sound engine overhaul with realistic blow-off valves.",
             "Live multi-device cloud synchronization powered by Google Firebase ($0 tier).",
-            "Added 4 official vehicle upgrade packages: Rainbow Smoke, Police Siren, Coating & Premium Edition.",
+            "Added official upgrade options: Rainbow Smoke, Police, Coating & Premium.",
             "Optimized mobile responsive layout with 2-by-2 grid and detached floating dock."
           ]
         },
@@ -2631,6 +2997,7 @@
           content: "Hate speech, harassment, impersonation of staff or owners, and exploit spreading will result in an immediate game ID ban."
         }
       ],
+      customCategories: [],
       admins: [
         {
           id: "adm_owner",
@@ -2705,6 +3072,8 @@
             payload.items = this.state.admins;
           } else if (collectionName === "roles") {
             payload.items = this.state.roles;
+          } else if (collectionName === "custom_cats") {
+            payload.items = this.state.customCategories;
           } else if (collectionName === "logs") {
             payload.items = this.state.auditLogs;
           }
@@ -2733,6 +3102,7 @@
        VIEW ROUTING & RENDERING LOGIC
        ========================================================================== */
     let currentHubView = "car-prices";
+    let currentAdminSubtab = "admins";
     let calcActiveCarId = null;
     let calcSelectedStage = 1;
     let calcCustomStage = null;
@@ -2754,6 +3124,13 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function scrollNavDock(amount) {
+      const catBar = document.getElementById("hub-main-category-dock");
+      if (catBar) {
+        catBar.scrollBy({ left: amount, behavior: "smooth" });
+      }
+    }
+
     function renderHubView() {
       const container = document.getElementById("hub-main-content");
       if (!container) return;
@@ -2767,10 +3144,16 @@
       else if (currentHubView === "rules") renderRules(container);
       else if (currentHubView === "grinders") renderGrinders(container);
       else if (currentHubView === "owner") renderOwnerPanel(container);
+      else if (currentHubView.startsWith("custom_")) {
+        const catId = currentHubView.replace("custom_", "");
+        renderCustomCategoryView(container, catId);
+      }
     }
 
     /* ==========================================================================
-       1. CAR PRICES & VALUE CALCULATOR (SEARCH, JUMP, STAGES 1-7, 4 ADD-ONS)
+       1. CAR PRICES & VALUE CALCULATOR
+       Add-on names strictly: Rainbow Smoke, Police, Coating, Premium, Custom Livery
+       (Words package, ceramic, edition REMOVED)
        ========================================================================== */
     function filterCarCatalog(val) {
       carCatalogSearchQuery = (val || "").trim().toLowerCase();
@@ -2797,7 +3180,7 @@
       }
       const activeCar = allCars.find(c => c.id === calcActiveCarId) || allCars[0];
 
-      const canEdit = AUTH.hasPerm("cars");
+      const canEdit = AUTH.hasPerm("cars") || STORE.state.isEditingMode;
 
       // Calculate bill price
       const billData = calculateCarBill(activeCar);
@@ -2877,7 +3260,7 @@
               </div>
 
               <!-- Custom Stage Input (> 7) -->
-              <div style="margin-top: 0.65rem; background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="margin-top: 0.65rem; background: rgba(255, 255, 255, 0.25); padding: 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
                 <label class="form-field-label" style="font-size: 0.75rem;">Enter Custom Stage (> Stage 7 - Extrapolates Dynamic Value)</label>
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
                   <input type="number" min="1" max="50" class="input-box-field" placeholder="e.g. 8, 10, 15" value="${calcCustomStage || ''}" oninput="onCustomStageInput(this.value)" style="padding: 0.45rem 0.75rem;">
@@ -2885,49 +3268,49 @@
                 </div>
               </div>
               ${calcCustomStage && calcCustomStage > 7 ? `
-                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #d97706; font-weight: 600;">
+                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #d97706; font-weight: 700;">
                   ⚠️ Note: Stage ${calcCustomStage} is an approximate valuation based on exponential stage scaling.
                 </div>
               ` : ''}
             </div>
 
-            <!-- The 4 Add-ons + Custom Livery -->
+            <!-- The 4 Add-ons + Custom Livery (Strictly without package, ceramic, edition) -->
             <div class="form-group-item">
               <label class="form-field-label">Vehicle Add-ons & Packages</label>
               <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.35rem;">
                 <!-- 1. Rainbow Smoke -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🌈 Rainbow Smoke (${activeCar ? activeCar.rainbowPrice || '15M' : '15M'})</span>
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🌈 Rainbow Smoke (${activeCar ? activeCar.rainbowPrice || '15M' : '15M'})</span>
                   <input type="checkbox" ${calcHasRainbow ? 'checked' : ''} onchange="calcHasRainbow = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 2. Police Package -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🚓 Police Siren / Package (${activeCar ? activeCar.policePrice || '20M' : '20M'})</span>
+                <!-- 2. Police (Package removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🚓 Police (${activeCar ? activeCar.policePrice || '20M' : '20M'})</span>
                   <input type="checkbox" ${calcHasPolice ? 'checked' : ''} onchange="calcHasPolice = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 3. Ceramic Coating -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🛡️ Ceramic Coating (${activeCar ? activeCar.coatingPrice || '8M' : '8M'})</span>
+                <!-- 3. Coating (Ceramic removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🛡️ Coating (${activeCar ? activeCar.coatingPrice || '8M' : '8M'})</span>
                   <input type="checkbox" ${calcHasCoating ? 'checked' : ''} onchange="calcHasCoating = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 4. Premium Edition -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">⭐ Premium Edition (${activeCar ? activeCar.premiumPrice || '10M' : '10M'})</span>
+                <!-- 4. Premium (Edition removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">⭐ Premium (${activeCar ? activeCar.premiumPrice || '10M' : '10M'})</span>
                   <input type="checkbox" ${calcHasPremium ? 'checked' : ''} onchange="calcHasPremium = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
                 <!-- 5. Custom Livery (Asks for price if yes) -->
-                <div style="background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm);">
+                <div style="background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.88rem; font-weight: 600;">🎨 Custom Livery / Vinyl Wrap</span>
+                    <span style="font-size: 0.88rem; font-weight: 700;">🎨 Custom Livery</span>
                     <input type="checkbox" ${calcHasCustomLivery ? 'checked' : ''} onchange="calcHasCustomLivery = this.checked; renderHubView();" style="transform: scale(1.3);">
                   </div>
                   ${calcHasCustomLivery ? `
                     <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                      <span style="font-size: 0.78rem; color: var(--text-muted);">Livery Custom Price:</span>
+                      <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Livery Custom Price:</span>
                       <input type="text" class="input-box-field" value="${calcCustomLiveryPrice}" oninput="calcCustomLiveryPrice = this.value; renderHubView();" style="padding: 0.35rem 0.6rem; font-size: 0.82rem; width: 90px;" placeholder="e.g. 5M">
                     </div>
                   ` : ''}
@@ -2945,17 +3328,17 @@
               </div>
               <div style="text-align: right;">
                 <div style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;">#${activeCar ? activeCar.order || 1 : 1}</div>
-                <div style="font-size: 0.72rem; color: var(--text-dim);">CERTIFIED</div>
+                <div style="font-size: 0.72rem; color: var(--accent-green); font-weight: 700;">CERTIFIED</div>
               </div>
             </div>
 
             <div style="margin-bottom: 1rem;">
               <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.2rem;">${activeCar ? activeCar.name : 'Vehicle'}</h4>
-              <div style="font-size: 0.82rem; color: var(--text-muted);">${billData.stageTitle}</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">${billData.stageTitle}</div>
             </div>
 
             <!-- Technical Performance Metrics -->
-            <div style="background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <div style="background: rgba(255, 255, 255, 0.28); border: 1px solid var(--glass-border-subtle); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.25rem;">
               <div style="display: flex; justify-content: space-between;">
                 <span style="color: var(--text-dim);">Top Speed (No Turbo):</span>
                 <strong>${billData.speedNoTurboKmph} km/h (${billData.speedNoTurboMph} mph)</strong>
@@ -2966,7 +3349,7 @@
               </div>
             </div>
 
-            <!-- Itemized Pricing Breakdown -->
+            <!-- Itemized Pricing Breakdown (Without package, ceramic, edition) -->
             <div style="display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px dashed var(--glass-border-subtle); padding-top: 0.75rem;">
               <div class="receipt-item-row">
                 <span style="color: var(--text-muted);">${billData.stageTitle} Base:</span>
@@ -2984,7 +3367,7 @@
             <div class="receipt-total-box">
               <div>
                 <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Valuation Range</div>
-                <div style="font-size: 0.72rem; color: var(--text-muted);">${billData.isApprox ? 'Approximate Estimate' : 'Calculated Value'}</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">${billData.isApprox ? 'Approximate Estimate' : 'Calculated Value'}</div>
               </div>
               <div class="receipt-total-range">
                 $${formatNumberAbbr(billData.minTotal)} - $${formatNumberAbbr(billData.maxTotal)}
@@ -3048,6 +3431,7 @@
       const items = [];
       let addOnsTotal = 0;
 
+      // Words package, ceramic, edition STRICTLY REMOVED
       if (calcHasRainbow) {
         const p = parseValueToNumber(car.rainbowPrice || "15M");
         items.push({ label: "🌈 Rainbow Smoke", priceNum: p });
@@ -3055,22 +3439,22 @@
       }
       if (calcHasPolice) {
         const p = parseValueToNumber(car.policePrice || "20M");
-        items.push({ label: "🚓 Police Siren / Package", priceNum: p });
+        items.push({ label: "🚓 Police", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasCoating) {
         const p = parseValueToNumber(car.coatingPrice || "8M");
-        items.push({ label: "🛡️ Ceramic Coating", priceNum: p });
+        items.push({ label: "🛡️ Coating", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasPremium) {
         const p = parseValueToNumber(car.premiumPrice || "10M");
-        items.push({ label: "⭐ Premium Edition", priceNum: p });
+        items.push({ label: "⭐ Premium", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasCustomLivery) {
         const p = parseValueToNumber(calcCustomLiveryPrice || "5M");
-        items.push({ label: "🎨 Custom Livery / Wrap", priceNum: p });
+        items.push({ label: "🎨 Custom Livery", priceNum: p });
         addOnsTotal += p;
       }
 
@@ -3129,7 +3513,7 @@
       const betaUpdates = allUpdates.filter(u => (u.channel || '') === 'beta');
 
       const activeList = currentUpdatesChannel === 'beta' ? betaUpdates : publicUpdates;
-      const canEdit = AUTH.hasPerm("updates");
+      const canEdit = AUTH.hasPerm("updates") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -3161,16 +3545,16 @@
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
                 <div>
                   <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--brand-orange);">${u.version}</span>
-                  <span class="role-badge-tag" style="background: rgba(15, 23, 42, 0.08); margin-left: 0.5rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700;">
+                  <span class="role-badge-tag" style="background: rgba(15, 23, 42, 0.1); margin-left: 0.5rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700;">
                     ${u.channel === 'beta' ? '🧪 Beta Test Branch' : '🌐 Official Public Release'}
                   </span>
                   ${u.author ? `<span style="font-size: 0.8rem; color: var(--text-dim); margin-left: 0.5rem;">By <strong>${u.author}</strong></span>` : ''}
                 </div>
                 <div style="display: flex; gap: 0.4rem;">
-                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.12); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.15); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
                     <i class="fa-brands fa-android"></i> Android: ${u.publishedAndroid ? 'Live' : 'Pending'}
                   </span>
-                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.12); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.15); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
                     <i class="fa-brands fa-apple"></i> iOS: ${u.publishedIos ? 'Live' : 'Pending'}
                   </span>
                 </div>
@@ -3179,7 +3563,7 @@
               <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">${u.title}</h3>
               ${u.image ? `<img src="${u.image}" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; margin: 0.75rem 0; cursor: pointer;" onclick="openPhotoViewer('${u.image}', '${u.title}')">` : ''}
 
-              <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; font-weight: 500;">
                 ${(u.notes || []).map(note => `<li>${note}</li>`).join("")}
               </ul>
 
@@ -3195,11 +3579,11 @@
     }
 
     /* ==========================================================================
-       3. TYRE CODES CATALOG (COPY TO CLIPBOARD WITH SOUND)
+       3. TYRE CODES CATALOG (FULL CRUD + ONE-CLICK COPY)
        ========================================================================== */
     function renderTyreCodes(container) {
       const tyres = STORE.state.tyres || [];
-      const canEdit = AUTH.hasPerm("tyres");
+      const canEdit = AUTH.hasPerm("tyres") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -3207,24 +3591,30 @@
             <h2 class="view-title-main">⚙️ Tyre Codes & Tuning Compounds</h2>
             <p class="view-subtitle-main">Official friction compounds for drift, drag, grip and rally terrain.</p>
           </div>
-          ${canEdit ? `<button class="btn-brand-primary" onclick="openAppModal('modal-tyre-editor')"><i class="fa-solid fa-plus"></i> Add Tyre Code</button>` : ""}
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openTyreModal(null)"><i class="fa-solid fa-plus"></i> Add Tyre Code</button>` : ""}
         </div>
 
         <div class="tyres-grid-container">
           ${tyres.map(t => `
             <div class="liquid-glass" style="padding: 1.25rem; display: flex; flex-direction: column;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--brand-orange);">${t.category}</span>
-                <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">${t.frictionIndex || ''}</span>
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--brand-orange);">${t.category}</span>
+                <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 800;">${t.frictionIndex || ''}</span>
               </div>
               <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem;">${t.name}</h4>
-              <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem;">${t.description}</p>
-              <div style="background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center;">
+              <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem; font-weight: 500;">${t.description}</p>
+              <div style="background: rgba(255, 255, 255, 0.3); border: 1px solid var(--glass-border-subtle); padding: 0.65rem; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center;">
                 <code style="font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem;">${t.code}</code>
                 <button class="btn-brand-primary" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="copyTyreCode('${t.code}')">
                   <i class="fa-regular fa-copy"></i> Copy
                 </button>
               </div>
+              ${canEdit ? `
+                <div style="display: flex; justify-content: flex-end; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                  <button class="btn-brand-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="openTyreModal('${t.id}')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteTyre('${t.id}')"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              ` : ''}
             </div>
           `).join("")}
         </div>
@@ -3242,7 +3632,7 @@
        ========================================================================== */
     function renderEvents(container) {
       const events = STORE.state.events || [];
-      const canEdit = AUTH.hasPerm("events");
+      const canEdit = AUTH.hasPerm("events") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -3259,7 +3649,7 @@
               <div style="height: 160px; position: relative;">
                 <img src="${ev.image}" style="width: 100%; height: 100%; object-fit: cover;">
                 ${ev.isLive ? `
-                  <span style="position: absolute; top: 10px; left: 10px; background: var(--accent-red); color: #fff; padding: 0.25rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 800; animation: pulse 1.5s infinite;">
+                  <span style="position: absolute; top: 10px; left: 10px; background: var(--accent-red); color: #fff; padding: 0.25rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 800;">
                     🔴 CURRENT LIVE EVENT
                   </span>
                 ` : ''}
@@ -3267,10 +3657,15 @@
               <div style="padding: 1.15rem; display: flex; flex-direction: column; flex: 1;">
                 <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.4rem;">${ev.title}</h4>
                 <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem;"><i class="fa-solid fa-location-dot"></i> ${ev.location}</div>
-                <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem;">${ev.description}</p>
-                <div style="background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); font-size: 0.78rem;">
+                <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem; font-weight: 500;">${ev.description}</p>
+                <div style="background: rgba(255, 255, 255, 0.28); border: 1px solid var(--glass-border-subtle); padding: 0.65rem; border-radius: var(--radius-sm); font-size: 0.78rem;">
                   <strong>Prizes:</strong> ${ev.prizes}
                 </div>
+                ${canEdit ? `
+                  <div style="display: flex; justify-content: flex-end; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                    <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteEvent('${ev.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                  </div>
+                ` : ''}
               </div>
             </div>
           `).join("")}
@@ -3283,18 +3678,26 @@
        ========================================================================== */
     function renderMaps(container) {
       const maps = STORE.state.maps || [];
+      const canEdit = AUTH.hasPerm("maps") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">🗺️ Secret Locations & Drift Passes</h2><p class="view-subtitle-main">Key locations and drag runways across Real Driving School.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openMapModal(null)"><i class="fa-solid fa-plus"></i> Add Location</button>` : ""}
         </div>
         <div class="maps-grid-container">
           ${maps.map(m => `
-            <div class="liquid-glass" style="overflow: hidden;">
+            <div class="liquid-glass" style="overflow: hidden; display: flex; flex-direction: column;">
               <img src="${m.image}" style="width: 100%; height: 160px; object-fit: cover;">
-              <div style="padding: 1.15rem;">
+              <div style="padding: 1.15rem; display: flex; flex-direction: column; flex: 1;">
                 <span style="font-size: 0.72rem; color: var(--brand-orange); font-weight: 800; text-transform: uppercase;">${m.tag}</span>
                 <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0.2rem 0 0.4rem 0;">${m.title}</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted);">${m.description}</p>
+                <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500; flex: 1;">${m.description}</p>
+                ${canEdit ? `
+                  <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                    <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteMap('${m.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                  </div>
+                ` : ''}
               </div>
             </div>
           `).join("")}
@@ -3304,15 +3707,21 @@
 
     function renderMultiplayer(container) {
       const guides = STORE.state.multiplayerGuides || [];
+      const canEdit = AUTH.hasPerm("rules") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">👥 Multiplayer & Clan Etiquette</h2><p class="view-subtitle-main">Official server guidelines and race regulations.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openMpModal(null)"><i class="fa-solid fa-plus"></i> Add Guide</button>` : ""}
         </div>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           ${guides.map(g => `
             <div class="liquid-glass" style="padding: 1.5rem;">
-              <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--brand-orange);">${g.title}</h4>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">${g.content}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--brand-orange);">${g.title}</h4>
+                ${canEdit ? `<button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteMp('${g.id}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-weight: 500;">${g.content}</p>
             </div>
           `).join("")}
         </div>
@@ -3321,15 +3730,21 @@
 
     function renderRules(container) {
       const rules = STORE.state.rules || [];
+      const canEdit = AUTH.hasPerm("rules") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">⚖️ Rules of Conduct</h2><p class="view-subtitle-main">Fair play and trading protection rules.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openRuleModal(null)"><i class="fa-solid fa-plus"></i> Add Rule</button>` : ""}
         </div>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           ${rules.map(r => `
             <div class="liquid-glass" style="padding: 1.5rem;">
-              <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-red);">${r.title}</h4>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">${r.content}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-red);">${r.title}</h4>
+                ${canEdit ? `<button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteRule('${r.id}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-weight: 500;">${r.content}</p>
             </div>
           `).join("")}
         </div>
@@ -3375,66 +3790,321 @@
     }
 
     /* ==========================================================================
-       7. OWNER & STAFF CONTROL PANEL
+       7. OWNER & STAFF CONTROL PANEL (COMPLETE WITH ALL 6 SUBTABS)
        ========================================================================== */
     function renderOwnerPanel(container) {
-      if (!AUTH.user.isOwner && !AUTH.user.isLoggedIn) {
-        container.innerHTML = `<div class="liquid-glass" style="padding: 3rem; text-align: center;"><h3>Access Restricted</h3><p style="color: var(--text-dim);">Please authenticate via the Staff Security Gate.</p></div>`;
+      // If user is not logged in as staff/owner, show login form inside the page
+      if (!AUTH.user.isLoggedIn) {
+        container.innerHTML = `
+          <div class="liquid-glass" style="max-width: 540px; margin: 2rem auto; padding: 2.5rem;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,107,0,0.15); color: var(--brand-orange); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1rem auto; border: 1px solid rgba(255,107,0,0.4);">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; text-transform: uppercase;">Staff & Owner Portal</h2>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">Log in to access administrative controls, edit live website data, manage categories and sync.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); submitInPageViewLogin();">
+              <div class="form-group-item">
+                <label class="form-field-label">Email Address</label>
+                <input type="email" class="input-box-field" id="owner-page-email" placeholder="pennabadicharith@gmail.com" required>
+              </div>
+              <div class="form-group-item">
+                <label class="form-field-label">Password</label>
+                <input type="password" class="input-box-field" id="owner-page-pass" placeholder="••••••••" required>
+              </div>
+              <div id="owner-page-login-error" style="color: var(--accent-red); font-size: 0.82rem; margin-bottom: 0.75rem; display: none;"></div>
+              <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
+                <i class="fa-solid fa-lock-open"></i> Log In to Staff Dashboard
+              </button>
+            </form>
+
+            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--text-dim); border-top: 1px solid var(--glass-border-subtle); padding-top: 1rem;">
+              💡 Tip: You can also tap <code>v1.2.120</code> 10 times in Settings to open the quick staff gate.
+            </div>
+          </div>
+        `;
         return;
       }
 
-      const admins = STORE.state.admins || [];
-      const logs = STORE.state.auditLogs || [];
-
+      // User IS logged in: Render the complete Owner & Staff Dashboard
       container.innerHTML = `
         <div class="view-header-bar">
           <div>
-            <h2 class="view-title-main">👑 Portal Administration & Owner Panel</h2>
-            <p class="view-subtitle-main">Global styling, administrator creation, permissions, and security audit logs.</p>
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <h2 class="view-title-main">👑 Owner & Staff Control Center</h2>
+              <span class="role-badge-tag" style="background: rgba(255,107,0,0.2); color: var(--brand-orange); border: 1px solid rgba(255,107,0,0.4); padding: 0.25rem 0.75rem; border-radius: var(--radius-pill); font-weight: 800; font-size: 0.8rem;">
+                ${AUTH.user.roleName.toUpperCase()}
+              </span>
+            </div>
+            <p class="view-subtitle-main">Full control of vehicle valuations, staff admins, Discord roles, categories, cloud database, and branding.</p>
           </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openAppModal('modal-ui-editor')"><i class="fa-solid fa-paintbrush"></i> Customize UI & Branding</button>` : ""}
-            ${AUTH.user.isOwner ? `<button class="btn-brand-secondary" onclick="openAppModal('modal-admin-editor')"><i class="fa-solid fa-user-plus"></i> Create Admin</button>` : ""}
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <!-- Live Editing Mode Toggle -->
+            <label style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); padding: 0.5rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+              <i class="fa-solid fa-pen-ruler" style="color: var(--brand-orange);"></i>
+              Live Editing Mode
+              <input type="checkbox" ${STORE.state.isEditingMode ? 'checked' : ''} onchange="toggleEditingMode(this.checked)" style="transform: scale(1.2);">
+            </label>
+
+            <button class="btn-brand-danger" onclick="AUTH.logout(); renderHubView();">
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            </button>
           </div>
         </div>
 
-        <!-- Admins Table (For Owner) -->
-        ${AUTH.user.isOwner ? `
-          <div class="liquid-glass" style="padding: 1.5rem; margin-bottom: 1.5rem;">
-            <h3 style="font-family: var(--font-heading); color: var(--brand-orange); margin-bottom: 0.75rem;">
-              <i class="fa-solid fa-users-gear"></i> Staff Administrators (${admins.length})
-            </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-              ${admins.map(a => `
-                <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); flex-wrap: wrap; gap: 0.5rem;">
-                  <div>
-                    <strong>${a.name}</strong> <span style="font-size: 0.78rem; color: var(--text-dim);">(${a.email})</span>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
-                      Device Limit: <strong>${a.deviceLimit || 2}</strong> | Passphrase: <code>${a.password ? '••••••••' : 'Default'}</code>
-                    </div>
+        <!-- Quick Action Shortcuts Bar -->
+        <div class="liquid-glass" style="padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 800; color: var(--brand-orange); text-transform: uppercase; margin-right: 0.5rem;">
+            <i class="fa-solid fa-bolt"></i> Quick Add:
+          </span>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openCarModal(null)"><i class="fa-solid fa-car"></i> New Car</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openTyreModal(null)"><i class="fa-solid fa-circle-notch"></i> Tyre Code</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openAppModal('modal-event-editor')"><i class="fa-solid fa-trophy"></i> Event</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openAppModal('modal-update-editor')"><i class="fa-solid fa-rocket"></i> Update</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openMapModal(null)"><i class="fa-solid fa-map-pin"></i> Map</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openRuleModal(null)"><i class="fa-solid fa-scale-balanced"></i> Rule</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openMpModal(null)"><i class="fa-solid fa-users"></i> Clan Guide</button>
+        </div>
+
+        <!-- Subtab Navigation Bar -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem;">
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'admins' ? 'active' : ''}" onclick="switchAdminSubtab('admins')">
+            <i class="fa-solid fa-user-shield"></i> Staff & Admins (${(STORE.state.admins||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'roles' ? 'active' : ''}" onclick="switchAdminSubtab('roles')">
+            <i class="fa-solid fa-shield"></i> Discord Roles (${(STORE.state.roles||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'custom_cats' ? 'active' : ''}" onclick="switchAdminSubtab('custom_cats')">
+            <i class="fa-solid fa-folder-tree"></i> Custom Categories (${(STORE.state.customCategories||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'ui_settings' ? 'active' : ''}" onclick="switchAdminSubtab('ui_settings')">
+            <i class="fa-solid fa-paintbrush"></i> UI & Branding
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'security_db' ? 'active' : ''}" onclick="switchAdminSubtab('security_db')">
+            <i class="fa-solid fa-database"></i> Cloud Database & Sync
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'logs' ? 'active' : ''}" onclick="switchAdminSubtab('logs')">
+            <i class="fa-solid fa-clock-rotate-left"></i> Security Audit Logs (${(STORE.state.auditLogs||[]).length})
+          </button>
+        </div>
+
+        <!-- Subtab Content Area -->
+        <div id="admin-subtab-container"></div>
+      `;
+
+      renderAdminSubtabContent();
+    }
+
+    function switchAdminSubtab(tabName) {
+      currentAdminSubtab = tabName;
+      document.querySelectorAll(".admin-subtab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.textContent.toLowerCase().includes(tabName.replace('_', ' ')));
+      });
+      renderAdminSubtabContent();
+    }
+
+    function renderAdminSubtabContent() {
+      const container = document.getElementById("admin-subtab-container");
+      if (!container) return;
+
+      if (currentAdminSubtab === "admins") {
+        renderSubtabAdmins(container);
+      } else if (currentAdminSubtab === "roles") {
+        renderSubtabRoles(container);
+      } else if (currentAdminSubtab === "custom_cats") {
+        renderSubtabCustomCats(container);
+      } else if (currentAdminSubtab === "ui_settings") {
+        renderSubtabUiSettings(container);
+      } else if (currentAdminSubtab === "security_db") {
+        renderSubtabSecurityDb(container);
+      } else if (currentAdminSubtab === "logs") {
+        renderSubtabLogs(container);
+      }
+    }
+
+    function renderSubtabAdmins(container) {
+      const admins = STORE.state.admins || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-user-shield"></i> Staff Administrators</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Create admins with custom passwords, device limits, and category permissions.</p>
+            </div>
+            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openAppModal('modal-admin-editor')"><i class="fa-solid fa-user-plus"></i> Create Admin</button>` : ''}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${admins.map(a => `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <strong style="font-size: 1rem;">${a.name}</strong>
+                    <span style="font-size: 0.75rem; color: var(--text-dim);">(${a.email})</span>
+                    <span style="background: rgba(255,107,0,0.15); color: var(--brand-orange); font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${a.roleName || 'Admin'}</span>
                   </div>
-                  <div>
-                    ${a.id !== 'adm_owner' ? `
-                      <button class="btn-brand-danger" style="padding: 0.35rem 0.6rem; font-size: 0.75rem;" onclick="deleteAdmin('${a.id}')"><i class="fa-solid fa-trash"></i> Revoke</button>
-                    ` : '<span style="font-size: 0.78rem; color: var(--brand-orange); font-weight: 700;">Owner (Superadmin)</span>'}
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem;">
+                    Device Limit: <strong>${a.deviceLimit || 2}</strong> | Custom Pass: <code>${a.password ? '••••••••' : 'Default'}</code> | Permissions: <em>${(a.permissions||[]).join(', ')}</em>
                   </div>
+                </div>
+                <div>
+                  ${a.id !== 'adm_owner' && AUTH.user.isOwner ? `
+                    <button class="btn-brand-danger" style="padding: 0.35rem 0.7rem; font-size: 0.78rem;" onclick="deleteAdmin('${a.id}')"><i class="fa-solid fa-trash"></i> Revoke</button>
+                  ` : '<span style="font-size: 0.8rem; font-weight: 800; color: var(--brand-orange);"><i class="fa-solid fa-crown"></i> Game Owner</span>'}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabRoles(container) {
+      const roles = STORE.state.roles || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-shield"></i> Discord-Style Roles</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Manage roles, badges, colors, and assigned access levels.</p>
+            </div>
+            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openRoleModal(null)"><i class="fa-solid fa-plus"></i> Create Role</button>` : ''}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${roles.map(r => `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span style="width: 14px; height: 14px; border-radius: 50%; background: ${r.color || '#ff6b00'}; border: 1px solid #fff;"></span>
+                  <strong style="color: ${r.color || '#ff6b00'};">${r.name}</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-dim);">${(r.perms||[]).join(', ') || 'No permissions'}</span>
+                </div>
+                <div>
+                  ${r.id !== 'owner' && AUTH.user.isOwner ? `
+                    <button class="btn-brand-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteRole('${r.id}')"><i class="fa-solid fa-trash"></i></button>
+                  ` : ''}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabCustomCats(container) {
+      const cats = STORE.state.customCategories || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-folder-tree"></i> Custom Navigation Categories</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Add new sections and content tabs to the main category dock.</p>
+            </div>
+            <button class="btn-brand-primary" onclick="openCategoryModal(null)"><i class="fa-solid fa-plus"></i> Add Category</button>
+          </div>
+
+          ${cats.length === 0 ? `
+            <div style="padding: 2rem; text-align: center; color: var(--text-dim);">No custom categories created yet. Click above to add one!</div>
+          ` : `
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${cats.map(c => `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm);">
+                  <div>
+                    <i class="${c.icon || 'fa-solid fa-star'}" style="color: var(--brand-orange); margin-right: 0.5rem;"></i>
+                    <strong>${c.title}</strong>
+                  </div>
+                  <button class="btn-brand-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteCategory('${c.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
                 </div>
               `).join("")}
             </div>
-          </div>
-        ` : ''}
+          `}
+        </div>
+      `;
+    }
 
-        <!-- Audit Logs -->
+    function renderSubtabUiSettings(container) {
+      const cfg = STORE.state.hubConfig || {};
+      container.innerHTML = `
         <div class="liquid-glass" style="padding: 1.5rem;">
-          <h3 style="font-family: var(--font-heading); color: var(--brand-orange); margin-bottom: 0.75rem;">
-            <i class="fa-solid fa-clock-rotate-left"></i> Security & Operation Audit Logs
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-paintbrush"></i> Portal UI & Branding Customizer</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Edit game title, branding logo, background video/photo wallpaper, and social invite links.</p>
+            </div>
+            <button class="btn-brand-primary" onclick="openAppModal('modal-ui-editor')"><i class="fa-solid fa-pen"></i> Edit Branding</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Portal Title</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-orange);">${cfg.title || 'REAL DRIVING SCHOOL'}</div>
+              <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">${cfg.about || ''}</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Background Mode</div>
+              <div style="font-size: 1.05rem; font-weight: 800;">${cfg.bgType === 'image' ? '🖼️ Photo Wallpaper' : '🎥 High-Definition Video'}</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); word-break: break-all; margin-top: 0.25rem;">${cfg.bgMediaUrl || ''}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabSecurityDb(container) {
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange); margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-database"></i> Zero-Budget Cloud Database ($0 Free Tier)
           </h3>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 400px; overflow-y: auto;">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Connected to Google Firebase Real-Time Firestore & Storage. Multi-document architecture prevents document limit errors.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Connection Status</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent-green); display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="cloud-sync-indicator"></span> 🟢 Online & Live Synced
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem;">Firebase Project: <code>rds-a95fc</code></div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Storage Bucket</div>
+              <div style="font-size: 0.92rem; font-weight: 700; margin-top: 0.25rem;"><code>rds-a95fc.firebasestorage.app</code></div>
+              <div style="font-size: 0.78rem; color: var(--accent-green); margin-top: 0.25rem;"><i class="fa-solid fa-check"></i> Canvas auto-compression enabled (~40KB/img)</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn-brand-primary" onclick="triggerManualSync()"><i class="fa-solid fa-arrows-rotate"></i> Sync All to Cloud Now</button>
+            <button class="btn-brand-secondary" onclick="exportDataJson()"><i class="fa-solid fa-download"></i> Backup Data (JSON)</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabLogs(container) {
+      const logs = STORE.state.auditLogs || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-clock-rotate-left"></i> Security & Audit Logs</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time recording of all logins, content additions, edits and admin privileges.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 420px; overflow-y: auto;">
             ${logs.length === 0 ? `<div style="font-size: 0.85rem; color: var(--text-dim);">No audit logs recorded yet.</div>` : logs.map(l => `
-              <div style="background: var(--bg-base); padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+              <div style="background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.65rem 0.95rem; border-radius: var(--radius-sm); font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <span style="font-weight: 700; color: var(--brand-orange);">[${l.category.toUpperCase()}]</span>
-                  <strong>${l.user}</strong>: ${l.action} - <span style="color: var(--text-muted);">${l.details}</span>
+                  <span style="font-weight: 800; color: var(--brand-orange);">[${l.category.toUpperCase()}]</span>
+                  <strong>${l.user}</strong>: ${l.action} - <span style="color: var(--text-muted); font-weight: 500;">${l.details}</span>
                 </div>
                 <span style="font-size: 0.72rem; color: var(--text-dim);">${new Date(l.timestamp).toLocaleTimeString()}</span>
               </div>
@@ -3442,6 +4112,69 @@
           </div>
         </div>
       `;
+    }
+
+    function renderCustomCategoryView(container, catId) {
+      const cat = (STORE.state.customCategories || []).find(c => c.id === catId);
+      if (!cat) {
+        container.innerHTML = `<div class="liquid-glass" style="padding: 2rem;"><h3>Category Not Found</h3></div>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title-main"><i class="${cat.icon || 'fa-solid fa-star'}"></i> ${cat.title}</h2>
+            <p class="view-subtitle-main">Custom community category created by Game Owner.</p>
+          </div>
+        </div>
+        <div class="liquid-glass" style="padding: 2rem; font-size: 0.95rem; line-height: 1.7;">
+          ${cat.content || 'No content provided.'}
+        </div>
+      `;
+    }
+
+    function toggleEditingMode(val) {
+      STORE.state.isEditingMode = val;
+      renderHubView();
+      showToast(val ? "Live Editing Mode ON" : "Live Editing Mode OFF");
+    }
+
+    function submitInPageViewLogin() {
+      const email = document.getElementById("owner-page-email").value;
+      const pass = document.getElementById("owner-page-pass").value;
+      const res = AUTH.login(email, pass);
+      const errBox = document.getElementById("owner-page-login-error");
+
+      if (res.success) {
+        if (errBox) errBox.style.display = "none";
+        AUDIO.play(880, 0.4);
+        showToast(res.message);
+        renderHubView();
+        updateHeaderUserUI();
+      } else {
+        if (errBox) {
+          errBox.textContent = res.message;
+          errBox.style.display = "block";
+        }
+        AUDIO.play(300, 0.3);
+      }
+    }
+
+    async function triggerManualSync() {
+      showToast("Syncing all data with cloud...");
+      await FIREBASE.syncAll();
+    }
+
+    function exportDataJson() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(STORE.state, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `RDS_Portal_Backup_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("Backup exported successfully!");
     }
 
     /* ==========================================================================
@@ -3490,7 +4223,7 @@
           font-size: 0.85rem;
           font-weight: 600;
           box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-          border: 1px solid rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.2);
           display: flex;
           align-items: center;
           gap: 0.5rem;
@@ -3515,7 +4248,7 @@
       if (pillText) pillText.textContent = text;
       if (pill) {
         pill.style.display = "inline-flex";
-        pill.style.borderColor = "rgba(22, 163, 74, 0.4)";
+        pill.style.borderColor = "rgba(22, 163, 74, 0.5)";
       }
     }
 
@@ -3608,7 +4341,6 @@
       const avatar = document.getElementById("user-pill-avatar-img");
       const name = document.getElementById("user-pill-name-span");
       const role = document.getElementById("user-pill-role-span");
-      const ownerTab = document.getElementById("nav-owner-tab");
       const settingsUser = document.getElementById("settings-user-display");
       const settingsRole = document.getElementById("settings-role-display");
       const settingsLogout = document.getElementById("settings-logout-row");
@@ -3620,10 +4352,6 @@
       if (settingsUser) settingsUser.textContent = u.username;
       if (settingsRole) settingsRole.textContent = `Role: ${u.roleName}`;
       if (settingsLogout) settingsLogout.style.display = u.isLoggedIn ? "block" : "none";
-
-      if (ownerTab) {
-        ownerTab.style.display = (u.isOwner || (u.permissions && u.permissions.length > 0)) ? "inline-flex" : "none";
-      }
     }
 
     /* ==========================================================================
@@ -3645,26 +4373,11 @@
     function applyNavPosition() {
       const pos = localStorage.getItem("RDS_NAV_POS") || "auto";
       document.body.classList.remove("nav-pos-bottom", "nav-pos-top");
-      const dock = document.getElementById("hub-main-category-dock");
 
       if (pos === "bottom") {
         document.body.classList.add("nav-pos-bottom");
-        if (dock) {
-          dock.classList.remove("nav-dock-top");
-          dock.classList.add("nav-dock-bottom");
-        }
       } else if (pos === "top") {
         document.body.classList.add("nav-pos-top");
-        if (dock) {
-          dock.classList.remove("nav-dock-bottom");
-          dock.classList.add("nav-dock-top");
-        }
-      } else {
-        // Auto: Top on PC, Bottom Dock on mobile (handled by media query)
-        if (dock) {
-          dock.classList.remove("nav-dock-bottom");
-          dock.classList.add("nav-dock-top");
-        }
       }
       const sel = document.getElementById("setting-nav-position");
       if (sel) sel.value = pos;
@@ -3784,14 +4497,18 @@
       document.getElementById("car-name-input").value = car ? car.name : "";
       document.getElementById("car-order-input").value = car ? car.order || 1 : (STORE.state.cars.length + 1);
       document.getElementById("car-image-input").value = car ? car.image : "";
-      
-      const prevImg = document.getElementById("preview-car-editor-img");
-      if (prevImg) {
+
+      const statusBox = document.getElementById("status-car-image");
+      if (statusBox) {
         if (car && car.image) {
-          prevImg.src = car.image;
-          prevImg.style.display = "block";
+          statusBox.innerHTML = `
+            <div class="media-selected-status-badge">
+              <i class="fa-solid fa-circle-check"></i> Current Photo Attached:
+              <img src="${car.image}" class="media-selected-thumb" alt="Preview">
+            </div>
+          `;
         } else {
-          prevImg.style.display = "none";
+          statusBox.innerHTML = "";
         }
       }
 
@@ -3814,7 +4531,7 @@
           };
 
           return `
-            <div style="background: var(--bg-base); border: 1px solid var(--glass-border-subtle); border-radius: var(--radius-sm); padding: 0.75rem;">
+            <div style="background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); border-radius: var(--radius-sm); padding: 0.75rem;">
               <div style="font-weight: 800; font-size: 0.88rem; color: var(--brand-orange); margin-bottom: 0.5rem;">
                 STAGE ${s}
               </div>
@@ -3936,7 +4653,7 @@
           <div style="overflow-x: auto;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
               <thead>
-                <tr style="background: var(--bg-base); border-bottom: 2px solid var(--glass-border-subtle);">
+                <tr style="background: rgba(255,255,255,0.4); border-bottom: 2px solid var(--glass-border-subtle);">
                   <th style="padding: 0.5rem;">Stage</th>
                   <th style="padding: 0.5rem;">Valuation</th>
                   <th style="padding: 0.5rem;">Top Speed (No Turbo)</th>
@@ -3958,6 +4675,268 @@
         `;
       }
       openAppModal("modal-car-specs-viewer");
+    }
+
+    /* ==========================================================================
+       TYRE CODES, MAPS, RULES, MULTIPLAYER, ROLES, CATEGORIES CRUD
+       ========================================================================== */
+    function openTyreModal(tyreId = null) {
+      const t = tyreId ? (STORE.state.tyres || []).find(x => x.id === tyreId) : null;
+      document.getElementById("tyre-edit-id").value = t ? t.id : "";
+      document.getElementById("tyre-name-input").value = t ? t.name : "";
+      document.getElementById("tyre-category-input").value = t ? t.category : "Track & Circuit";
+      document.getElementById("tyre-code-input").value = t ? t.code : "RDS-GRIP-99X";
+      document.getElementById("tyre-friction-input").value = t ? t.frictionIndex : "0.98 Lateral G";
+      document.getElementById("tyre-surface-input").value = t ? t.surface : "Asphalt & Dry Track";
+      document.getElementById("tyre-description-input").value = t ? t.description : "";
+      openAppModal("modal-tyre-editor");
+    }
+
+    function saveTyreFromModal() {
+      const editId = document.getElementById("tyre-edit-id").value;
+      const name = document.getElementById("tyre-name-input").value.trim();
+      const category = document.getElementById("tyre-category-input").value.trim();
+      const code = document.getElementById("tyre-code-input").value.trim();
+      const frictionIndex = document.getElementById("tyre-friction-input").value.trim();
+      const surface = document.getElementById("tyre-surface-input").value.trim();
+      const description = document.getElementById("tyre-description-input").value.trim();
+
+      if (!STORE.state.tyres) STORE.state.tyres = [];
+
+      if (editId) {
+        const existing = STORE.state.tyres.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { name, category, code, frictionIndex, surface, description });
+        STORE.addLog("tyres", AUTH.user.username, "Edit Tyre", `Updated tyre code ${code}.`);
+      } else {
+        STORE.state.tyres.push({
+          id: "tyre_" + Date.now(),
+          name, category, code, frictionIndex, surface, description
+        });
+        STORE.addLog("tyres", AUTH.user.username, "Add Tyre", `Created tyre compound ${name} (${code}).`);
+      }
+
+      STORE.syncCollection("tyres");
+      closeAppModal("modal-tyre-editor");
+      renderHubView();
+      showToast("Tyre code saved successfully!");
+    }
+
+    function deleteTyre(id) {
+      if (!confirm("Delete this tyre code?")) return;
+      STORE.state.tyres = (STORE.state.tyres || []).filter(x => x.id !== id);
+      STORE.syncCollection("tyres");
+      renderHubView();
+      showToast("Tyre code deleted.");
+    }
+
+    function openMapModal(mapId = null) {
+      const m = mapId ? (STORE.state.maps || []).find(x => x.id === mapId) : null;
+      document.getElementById("map-edit-id").value = m ? m.id : "";
+      document.getElementById("map-title-input").value = m ? m.title : "";
+      document.getElementById("map-tag-input").value = m ? m.tag : "Drift Zone";
+      document.getElementById("map-image-input").value = m ? m.image : "";
+      document.getElementById("map-description-input").value = m ? m.description : "";
+      openAppModal("modal-map-editor");
+    }
+
+    function saveMapFromModal() {
+      const editId = document.getElementById("map-edit-id").value;
+      const title = document.getElementById("map-title-input").value.trim();
+      const tag = document.getElementById("map-tag-input").value.trim();
+      const image = document.getElementById("map-image-input").value.trim();
+      const description = document.getElementById("map-description-input").value.trim();
+
+      if (!STORE.state.maps) STORE.state.maps = [];
+      if (editId) {
+        const existing = STORE.state.maps.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, tag, image, description });
+      } else {
+        STORE.state.maps.push({ id: "map_" + Date.now(), title, tag, image, description });
+      }
+
+      STORE.syncCollection("maps");
+      closeAppModal("modal-map-editor");
+      renderHubView();
+      showToast("Map location saved!");
+    }
+
+    function deleteMap(id) {
+      if (!confirm("Delete this map location?")) return;
+      STORE.state.maps = (STORE.state.maps || []).filter(x => x.id !== id);
+      STORE.syncCollection("maps");
+      renderHubView();
+      showToast("Location removed.");
+    }
+
+    function openRuleModal(ruleId = null) {
+      const r = ruleId ? (STORE.state.rules || []).find(x => x.id === ruleId) : null;
+      document.getElementById("rule-edit-id").value = r ? r.id : "";
+      document.getElementById("rule-title-input").value = r ? r.title : "";
+      document.getElementById("rule-content-input").value = r ? r.content : "";
+      openAppModal("modal-rule-editor");
+    }
+
+    function saveRuleFromModal() {
+      const editId = document.getElementById("rule-edit-id").value;
+      const title = document.getElementById("rule-title-input").value.trim();
+      const content = document.getElementById("rule-content-input").value.trim();
+
+      if (!STORE.state.rules) STORE.state.rules = [];
+      if (editId) {
+        const existing = STORE.state.rules.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, content });
+      } else {
+        STORE.state.rules.push({ id: "rule_" + Date.now(), title, content });
+      }
+
+      STORE.syncCollection("rules");
+      closeAppModal("modal-rule-editor");
+      renderHubView();
+      showToast("Conduct rule saved!");
+    }
+
+    function deleteRule(id) {
+      if (!confirm("Delete this rule?")) return;
+      STORE.state.rules = (STORE.state.rules || []).filter(x => x.id !== id);
+      STORE.syncCollection("rules");
+      renderHubView();
+      showToast("Rule removed.");
+    }
+
+    function openMpModal(mpId = null) {
+      const m = mpId ? (STORE.state.multiplayerGuides || []).find(x => x.id === mpId) : null;
+      document.getElementById("mp-edit-id").value = m ? m.id : "";
+      document.getElementById("mp-title-input").value = m ? m.title : "";
+      document.getElementById("mp-content-input").value = m ? m.content : "";
+      openAppModal("modal-multiplayer-editor");
+    }
+
+    function saveMpFromModal() {
+      const editId = document.getElementById("mp-edit-id").value;
+      const title = document.getElementById("mp-title-input").value.trim();
+      const content = document.getElementById("mp-content-input").value.trim();
+
+      if (!STORE.state.multiplayerGuides) STORE.state.multiplayerGuides = [];
+      if (editId) {
+        const existing = STORE.state.multiplayerGuides.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, content });
+      } else {
+        STORE.state.multiplayerGuides.push({ id: "mp_" + Date.now(), title, content });
+      }
+
+      STORE.syncCollection("multiplayer");
+      closeAppModal("modal-multiplayer-editor");
+      renderHubView();
+      showToast("Clan guide saved!");
+    }
+
+    function deleteMp(id) {
+      if (!confirm("Delete this multiplayer guide?")) return;
+      STORE.state.multiplayerGuides = (STORE.state.multiplayerGuides || []).filter(x => x.id !== id);
+      STORE.syncCollection("multiplayer");
+      renderHubView();
+      showToast("Guide removed.");
+    }
+
+    function openRoleModal(roleId = null) {
+      const r = roleId ? (STORE.state.roles || []).find(x => x.id === roleId) : null;
+      document.getElementById("role-edit-id").value = r ? r.id : "";
+      document.getElementById("role-name-input").value = r ? r.name : "";
+      document.getElementById("role-color-input").value = r ? r.color : "#ff6b00";
+      openAppModal("modal-role-editor");
+    }
+
+    function saveRoleFromModal() {
+      const editId = document.getElementById("role-edit-id").value;
+      const name = document.getElementById("role-name-input").value.trim();
+      const color = document.getElementById("role-color-input").value;
+      const perms = [];
+      if (document.getElementById("role-perm-cars").checked) perms.push("cars");
+      if (document.getElementById("role-perm-events").checked) perms.push("events");
+      if (document.getElementById("role-perm-updates").checked) perms.push("updates");
+      if (document.getElementById("role-perm-tyres").checked) perms.push("tyres");
+
+      if (!STORE.state.roles) STORE.state.roles = [];
+      if (editId) {
+        const existing = STORE.state.roles.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { name, color, perms });
+      } else {
+        STORE.state.roles.push({ id: "role_" + Date.now(), name, color, perms });
+      }
+
+      STORE.syncCollection("roles");
+      closeAppModal("modal-role-editor");
+      renderHubView();
+      showToast("Role saved!");
+    }
+
+    function deleteRole(id) {
+      if (!confirm("Delete this role?")) return;
+      STORE.state.roles = (STORE.state.roles || []).filter(x => x.id !== id);
+      STORE.syncCollection("roles");
+      renderHubView();
+      showToast("Role deleted.");
+    }
+
+    function openCategoryModal(catId = null) {
+      const c = catId ? (STORE.state.customCategories || []).find(x => x.id === catId) : null;
+      document.getElementById("category-edit-id").value = c ? c.id : "";
+      document.getElementById("category-title-input").value = c ? c.title : "";
+      document.getElementById("category-icon-input").value = c ? c.icon : "fa-solid fa-star";
+      document.getElementById("category-content-input").value = c ? c.content : "";
+      openAppModal("modal-category-editor");
+    }
+
+    function saveCategoryFromModal() {
+      const editId = document.getElementById("category-edit-id").value;
+      const title = document.getElementById("category-title-input").value.trim();
+      const icon = document.getElementById("category-icon-input").value.trim() || "fa-solid fa-star";
+      const content = document.getElementById("category-content-input").value.trim();
+
+      if (!STORE.state.customCategories) STORE.state.customCategories = [];
+      if (editId) {
+        const existing = STORE.state.customCategories.find(x => x.id === editId);
+        if (existing) Object.assign(existing, { title, icon, content });
+      } else {
+        const newCat = { id: "cat_" + Date.now(), title, icon, content };
+        STORE.state.customCategories.push(newCat);
+      }
+
+      STORE.syncCollection("custom_cats");
+      rebuildCustomCategoryNav();
+      closeAppModal("modal-category-editor");
+      renderHubView();
+      showToast("Category added to portal navigation!");
+    }
+
+    function deleteCategory(id) {
+      if (!confirm("Delete this category?")) return;
+      STORE.state.customCategories = (STORE.state.customCategories || []).filter(x => x.id !== id);
+      STORE.syncCollection("custom_cats");
+      rebuildCustomCategoryNav();
+      renderHubView();
+      showToast("Category deleted.");
+    }
+
+    function rebuildCustomCategoryNav() {
+      const dock = document.getElementById("hub-main-category-dock");
+      if (!dock) return;
+
+      // Remove existing custom buttons
+      dock.querySelectorAll(".custom-nav-btn").forEach(b => b.remove());
+
+      const cats = STORE.state.customCategories || [];
+      const ownerBtn = document.getElementById("nav-owner-tab");
+
+      cats.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "hub-nav-btn custom-nav-btn";
+        btn.setAttribute("data-view", `custom_${c.id}`);
+        btn.innerHTML = `<i class="${c.icon || 'fa-solid fa-star'}"></i> ${c.title}`;
+        btn.onclick = () => switchHubView(`custom_${c.id}`);
+        if (ownerBtn) dock.insertBefore(btn, ownerBtn);
+        else dock.appendChild(btn);
+      });
     }
 
     /* ==========================================================================
@@ -4034,6 +5013,14 @@
       showToast("Event published!");
     }
 
+    function deleteEvent(id) {
+      if (!confirm("Delete this event?")) return;
+      STORE.state.events = STORE.state.events.filter(e => e.id !== id);
+      STORE.syncCollection("events");
+      renderHubView();
+      showToast("Event removed.");
+    }
+
     function saveAdminFromModal() {
       const name = document.getElementById("admin-name-input").value.trim();
       const email = document.getElementById("admin-email-input").value.trim().toLowerCase();
@@ -4075,10 +5062,6 @@
       STORE.syncCollection("admins");
       renderHubView();
       showToast("Admin revoked.");
-    }
-
-    function toggleUiBgTypeInputs(val) {
-      // Toggle inputs if necessary
     }
 
     function saveUiCustomization() {
@@ -4186,28 +5169,31 @@
         }, { passive: false });
       }
 
-      // 4. Apply UI Config
+      // 4. Rebuild Custom Categories
+      rebuildCustomCategoryNav();
+
+      // 5. Apply UI Config
       applyHubConfigToUI();
 
-      // 5. Initialize Motion Canvas Engine
+      // 6. Initialize Motion Canvas Engine
       MOTION.init();
 
-      // 6. Update Sound State
+      // 7. Update Sound State
       updateSoundIcon();
 
-      // 7. Update User Header UI
+      // 8. Update User Header UI
       updateHeaderUserUI();
 
-      // 8. Render Initial View
+      // 9. Render Initial View
       renderHubView();
 
-      // 9. Check Mobile for PWA Install container
+      // 10. Check Mobile for PWA Install container
       if (/Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent)) {
         const pwaBox = document.getElementById("pwa-install-container");
         if (pwaBox) pwaBox.style.display = "block";
       }
 
-      // 10. Pre-fill UI editor inputs if owner
+      // 11. Pre-fill UI editor inputs if owner
       const uiGameName = document.getElementById("ui-game-name-input");
       if (uiGameName && STORE.state.hubConfig) {
         uiGameName.value = STORE.state.hubConfig.title || "REAL DRIVING SCHOOL";

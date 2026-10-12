@@ -18,6 +18,7 @@ JS_STATE_CONTENT = r'''
         googlePlayUrl: "https://play.google.com/store/apps/details?id=com.qizz.rds",
         appStoreUrl: "https://apps.apple.com/app/real-driving-school/id1498327827"
       },
+      isEditingMode: false,
       cars: [
         {
           id: "car_chiron",
@@ -223,7 +224,7 @@ JS_STATE_CONTENT = r'''
             "Introduced Bugatti Chiron Pur Sport with Stage 1-7 tuning specs.",
             "Complete audio synthesizer sound engine overhaul with realistic blow-off valves.",
             "Live multi-device cloud synchronization powered by Google Firebase ($0 tier).",
-            "Added 4 official vehicle upgrade packages: Rainbow Smoke, Police Siren, Coating & Premium Edition.",
+            "Added official upgrade options: Rainbow Smoke, Police, Coating & Premium.",
             "Optimized mobile responsive layout with 2-by-2 grid and detached floating dock."
           ]
         },
@@ -297,6 +298,7 @@ JS_STATE_CONTENT = r'''
           content: "Hate speech, harassment, impersonation of staff or owners, and exploit spreading will result in an immediate game ID ban."
         }
       ],
+      customCategories: [],
       admins: [
         {
           id: "adm_owner",
@@ -371,6 +373,8 @@ JS_STATE_CONTENT = r'''
             payload.items = this.state.admins;
           } else if (collectionName === "roles") {
             payload.items = this.state.roles;
+          } else if (collectionName === "custom_cats") {
+            payload.items = this.state.customCategories;
           } else if (collectionName === "logs") {
             payload.items = this.state.auditLogs;
           }

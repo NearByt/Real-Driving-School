@@ -1,4 +1,4 @@
-# part_js_core.py - Core Engine, Firebase Multi-Doc Sync, Compressor & Auth for Real Driving School Portal v1.2.120
+# part_js_core.py - Core Engine, Firebase Multi-Doc Sync, Media Picker with Feedback & Auth
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -57,12 +57,12 @@ JS_CORE_CONTENT = r'''
     }
 
     /* ==========================================================================
-       CANVAS IMAGE COMPRESSOR ($0 Free Tier - Shrinks uploads to 50KB-90KB)
+       CANVAS IMAGE COMPRESSOR ($0 Free Tier - Shrinks uploads to 35KB-50KB)
        ========================================================================== */
-    async function compressImageFile(file, maxDimension = 1200, quality = 0.72) {
+    async function compressImageFile(file, maxDimension = 900, quality = 0.65) {
       return new Promise((resolve, reject) => {
         if (!file.type.startsWith("image/")) {
-          // If video or other file, return as data url or raw
+          // If video or other file, return as data url
           const reader = new FileReader();
           reader.onload = () => resolve(reader.result);
           reader.onerror = reject;
@@ -103,8 +103,8 @@ JS_CORE_CONTENT = r'''
       });
     }
 
-    // Unified Gallery/Files Picker with Canvas Auto-Compression
-    function openLocalFilePicker(targetInputId, previewId = null, isVideo = false) {
+    // Unified Gallery/Files Picker with Live Visual Feedback Badge & Thumbnail
+    function openLocalFilePicker(targetInputId, statusContainerId = null, isVideo = false) {
       const fileInput = document.createElement("input");
       fileInput.type = "file";
       fileInput.accept = isVideo ? "video/*,image/*" : "image/*,video/*";
@@ -112,7 +112,16 @@ JS_CORE_CONTENT = r'''
         const file = e.target.files && e.target.files[0];
         if (!file) return;
 
-        showToast("Processing & optimizing media...");
+        const statusEl = statusContainerId ? document.getElementById(statusContainerId) : null;
+        if (statusEl) {
+          statusEl.innerHTML = `
+            <div class="media-selected-status-badge" style="background: rgba(255, 107, 0, 0.15); color: var(--brand-orange); border-color: rgba(255, 107, 0, 0.35);">
+              <i class="fa-solid fa-spinner fa-spin"></i> Optimizing & attaching ${file.name}...
+            </div>
+          `;
+        }
+
+        showToast("Processing media...");
         try {
           const compressedData = await compressImageFile(file);
           let mediaUrl = compressedData;
@@ -121,11 +130,10 @@ JS_CORE_CONTENT = r'''
           if (FIREBASE && FIREBASE.storage) {
             try {
               const storageRef = FIREBASE.storage.ref(`uploads/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`);
-              // If data URL, upload as string
               const snapshot = await storageRef.putString(compressedData, 'data_url');
               mediaUrl = await snapshot.ref.getDownloadURL();
             } catch(stErr) {
-              console.warn("Storage upload notice (falling back to compressed data URL):", stErr);
+              console.warn("Storage upload notice (using optimized data URL):", stErr);
             }
           }
 
@@ -134,16 +142,30 @@ JS_CORE_CONTENT = r'''
             inp.value = mediaUrl;
             inp.dispatchEvent(new Event("change"));
           }
-          if (previewId) {
-            const prev = document.getElementById(previewId);
-            if (prev) {
-              prev.src = mediaUrl;
-              prev.style.display = "block";
-            }
+
+          // Show prominent success badge with live thumbnail
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <div class="media-selected-status-badge">
+                <i class="fa-solid fa-circle-check"></i>
+                <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  Selected: ${file.name} (${Math.round(file.size / 1024)} KB)
+                </span>
+                ${file.type.startsWith("image/") ? `<img src="${mediaUrl}" class="media-selected-thumb" alt="Preview">` : '<i class="fa-solid fa-film"></i> Video Attached'}
+              </div>
+            `;
           }
-          showToast("Media ready and attached!");
+
+          showToast("Media attached successfully!");
         } catch(err) {
           console.error("File processing error:", err);
+          if (statusEl) {
+            statusEl.innerHTML = `
+              <div class="media-selected-status-badge" style="background: rgba(220, 38, 38, 0.15); color: var(--accent-red); border-color: rgba(220, 38, 38, 0.35);">
+                <i class="fa-solid fa-triangle-exclamation"></i> Error attaching file. Please retry.
+              </div>
+            `;
+          }
           showToast("Error processing file", "error");
         }
       };
@@ -152,7 +174,6 @@ JS_CORE_CONTENT = r'''
 
     /* ==========================================================================
        MULTI-DOCUMENT REAL-TIME FIREBASE SYNC ENGINE ($0 Global Multi-Device Sync)
-       Splits collections into separate documents to never exceed Firestore 1MiB limit.
        ========================================================================== */
     class FirebaseSyncEngine {
       constructor() {
@@ -191,15 +212,15 @@ JS_CORE_CONTENT = r'''
         }
       }
 
-      // Listen to all sub-documents under rds_hub/
+      // Listen to all collections under rds_hub/
       listenToHubCollections() {
         if (!this.db) return;
         try {
           this.db.collection("rds_hub").onSnapshot(snapshot => {
             let hasChanges = false;
-            snapshot.docChanges().forEach(change => {
-              const docId = change.doc.id;
-              const data = change.doc.data();
+            snapshot.forEach(doc => {
+              const docId = doc.id;
+              const data = doc.data();
               if (!data) return;
 
               if (docId === "cars" && Array.isArray(data.items)) {
@@ -228,6 +249,9 @@ JS_CORE_CONTENT = r'''
                 hasChanges = true;
               } else if (docId === "roles" && Array.isArray(data.items)) {
                 STORE.state.roles = data.items;
+                hasChanges = true;
+              } else if (docId === "custom_cats" && Array.isArray(data.items)) {
+                STORE.state.customCategories = data.items;
                 hasChanges = true;
               } else if (docId === "logs" && Array.isArray(data.items)) {
                 STORE.state.auditLogs = data.items;
@@ -260,7 +284,7 @@ JS_CORE_CONTENT = r'''
               }
             });
             STORE.activeOnlineDrivers = list;
-            if (currentHubView === "grinders") renderHubView();
+            if (currentHubView === "grinders" || currentHubView === "owner") renderHubView();
           }, err => {});
         } catch(e) {}
       }
@@ -275,6 +299,30 @@ JS_CORE_CONTENT = r'''
           return true;
         } catch(err) {
           console.warn(`Firestore sync write error for ${docName}:`, err);
+          return false;
+        }
+      }
+
+      // Push all collections to cloud
+      async syncAll() {
+        if (!this.db) return false;
+        try {
+          await this.syncDoc("cars", { items: STORE.state.cars });
+          await this.syncDoc("events", { items: STORE.state.events });
+          await this.syncDoc("updates", { items: STORE.state.updates });
+          await this.syncDoc("tyres", { items: STORE.state.tyres });
+          await this.syncDoc("maps", { items: STORE.state.maps });
+          await this.syncDoc("rules", { items: STORE.state.rules });
+          await this.syncDoc("multiplayer", { items: STORE.state.multiplayerGuides });
+          await this.syncDoc("admins", { items: STORE.state.admins });
+          await this.syncDoc("roles", { items: STORE.state.roles });
+          await this.syncDoc("custom_cats", { items: STORE.state.customCategories || [] });
+          await this.syncDoc("config", STORE.state.hubConfig);
+          showToast("Global Cloud Sync completed successfully!");
+          return true;
+        } catch(e) {
+          console.error(e);
+          showToast("Sync encountered an error", "error");
           return false;
         }
       }

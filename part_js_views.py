@@ -1,4 +1,4 @@
-# part_js_views.py - View Renderers & Calculator for Real Driving School Portal v1.2.120
+# part_js_views.py - View Renderers, Calculator (Without package, ceramic, edition) & Full Owner Panel
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -7,6 +7,7 @@ JS_VIEWS_CONTENT = r'''
        VIEW ROUTING & RENDERING LOGIC
        ========================================================================== */
     let currentHubView = "car-prices";
+    let currentAdminSubtab = "admins";
     let calcActiveCarId = null;
     let calcSelectedStage = 1;
     let calcCustomStage = null;
@@ -28,6 +29,13 @@ JS_VIEWS_CONTENT = r'''
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
+    function scrollNavDock(amount) {
+      const catBar = document.getElementById("hub-main-category-dock");
+      if (catBar) {
+        catBar.scrollBy({ left: amount, behavior: "smooth" });
+      }
+    }
+
     function renderHubView() {
       const container = document.getElementById("hub-main-content");
       if (!container) return;
@@ -41,10 +49,16 @@ JS_VIEWS_CONTENT = r'''
       else if (currentHubView === "rules") renderRules(container);
       else if (currentHubView === "grinders") renderGrinders(container);
       else if (currentHubView === "owner") renderOwnerPanel(container);
+      else if (currentHubView.startsWith("custom_")) {
+        const catId = currentHubView.replace("custom_", "");
+        renderCustomCategoryView(container, catId);
+      }
     }
 
     /* ==========================================================================
-       1. CAR PRICES & VALUE CALCULATOR (SEARCH, JUMP, STAGES 1-7, 4 ADD-ONS)
+       1. CAR PRICES & VALUE CALCULATOR
+       Add-on names strictly: Rainbow Smoke, Police, Coating, Premium, Custom Livery
+       (Words package, ceramic, edition REMOVED)
        ========================================================================== */
     function filterCarCatalog(val) {
       carCatalogSearchQuery = (val || "").trim().toLowerCase();
@@ -71,7 +85,7 @@ JS_VIEWS_CONTENT = r'''
       }
       const activeCar = allCars.find(c => c.id === calcActiveCarId) || allCars[0];
 
-      const canEdit = AUTH.hasPerm("cars");
+      const canEdit = AUTH.hasPerm("cars") || STORE.state.isEditingMode;
 
       // Calculate bill price
       const billData = calculateCarBill(activeCar);
@@ -151,7 +165,7 @@ JS_VIEWS_CONTENT = r'''
               </div>
 
               <!-- Custom Stage Input (> 7) -->
-              <div style="margin-top: 0.65rem; background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="margin-top: 0.65rem; background: rgba(255, 255, 255, 0.25); padding: 0.65rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
                 <label class="form-field-label" style="font-size: 0.75rem;">Enter Custom Stage (> Stage 7 - Extrapolates Dynamic Value)</label>
                 <div style="display: flex; gap: 0.5rem; margin-top: 0.25rem;">
                   <input type="number" min="1" max="50" class="input-box-field" placeholder="e.g. 8, 10, 15" value="${calcCustomStage || ''}" oninput="onCustomStageInput(this.value)" style="padding: 0.45rem 0.75rem;">
@@ -159,49 +173,49 @@ JS_VIEWS_CONTENT = r'''
                 </div>
               </div>
               ${calcCustomStage && calcCustomStage > 7 ? `
-                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #d97706; font-weight: 600;">
+                <div style="margin-top: 0.4rem; font-size: 0.75rem; color: #d97706; font-weight: 700;">
                   ⚠️ Note: Stage ${calcCustomStage} is an approximate valuation based on exponential stage scaling.
                 </div>
               ` : ''}
             </div>
 
-            <!-- The 4 Add-ons + Custom Livery -->
+            <!-- The 4 Add-ons + Custom Livery (Strictly without package, ceramic, edition) -->
             <div class="form-group-item">
               <label class="form-field-label">Vehicle Add-ons & Packages</label>
               <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.35rem;">
                 <!-- 1. Rainbow Smoke -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🌈 Rainbow Smoke (${activeCar ? activeCar.rainbowPrice || '15M' : '15M'})</span>
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🌈 Rainbow Smoke (${activeCar ? activeCar.rainbowPrice || '15M' : '15M'})</span>
                   <input type="checkbox" ${calcHasRainbow ? 'checked' : ''} onchange="calcHasRainbow = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 2. Police Package -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🚓 Police Siren / Package (${activeCar ? activeCar.policePrice || '20M' : '20M'})</span>
+                <!-- 2. Police (Package removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🚓 Police (${activeCar ? activeCar.policePrice || '20M' : '20M'})</span>
                   <input type="checkbox" ${calcHasPolice ? 'checked' : ''} onchange="calcHasPolice = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 3. Ceramic Coating -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">🛡️ Ceramic Coating (${activeCar ? activeCar.coatingPrice || '8M' : '8M'})</span>
+                <!-- 3. Coating (Ceramic removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">🛡️ Coating (${activeCar ? activeCar.coatingPrice || '8M' : '8M'})</span>
                   <input type="checkbox" ${calcHasCoating ? 'checked' : ''} onchange="calcHasCoating = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
-                <!-- 4. Premium Edition -->
-                <label style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); cursor: pointer;">
-                  <span style="font-size: 0.88rem; font-weight: 600;">⭐ Premium Edition (${activeCar ? activeCar.premiumPrice || '10M' : '10M'})</span>
+                <!-- 4. Premium (Edition removed) -->
+                <label style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle); cursor: pointer;">
+                  <span style="font-size: 0.88rem; font-weight: 700;">⭐ Premium (${activeCar ? activeCar.premiumPrice || '10M' : '10M'})</span>
                   <input type="checkbox" ${calcHasPremium ? 'checked' : ''} onchange="calcHasPremium = this.checked; renderHubView();" style="transform: scale(1.3);">
                 </label>
 
                 <!-- 5. Custom Livery (Asks for price if yes) -->
-                <div style="background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm);">
+                <div style="background: rgba(255, 255, 255, 0.3); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.88rem; font-weight: 600;">🎨 Custom Livery / Vinyl Wrap</span>
+                    <span style="font-size: 0.88rem; font-weight: 700;">🎨 Custom Livery</span>
                     <input type="checkbox" ${calcHasCustomLivery ? 'checked' : ''} onchange="calcHasCustomLivery = this.checked; renderHubView();" style="transform: scale(1.3);">
                   </div>
                   ${calcHasCustomLivery ? `
                     <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                      <span style="font-size: 0.78rem; color: var(--text-muted);">Livery Custom Price:</span>
+                      <span style="font-size: 0.78rem; color: var(--text-muted); font-weight: 600;">Livery Custom Price:</span>
                       <input type="text" class="input-box-field" value="${calcCustomLiveryPrice}" oninput="calcCustomLiveryPrice = this.value; renderHubView();" style="padding: 0.35rem 0.6rem; font-size: 0.82rem; width: 90px;" placeholder="e.g. 5M">
                     </div>
                   ` : ''}
@@ -219,17 +233,17 @@ JS_VIEWS_CONTENT = r'''
               </div>
               <div style="text-align: right;">
                 <div style="font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;">#${activeCar ? activeCar.order || 1 : 1}</div>
-                <div style="font-size: 0.72rem; color: var(--text-dim);">CERTIFIED</div>
+                <div style="font-size: 0.72rem; color: var(--accent-green); font-weight: 700;">CERTIFIED</div>
               </div>
             </div>
 
             <div style="margin-bottom: 1rem;">
               <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.2rem;">${activeCar ? activeCar.name : 'Vehicle'}</h4>
-              <div style="font-size: 0.82rem; color: var(--text-muted);">${billData.stageTitle}</div>
+              <div style="font-size: 0.82rem; color: var(--text-muted); font-weight: 600;">${billData.stageTitle}</div>
             </div>
 
             <!-- Technical Performance Metrics -->
-            <div style="background: var(--bg-base); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.25rem;">
+            <div style="background: rgba(255, 255, 255, 0.28); border: 1px solid var(--glass-border-subtle); padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem; display: flex; flex-direction: column; gap: 0.25rem;">
               <div style="display: flex; justify-content: space-between;">
                 <span style="color: var(--text-dim);">Top Speed (No Turbo):</span>
                 <strong>${billData.speedNoTurboKmph} km/h (${billData.speedNoTurboMph} mph)</strong>
@@ -240,7 +254,7 @@ JS_VIEWS_CONTENT = r'''
               </div>
             </div>
 
-            <!-- Itemized Pricing Breakdown -->
+            <!-- Itemized Pricing Breakdown (Without package, ceramic, edition) -->
             <div style="display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px dashed var(--glass-border-subtle); padding-top: 0.75rem;">
               <div class="receipt-item-row">
                 <span style="color: var(--text-muted);">${billData.stageTitle} Base:</span>
@@ -258,7 +272,7 @@ JS_VIEWS_CONTENT = r'''
             <div class="receipt-total-box">
               <div>
                 <div style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Valuation Range</div>
-                <div style="font-size: 0.72rem; color: var(--text-muted);">${billData.isApprox ? 'Approximate Estimate' : 'Calculated Value'}</div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">${billData.isApprox ? 'Approximate Estimate' : 'Calculated Value'}</div>
               </div>
               <div class="receipt-total-range">
                 $${formatNumberAbbr(billData.minTotal)} - $${formatNumberAbbr(billData.maxTotal)}
@@ -322,6 +336,7 @@ JS_VIEWS_CONTENT = r'''
       const items = [];
       let addOnsTotal = 0;
 
+      // Words package, ceramic, edition STRICTLY REMOVED
       if (calcHasRainbow) {
         const p = parseValueToNumber(car.rainbowPrice || "15M");
         items.push({ label: "🌈 Rainbow Smoke", priceNum: p });
@@ -329,22 +344,22 @@ JS_VIEWS_CONTENT = r'''
       }
       if (calcHasPolice) {
         const p = parseValueToNumber(car.policePrice || "20M");
-        items.push({ label: "🚓 Police Siren / Package", priceNum: p });
+        items.push({ label: "🚓 Police", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasCoating) {
         const p = parseValueToNumber(car.coatingPrice || "8M");
-        items.push({ label: "🛡️ Ceramic Coating", priceNum: p });
+        items.push({ label: "🛡️ Coating", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasPremium) {
         const p = parseValueToNumber(car.premiumPrice || "10M");
-        items.push({ label: "⭐ Premium Edition", priceNum: p });
+        items.push({ label: "⭐ Premium", priceNum: p });
         addOnsTotal += p;
       }
       if (calcHasCustomLivery) {
         const p = parseValueToNumber(calcCustomLiveryPrice || "5M");
-        items.push({ label: "🎨 Custom Livery / Wrap", priceNum: p });
+        items.push({ label: "🎨 Custom Livery", priceNum: p });
         addOnsTotal += p;
       }
 
@@ -403,7 +418,7 @@ JS_VIEWS_CONTENT = r'''
       const betaUpdates = allUpdates.filter(u => (u.channel || '') === 'beta');
 
       const activeList = currentUpdatesChannel === 'beta' ? betaUpdates : publicUpdates;
-      const canEdit = AUTH.hasPerm("updates");
+      const canEdit = AUTH.hasPerm("updates") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -435,16 +450,16 @@ JS_VIEWS_CONTENT = r'''
               <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
                 <div>
                   <span style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; color: var(--brand-orange);">${u.version}</span>
-                  <span class="role-badge-tag" style="background: rgba(15, 23, 42, 0.08); margin-left: 0.5rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700;">
+                  <span class="role-badge-tag" style="background: rgba(15, 23, 42, 0.1); margin-left: 0.5rem; padding: 0.25rem 0.6rem; border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700;">
                     ${u.channel === 'beta' ? '🧪 Beta Test Branch' : '🌐 Official Public Release'}
                   </span>
                   ${u.author ? `<span style="font-size: 0.8rem; color: var(--text-dim); margin-left: 0.5rem;">By <strong>${u.author}</strong></span>` : ''}
                 </div>
                 <div style="display: flex; gap: 0.4rem;">
-                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.12); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.15); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
                     <i class="fa-brands fa-android"></i> Android: ${u.publishedAndroid ? 'Live' : 'Pending'}
                   </span>
-                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.12); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
+                  <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-green); background: rgba(22, 163, 74, 0.15); padding: 0.25rem 0.5rem; border-radius: var(--radius-sm);">
                     <i class="fa-brands fa-apple"></i> iOS: ${u.publishedIos ? 'Live' : 'Pending'}
                   </span>
                 </div>
@@ -453,7 +468,7 @@ JS_VIEWS_CONTENT = r'''
               <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem;">${u.title}</h3>
               ${u.image ? `<img src="${u.image}" style="width: 100%; max-height: 250px; object-fit: cover; border-radius: 8px; margin: 0.75rem 0; cursor: pointer;" onclick="openPhotoViewer('${u.image}', '${u.title}')">` : ''}
 
-              <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+              <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; font-weight: 500;">
                 ${(u.notes || []).map(note => `<li>${note}</li>`).join("")}
               </ul>
 
@@ -469,11 +484,11 @@ JS_VIEWS_CONTENT = r'''
     }
 
     /* ==========================================================================
-       3. TYRE CODES CATALOG (COPY TO CLIPBOARD WITH SOUND)
+       3. TYRE CODES CATALOG (FULL CRUD + ONE-CLICK COPY)
        ========================================================================== */
     function renderTyreCodes(container) {
       const tyres = STORE.state.tyres || [];
-      const canEdit = AUTH.hasPerm("tyres");
+      const canEdit = AUTH.hasPerm("tyres") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -481,24 +496,30 @@ JS_VIEWS_CONTENT = r'''
             <h2 class="view-title-main">⚙️ Tyre Codes & Tuning Compounds</h2>
             <p class="view-subtitle-main">Official friction compounds for drift, drag, grip and rally terrain.</p>
           </div>
-          ${canEdit ? `<button class="btn-brand-primary" onclick="openAppModal('modal-tyre-editor')"><i class="fa-solid fa-plus"></i> Add Tyre Code</button>` : ""}
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openTyreModal(null)"><i class="fa-solid fa-plus"></i> Add Tyre Code</button>` : ""}
         </div>
 
         <div class="tyres-grid-container">
           ${tyres.map(t => `
             <div class="liquid-glass" style="padding: 1.25rem; display: flex; flex-direction: column;">
               <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem;">
-                <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--brand-orange);">${t.category}</span>
-                <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">${t.frictionIndex || ''}</span>
+                <span style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--brand-orange);">${t.category}</span>
+                <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 800;">${t.frictionIndex || ''}</span>
               </div>
               <h4 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem;">${t.name}</h4>
-              <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem;">${t.description}</p>
-              <div style="background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center;">
+              <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem; font-weight: 500;">${t.description}</p>
+              <div style="background: rgba(255, 255, 255, 0.3); border: 1px solid var(--glass-border-subtle); padding: 0.65rem; border-radius: var(--radius-sm); display: flex; justify-content: space-between; align-items: center;">
                 <code style="font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem;">${t.code}</code>
                 <button class="btn-brand-primary" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="copyTyreCode('${t.code}')">
                   <i class="fa-regular fa-copy"></i> Copy
                 </button>
               </div>
+              ${canEdit ? `
+                <div style="display: flex; justify-content: flex-end; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                  <button class="btn-brand-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="openTyreModal('${t.id}')"><i class="fa-solid fa-pen"></i></button>
+                  <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteTyre('${t.id}')"><i class="fa-solid fa-trash"></i></button>
+                </div>
+              ` : ''}
             </div>
           `).join("")}
         </div>
@@ -516,7 +537,7 @@ JS_VIEWS_CONTENT = r'''
        ========================================================================== */
     function renderEvents(container) {
       const events = STORE.state.events || [];
-      const canEdit = AUTH.hasPerm("events");
+      const canEdit = AUTH.hasPerm("events") || STORE.state.isEditingMode;
 
       container.innerHTML = `
         <div class="view-header-bar">
@@ -533,7 +554,7 @@ JS_VIEWS_CONTENT = r'''
               <div style="height: 160px; position: relative;">
                 <img src="${ev.image}" style="width: 100%; height: 100%; object-fit: cover;">
                 ${ev.isLive ? `
-                  <span style="position: absolute; top: 10px; left: 10px; background: var(--accent-red); color: #fff; padding: 0.25rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 800; animation: pulse 1.5s infinite;">
+                  <span style="position: absolute; top: 10px; left: 10px; background: var(--accent-red); color: #fff; padding: 0.25rem 0.6rem; border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 800;">
                     🔴 CURRENT LIVE EVENT
                   </span>
                 ` : ''}
@@ -541,10 +562,15 @@ JS_VIEWS_CONTENT = r'''
               <div style="padding: 1.15rem; display: flex; flex-direction: column; flex: 1;">
                 <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.4rem;">${ev.title}</h4>
                 <div style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 0.5rem;"><i class="fa-solid fa-location-dot"></i> ${ev.location}</div>
-                <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem;">${ev.description}</p>
-                <div style="background: var(--bg-base); padding: 0.65rem; border-radius: var(--radius-sm); font-size: 0.78rem;">
+                <p style="font-size: 0.82rem; color: var(--text-muted); flex: 1; margin-bottom: 0.75rem; font-weight: 500;">${ev.description}</p>
+                <div style="background: rgba(255, 255, 255, 0.28); border: 1px solid var(--glass-border-subtle); padding: 0.65rem; border-radius: var(--radius-sm); font-size: 0.78rem;">
                   <strong>Prizes:</strong> ${ev.prizes}
                 </div>
+                ${canEdit ? `
+                  <div style="display: flex; justify-content: flex-end; gap: 0.4rem; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                    <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteEvent('${ev.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                  </div>
+                ` : ''}
               </div>
             </div>
           `).join("")}
@@ -557,18 +583,26 @@ JS_VIEWS_CONTENT = r'''
        ========================================================================== */
     function renderMaps(container) {
       const maps = STORE.state.maps || [];
+      const canEdit = AUTH.hasPerm("maps") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">🗺️ Secret Locations & Drift Passes</h2><p class="view-subtitle-main">Key locations and drag runways across Real Driving School.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openMapModal(null)"><i class="fa-solid fa-plus"></i> Add Location</button>` : ""}
         </div>
         <div class="maps-grid-container">
           ${maps.map(m => `
-            <div class="liquid-glass" style="overflow: hidden;">
+            <div class="liquid-glass" style="overflow: hidden; display: flex; flex-direction: column;">
               <img src="${m.image}" style="width: 100%; height: 160px; object-fit: cover;">
-              <div style="padding: 1.15rem;">
+              <div style="padding: 1.15rem; display: flex; flex-direction: column; flex: 1;">
                 <span style="font-size: 0.72rem; color: var(--brand-orange); font-weight: 800; text-transform: uppercase;">${m.tag}</span>
                 <h4 style="font-size: 1.1rem; font-weight: 800; margin: 0.2rem 0 0.4rem 0;">${m.title}</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted);">${m.description}</p>
+                <p style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500; flex: 1;">${m.description}</p>
+                ${canEdit ? `
+                  <div style="display: flex; justify-content: flex-end; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--glass-border-subtle);">
+                    <button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteMap('${m.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
+                  </div>
+                ` : ''}
               </div>
             </div>
           `).join("")}
@@ -578,15 +612,21 @@ JS_VIEWS_CONTENT = r'''
 
     function renderMultiplayer(container) {
       const guides = STORE.state.multiplayerGuides || [];
+      const canEdit = AUTH.hasPerm("rules") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">👥 Multiplayer & Clan Etiquette</h2><p class="view-subtitle-main">Official server guidelines and race regulations.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openMpModal(null)"><i class="fa-solid fa-plus"></i> Add Guide</button>` : ""}
         </div>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           ${guides.map(g => `
             <div class="liquid-glass" style="padding: 1.5rem;">
-              <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--brand-orange);">${g.title}</h4>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">${g.content}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--brand-orange);">${g.title}</h4>
+                ${canEdit ? `<button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteMp('${g.id}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-weight: 500;">${g.content}</p>
             </div>
           `).join("")}
         </div>
@@ -595,15 +635,21 @@ JS_VIEWS_CONTENT = r'''
 
     function renderRules(container) {
       const rules = STORE.state.rules || [];
+      const canEdit = AUTH.hasPerm("rules") || STORE.state.isEditingMode;
+
       container.innerHTML = `
         <div class="view-header-bar">
           <div><h2 class="view-title-main">⚖️ Rules of Conduct</h2><p class="view-subtitle-main">Fair play and trading protection rules.</p></div>
+          ${canEdit ? `<button class="btn-brand-primary" onclick="openRuleModal(null)"><i class="fa-solid fa-plus"></i> Add Rule</button>` : ""}
         </div>
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           ${rules.map(r => `
             <div class="liquid-glass" style="padding: 1.5rem;">
-              <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-red);">${r.title}</h4>
-              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">${r.content}</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--accent-red);">${r.title}</h4>
+                ${canEdit ? `<button class="btn-brand-danger" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;" onclick="deleteRule('${r.id}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-weight: 500;">${r.content}</p>
             </div>
           `).join("")}
         </div>
@@ -649,66 +695,321 @@ JS_VIEWS_CONTENT = r'''
     }
 
     /* ==========================================================================
-       7. OWNER & STAFF CONTROL PANEL
+       7. OWNER & STAFF CONTROL PANEL (COMPLETE WITH ALL 6 SUBTABS)
        ========================================================================== */
     function renderOwnerPanel(container) {
-      if (!AUTH.user.isOwner && !AUTH.user.isLoggedIn) {
-        container.innerHTML = `<div class="liquid-glass" style="padding: 3rem; text-align: center;"><h3>Access Restricted</h3><p style="color: var(--text-dim);">Please authenticate via the Staff Security Gate.</p></div>`;
+      // If user is not logged in as staff/owner, show login form inside the page
+      if (!AUTH.user.isLoggedIn) {
+        container.innerHTML = `
+          <div class="liquid-glass" style="max-width: 540px; margin: 2rem auto; padding: 2.5rem;">
+            <div style="text-align: center; margin-bottom: 1.5rem;">
+              <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(255,107,0,0.15); color: var(--brand-orange); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1rem auto; border: 1px solid rgba(255,107,0,0.4);">
+                <i class="fa-solid fa-crown"></i>
+              </div>
+              <h2 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 800; text-transform: uppercase;">Staff & Owner Portal</h2>
+              <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.3rem;">Log in to access administrative controls, edit live website data, manage categories and sync.</p>
+            </div>
+
+            <form onsubmit="event.preventDefault(); submitInPageViewLogin();">
+              <div class="form-group-item">
+                <label class="form-field-label">Email Address</label>
+                <input type="email" class="input-box-field" id="owner-page-email" placeholder="pennabadicharith@gmail.com" required>
+              </div>
+              <div class="form-group-item">
+                <label class="form-field-label">Password</label>
+                <input type="password" class="input-box-field" id="owner-page-pass" placeholder="••••••••" required>
+              </div>
+              <div id="owner-page-login-error" style="color: var(--accent-red); font-size: 0.82rem; margin-bottom: 0.75rem; display: none;"></div>
+              <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.85rem; font-size: 1rem;">
+                <i class="fa-solid fa-lock-open"></i> Log In to Staff Dashboard
+              </button>
+            </form>
+
+            <div style="margin-top: 1.5rem; text-align: center; font-size: 0.78rem; color: var(--text-dim); border-top: 1px solid var(--glass-border-subtle); padding-top: 1rem;">
+              💡 Tip: You can also tap <code>v1.2.120</code> 10 times in Settings to open the quick staff gate.
+            </div>
+          </div>
+        `;
         return;
       }
 
-      const admins = STORE.state.admins || [];
-      const logs = STORE.state.auditLogs || [];
-
+      // User IS logged in: Render the complete Owner & Staff Dashboard
       container.innerHTML = `
         <div class="view-header-bar">
           <div>
-            <h2 class="view-title-main">👑 Portal Administration & Owner Panel</h2>
-            <p class="view-subtitle-main">Global styling, administrator creation, permissions, and security audit logs.</p>
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <h2 class="view-title-main">👑 Owner & Staff Control Center</h2>
+              <span class="role-badge-tag" style="background: rgba(255,107,0,0.2); color: var(--brand-orange); border: 1px solid rgba(255,107,0,0.4); padding: 0.25rem 0.75rem; border-radius: var(--radius-pill); font-weight: 800; font-size: 0.8rem;">
+                ${AUTH.user.roleName.toUpperCase()}
+              </span>
+            </div>
+            <p class="view-subtitle-main">Full control of vehicle valuations, staff admins, Discord roles, categories, cloud database, and branding.</p>
           </div>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openAppModal('modal-ui-editor')"><i class="fa-solid fa-paintbrush"></i> Customize UI & Branding</button>` : ""}
-            ${AUTH.user.isOwner ? `<button class="btn-brand-secondary" onclick="openAppModal('modal-admin-editor')"><i class="fa-solid fa-user-plus"></i> Create Admin</button>` : ""}
+
+          <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <!-- Live Editing Mode Toggle -->
+            <label style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.4); border: 1px solid var(--glass-border); padding: 0.5rem 0.85rem; border-radius: var(--radius-pill); font-size: 0.85rem; font-weight: 700; cursor: pointer;">
+              <i class="fa-solid fa-pen-ruler" style="color: var(--brand-orange);"></i>
+              Live Editing Mode
+              <input type="checkbox" ${STORE.state.isEditingMode ? 'checked' : ''} onchange="toggleEditingMode(this.checked)" style="transform: scale(1.2);">
+            </label>
+
+            <button class="btn-brand-danger" onclick="AUTH.logout(); renderHubView();">
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            </button>
           </div>
         </div>
 
-        <!-- Admins Table (For Owner) -->
-        ${AUTH.user.isOwner ? `
-          <div class="liquid-glass" style="padding: 1.5rem; margin-bottom: 1.5rem;">
-            <h3 style="font-family: var(--font-heading); color: var(--brand-orange); margin-bottom: 0.75rem;">
-              <i class="fa-solid fa-users-gear"></i> Staff Administrators (${admins.length})
-            </h3>
-            <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-              ${admins.map(a => `
-                <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); flex-wrap: wrap; gap: 0.5rem;">
-                  <div>
-                    <strong>${a.name}</strong> <span style="font-size: 0.78rem; color: var(--text-dim);">(${a.email})</span>
-                    <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">
-                      Device Limit: <strong>${a.deviceLimit || 2}</strong> | Passphrase: <code>${a.password ? '••••••••' : 'Default'}</code>
-                    </div>
+        <!-- Quick Action Shortcuts Bar -->
+        <div class="liquid-glass" style="padding: 1rem; margin-bottom: 1.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <span style="font-size: 0.8rem; font-weight: 800; color: var(--brand-orange); text-transform: uppercase; margin-right: 0.5rem;">
+            <i class="fa-solid fa-bolt"></i> Quick Add:
+          </span>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openCarModal(null)"><i class="fa-solid fa-car"></i> New Car</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openTyreModal(null)"><i class="fa-solid fa-circle-notch"></i> Tyre Code</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openAppModal('modal-event-editor')"><i class="fa-solid fa-trophy"></i> Event</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openAppModal('modal-update-editor')"><i class="fa-solid fa-rocket"></i> Update</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openMapModal(null)"><i class="fa-solid fa-map-pin"></i> Map</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openRuleModal(null)"><i class="fa-solid fa-scale-balanced"></i> Rule</button>
+          <button class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.8rem;" onclick="openMpModal(null)"><i class="fa-solid fa-users"></i> Clan Guide</button>
+        </div>
+
+        <!-- Subtab Navigation Bar -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.5rem;">
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'admins' ? 'active' : ''}" onclick="switchAdminSubtab('admins')">
+            <i class="fa-solid fa-user-shield"></i> Staff & Admins (${(STORE.state.admins||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'roles' ? 'active' : ''}" onclick="switchAdminSubtab('roles')">
+            <i class="fa-solid fa-shield"></i> Discord Roles (${(STORE.state.roles||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'custom_cats' ? 'active' : ''}" onclick="switchAdminSubtab('custom_cats')">
+            <i class="fa-solid fa-folder-tree"></i> Custom Categories (${(STORE.state.customCategories||[]).length})
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'ui_settings' ? 'active' : ''}" onclick="switchAdminSubtab('ui_settings')">
+            <i class="fa-solid fa-paintbrush"></i> UI & Branding
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'security_db' ? 'active' : ''}" onclick="switchAdminSubtab('security_db')">
+            <i class="fa-solid fa-database"></i> Cloud Database & Sync
+          </button>
+          <button class="admin-subtab-btn ${currentAdminSubtab === 'logs' ? 'active' : ''}" onclick="switchAdminSubtab('logs')">
+            <i class="fa-solid fa-clock-rotate-left"></i> Security Audit Logs (${(STORE.state.auditLogs||[]).length})
+          </button>
+        </div>
+
+        <!-- Subtab Content Area -->
+        <div id="admin-subtab-container"></div>
+      `;
+
+      renderAdminSubtabContent();
+    }
+
+    function switchAdminSubtab(tabName) {
+      currentAdminSubtab = tabName;
+      document.querySelectorAll(".admin-subtab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.textContent.toLowerCase().includes(tabName.replace('_', ' ')));
+      });
+      renderAdminSubtabContent();
+    }
+
+    function renderAdminSubtabContent() {
+      const container = document.getElementById("admin-subtab-container");
+      if (!container) return;
+
+      if (currentAdminSubtab === "admins") {
+        renderSubtabAdmins(container);
+      } else if (currentAdminSubtab === "roles") {
+        renderSubtabRoles(container);
+      } else if (currentAdminSubtab === "custom_cats") {
+        renderSubtabCustomCats(container);
+      } else if (currentAdminSubtab === "ui_settings") {
+        renderSubtabUiSettings(container);
+      } else if (currentAdminSubtab === "security_db") {
+        renderSubtabSecurityDb(container);
+      } else if (currentAdminSubtab === "logs") {
+        renderSubtabLogs(container);
+      }
+    }
+
+    function renderSubtabAdmins(container) {
+      const admins = STORE.state.admins || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-user-shield"></i> Staff Administrators</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Create admins with custom passwords, device limits, and category permissions.</p>
+            </div>
+            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openAppModal('modal-admin-editor')"><i class="fa-solid fa-user-plus"></i> Create Admin</button>` : ''}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${admins.map(a => `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm); flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <strong style="font-size: 1rem;">${a.name}</strong>
+                    <span style="font-size: 0.75rem; color: var(--text-dim);">(${a.email})</span>
+                    <span style="background: rgba(255,107,0,0.15); color: var(--brand-orange); font-size: 0.72rem; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700;">${a.roleName || 'Admin'}</span>
                   </div>
-                  <div>
-                    ${a.id !== 'adm_owner' ? `
-                      <button class="btn-brand-danger" style="padding: 0.35rem 0.6rem; font-size: 0.75rem;" onclick="deleteAdmin('${a.id}')"><i class="fa-solid fa-trash"></i> Revoke</button>
-                    ` : '<span style="font-size: 0.78rem; color: var(--brand-orange); font-weight: 700;">Owner (Superadmin)</span>'}
+                  <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem;">
+                    Device Limit: <strong>${a.deviceLimit || 2}</strong> | Custom Pass: <code>${a.password ? '••••••••' : 'Default'}</code> | Permissions: <em>${(a.permissions||[]).join(', ')}</em>
                   </div>
+                </div>
+                <div>
+                  ${a.id !== 'adm_owner' && AUTH.user.isOwner ? `
+                    <button class="btn-brand-danger" style="padding: 0.35rem 0.7rem; font-size: 0.78rem;" onclick="deleteAdmin('${a.id}')"><i class="fa-solid fa-trash"></i> Revoke</button>
+                  ` : '<span style="font-size: 0.8rem; font-weight: 800; color: var(--brand-orange);"><i class="fa-solid fa-crown"></i> Game Owner</span>'}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabRoles(container) {
+      const roles = STORE.state.roles || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-shield"></i> Discord-Style Roles</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Manage roles, badges, colors, and assigned access levels.</p>
+            </div>
+            ${AUTH.user.isOwner ? `<button class="btn-brand-primary" onclick="openRoleModal(null)"><i class="fa-solid fa-plus"></i> Create Role</button>` : ''}
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${roles.map(r => `
+              <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm);">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span style="width: 14px; height: 14px; border-radius: 50%; background: ${r.color || '#ff6b00'}; border: 1px solid #fff;"></span>
+                  <strong style="color: ${r.color || '#ff6b00'};">${r.name}</strong>
+                  <span style="font-size: 0.78rem; color: var(--text-dim);">${(r.perms||[]).join(', ') || 'No permissions'}</span>
+                </div>
+                <div>
+                  ${r.id !== 'owner' && AUTH.user.isOwner ? `
+                    <button class="btn-brand-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteRole('${r.id}')"><i class="fa-solid fa-trash"></i></button>
+                  ` : ''}
+                </div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabCustomCats(container) {
+      const cats = STORE.state.customCategories || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-folder-tree"></i> Custom Navigation Categories</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Add new sections and content tabs to the main category dock.</p>
+            </div>
+            <button class="btn-brand-primary" onclick="openCategoryModal(null)"><i class="fa-solid fa-plus"></i> Add Category</button>
+          </div>
+
+          ${cats.length === 0 ? `
+            <div style="padding: 2rem; text-align: center; color: var(--text-dim);">No custom categories created yet. Click above to add one!</div>
+          ` : `
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              ${cats.map(c => `
+                <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.85rem 1.15rem; border-radius: var(--radius-sm);">
+                  <div>
+                    <i class="${c.icon || 'fa-solid fa-star'}" style="color: var(--brand-orange); margin-right: 0.5rem;"></i>
+                    <strong>${c.title}</strong>
+                  </div>
+                  <button class="btn-brand-danger" style="padding: 0.35rem 0.65rem; font-size: 0.75rem;" onclick="deleteCategory('${c.id}')"><i class="fa-solid fa-trash"></i> Delete</button>
                 </div>
               `).join("")}
             </div>
-          </div>
-        ` : ''}
+          `}
+        </div>
+      `;
+    }
 
-        <!-- Audit Logs -->
+    function renderSubtabUiSettings(container) {
+      const cfg = STORE.state.hubConfig || {};
+      container.innerHTML = `
         <div class="liquid-glass" style="padding: 1.5rem;">
-          <h3 style="font-family: var(--font-heading); color: var(--brand-orange); margin-bottom: 0.75rem;">
-            <i class="fa-solid fa-clock-rotate-left"></i> Security & Operation Audit Logs
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-paintbrush"></i> Portal UI & Branding Customizer</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Edit game title, branding logo, background video/photo wallpaper, and social invite links.</p>
+            </div>
+            <button class="btn-brand-primary" onclick="openAppModal('modal-ui-editor')"><i class="fa-solid fa-pen"></i> Edit Branding</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Portal Title</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--brand-orange);">${cfg.title || 'REAL DRIVING SCHOOL'}</div>
+              <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">${cfg.about || ''}</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Background Mode</div>
+              <div style="font-size: 1.05rem; font-weight: 800;">${cfg.bgType === 'image' ? '🖼️ Photo Wallpaper' : '🎥 High-Definition Video'}</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); word-break: break-all; margin-top: 0.25rem;">${cfg.bgMediaUrl || ''}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabSecurityDb(container) {
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange); margin-bottom: 0.5rem;">
+            <i class="fa-solid fa-database"></i> Zero-Budget Cloud Database ($0 Free Tier)
           </h3>
-          <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 400px; overflow-y: auto;">
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Connected to Google Firebase Real-Time Firestore & Storage. Multi-document architecture prevents document limit errors.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Connection Status</div>
+              <div style="font-size: 1.1rem; font-weight: 800; color: var(--accent-green); display: flex; align-items: center; gap: 0.5rem; margin-top: 0.25rem;">
+                <span class="cloud-sync-indicator"></span> 🟢 Online & Live Synced
+              </div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem;">Firebase Project: <code>rds-a95fc</code></div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.3); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Storage Bucket</div>
+              <div style="font-size: 0.92rem; font-weight: 700; margin-top: 0.25rem;"><code>rds-a95fc.firebasestorage.app</code></div>
+              <div style="font-size: 0.78rem; color: var(--accent-green); margin-top: 0.25rem;"><i class="fa-solid fa-check"></i> Canvas auto-compression enabled (~40KB/img)</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button class="btn-brand-primary" onclick="triggerManualSync()"><i class="fa-solid fa-arrows-rotate"></i> Sync All to Cloud Now</button>
+            <button class="btn-brand-secondary" onclick="exportDataJson()"><i class="fa-solid fa-download"></i> Backup Data (JSON)</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSubtabLogs(container) {
+      const logs = STORE.state.auditLogs || [];
+      container.innerHTML = `
+        <div class="liquid-glass" style="padding: 1.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.35rem; color: var(--brand-orange);"><i class="fa-solid fa-clock-rotate-left"></i> Security & Audit Logs</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">Real-time recording of all logins, content additions, edits and admin privileges.</p>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 420px; overflow-y: auto;">
             ${logs.length === 0 ? `<div style="font-size: 0.85rem; color: var(--text-dim);">No audit logs recorded yet.</div>` : logs.map(l => `
-              <div style="background: var(--bg-base); padding: 0.6rem 0.85rem; border-radius: var(--radius-sm); font-size: 0.8rem; display: flex; justify-content: space-between; align-items: center;">
+              <div style="background: rgba(255,255,255,0.3); border: 1px solid var(--glass-border-subtle); padding: 0.65rem 0.95rem; border-radius: var(--radius-sm); font-size: 0.82rem; display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <span style="font-weight: 700; color: var(--brand-orange);">[${l.category.toUpperCase()}]</span>
-                  <strong>${l.user}</strong>: ${l.action} - <span style="color: var(--text-muted);">${l.details}</span>
+                  <span style="font-weight: 800; color: var(--brand-orange);">[${l.category.toUpperCase()}]</span>
+                  <strong>${l.user}</strong>: ${l.action} - <span style="color: var(--text-muted); font-weight: 500;">${l.details}</span>
                 </div>
                 <span style="font-size: 0.72rem; color: var(--text-dim);">${new Date(l.timestamp).toLocaleTimeString()}</span>
               </div>
@@ -716,5 +1017,68 @@ JS_VIEWS_CONTENT = r'''
           </div>
         </div>
       `;
+    }
+
+    function renderCustomCategoryView(container, catId) {
+      const cat = (STORE.state.customCategories || []).find(c => c.id === catId);
+      if (!cat) {
+        container.innerHTML = `<div class="liquid-glass" style="padding: 2rem;"><h3>Category Not Found</h3></div>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="view-header-bar">
+          <div>
+            <h2 class="view-title-main"><i class="${cat.icon || 'fa-solid fa-star'}"></i> ${cat.title}</h2>
+            <p class="view-subtitle-main">Custom community category created by Game Owner.</p>
+          </div>
+        </div>
+        <div class="liquid-glass" style="padding: 2rem; font-size: 0.95rem; line-height: 1.7;">
+          ${cat.content || 'No content provided.'}
+        </div>
+      `;
+    }
+
+    function toggleEditingMode(val) {
+      STORE.state.isEditingMode = val;
+      renderHubView();
+      showToast(val ? "Live Editing Mode ON" : "Live Editing Mode OFF");
+    }
+
+    function submitInPageViewLogin() {
+      const email = document.getElementById("owner-page-email").value;
+      const pass = document.getElementById("owner-page-pass").value;
+      const res = AUTH.login(email, pass);
+      const errBox = document.getElementById("owner-page-login-error");
+
+      if (res.success) {
+        if (errBox) errBox.style.display = "none";
+        AUDIO.play(880, 0.4);
+        showToast(res.message);
+        renderHubView();
+        updateHeaderUserUI();
+      } else {
+        if (errBox) {
+          errBox.textContent = res.message;
+          errBox.style.display = "block";
+        }
+        AUDIO.play(300, 0.3);
+      }
+    }
+
+    async function triggerManualSync() {
+      showToast("Syncing all data with cloud...");
+      await FIREBASE.syncAll();
+    }
+
+    function exportDataJson() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(STORE.state, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `RDS_Portal_Backup_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("Backup exported successfully!");
     }
 '''

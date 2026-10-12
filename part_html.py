@@ -1,4 +1,4 @@
-# part_html.py - Master HTML Structure & Modals for Real Driving School Portal v1.2.120
+# part_html.py - Master HTML Structure & All Modals for Real Driving School Portal v1.2.120
 import sys
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -16,7 +16,7 @@ HTML_CONTENT = r'''
   <div class="bg-white-matte-layer"></div>
 
   <!-- ========================================================================
-       SCREEN 1: FULL SCREEN SPLASH LANDING (NO BOX LOOK)
+       SCREEN 1: FULL SCREEN SPLASH LANDING (CLEAN LIQUID GLASS)
        ======================================================================== -->
   <section id="splash-screen">
     <!-- Top Bar with Social Links (No UTC Timezone) -->
@@ -105,18 +105,29 @@ HTML_CONTENT = r'''
       </div>
     </header>
 
-    <!-- Horizontally Scrollable Category Bar (Detached Island Dock on Mobile) -->
-    <nav class="hub-category-dock nav-dock-top" id="hub-main-category-dock">
-      <button class="hub-nav-btn active" data-view="car-prices" onclick="switchHubView('car-prices')"><i class="fa-solid fa-car"></i> Car Prices</button>
-      <button class="hub-nav-btn" data-view="tyre-codes" onclick="switchHubView('tyre-codes')"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button>
-      <button class="hub-nav-btn" data-view="events" onclick="switchHubView('events')"><i class="fa-solid fa-trophy"></i> Events</button>
-      <button class="hub-nav-btn" data-view="updates" onclick="switchHubView('updates')"><i class="fa-solid fa-rocket"></i> RDS Updates</button>
-      <button class="hub-nav-btn" data-view="maps" onclick="switchHubView('maps')"><i class="fa-solid fa-map-location-dot"></i> Maps & Secrets</button>
-      <button class="hub-nav-btn" data-view="multiplayer" onclick="switchHubView('multiplayer')"><i class="fa-solid fa-users"></i> Multiplayer & Clans</button>
-      <button class="hub-nav-btn" data-view="rules" onclick="switchHubView('rules')"><i class="fa-solid fa-scale-balanced"></i> Rules</button>
-      <button class="hub-nav-btn" data-view="grinders" onclick="switchHubView('grinders')"><i class="fa-solid fa-chart-line"></i> Active Grinders</button>
-      <button class="hub-nav-btn" data-view="owner" id="nav-owner-tab" onclick="switchHubView('owner')" style="display: none;"><i class="fa-solid fa-crown"></i> Owner & Staff</button>
-    </nav>
+    <!-- Horizontally Scrollable Category Bar With Left and Right Arrows -->
+    <div class="hub-dock-wrapper" id="hub-dock-wrapper-el">
+      <button class="nav-dock-scroll-arrow arrow-left" onclick="scrollNavDock(-220)" title="Scroll Left">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+
+      <nav class="hub-category-dock nav-dock-top" id="hub-main-category-dock">
+        <button class="hub-nav-btn active" data-view="car-prices" onclick="switchHubView('car-prices')"><i class="fa-solid fa-car"></i> Car Prices</button>
+        <button class="hub-nav-btn" data-view="tyre-codes" onclick="switchHubView('tyre-codes')"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button>
+        <button class="hub-nav-btn" data-view="events" onclick="switchHubView('events')"><i class="fa-solid fa-trophy"></i> Events</button>
+        <button class="hub-nav-btn" data-view="updates" onclick="switchHubView('updates')"><i class="fa-solid fa-rocket"></i> RDS Updates</button>
+        <button class="hub-nav-btn" data-view="maps" onclick="switchHubView('maps')"><i class="fa-solid fa-map-location-dot"></i> Maps & Secrets</button>
+        <button class="hub-nav-btn" data-view="multiplayer" onclick="switchHubView('multiplayer')"><i class="fa-solid fa-users"></i> Multiplayer & Clans</button>
+        <button class="hub-nav-btn" data-view="rules" onclick="switchHubView('rules')"><i class="fa-solid fa-scale-balanced"></i> Rules</button>
+        <button class="hub-nav-btn" data-view="grinders" onclick="switchHubView('grinders')"><i class="fa-solid fa-chart-line"></i> Active Grinders</button>
+        <!-- Owner and Staff Panel is ALWAYS in the Category Bar -->
+        <button class="hub-nav-btn" data-view="owner" id="nav-owner-tab" onclick="switchHubView('owner')"><i class="fa-solid fa-crown"></i> Owner & Staff</button>
+      </nav>
+
+      <button class="nav-dock-scroll-arrow arrow-right" onclick="scrollNavDock(220)" title="Scroll Right">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
 
     <!-- Main View Content Area -->
     <main class="hub-content-container" id="hub-main-content">
@@ -125,7 +136,7 @@ HTML_CONTENT = r'''
   </div>
 
   <!-- ========================================================================
-       MODALS SYSTEM
+       MODALS SYSTEM (COMPLETE WITH LIVE MEDIA FEEDBACK & FULL CRUD)
        ======================================================================== -->
 
   <!-- 1. Driver Onboarding Modal (Prompted on Continue) -->
@@ -136,14 +147,14 @@ HTML_CONTENT = r'''
         <button class="modal-close-cross" onclick="closeAppModal('modal-driver-onboarding')">&times;</button>
       </div>
       <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-        <div style="background: rgba(255, 107, 0, 0.08); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 107, 0, 0.25); font-size: 0.88rem; line-height: 1.5;">
+        <div style="background: rgba(255, 107, 0, 0.12); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 107, 0, 0.35); font-size: 0.88rem; line-height: 1.5;">
           Copy your ID from inside <strong>Real Driving School</strong> and paste below (e.g. <code>「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2</code>). The portal extracts and displays only your clean name!
         </div>
 
         <div class="form-group-item">
           <label class="form-field-label">Game ID or Driver Name</label>
           <input type="text" class="input-box-field" id="onboarding-input-id" placeholder="Paste game ID or enter username" oninput="handleOnboardingInput(this.value)">
-          <div id="onboarding-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.1); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.25); display: none;">
+          <div id="onboarding-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.15); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.35); display: none;">
             <div style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">DETECTED IN-GAME NAME:</div>
             <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="onboarding-extracted-name"></div>
           </div>
@@ -156,7 +167,7 @@ HTML_CONTENT = r'''
     </div>
   </div>
 
-  <!-- 2. Staff & Owner Login Modal (Unlocked via 10 Taps on v1.2.120) -->
+  <!-- 2. Staff & Owner Login Modal (Unlocked via 10 Taps on v1.2.120 or Owner Category) -->
   <div class="app-modal-layer" id="modal-staff-login">
     <div class="app-modal-window">
       <div class="modal-headline-row">
@@ -166,7 +177,7 @@ HTML_CONTENT = r'''
       <form id="form-staff-login" onsubmit="event.preventDefault(); submitStaffLogin();">
         <div class="form-group-item">
           <label class="form-field-label">Staff / Owner Email</label>
-          <input type="email" class="input-box-field" id="staff-email-input" placeholder="admin@realdrivingschool.com" required>
+          <input type="email" class="input-box-field" id="staff-email-input" placeholder="pennabadicharith@gmail.com" required>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Password</label>
@@ -190,9 +201,9 @@ HTML_CONTENT = r'''
       <div style="display: flex; flex-direction: column; gap: 1.25rem;">
         <!-- Theme Switcher -->
         <div class="form-group-item">
-          <label class="form-field-label"><i class="fa-solid fa-palette"></i> Theme & Visual Style</label>
+          <label class="form-field-label"><i class="fa-solid fa-palette"></i> Liquid Glass Theme Style</label>
           <select class="select-box-field" id="setting-theme-select" onchange="changeAppTheme(this.value)">
-            <option value="frost">❄️ Liquid Frost (Default Frosted Slate)</option>
+            <option value="frost">❄️ Liquid Frost (Pure Frosted Translucent Glass)</option>
             <option value="stealth">🌑 Midnight Stealth (Deep Obsidian Glass)</option>
             <option value="velocity">🏎️ Cyber Velocity (Neon Indigo / Speed Cyan)</option>
             <option value="carbon">🏁 Carbon GT (Ultra-Dark Carbon Fiber)</option>
@@ -226,9 +237,9 @@ HTML_CONTENT = r'''
         <!-- Ambient Motion Effects Option -->
         <div class="form-group-item">
           <label class="form-field-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Background Motion Effects</label>
-          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.35); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
             <div>
-              <div style="font-weight: 600; font-size: 0.88rem;">Ambient Dynamic Lighting</div>
+              <div style="font-weight: 700; font-size: 0.88rem;">Ambient Dynamic Lighting</div>
               <div style="font-size: 0.75rem; color: var(--text-dim);">Floating glowing speed particles & trails</div>
             </div>
             <input type="checkbox" id="setting-motion-toggle" checked onchange="toggleBackgroundMotions(this.checked)" style="transform: scale(1.3);">
@@ -238,9 +249,9 @@ HTML_CONTENT = r'''
         <!-- Sound Effects Option -->
         <div class="form-group-item">
           <label class="form-field-label"><i class="fa-solid fa-volume-high"></i> Audio Synthesizer & Chimes</label>
-          <div style="display: flex; justify-content: space-between; align-items: center; background: var(--bg-base); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+          <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.35); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
             <div>
-              <div style="font-weight: 600; font-size: 0.88rem;">Sound Alerts & Feedback</div>
+              <div style="font-weight: 700; font-size: 0.88rem;">Sound Alerts & Feedback</div>
               <div style="font-size: 0.75rem; color: var(--text-dim);">In-browser Web Audio chimes</div>
             </div>
             <input type="checkbox" id="setting-sound-toggle" checked onchange="toggleSound(this.checked)" style="transform: scale(1.3);">
@@ -248,7 +259,7 @@ HTML_CONTENT = r'''
         </div>
 
         <!-- Account Session Info -->
-        <div style="background: var(--bg-base); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+        <div style="background: rgba(255, 255, 255, 0.35); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
               <div style="font-size: 0.85rem; font-weight: 700;" id="settings-user-display">Driver</div>
@@ -267,7 +278,7 @@ HTML_CONTENT = r'''
 
         <!-- Secret Staff Gate: Tap v1.2.120 for 10 times to unlock Staff Login -->
         <div class="settings-about-footer" style="margin-top: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--glass-border-subtle); text-align: center;">
-          <p style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem;">Real Driving School Community Hub</p>
+          <p style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.35rem;">Real Driving School Community Hub</p>
           <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.85rem;">Official vehicle valuation index, tuning speed calculators, and multiplayer clan guide.</p>
           
           <div class="version-click-pill" id="web-version-pill" onclick="handleVersionSecretClick()" title="Tap 10 times for staff gate">
@@ -287,7 +298,7 @@ HTML_CONTENT = r'''
       </div>
       <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.92rem; line-height: 1.6;">
         <p>To install <strong>Real Driving School Portal</strong> on your iOS device:</p>
-        <div style="background: var(--bg-base); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+        <div style="background: rgba(255, 255, 255, 0.4); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
           <div style="margin-bottom: 0.75rem;"><strong>1.</strong> Tap the <strong>Share</strong> icon <i class="fa-solid fa-arrow-up-from-bracket" style="color: var(--accent-blue);"></i> at the bottom of Safari.</div>
           <div style="margin-bottom: 0.75rem;"><strong>2.</strong> Scroll down and select <strong>'Add to Home Screen'</strong> <i class="fa-regular fa-square-plus"></i>.</div>
           <div><strong>3.</strong> Tap <strong>'Add'</strong> in the top-right corner.</div>
@@ -312,7 +323,7 @@ HTML_CONTENT = r'''
             Paste your full RDS ID (e.g. <code>「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2</code>). The portal displays only your clean name!
           </div>
           <input type="text" class="input-box-field" id="profile-name-input" placeholder="Paste game ID or enter username" oninput="handlePlayerIdInput(this.value)" required>
-          <div id="profile-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.1); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.25); display: none;">
+          <div id="profile-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(22, 163, 74, 0.15); border-radius: var(--radius-sm); border: 1px solid rgba(22, 163, 74, 0.35); display: none;">
             <div style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">DETECTED IN-GAME NAME:</div>
             <div style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);" id="profile-extracted-display"></div>
           </div>
@@ -322,14 +333,12 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Avatar Photo</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="profile-avatar-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('profile-avatar-input', 'preview-profile-avatar')" title="Choose from Gallery or Files">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('profile-avatar-input', 'status-profile-avatar')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
-          <div style="margin-top: 0.5rem; display: flex; align-items: center; gap: 0.75rem;">
-            <img id="preview-profile-avatar" src="" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; display: none; border: 2px solid var(--brand-orange);">
-            <span style="font-size: 0.75rem; color: var(--text-dim);">Supported: JPG, PNG, WEBP (Auto-compressed)</span>
-          </div>
+          <!-- Live Media Status Feedback Container -->
+          <div id="status-profile-avatar" style="margin-top: 0.45rem;"></div>
         </div>
 
         <div class="form-group-item">
@@ -349,11 +358,11 @@ HTML_CONTENT = r'''
     <div style="position: relative; max-width: 90vw; max-height: 90vh;" onclick="event.stopPropagation()">
       <button class="modal-close-cross" style="position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem;" onclick="closePhotoViewer()">&times;</button>
       <img id="photo-viewer-image" src="" style="max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; box-shadow: 0 20px 50px rgba(0,0,0,0.7);">
-      <div id="photo-viewer-caption" style="color: #fff; text-align: center; margin-top: 0.75rem; font-size: 0.95rem; font-weight: 600;"></div>
+      <div id="photo-viewer-caption" style="color: #fff; text-align: center; margin-top: 0.75rem; font-size: 0.95rem; font-weight: 700;"></div>
     </div>
   </div>
 
-  <!-- 7. Add/Edit Car Modal (Complete with Add-ons & Stage 1-7 Specs) -->
+  <!-- 7. Add/Edit Car Modal -->
   <div class="app-modal-layer" id="modal-car-editor">
     <div class="app-modal-window" style="max-width: 840px;">
       <div class="modal-headline-row">
@@ -378,21 +387,22 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Car Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="car-image-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('car-image-input', 'preview-car-editor-img')" title="Choose from Gallery or Files">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('car-image-input', 'status-car-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
-          <img id="preview-car-editor-img" src="" style="width: 100%; max-height: 140px; border-radius: 8px; object-fit: cover; margin-top: 0.5rem; display: none;">
+          <!-- Live Media Status Feedback Container -->
+          <div id="status-car-image" style="margin-top: 0.45rem;"></div>
         </div>
 
-        <!-- Add-on Charges Required -->
+        <!-- Add-on Charges (Words package, ceramic, edition strictly removed) -->
         <h4 style="font-family: var(--font-heading); color: var(--brand-orange); margin: 1.25rem 0 0.5rem 0; text-transform: uppercase;">
           <i class="fa-solid fa-tags"></i> Add-on Pricing (Default Millions, support k, m, b, t)
         </h4>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem;">
           <div class="form-group-item">
             <label class="form-field-label">⭐ Premium Charge</label>
-            <input type="text" class="input-box-field" id="car-premium-price-input" placeholder="e.g. 5M" required>
+            <input type="text" class="input-box-field" id="car-premium-price-input" placeholder="e.g. 10M" required>
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🛡️ Coating Charge</label>
@@ -400,11 +410,11 @@ HTML_CONTENT = r'''
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🚓 Police Charge</label>
-            <input type="text" class="input-box-field" id="car-police-price-input" placeholder="e.g. 15M" required>
+            <input type="text" class="input-box-field" id="car-police-price-input" placeholder="e.g. 20M" required>
           </div>
           <div class="form-group-item">
             <label class="form-field-label">🌈 Rainbow Smoke Charge</label>
-            <input type="text" class="input-box-field" id="car-rainbow-price-input" placeholder="e.g. 12M" required>
+            <input type="text" class="input-box-field" id="car-rainbow-price-input" placeholder="e.g. 15M" required>
           </div>
         </div>
 
@@ -468,20 +478,21 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Cover Image (Optional)</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="update-image-input" placeholder="https://...">
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('update-image-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('update-image-input', 'status-update-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-update-image" style="margin-top: 0.45rem;"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Release Notes (One per line)</label>
           <textarea class="textarea-box-field" id="update-notes-input" rows="4" placeholder="- Added Bugatti Chiron Pur Sport&#10;- Fixed clutch slipping in multiplayer&#10;- Improved dynamic night lighting" required></textarea>
         </div>
         <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer;">
             <input type="checkbox" id="update-android-check" checked> Android Live
           </label>
-          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;">
+          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer;">
             <input type="checkbox" id="update-ios-check" checked> iOS Live
           </label>
         </div>
@@ -509,10 +520,11 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Event Banner Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="event-image-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('event-image-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('event-image-input', 'status-event-image')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-event-image" style="margin-top: 0.45rem;"></div>
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
           <div class="form-group-item">
@@ -529,7 +541,7 @@ HTML_CONTENT = r'''
           <input type="text" class="input-box-field" id="event-prize-input" placeholder="1st: $500M in-game cash + Exclusive Livery" required>
         </div>
         <div class="form-group-item">
-          <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem;">
+          <label style="display: flex; align-items: center; gap: 0.45rem; font-size: 0.88rem; cursor: pointer;">
             <input type="checkbox" id="event-is-live-check"> Mark as Currently Live Event
           </label>
         </div>
@@ -540,7 +552,204 @@ HTML_CONTENT = r'''
     </div>
   </div>
 
-  <!-- 11. Admin Creation & Management Modal -->
+  <!-- 11. Tyre Code Editor Modal (FIXED & FULLY IMPLEMENTED) -->
+  <div class="app-modal-layer" id="modal-tyre-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Tyre Compound Code</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-tyre-editor')">&times;</button>
+      </div>
+      <form id="form-tyre-editor" onsubmit="event.preventDefault(); saveTyreFromModal();">
+        <input type="hidden" id="tyre-edit-id">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Tyre Name</label>
+            <input type="text" class="input-box-field" id="tyre-name-input" placeholder="e.g. Tokyo Grip Pro-Spec" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Category</label>
+            <input type="text" class="input-box-field" id="tyre-category-input" placeholder="Track & Circuit" required>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">RDS Tuning Code</label>
+            <input type="text" class="input-box-field" id="tyre-code-input" placeholder="RDS-GRIP-99X" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Friction Index / G-Rating</label>
+            <input type="text" class="input-box-field" id="tyre-friction-input" placeholder="0.98 Lateral G" required>
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Surface Compatibility</label>
+          <input type="text" class="input-box-field" id="tyre-surface-input" placeholder="Asphalt & Dry Track" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Description / Handling Notes</label>
+          <textarea class="textarea-box-field" id="tyre-description-input" rows="3" placeholder="Engineered for extreme downforce and maximum corner entry speed." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-floppy-disk"></i> Save Tyre Compound Code
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 12. Map Location Editor Modal -->
+  <div class="app-modal-layer" id="modal-map-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Map Location</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-map-editor')">&times;</button>
+      </div>
+      <form id="form-map-editor" onsubmit="event.preventDefault(); saveMapFromModal();">
+        <input type="hidden" id="map-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Location Name</label>
+            <input type="text" class="input-box-field" id="map-title-input" placeholder="e.g. Mount Akina Touge Pass" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Tag / Type</label>
+            <input type="text" class="input-box-field" id="map-tag-input" placeholder="Drift Zone" required>
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Cover Image</label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="url" class="input-box-field" id="map-image-input" placeholder="https://..." required>
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('map-image-input', 'status-map-image')">
+              <i class="fa-solid fa-folder-open"></i> Gallery
+            </button>
+          </div>
+          <div id="status-map-image" style="margin-top: 0.45rem;"></div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Description / Route Tips</label>
+          <textarea class="textarea-box-field" id="map-description-input" rows="3" placeholder="Technical mountain pass with five hairpins and narrow guardrails." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-map-pin"></i> Save Map Location
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 13. Rule of Conduct Editor Modal -->
+  <div class="app-modal-layer" id="modal-rule-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Conduct Rule</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-rule-editor')">&times;</button>
+      </div>
+      <form id="form-rule-editor" onsubmit="event.preventDefault(); saveRuleFromModal();">
+        <input type="hidden" id="rule-edit-id">
+        <div class="form-group-item">
+          <label class="form-field-label">Rule Title / Header</label>
+          <input type="text" class="input-box-field" id="rule-title-input" placeholder="e.g. Anti-Griefing & Clean Racing" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Rule Guidelines & Enforcement Policy</label>
+          <textarea class="textarea-box-field" id="rule-content-input" rows="4" placeholder="Intentional ramming or blocking line during drift battles results in a room ban." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-scale-balanced"></i> Save Conduct Rule
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 14. Multiplayer Guide Editor Modal -->
+  <div class="app-modal-layer" id="modal-multiplayer-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Add / Edit Multiplayer & Clan Guide</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-multiplayer-editor')">&times;</button>
+      </div>
+      <form id="form-mp-editor" onsubmit="event.preventDefault(); saveMpFromModal();">
+        <input type="hidden" id="mp-edit-id">
+        <div class="form-group-item">
+          <label class="form-field-label">Guide Title</label>
+          <input type="text" class="input-box-field" id="mp-title-input" placeholder="e.g. Lobby Hosting & Connection Setup" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Guidelines & Procedures</label>
+          <textarea class="textarea-box-field" id="mp-content-input" rows="4" placeholder="Select the optimal server region and limit room capacity to 16 players for 60 FPS physics." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-users"></i> Save Multiplayer Guide
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 15. Role Editor Modal -->
+  <div class="app-modal-layer" id="modal-role-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Create / Edit Discord Role</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-role-editor')">&times;</button>
+      </div>
+      <form id="form-role-editor" onsubmit="event.preventDefault(); saveRoleFromModal();">
+        <input type="hidden" id="role-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Role Name</label>
+            <input type="text" class="input-box-field" id="role-name-input" placeholder="e.g. Lead Tuner" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Role Color</label>
+            <input type="color" class="input-box-field" id="role-color-input" value="#ff6b00" style="padding: 0.35rem 0.5rem; height: 42px;">
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Permissions Assigned</label>
+          <div style="display: flex; flex-direction: column; gap: 0.4rem; background: rgba(255,255,255,0.3); padding: 0.75rem; border-radius: var(--radius-sm);">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-cars" checked> Manage Vehicles & Valuation</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-events" checked> Manage Events</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-updates" checked> Publish Updates</label>
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="role-perm-tyres" checked> Manage Tyre Codes</label>
+          </div>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-shield"></i> Save Role
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 16. Custom Category Editor Modal -->
+  <div class="app-modal-layer" id="modal-category-editor">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title">Create New Portal Category</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-category-editor')">&times;</button>
+      </div>
+      <form id="form-category-editor" onsubmit="event.preventDefault(); saveCategoryFromModal();">
+        <input type="hidden" id="category-edit-id">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 0.75rem;">
+          <div class="form-group-item">
+            <label class="form-field-label">Category Title</label>
+            <input type="text" class="input-box-field" id="category-title-input" placeholder="e.g. Drift Builds" required>
+          </div>
+          <div class="form-group-item">
+            <label class="form-field-label">Icon Class</label>
+            <input type="text" class="input-box-field" id="category-icon-input" placeholder="fa-solid fa-flag" value="fa-solid fa-star">
+          </div>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Category Body Content (Markdown / HTML)</label>
+          <textarea class="textarea-box-field" id="category-content-input" rows="5" placeholder="Enter content or instructions for this custom category..." required></textarea>
+        </div>
+        <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.8rem;">
+          <i class="fa-solid fa-folder-plus"></i> Add Category to Portal
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 17. Admin Creation & Management Modal -->
   <div class="app-modal-layer" id="modal-admin-editor">
     <div class="app-modal-window">
       <div class="modal-headline-row">
@@ -572,7 +781,7 @@ HTML_CONTENT = r'''
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Permissions Assigned</label>
-          <div style="display: grid; grid-template-columns: 1fr; gap: 0.45rem; background: var(--bg-base); padding: 0.75rem; border-radius: var(--radius-sm);">
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.45rem; background: rgba(255,255,255,0.3); padding: 0.75rem; border-radius: var(--radius-sm);">
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-cars" checked> Manage Vehicles & Calculator</label>
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-events" checked> Manage Events</label>
             <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;"><input type="checkbox" id="perm-updates" checked> Publish Updates (Public & Beta)</label>
@@ -588,7 +797,7 @@ HTML_CONTENT = r'''
     </div>
   </div>
 
-  <!-- 12. UI Customization Modal (For Owner) -->
+  <!-- 18. UI Customization Modal (For Owner) -->
   <div class="app-modal-layer" id="modal-ui-editor">
     <div class="app-modal-window" style="max-width: 720px;">
       <div class="modal-headline-row">
@@ -604,10 +813,11 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Portal Logo Image</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="ui-logo-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-logo-input')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-logo-input', 'status-ui-logo')">
               <i class="fa-solid fa-folder-open"></i> Gallery
             </button>
           </div>
+          <div id="status-ui-logo" style="margin-top: 0.45rem;"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">About the Game Summary</label>
@@ -615,7 +825,7 @@ HTML_CONTENT = r'''
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Background Media Type</label>
-          <select class="select-box-field" id="ui-bg-type-select" onchange="toggleUiBgTypeInputs(this.value)">
+          <select class="select-box-field" id="ui-bg-type-select">
             <option value="video">Full Screen Video (.mp4)</option>
             <option value="image">Full Screen Photo / Wallpaper</option>
           </select>
@@ -624,10 +834,11 @@ HTML_CONTENT = r'''
           <label class="form-field-label">Background Media Source</label>
           <div style="display: flex; gap: 0.5rem;">
             <input type="url" class="input-box-field" id="ui-bg-media-input" placeholder="https://..." required>
-            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-bg-media-input', null, document.getElementById('ui-bg-type-select').value === 'video')">
+            <button type="button" class="btn-brand-secondary" onclick="openLocalFilePicker('ui-bg-media-input', 'status-ui-bg', document.getElementById('ui-bg-type-select').value === 'video')">
               <i class="fa-solid fa-folder-open"></i> Gallery / Files
             </button>
           </div>
+          <div id="status-ui-bg" style="margin-top: 0.45rem;"></div>
         </div>
         <h4 style="font-family: var(--font-heading); color: var(--brand-orange); margin: 1rem 0 0.5rem 0;">Social & Download Links</h4>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
@@ -655,7 +866,7 @@ HTML_CONTENT = r'''
     </div>
   </div>
 
-  <!-- 13. Notifications History Modal -->
+  <!-- 19. Notifications History Modal -->
   <div class="app-modal-layer" id="modal-notifications-list">
     <div class="app-modal-window">
       <div class="modal-headline-row">
