@@ -1,59 +1,59 @@
 # Real Driving School (RDS) - Official Portal & Valuation Hub
 
-A professional, motion-graphics **White Theme Liquid Glass** website for **Real Driving School (RDS)** with full-screen background video/photo canvas, high-energy racing orange branding, workable notifications, Discord-style roles, separate Owner category, and zero-budget anti-hacking cloud security.
+A professional, motion-graphics **White Theme Liquid Glass** website for **Real Driving School (RDS)** with full-screen background video/photo canvas, ambient dynamic speed lighting, high-energy racing orange branding, workable notifications, Discord-style roles, separate Owner category, and zero-budget anti-hacking cloud security powered by Google Firebase.
 
 ---
 
-## 🎨 New Design & Architecture Highlights
+## 🚀 What's New in v1.2.120
 
-### 1. Full-Screen Splash / Welcome Screen (No Boxed Look)
-- **Full Screen Canvas**: Covers 100% of the screen (`100vw`, `100vh`) with sports car gameplay video or high-res photo in the background, overlaid with a frosted white blur liquid glass layer (`backdrop-filter: blur(24px)`).
-- **Left Side Identity**:
-  - Game Logo (clickable with full-screen photo lightbox viewer).
-  - Game Name in a single **straight line** in vibrant **ORANGE**: `REAL DRIVING SCHOOL` (all "RDS Hub" subtext removed).
-  - Clean, small about text describing the game.
-  - Social buttons (Discord, Instagram, Google Play) and user's local timezone indicator.
-- **Middle Down Continue Button**: A prominent glowing orange button with right arrow: `CONTINUE →` that smoothly opens the Main Web Hub.
+### 1. Pre-Connected Real-Time Firebase Cloud Sync ($0 Budget)
+- Pre-configured with your Firebase project:
+  - **Project ID**: `rds-a95fc`
+  - **Storage Bucket**: `rds-a95fc.firebasestorage.app`
+  - **Realtime Firestore**: Every car added, tyre code created, event scheduled, or update posted synchronizes across all users' devices worldwide in real time!
 
-### 2. Main Web Hub (Pinned Sticky Top Navigation)
-- **Stays Still on Scroll**: The top navigation bar is pinned (`position: sticky; top: 0; z-index: 1000`) so it never moves when scrolling, with frosted liquid glass showing the page content gliding underneath.
-- **Straight Line Title**: `REAL DRIVING SCHOOL` displayed prominently in orange.
-- **Horizontally Scrollable Categories**: Smoothly swipe or scroll left/right on both mobile and desktop:
-  - 🚗 Car Prices
-  - 🛞 Tyre Codes
-  - 🏆 Events (with Live Now, Upcoming, and Past)
-  - 📜 Rules
-  - 🗺️ Map Guide
-  - 🚀 Updates
-  - 👥 Multiplayer
-  - 👑 **Owner Panel** (Separate dedicated category appearing when logged in as Owner)
+### 2. Ambient Motion Graphics & Dynamic Background
+- Dynamic ambient lighting layer with glowing neon speed trails, floating cyber-blobs, and racing particles that float smoothly across the screen.
+- Can be toggled on/off in the new **Portal Settings** modal.
 
-### 3. Separate Category for Owner (`pennabadicharith@gmail.com`)
-When logged in with the Owner account (`pennabadicharith@gmail.com` / `Cherry1111`), a dedicated **👑 Owner Panel** category appears in the top navigation bar with 5 specialized tabs:
-1. 🎨 **Live UI & Background Controller**: Change background video URL, photo URL, Game Name, logo, about text, Discord link, and Instagram link live!
-2. 👥 **Create & Manage Admins**: Add admins, set email, username, device login limits, and granular category permission checkboxes.
-3. 🔑 **Database Key & Cloud Sync**: Configure free Google Firebase Firestore or REST database endpoints to sync changes, pictures, and videos to all users worldwide for $0!
-4. 🏷️ **Discord-Style Roles**: Add custom roles and set hex colors.
-5. 📜 **Categorized Audit Logs**: Dedicated filter tabs for All Logs, Login Logs, Content Changes, and System Logs with timestamps and user info.
+### 3. Mobile Detached Floating Island Category Dock
+- **On Mobile Devices**: The category bar automatically becomes a sleek floating island dock positioned slightly above the bottom of the screen (detached from edges) with rounded capsule styling and frosted glassmorphism.
+- **On Desktop / PC**: Category bar supports horizontal mouse-wheel scrolling (`wheel`) and click-and-drag panning.
+- **Settings Toggle**: In the new Settings modal, players can choose between `Auto (Floating Bottom on Mobile, Top on PC)`, `Floating Bottom Dock (Always)`, or `Top Navigation Bar (Always)`.
 
-### 4. In-Site Modal UI (No Browser Prompts!)
-- Zero ugly browser `prompt()` dialogs! Everything opens in clean in-site modal dialogs.
-- **Clickable Photos & Lightbox Viewer**: Clicking any car photo, event image, tyre compound, or map photo opens an interactive **Lightbox Viewer** with full-resolution zoom and an *"Open Full Image Link"* button.
+### 4. Secret Staff Login (Easter Egg Access)
+- The visible "Staff Login" button has been completely removed from public view.
+- To access staff/owner authentication:
+  1. Click the **Gear (Settings)** icon in the top header.
+  2. Scroll to the very bottom of the Settings window to see: `Web Version: v1.2.120`.
+  3. **Tap / Click on `v1.2.120` 10 times**.
+  4. On the 10th tap, the Staff & Owner Login window will unlock and pop up!
 
-### 5. Car Prices Calculator & Custom Stage
-- Displays vehicles strictly in designated order (`#1`, `#2`, etc.).
-- Clicking "Specs" opens an itemized technical data modal without summing up prices.
-- **Custom Stage Input**: Users can enter any custom stage number (e.g. 7, 8, 10, 15) and the calculator computes the progressive valuation and speed boost automatically with the extrapolation formula!
-- Add-on options: Rainbow Exhaust Smoke and Custom Livery (works package, lights, and ceramic removed as requested).
-- In car creation form: Stage 7 is removed from being asked (Stage 1 to 6 asked, Stage 7+ is extrapolated).
-- **Luxury Bill Receipt**: Clean invoice with subtotal, exact numbers, estimated market range (e.g., `100M - 120M`), and Print/Share buttons.
+### 5. In-Game Player ID Parser
+- When setting up their profile, drivers are instructed to copy their ID string directly from inside **Real Driving School** (e.g. `「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2`).
+- The portal automatically strips the account UID hash and displays **only the clean in-game name** (`「 ⚡| Hyper_DαʀкSтαʀ 」`) on their driver pill, receipts, and leaderboards!
 
-### 6. Events with Current Live Event (No "Set Alert" for Live Events)
-- 3 Event Tabs: 🔴 **LIVE NOW (Current Events)**, ⏳ **Upcoming Events**, 📜 **Past Records**.
-- For Live Events, the "Set Alert" button is removed and replaced with a **"Join Lobby Now"** button displaying the active room PIN!
-- "Set Alert" is kept only for Upcoming Events.
+### 6. Local Gallery & Files Upload Everywhere
+- Every media input across the entire platform (cars, tyre codes, events, map guides, updates, multiplayer rooms, profile avatars, and custom background videos) now features a **"📁 Gallery / Files"** button allowing direct selection from phone gallery or PC files.
+- Automatically uploads to Firebase Storage or converts to a permanent DataURL.
 
-### 7. Global Timezone Support & Privacy
-- Automatically detects the visitor's local timezone (e.g. `UTC+5.5 (IST)` or `UTC-4 (EDT)`) and displays all event and update timestamps in their local time.
-- In login modals, email placeholders are kept neutral (`example@domain.com`) to protect owner privacy.
-- Includes **Sign in with Google** button for seamless driver authentication.
+### 7. Active Logged-In Drivers Tracker (Owner Panel)
+- Owner Panel now features an **"Active Drivers & Online Users"** sub-tab that displays live statistics:
+  - Total count of drivers currently online.
+  - Live table listing in-game display names, game account UIDs, roles, device fingerprints, and real-time status.
+
+### 8. Custom Admin Passwords
+- When creating or editing staff admins in the Owner Panel, the Owner can now set custom passwords for each admin email, and admins log in using their own passwords.
+- Device login limits are strictly enforced per account.
+
+### 9. Social & Store Links
+- Splash screen top bar includes links for **Discord**, **Instagram**, **Google Play**, and **Apple App Store**.
+- All 4 links can be edited in real time by the Owner in the **Live UI Controller** tab.
+
+---
+
+## 🛠️ Deployment to GitHub Pages
+
+1. Drag and drop `index.html` into your GitHub repository root.
+2. Go to **Settings** → **Pages** → Source: `Deploy from a branch` → Branch: `main` → `/root` → **Save**.
+3. Your website is instantly live at `https://<your-username>.github.io/<repo-name>/`.

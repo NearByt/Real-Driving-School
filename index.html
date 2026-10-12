@@ -17,6 +17,7 @@
   <!-- Google Firebase SDK for $0 Global Cloud Sync -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
   <!-- LIQUID GLASS WHITE THEME (MOTION GRAPHICS & MOBILE-FIRST) -->
@@ -1030,9 +1031,250 @@
       from { transform: translateY(20px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
+    /* ==========================================================================
+       BACKGROUND AMBIENT MOTION GRAPHICS & PARTICLES
+       ========================================================================== */
+    .bg-motion-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .bg-motion-canvas.motion-disabled {
+      opacity: 0 !important;
+      display: none !important;
+    }
+
+    .motion-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.38;
+      will-change: transform;
+    }
+
+    .blob-1 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(255, 107, 0, 0.5) 0%, rgba(255, 140, 0, 0.12) 70%, transparent 100%);
+      top: -120px;
+      right: -100px;
+      animation: floatMotion1 16s ease-in-out infinite alternate;
+    }
+
+    .blob-2 {
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, rgba(56, 189, 248, 0.1) 70%, transparent 100%);
+      bottom: -100px;
+      left: -90px;
+      animation: floatMotion2 20s ease-in-out infinite alternate;
+    }
+
+    .blob-3 {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, rgba(251, 191, 36, 0.08) 70%, transparent 100%);
+      top: 40%;
+      left: 30%;
+      animation: floatMotion3 24s ease-in-out infinite alternate;
+    }
+
+    .motion-streak {
+      position: absolute;
+      width: 340px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.7), rgba(56, 189, 248, 0.5), transparent);
+      filter: blur(1px);
+      transform: rotate(-25deg);
+      opacity: 0.4;
+      animation: streakMove 11s linear infinite;
+    }
+    .streak-1 { top: 22%; left: -340px; animation-delay: 0s; }
+    .streak-2 { top: 68%; left: -340px; animation-delay: 5.5s; }
+
+    .particle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 107, 0, 0.6);
+      box-shadow: 0 0 12px rgba(255, 107, 0, 0.85);
+      animation: particleFloat 12s infinite ease-in-out;
+    }
+    .p1 { top: 18%; left: 22%; animation-duration: 11s; }
+    .p2 { top: 62%; left: 78%; animation-duration: 15s; animation-delay: 2s; background: rgba(56, 189, 248, 0.6); box-shadow: 0 0 12px rgba(56, 189, 248, 0.85); }
+    .p3 { top: 82%; left: 28%; animation-duration: 13s; animation-delay: 3.5s; }
+    .p4 { top: 32%; left: 68%; animation-duration: 17s; animation-delay: 1s; }
+    .p5 { top: 48%; left: 12%; animation-duration: 14s; animation-delay: 4.5s; background: rgba(245, 158, 11, 0.6); box-shadow: 0 0 12px rgba(245, 158, 11, 0.85); }
+
+    @keyframes floatMotion1 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(-100px, 90px, 0) scale(1.12); }
+      100% { transform: translate3d(-30px, 150px, 0) scale(0.95); }
+    }
+    @keyframes floatMotion2 {
+      0% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(120px, -80px, 0) scale(1.1); }
+      100% { transform: translate3d(50px, -160px, 0) scale(0.92); }
+    }
+    @keyframes floatMotion3 {
+      0% { transform: translate3d(0, 0, 0) scale(0.92); }
+      50% { transform: translate3d(-70px, -90px, 0) scale(1.18); }
+      100% { transform: translate3d(90px, 50px, 0) scale(1); }
+    }
+    @keyframes streakMove {
+      0% { transform: translate3d(-350px, 0, 0) rotate(-25deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      80% { opacity: 0.6; }
+      100% { transform: translate3d(120vw, 35vh, 0) rotate(-25deg); opacity: 0; }
+    }
+    @keyframes particleFloat {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.35; }
+      50% { transform: translate3d(35px, -55px, 0) scale(1.35); opacity: 0.85; }
+    }
+
+    /* ==========================================================================
+       DETACHED FLOATING BOTTOM CATEGORY DOCK (MOBILE & TOGGLE)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      body:not(.nav-pos-top) .hub-nav-scroll-container {
+        position: fixed !important;
+        bottom: 18px !important;
+        left: 14px !important;
+        right: 14px !important;
+        width: auto !important;
+        max-width: 680px !important;
+        margin: 0 auto !important;
+        z-index: 1200 !important;
+        background: rgba(255, 255, 255, 0.88) !important;
+        backdrop-filter: blur(28px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+        border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+        border-radius: 9999px !important;
+        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.14), 0 0 25px rgba(255, 107, 0, 0.22) !important;
+        padding: 6px 10px !important;
+        cursor: grab;
+      }
+      body:not(.nav-pos-top) .hub-content-container {
+        padding-bottom: 95px !important;
+      }
+    }
+
+    body.nav-pos-bottom .hub-nav-scroll-container {
+      position: fixed !important;
+      bottom: 18px !important;
+      left: 14px !important;
+      right: 14px !important;
+      width: auto !important;
+      max-width: 680px !important;
+      margin: 0 auto !important;
+      z-index: 1200 !important;
+      background: rgba(255, 255, 255, 0.88) !important;
+      backdrop-filter: blur(28px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+      border: 1.5px solid rgba(255, 255, 255, 0.95) !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.14), 0 0 25px rgba(255, 107, 0, 0.22) !important;
+      padding: 6px 10px !important;
+      cursor: grab;
+    }
+    body.nav-pos-bottom .hub-content-container {
+      padding-bottom: 95px !important;
+    }
+
+    /* Secret Version Click Pill & File Browser Button */
+    .version-click-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      background: rgba(241, 245, 249, 0.85);
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .version-click-pill:active {
+      transform: scale(0.95);
+      background: rgba(255, 107, 0, 0.15);
+      color: var(--brand-orange);
+      border-color: var(--brand-orange);
+    }
+
+    .btn-file-browse {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.9rem;
+      background: #fff;
+      border: 1px solid var(--glass-border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .btn-file-browse:hover {
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+      background: var(--brand-orange-light);
+    }
+
+    #micro-toast-box {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-35px);
+      background: rgba(15, 23, 42, 0.94);
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 9999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #micro-toast-box.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
   </style>
 </head>
 <body>
+  <!-- Dynamic Ambient Background Motion Objects -->
+  <div class="bg-motion-canvas" id="bg-motion-canvas" aria-hidden="true">
+    <div class="motion-blob blob-1"></div>
+    <div class="motion-blob blob-2"></div>
+    <div class="motion-blob blob-3"></div>
+    <div class="motion-streak streak-1"></div>
+    <div class="motion-streak streak-2"></div>
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+  </div>
+  <div id="micro-toast-box"></div>
+
 
   <!-- BACKGROUND VIDEO / PHOTO & MATTE LAYER -->
   <div class="bg-video-wrapper">
@@ -1049,19 +1291,19 @@
   <section id="splash-screen">
     <!-- Top Bar with Social Links & Timezone -->
     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <div class="splash-social-row">
+      <div class="splash-social-row" id="splash-social-row-container">
         <a href="https://discord.gg/realdrivingschool" target="_blank" class="splash-social-btn" id="link-splash-discord">
           <i class="fa-brands fa-discord" style="color: #5865f2;"></i> Discord
         </a>
         <a href="https://instagram.com/realdrivingschool" target="_blank" class="splash-social-btn" id="link-splash-instagram">
           <i class="fa-brands fa-instagram" style="color: #e1306c;"></i> Instagram
         </a>
-        <a href="https://play.google.com/store/apps/details?id=com.qizz.rds" target="_blank" class="splash-social-btn">
+        <a href="https://play.google.com/store/apps/details?id=com.qizz.rds" target="_blank" class="splash-social-btn" id="link-splash-googleplay">
           <i class="fa-brands fa-google-play" style="color: #16a34a;"></i> Google Play
         </a>
-      </div>
-      <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-dim);" id="splash-local-timezone">
-        <i class="fa-solid fa-earth-americas"></i> Detecting Timezone...
+        <a href="https://apps.apple.com/app/real-driving-school/id1498327827" target="_blank" class="splash-social-btn" id="link-splash-appstore">
+          <i class="fa-brands fa-apple" style="color: #0f172a;"></i> App Store
+        </a>
       </div>
     </div>
 
@@ -1077,11 +1319,7 @@
         Experience the next generation of realistic driving simulation in Real Driving School. Ultra-realistic clutch physics, dynamic weather, custom liveries, multiplayer lobbies, and an expansive open world city.
       </p>
 
-      <div style="display: flex; gap: 0.75rem;">
-        <button class="btn-brand-primary" onclick="proceedToHub()" style="padding: 0.85rem 2rem; font-size: 1.05rem;">
-          Enter Web Hub <i class="fa-solid fa-arrow-right"></i>
-        </button>
-      </div>
+
     </div>
 
     <!-- Middle Down of Web: Sleek Glowing Continue Button -->
@@ -1105,7 +1343,7 @@
       </div>
 
       <!-- Horizontally Scrollable Categories Bar -->
-      <nav class="hub-nav-scroll-container">
+      <nav class="hub-nav-scroll-container" id="hub-main-category-bar">
         <button class="hub-nav-btn active" data-view="car-prices"><i class="fa-solid fa-car"></i> Car Prices</button>
         <button class="hub-nav-btn" data-view="tyre-codes"><i class="fa-solid fa-circle-notch"></i> Tyre Codes</button>
         <button class="hub-nav-btn" data-view="events"><i class="fa-solid fa-trophy"></i> Events</button>
@@ -1139,9 +1377,9 @@
           <span class="role-badge-tag" id="user-pill-role-span" style="background: rgba(0,0,0,0.06);">Driver</span>
         </div>
 
-        <!-- Staff / Owner Login -->
-        <button class="btn-brand-secondary" id="btn-header-auth-action" onclick="handleAuthAction()" style="padding: 0.45rem 0.85rem; font-size: 0.82rem;">
-          <i class="fa-solid fa-lock"></i> Staff Login
+        <!-- Settings & Portal Info (Contains secret version gate) -->
+        <button class="hub-icon-btn" onclick="openAppSettingsModal()" title="Settings & Portal Info">
+          <i class="fa-solid fa-gear"></i>
         </button>
       </div>
     </header>
@@ -1177,13 +1415,7 @@
           <input type="password" class="input-box-field" id="login-pass-input" placeholder="••••••••" required>
         </div>
 
-        <!-- Google Sign-In Option -->
-        <div style="margin-bottom: 1.25rem;">
-          <button type="button" class="btn-brand-secondary" style="width: 100%; justify-content: center; padding: 0.75rem;" onclick="handleGoogleSignIn()">
-            <svg width="18" height="18" viewBox="0 0 24 24" style="margin-right: 6px;"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-            Sign in with Google
-          </button>
-        </div>
+
 
         <button type="submit" class="btn-brand-primary" style="width: 100%; justify-content: center; padding: 0.85rem;">
           <i class="fa-solid fa-arrow-right-to-bracket"></i> Authenticate & Enter
@@ -1204,12 +1436,25 @@
           <i class="fa-solid fa-triangle-exclamation"></i> Profile editing locked by Owner. Name stays default white.
         </div>
         <div class="form-group-item">
-          <label class="form-field-label">Driver Username (Max 20 Characters)</label>
-          <input type="text" class="input-box-field" id="profile-name-input" maxlength="20" required>
+          <label class="form-field-label"><i class="fa-solid fa-id-card"></i> In-Game Profile ID / Username</label>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem; line-height: 1.4;">
+            Copy your ID from inside <strong>Real Driving School</strong> and paste below (e.g. <code>「 ⚡| Hyper_DαʀкSтαʀ 」 FIc9Z16zj4VF6Jhqm0UOCUHYwTb2</code>). The web automatically extracts and displays your in-game name!
+          </div>
+          <input type="text" class="input-box-field" id="profile-name-input" placeholder="Paste game ID or enter username" oninput="handlePlayerIdInput(this.value)" required>
+          <div id="profile-detected-box" style="margin-top: 0.45rem; padding: 0.5rem 0.75rem; background: rgba(255,107,0,0.08); border: 1px solid rgba(255,107,0,0.25); border-radius: 6px; font-size: 0.8rem; display: none;">
+            <div style="color: var(--brand-orange); font-weight: 700;"><i class="fa-solid fa-circle-check"></i> In-Game Name: <span id="profile-extracted-display"></span></div>
+            <div style="color: var(--text-dim); font-size: 0.72rem; margin-top: 2px;">Account UID: <span id="profile-extracted-uid"></span></div>
+          </div>
         </div>
         <div class="form-group-item">
-          <label class="form-field-label">Avatar Image URL</label>
-          <input type="url" class="input-box-field" id="profile-avatar-input">
+          <label class="form-field-label">Avatar Image</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="url" class="input-box-field" id="profile-avatar-input" placeholder="https://... or choose from gallery">
+            <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('profile-avatar-input', 'profile-avatar-preview')">
+              <i class="fa-solid fa-folder-open"></i> Gallery / Files
+            </button>
+          </div>
+          <div id="profile-avatar-preview"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Assigned Role</label>
@@ -1221,6 +1466,84 @@
       </form>
     </div>
   </div>
+
+
+  <!-- Settings Modal (Navigation position, ambient motions, and secret 10-tap version gate) -->
+  <div class="app-modal-layer" id="modal-app-settings">
+    <div class="app-modal-window">
+      <div class="modal-headline-row">
+        <h3 class="modal-headline-title"><i class="fa-solid fa-sliders"></i> Portal Settings & Info</h3>
+        <button class="modal-close-cross" onclick="closeAppModal('modal-app-settings')">&times;</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+        <!-- Navigation Bar Position Option -->
+        <div class="form-group-item">
+          <label class="form-field-label"><i class="fa-solid fa-compass"></i> Category Navigation Bar Position</label>
+          <select class="select-box-field" id="setting-nav-position" onchange="changeNavPosition(this.value)">
+            <option value="auto">Auto (Floating Bottom on Mobile, Top on PC)</option>
+            <option value="bottom">Floating Bottom Dock (Detached Island)</option>
+            <option value="top">Top Navigation Bar</option>
+          </select>
+          <small style="color: var(--text-dim); font-size: 0.75rem; margin-top: 0.25rem; display: block;">
+            Customize category bar location. Bottom dock stays detached above screen edge.
+          </small>
+        </div>
+
+        <!-- Ambient Motion Effects Option -->
+        <div class="form-group-item">
+          <label class="form-field-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Background Motion Effects</label>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.88rem;">Ambient Dynamic Lighting</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim);">Floating glowing speed particles & trails</div>
+            </div>
+            <input type="checkbox" id="setting-motion-toggle" checked onchange="toggleBackgroundMotions(this.checked)" style="transform: scale(1.3);">
+          </div>
+        </div>
+
+        <!-- Sound Effects Option -->
+        <div class="form-group-item">
+          <label class="form-field-label"><i class="fa-solid fa-volume-high"></i> Audio Synthesizer & Chimes</label>
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+            <div>
+              <div style="font-weight: 600; font-size: 0.88rem;">Sound Alerts & Feedback</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim);">In-browser Web Audio chimes</div>
+            </div>
+            <input type="checkbox" id="setting-sound-toggle" checked onchange="toggleSound(this.checked)" style="transform: scale(1.3);">
+          </div>
+        </div>
+
+        <!-- Account Session Info -->
+        <div style="background: rgba(241, 245, 249, 0.7); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--glass-border-subtle);">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+              <div style="font-size: 0.85rem; font-weight: 700;" id="settings-user-display">Driver</div>
+              <div style="font-size: 0.75rem; color: var(--text-dim);" id="settings-role-display">Role: Driver</div>
+            </div>
+            <button type="button" class="btn-brand-secondary" style="padding: 0.4rem 0.75rem; font-size: 0.78rem;" onclick="closeAppModal('modal-app-settings'); openDriverProfileModal();">
+              Edit Profile
+            </button>
+          </div>
+          <div id="settings-logout-row" style="display: none; margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid rgba(0,0,0,0.06);">
+            <button type="button" class="btn-brand-danger" style="width: 100%; justify-content: center; padding: 0.45rem; font-size: 0.8rem;" onclick="AUTH.logout(); closeAppModal('modal-app-settings');">
+              <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Secret Staff Gate: Click v1.2.120 for 10 times to unlock Staff Login -->
+        <div class="settings-about-footer" style="margin-top: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--glass-border-subtle); text-align: center;">
+          <p style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem;">Real Driving School Community Hub</p>
+          <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.85rem;">Official vehicle valuation index, tuning speed calculators, and multiplayer clan guide.</p>
+          
+          <div class="version-click-pill" id="web-version-pill" onclick="handleVersionSecretClick()" title="Tap 10 times for staff gate">
+            <i class="fa-solid fa-code-branch"></i> Web Version: v1.2.120
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- 3. Add/Edit Car Modal (Stage 7 removed from creation as requested) -->
   <div class="app-modal-layer" id="modal-car-editor">
@@ -1241,8 +1564,14 @@
           </div>
         </div>
         <div class="form-group-item">
-          <label class="form-field-label">Car Image URL</label>
-          <input type="url" class="input-box-field" id="car-form-image" required placeholder="https://...">
+          <label class="form-field-label">Car Image</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="url" class="input-box-field" id="car-form-image" required placeholder="https://... or choose from gallery">
+            <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('car-form-image', 'car-form-img-preview')">
+              <i class="fa-solid fa-folder-open"></i> Gallery / Files
+            </button>
+          </div>
+          <div id="car-form-img-preview"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Description</label>
@@ -1306,8 +1635,14 @@
           </div>
         </div>
         <div class="form-group-item">
-          <label class="form-field-label">Image or Video URL</label>
-          <input type="url" class="input-box-field" id="ev-form-image" placeholder="https://...">
+          <label class="form-field-label">Image or Video</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="url" class="input-box-field" id="ev-form-image" placeholder="https://... or choose from gallery">
+            <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('ev-form-image', 'ev-form-media-preview', true)">
+              <i class="fa-solid fa-folder-open"></i> Gallery / Files
+            </button>
+          </div>
+          <div id="ev-form-media-preview"></div>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.6rem;">
           <div class="form-group-item"><label class="form-field-label">Game Mode</label><input type="text" class="input-box-field" id="ev-form-grind" value="Grind"></div>
@@ -1365,8 +1700,14 @@
           <input type="text" class="input-box-field" id="up-form-author" placeholder="e.g. RDS Core Dev Team">
         </div>
         <div class="form-group-item">
-          <label class="form-field-label">Photo or Video URL (Optional)</label>
-          <input type="url" class="input-box-field" id="up-form-image" placeholder="https://...">
+          <label class="form-field-label">Photo or Video (Optional)</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="url" class="input-box-field" id="up-form-image" placeholder="https://... or choose from gallery">
+            <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('up-form-image', 'up-form-media-preview', true)">
+              <i class="fa-solid fa-folder-open"></i> Gallery / Files
+            </button>
+          </div>
+          <div id="up-form-media-preview"></div>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Changelog Highlights (Separate with a pipe symbol |)</label>
@@ -1439,6 +1780,16 @@
     /* ==========================================================================
        DATA SEEDS & STATE MANAGEMENT
        ========================================================================== */
+    const DEFAULT_FIREBASE_CONFIG = {
+      apiKey: "AIzaSyBlRiz74eFt5zWOIowVEOgxQEAHuLfM3e0",
+      authDomain: "rds-a95fc.firebaseapp.com",
+      projectId: "rds-a95fc",
+      storageBucket: "rds-a95fc.firebasestorage.app",
+      messagingSenderId: "935312096631",
+      appId: "1:935312096631:web:a3183d86ad0c0ffec5b572",
+      measurementId: "G-W84EM7C47F"
+    };
+
     const DEFAULT_CONFIG = {
       gameName: "Real Driving School",
       logoUrl: "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=200&q=80",
@@ -1447,8 +1798,10 @@
       aboutText: "Experience the next generation of realistic driving simulation in Real Driving School. Ultra-realistic clutch physics, dynamic weather, custom liveries, multiplayer lobbies, and an expansive open world city.",
       discordLink: "https://discord.gg/realdrivingschool",
       instagramLink: "https://instagram.com/realdrivingschool",
-      databaseKey: "",
-      databaseUrl: "",
+      googlePlayLink: "https://play.google.com/store/apps/details?id=com.qizz.rds",
+      appStoreLink: "https://apps.apple.com/app/real-driving-school/id1498327827",
+      databaseKey: "AIzaSyBlRiz74eFt5zWOIowVEOgxQEAHuLfM3e0",
+      databaseUrl: "https://rds-a95fc.firebaseapp.com",
       accentColor: "#ff6b00"
     };
 
@@ -1571,9 +1924,148 @@
     ];
 
     const INITIAL_ADMINS_LIST = [
-      { id: "adm_owner", email: "pennabadicharith@gmail.com", username: "Charith (Owner)", roleId: "owner", roleName: "Owner", permissions: ["all"], deviceLimit: 5, activeDevices: ["Desktop-Primary"], isOwner: true },
-      { id: "adm_demo", email: "admin.rds@gmail.com", username: "Apex_Admin", roleId: "head_admin", roleName: "Head Admin", permissions: ["cars", "tyres", "events", "rules", "maps", "updates", "multiplayer", "view_logs"], deviceLimit: 2, activeDevices: ["Mobile-1"], isOwner: false }
+      { id: "adm_owner", email: "pennabadicharith@gmail.com", username: "Charith (Owner)", password: "Cherry1111", roleId: "owner", roleName: "Owner", permissions: ["all"], deviceLimit: 5, activeDevices: ["Desktop-Primary"], isOwner: true },
+      { id: "adm_demo", email: "admin.rds@gmail.com", username: "Apex_Admin", password: "Admin123!", roleId: "head_admin", roleName: "Head Admin", permissions: ["cars", "tyres", "events", "rules", "maps", "updates", "multiplayer", "view_logs"], deviceLimit: 2, activeDevices: ["Mobile-1"], isOwner: false }
     ];
+
+
+    /* ==========================================================================
+       GOOGLE FIREBASE REALTIME CLOUD SYNC & STORAGE ENGINE ($0 BUDGET)
+       ========================================================================== */
+    class FirebaseSyncEngine {
+      constructor() {
+        this.app = null;
+        this.db = null;
+        this.storage = null;
+        this.connected = false;
+        this.activeSessions = [];
+        this.init();
+      }
+
+      init() {
+        try {
+          if (typeof firebase !== "undefined") {
+            if (!firebase.apps.length) {
+              this.app = firebase.initializeApp(DEFAULT_FIREBASE_CONFIG);
+            } else {
+              this.app = firebase.app();
+            }
+            this.db = firebase.firestore();
+            this.storage = firebase.storage();
+            this.connected = true;
+            this.listenRealtime();
+            this.registerOnlineSession();
+            console.log("Firebase initialized successfully with rds-a95fc");
+          }
+        } catch(err) {
+          console.warn("Firebase initialization notice:", err);
+        }
+      }
+
+      listenRealtime() {
+        if (!this.db) return;
+        try {
+          this.db.collection("rds_hub").doc("data").onSnapshot(doc => {
+            if (doc.exists) {
+              const cloudState = doc.data();
+              if (cloudState && cloudState.updatedAt && cloudState.updatedAt > (STORE.state.updatedAt || 0)) {
+                STORE.mergeCloudState(cloudState);
+                renderHubView();
+                updateHeaderUserUI();
+              }
+            }
+          }, err => {
+            console.warn("Firestore listener notice (using local storage):", err);
+          });
+        } catch(e) {}
+      }
+
+      async syncToCloud(state) {
+        if (!this.db) return false;
+        try {
+          state.updatedAt = Date.now();
+          await this.db.collection("rds_hub").doc("data").set(JSON.parse(JSON.stringify(state)), { merge: true });
+          return true;
+        } catch(err) {
+          console.warn("Firestore sync write notice:", err);
+          return false;
+        }
+      }
+
+      async registerOnlineSession() {
+        if (!this.db) return;
+        try {
+          let sessId = localStorage.getItem("RDS_SESSION_TOKEN");
+          if (!sessId) {
+            sessId = "sess_" + Math.random().toString(36).substring(2, 10);
+            localStorage.setItem("RDS_SESSION_TOKEN", sessId);
+          }
+          const dev = localStorage.getItem("RDS_DEVICE_FINGERPRINT") || (navigator.platform || "Device");
+          const user = (typeof AUTH !== "undefined" && AUTH.user) ? AUTH.user : { username: "Driver", roleName: "Driver" };
+          const updateData = {
+            sessionId: sessId,
+            username: user.username || "StreetRacer",
+            gameUid: user.gameUid || "",
+            role: user.roleName || "Driver",
+            device: dev,
+            lastActive: Date.now()
+          };
+          await this.db.collection("rds_sessions").doc(sessId).set(updateData, { merge: true });
+
+          setInterval(() => {
+            if (this.db && typeof AUTH !== "undefined") {
+              updateData.username = AUTH.user.username;
+              updateData.gameUid = AUTH.user.gameUid || "";
+              updateData.lastActive = Date.now();
+              this.db.collection("rds_sessions").doc(sessId).set(updateData, { merge: true }).catch(() => {});
+            }
+          }, 45000);
+
+          this.db.collection("rds_sessions").onSnapshot(snap => {
+            const now = Date.now();
+            const active = [];
+            snap.forEach(d => {
+              const item = d.data();
+              if (now - (item.lastActive || 0) < 180000) {
+                active.push(item);
+              }
+            });
+            this.activeSessions = active;
+            this.updateActiveBadge();
+            if (typeof ownerPanelSubTab !== "undefined" && ownerPanelSubTab === "users") {
+              const stage = document.getElementById("hub-content-stage");
+              if (stage) renderOwnerPanel(stage);
+            }
+          }, () => {});
+        } catch(e) {}
+      }
+
+      updateActiveBadge() {
+        const el = document.getElementById("owner-active-count-badge");
+        if (el) el.textContent = this.activeSessions.length;
+      }
+
+      async uploadFile(file) {
+        if (this.storage) {
+          try {
+            const cleanName = file.name.replace(/[^a-zA-Z0-9.]/g, "_");
+            const ref = this.storage.ref("uploads/" + Date.now() + "_" + cleanName);
+            await ref.put(file);
+            return await ref.getDownloadURL();
+          } catch(err) {
+            console.warn("Storage upload fallback to dataURL:", err);
+          }
+        }
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
+    }
+
+    const FIREBASE = new FirebaseSyncEngine();
 
     class Store {
       constructor() {
@@ -1616,10 +2108,23 @@
       }
 
       save() {
+        this.state.updatedAt = Date.now();
         localStorage.setItem(this.key, JSON.stringify(this.state));
         if (this.channel) this.channel.postMessage({ state: this.state });
+        if (typeof FIREBASE !== "undefined") FIREBASE.syncToCloud(this.state);
         applyGlobalConfig();
         renderHubView();
+      }
+
+      mergeCloudState(cloudState) {
+        if (!cloudState) return;
+        this.state = {
+          ...this.state,
+          ...cloudState,
+          config: { ...this.state.config, ...(cloudState.config || {}) }
+        };
+        localStorage.setItem(this.key, JSON.stringify(this.state));
+        applyGlobalConfig();
       }
 
       addLog(type, user, action, details) {
@@ -1654,6 +2159,7 @@
         return {
           id: "guest_" + Math.random().toString(36).substr(2, 6),
           username: localStorage.getItem("RDS_USER_NAME") || "StreetRacer",
+          gameUid: localStorage.getItem("RDS_USER_GAME_UID") || "",
           avatar: localStorage.getItem("RDS_USER_AVATAR") || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=128&q=80",
           roleId: "player",
           roleName: "Driver",
@@ -1670,6 +2176,7 @@
         if (!this.user.isLoggedIn) {
           localStorage.setItem("RDS_USER_NAME", this.user.username);
           localStorage.setItem("RDS_USER_AVATAR", this.user.avatar);
+          if (this.user.gameUid) localStorage.setItem("RDS_USER_GAME_UID", this.user.gameUid);
           localStorage.setItem("RDS_NAME_LOCKED", this.user.nameLocked ? "true" : "false");
         }
         updateHeaderUserUI();
@@ -1701,7 +2208,8 @@
 
         // ADMIN LOGIN
         const adm = STORE.state.admins.find(a => (a.email || "").toLowerCase() === email);
-        if (adm && (pass === "Admin123!" || pass === "Cherry1111")) {
+        const validPass = adm && (pass === (adm.password || "Admin123!") || pass === "Cherry1111");
+        if (adm && validPass) {
           // Check Device Limit
           const deviceLimit = adm.deviceLimit || 2;
           let activeDevices = adm.activeDevices || [];
@@ -1936,11 +2444,15 @@
       const bgImg = document.getElementById("bg-image-fallback");
       if (bgImg && c.heroImageUrl) bgImg.src = c.heroImageUrl;
 
-      // Social Links
+      // Social & App Store Links
       const disc = document.getElementById("link-splash-discord");
       if (disc && c.discordLink) disc.href = c.discordLink;
       const insta = document.getElementById("link-splash-instagram");
       if (insta && c.instagramLink) insta.href = c.instagramLink;
+      const gplay = document.getElementById("link-splash-googleplay");
+      if (gplay && c.googlePlayLink) gplay.href = c.googlePlayLink;
+      const appst = document.getElementById("link-splash-appstore");
+      if (appst && c.appStoreLink) appst.href = c.appStoreLink;
     }
 
     /* ==========================================================================
@@ -2525,6 +3037,7 @@
         <div style="display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.75rem; border-bottom: 1px solid var(--glass-border-subtle); margin-bottom: 1.5rem;">
           <button class="btn-brand-secondary ${ownerPanelSubTab === 'editing' ? 'active' : ''}" onclick="ownerPanelSubTab = 'editing'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-palette"></i> Live UI & Background</button>
           <button class="btn-brand-secondary ${ownerPanelSubTab === 'admins' ? 'active' : ''}" onclick="ownerPanelSubTab = 'admins'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-user-shield"></i> Create & Manage Admins</button>
+          <button class="btn-brand-secondary ${ownerPanelSubTab === 'users' ? 'active' : ''}" onclick="ownerPanelSubTab = 'users'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-users-viewfinder"></i> Active Drivers & Online Users (<span id="owner-active-count-badge">${(typeof FIREBASE !== 'undefined' && FIREBASE.activeSessions ? FIREBASE.activeSessions.length : 0)}</span>)</button>
           <button class="btn-brand-secondary ${ownerPanelSubTab === 'database' ? 'active' : ''}" onclick="ownerPanelSubTab = 'database'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-database"></i> Database Key & $0 Cloud</button>
           <button class="btn-brand-secondary ${ownerPanelSubTab === 'roles' ? 'active' : ''}" onclick="ownerPanelSubTab = 'roles'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-tags"></i> Discord-Style Roles</button>
           <button class="btn-brand-secondary ${ownerPanelSubTab === 'logs' ? 'active' : ''}" onclick="ownerPanelSubTab = 'logs'; renderOwnerPanel(document.getElementById('hub-content-stage'));"><i class="fa-solid fa-list-check"></i> Categorized Logs</button>
@@ -2542,7 +3055,7 @@
 
       if (ownerPanelSubTab === "editing") {
         box.innerHTML = `
-          <div class="liquid-glass" style="padding: 2rem; max-width: 820px;">
+          <div class="liquid-glass" style="padding: 2rem; max-width: 860px;">
             <h3 style="font-family: var(--font-heading); font-size: 1.4rem; color: var(--brand-orange); margin-bottom: 1rem;"><i class="fa-solid fa-wand-magic-sparkles"></i> Live UI & Content Controller</h3>
             <form id="owner-form-ui">
               <div class="form-group-item">
@@ -2550,16 +3063,34 @@
                 <input type="text" class="input-box-field" id="cfg-gamename" value="${c.gameName}">
               </div>
               <div class="form-group-item">
-                <label class="form-field-label">Game Logo Image URL</label>
-                <input type="url" class="input-box-field" id="cfg-logourl" value="${c.logoUrl}">
+                <label class="form-field-label">Game Logo Image</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="url" class="input-box-field" id="cfg-logourl" value="${c.logoUrl}">
+                  <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('cfg-logourl', 'cfg-logo-preview')">
+                    <i class="fa-solid fa-folder-open"></i> Gallery / Files
+                  </button>
+                </div>
+                <div id="cfg-logo-preview"></div>
               </div>
               <div class="form-group-item">
-                <label class="form-field-label">Background Video URL (Full Screen MP4/WebM)</label>
-                <input type="url" class="input-box-field" id="cfg-bgvideo" value="${c.heroVideoUrl}">
+                <label class="form-field-label">Background Video (Full Screen MP4/WebM)</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="url" class="input-box-field" id="cfg-bgvideo" value="${c.heroVideoUrl}">
+                  <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('cfg-bgvideo', 'cfg-video-preview', true)">
+                    <i class="fa-solid fa-folder-open"></i> Gallery / Files
+                  </button>
+                </div>
+                <div id="cfg-video-preview"></div>
               </div>
               <div class="form-group-item">
-                <label class="form-field-label">Background Fallback Image URL</label>
-                <input type="url" class="input-box-field" id="cfg-bgimage" value="${c.heroImageUrl}">
+                <label class="form-field-label">Background Fallback Image</label>
+                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                  <input type="url" class="input-box-field" id="cfg-bgimage" value="${c.heroImageUrl}">
+                  <button type="button" class="btn-file-browse" onclick="openLocalFilePicker('cfg-bgimage', 'cfg-bgimg-preview')">
+                    <i class="fa-solid fa-folder-open"></i> Gallery / Files
+                  </button>
+                </div>
+                <div id="cfg-bgimg-preview"></div>
               </div>
               <div class="form-group-item">
                 <label class="form-field-label">About the Game Text</label>
@@ -2568,11 +3099,19 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                 <div class="form-group-item">
                   <label class="form-field-label">Discord Invite Link</label>
-                  <input type="url" class="input-box-field" id="cfg-discord" value="${c.discordLink}">
+                  <input type="url" class="input-box-field" id="cfg-discord" value="${c.discordLink || ''}">
                 </div>
                 <div class="form-group-item">
                   <label class="form-field-label">Instagram Link</label>
-                  <input type="url" class="input-box-field" id="cfg-insta" value="${c.instagramLink}">
+                  <input type="url" class="input-box-field" id="cfg-insta" value="${c.instagramLink || ''}">
+                </div>
+                <div class="form-group-item">
+                  <label class="form-field-label">Google Play Store Link</label>
+                  <input type="url" class="input-box-field" id="cfg-gplay" value="${c.googlePlayLink || 'https://play.google.com/store/apps/details?id=com.qizz.rds'}">
+                </div>
+                <div class="form-group-item">
+                  <label class="form-field-label">Apple App Store Link</label>
+                  <input type="url" class="input-box-field" id="cfg-appstore" value="${c.appStoreLink || 'https://apps.apple.com/app/real-driving-school/id1498327827'}">
                 </div>
               </div>
               <button type="submit" class="btn-brand-primary" style="padding: 0.85rem 2rem; font-size: 1rem;">
@@ -2591,7 +3130,9 @@
           STORE.state.config.aboutText = document.getElementById("cfg-about").value.trim();
           STORE.state.config.discordLink = document.getElementById("cfg-discord").value.trim();
           STORE.state.config.instagramLink = document.getElementById("cfg-insta").value.trim();
-          STORE.addLog("change", AUTH.user.username, "Updated Live UI", "Owner saved new headlines, video background, and social links.");
+          STORE.state.config.googlePlayLink = document.getElementById("cfg-gplay").value.trim();
+          STORE.state.config.appStoreLink = document.getElementById("cfg-appstore").value.trim();
+          STORE.addLog("change", AUTH.user.username, "Updated Live UI", "Owner updated headlines, background media, and social/store links.");
           NOTIF.notify("Settings Applied", "Global website settings updated successfully.");
         };
       } else if (ownerPanelSubTab === "admins") {
@@ -2607,10 +3148,13 @@
                   <div>
                     <strong style="font-size: 1.05rem;">${a.username || a.email}</strong>
                     <span class="role-badge-tag" style="background: rgba(255, 107, 0, 0.12); color: var(--brand-orange); margin-left: 0.4rem;">${a.roleName || 'Admin'}</span><br>
-                    <small style="color: var(--text-dim);">${a.email} | Device Limit: ${a.deviceLimit || 2} devices | Perms: ${(a.permissions || []).join(', ')}</small>
+                    <small style="color: var(--text-dim);">${a.email} | Pass: <span style="font-family: var(--font-mono); font-weight: 700; color: var(--brand-orange);">${a.password || 'Admin123!'}</span> | Limit: ${a.deviceLimit || 2} devices (${(a.activeDevices||[]).length} active) | Perms: ${(a.permissions || []).join(', ')}</small>
                   </div>
                   ${!a.isOwner ? `
-                    <button class="btn-brand-danger" onclick="deleteAdminUser('${a.id}')"><i class="fa-solid fa-trash"></i> Remove</button>
+                    <div style="display: flex; gap: 0.4rem;">
+                      <button class="btn-brand-secondary" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="resetAdminDevices('${a.id}')"><i class="fa-solid fa-arrows-rotate"></i> Reset Devices</button>
+                      <button class="btn-brand-danger" style="font-size: 0.75rem; padding: 0.35rem 0.65rem;" onclick="deleteAdminUser('${a.id}')"><i class="fa-solid fa-trash"></i> Remove</button>
+                    </div>
                   ` : '<span style="color: var(--brand-orange); font-weight: 800;"><i class="fa-solid fa-crown"></i> Game Owner (Master)</span>'}
                 </div>
               `).join("")}
@@ -2778,13 +3322,197 @@
       renderHubView();
     }
 
+
+    /* ==========================================================================
+       RDS PLAYER ID PARSER & MEDIA UPLOADER HELPERS
+       ========================================================================== */
+    function parseRDSPlayerId(rawText) {
+      if (!rawText) return { cleanName: "StreetRacer", gameUid: "" };
+      const str = rawText.trim();
+      const match = str.match(/^(.*?)(?:\s+([A-Za-z0-9_-]{20,36}))$/);
+      if (match && match[1] && match[2]) {
+        return {
+          cleanName: match[1].trim(),
+          gameUid: match[2].trim()
+        };
+      }
+      return { cleanName: str, gameUid: "" };
+    }
+
+    function handlePlayerIdInput(val) {
+      const parsed = parseRDSPlayerId(val);
+      const box = document.getElementById("profile-detected-box");
+      const nameSpan = document.getElementById("profile-extracted-display");
+      const uidSpan = document.getElementById("profile-extracted-uid");
+
+      if (parsed.gameUid) {
+        if (box) box.style.display = "block";
+        if (nameSpan) nameSpan.textContent = parsed.cleanName;
+        if (uidSpan) uidSpan.textContent = parsed.gameUid;
+      } else {
+        if (box) box.style.display = "none";
+      }
+    }
+
+    function openLocalFilePicker(targetInputId, previewId = null, isVideo = false) {
+      const fileInput = document.createElement("input");
+      fileInput.type = "file";
+      fileInput.accept = isVideo ? "video/*,image/*" : "image/*,video/*";
+      fileInput.onchange = async (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+
+        showMicroToast("Uploading media...");
+        try {
+          const mediaUrl = await FIREBASE.uploadFile(file);
+          const inp = document.getElementById(targetInputId);
+          if (inp) {
+            inp.value = mediaUrl;
+            inp.dispatchEvent(new Event("input"));
+            inp.dispatchEvent(new Event("change"));
+          }
+          if (previewId) {
+            const previewEl = document.getElementById(previewId);
+            if (previewEl) {
+              if (file.type && file.type.startsWith("video/")) {
+                previewEl.innerHTML = `<video src="${mediaUrl}" controls style="width: 100%; max-height: 140px; border-radius: 8px; margin-top: 0.5rem;"></video>`;
+              } else {
+                previewEl.innerHTML = `<img src="${mediaUrl}" style="width: 100%; max-height: 140px; object-fit: cover; border-radius: 8px; margin-top: 0.5rem; border: 1px solid var(--glass-border-subtle);">`;
+              }
+            }
+          }
+          showMicroToast("Media loaded successfully!");
+        } catch(err) {
+          console.error(err);
+          showMicroToast("Failed to load file.");
+        }
+      };
+      fileInput.click();
+    }
+
+    /* Settings & Navigation UI Placement */
+    function openAppSettingsModal() {
+      const sel = document.getElementById("setting-nav-position");
+      if (sel) sel.value = localStorage.getItem("RDS_NAV_POS") || "auto";
+
+      const motionTog = document.getElementById("setting-motion-toggle");
+      if (motionTog) motionTog.checked = localStorage.getItem("RDS_MOTION_ENABLED") !== "false";
+
+      const soundTog = document.getElementById("setting-sound-toggle");
+      if (soundTog) soundTog.checked = localStorage.getItem("RDS_SOUND_ENABLED") !== "false";
+
+      const uDisp = document.getElementById("settings-user-display");
+      if (uDisp) uDisp.textContent = AUTH.user.username + (AUTH.user.gameUid ? ` [${AUTH.user.gameUid.slice(0, 8)}...]` : "");
+
+      const rDisp = document.getElementById("settings-role-display");
+      if (rDisp) rDisp.textContent = `Role: ${AUTH.user.roleName || 'Driver'}`;
+
+      const logoutRow = document.getElementById("settings-logout-row");
+      if (logoutRow) logoutRow.style.display = AUTH.user.isLoggedIn ? "block" : "none";
+
+      openAppModal("modal-app-settings");
+    }
+
+    function changeNavPosition(pos) {
+      localStorage.setItem("RDS_NAV_POS", pos);
+      applyNavPosition();
+    }
+
+    function applyNavPosition() {
+      const pos = localStorage.getItem("RDS_NAV_POS") || "auto";
+      document.body.classList.remove("nav-pos-bottom", "nav-pos-top");
+      if (pos === "bottom") {
+        document.body.classList.add("nav-pos-bottom");
+      } else if (pos === "top") {
+        document.body.classList.add("nav-pos-top");
+      }
+    }
+
+    function toggleBackgroundMotions(enabled) {
+      localStorage.setItem("RDS_MOTION_ENABLED", enabled ? "true" : "false");
+      const el = document.getElementById("bg-motion-canvas");
+      if (el) el.classList.toggle("motion-disabled", !enabled);
+    }
+
+    function toggleSound(enabled) {
+      localStorage.setItem("RDS_SOUND_ENABLED", enabled ? "true" : "false");
+    }
+
+    let versionSecretClicks = 0;
+    let versionSecretTimer = null;
+
+    function handleVersionSecretClick() {
+      versionSecretClicks++;
+      clearTimeout(versionSecretTimer);
+      versionSecretTimer = setTimeout(() => {
+        versionSecretClicks = 0;
+      }, 4000);
+
+      if (versionSecretClicks >= 6 && versionSecretClicks < 10) {
+        const left = 10 - versionSecretClicks;
+        showMicroToast(`Staff Portal: ${left} tap${left === 1 ? '' : 's'} remaining`);
+      } else if (versionSecretClicks >= 10) {
+        versionSecretClicks = 0;
+        closeAppModal("modal-app-settings");
+        playSynthChime(660);
+        setTimeout(() => playSynthChime(880), 100);
+        openAppModal("modal-staff-login");
+        showMicroToast("Staff & Owner Authentication Portal Unlocked!");
+      }
+    }
+
+    function showMicroToast(msg) {
+      const toast = document.getElementById("micro-toast-box");
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    function setupCategoryBarMouseScroll() {
+      const catBar = document.getElementById("hub-main-category-bar");
+      if (!catBar) return;
+
+      // Mouse wheel horizontal scrolling
+      catBar.addEventListener("wheel", (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          catBar.scrollLeft += e.deltaY * 1.5;
+        }
+      }, { passive: false });
+
+      // Mouse drag to scroll
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      catBar.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX - catBar.offsetLeft;
+        scrollLeft = catBar.scrollLeft;
+        catBar.style.cursor = "grabbing";
+      });
+      window.addEventListener("mouseup", () => {
+        isDown = false;
+        if (catBar) catBar.style.cursor = "grab";
+      });
+      catBar.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - catBar.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        catBar.scrollLeft = scrollLeft - walk;
+      });
+    }
+
     function openDriverProfileModal() {
       const u = AUTH.user;
-      document.getElementById("profile-name-input").value = u.username;
+      document.getElementById("profile-name-input").value = u.gameUid ? `${u.username} ${u.gameUid}` : u.username;
       document.getElementById("profile-avatar-input").value = u.avatar;
       document.getElementById("profile-role-display").textContent = u.roleName;
       document.getElementById("profile-role-display").style.color = u.roleColor;
       document.getElementById("profile-lock-alert").style.display = u.nameLocked ? "block" : "none";
+      handlePlayerIdInput(document.getElementById("profile-name-input").value);
       openAppModal("modal-driver-profile");
     }
 
@@ -2911,6 +3639,43 @@
     }
 
     /* IN-SITE GENERIC MODAL FOR ADMIN CREATION (NO PROMPT) */
+
+
+    function moderateUser(username) {
+      document.getElementById("generic-input-title").textContent = `Moderate Driver: ${username}`;
+      document.getElementById("generic-input-desc").textContent = "Enforce clan rules or customize driver profile status.";
+      document.getElementById("generic-input-container").innerHTML = `
+        <div class="form-group-item">
+          <label class="form-field-label">Administrative Action</label>
+          <select class="select-box-field" id="mod-action-choice">
+            <option value="lock">Lock Custom Username (Reset to Clean White)</option>
+            <option value="unlock">Unlock Custom Username</option>
+            <option value="warn">Issue Official Staff Warning</option>
+          </select>
+        </div>
+      `;
+      document.getElementById("form-generic-input").onsubmit = (e) => {
+        e.preventDefault();
+        const action = document.getElementById("mod-action-choice").value;
+        STORE.addLog("security", AUTH.user.username, `Moderated Driver ${username}`, `Enforced action: ${action}`);
+        closeAppModal("modal-generic-input");
+        showMicroToast(`Action applied to ${username}.`);
+        renderOwnerPanel(document.getElementById("hub-content-stage"));
+      };
+      openAppModal("modal-generic-input");
+    }
+
+    function resetAdminDevices(adminId) {
+      const adm = STORE.state.admins.find(a => a.id === adminId);
+      if (adm) {
+        adm.activeDevices = [];
+        STORE.save();
+        STORE.addLog("security", AUTH.user.username, "Reset Device Limit", `Cleared active devices for admin: ${adm.email}`);
+        showMicroToast(`Active devices reset for ${adm.username || adm.email}`);
+        renderOwnerPanel(document.getElementById("hub-content-stage"));
+      }
+    }
+
     function openCreateAdminModal() {
       document.getElementById("generic-input-title").textContent = "Create Staff Admin";
       document.getElementById("generic-input-desc").textContent = "Assign email, username, device limits, and granular category permissions.";
@@ -2922,6 +3687,10 @@
         <div class="form-group-item">
           <label class="form-field-label">Admin Username</label>
           <input type="text" class="input-box-field" id="modal-adm-name" placeholder="Staff_Admin" required>
+        </div>
+        <div class="form-group-item">
+          <label class="form-field-label">Admin Login Password</label>
+          <input type="password" class="input-box-field" id="modal-adm-password" placeholder="Set custom admin password" value="Admin123!" required>
         </div>
         <div class="form-group-item">
           <label class="form-field-label">Device Login Limit</label>
@@ -2946,6 +3715,7 @@
         e.preventDefault();
         const em = document.getElementById("modal-adm-email").value.trim().toLowerCase();
         const un = document.getElementById("modal-adm-name").value.trim();
+        const pw = document.getElementById("modal-adm-password").value.trim() || "Admin123!";
         const lim = parseInt(document.getElementById("modal-adm-limit").value, 10) || 2;
         const perms = [];
         ["cars", "tyres", "events", "rules", "maps", "updates", "multiplayer", "logs"].forEach(p => {
@@ -2956,6 +3726,7 @@
           id: "adm_" + Date.now(),
           email: em,
           username: un,
+          password: pw,
           roleId: "head_admin",
           roleName: "Staff Admin",
           deviceLimit: lim,
@@ -3023,7 +3794,7 @@
       document.getElementById("generic-input-container").innerHTML = `
         <div class="form-group-item"><label class="form-field-label">Tyre Name</label><input type="text" class="input-box-field" id="m-tyre-name" required></div>
         <div class="form-group-item"><label class="form-field-label">Redemption Code</label><input type="text" class="input-box-field" id="m-tyre-code" required></div>
-        <div class="form-group-item"><label class="form-field-label">Image URL</label><input type="url" class="input-box-field" id="m-tyre-img" value="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=600&q=80"></div>
+        <div class="form-group-item"><label class="form-field-label">Tyre Screenshot Image</label><div style="display: flex; gap: 0.5rem; align-items: center;"><input type="url" class="input-box-field" id="m-tyre-img" value="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?auto=format&fit=crop&w=600&q=80"><button type="button" class="btn-file-browse" onclick="openLocalFilePicker('m-tyre-img', 'm-tyre-preview')"><i class="fa-solid fa-folder-open"></i> Gallery / Files</button></div><div id="m-tyre-preview"></div></div>
         <div class="form-group-item"><label class="form-field-label">Description</label><input type="text" class="input-box-field" id="m-tyre-desc"></div>
       `;
       document.getElementById("form-generic-input").onsubmit = (e) => {
@@ -3090,7 +3861,7 @@
       document.getElementById("generic-input-container").innerHTML = `
         <div class="form-group-item"><label class="form-field-label">Location Name</label><input type="text" class="input-box-field" id="m-map-name" required></div>
         <div class="form-group-item"><label class="form-field-label">Difficulty Level</label><input type="text" class="input-box-field" id="m-map-diff" value="Intermediate"></div>
-        <div class="form-group-item"><label class="form-field-label">Image URL</label><input type="url" class="input-box-field" id="m-map-img" value="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80"></div>
+        <div class="form-group-item"><label class="form-field-label">Circuit / Landmark Image</label><div style="display: flex; gap: 0.5rem; align-items: center;"><input type="url" class="input-box-field" id="m-map-img" value="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80"><button type="button" class="btn-file-browse" onclick="openLocalFilePicker('m-map-img', 'm-map-preview')"><i class="fa-solid fa-folder-open"></i> Gallery / Files</button></div><div id="m-map-preview"></div></div>
         <div class="form-group-item"><label class="form-field-label">Landmark Description & Tips</label><textarea class="textarea-box-field" id="m-map-desc" rows="3" required></textarea></div>
       `;
       document.getElementById("form-generic-input").onsubmit = (e) => {
@@ -3123,7 +3894,7 @@
       document.getElementById("generic-input-desc").textContent = "Convoy communication & lobby guidelines.";
       document.getElementById("generic-input-container").innerHTML = `
         <div class="form-group-item"><label class="form-field-label">Guide Title</label><input type="text" class="input-box-field" id="m-mp-title" required></div>
-        <div class="form-group-item"><label class="form-field-label">Image URL (Optional)</label><input type="url" class="input-box-field" id="m-mp-img" value="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80"></div>
+        <div class="form-group-item"><label class="form-field-label">Multiplayer Media (Optional)</label><div style="display: flex; gap: 0.5rem; align-items: center;"><input type="url" class="input-box-field" id="m-mp-img" value="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80"><button type="button" class="btn-file-browse" onclick="openLocalFilePicker('m-mp-img', 'm-mp-preview', true)"><i class="fa-solid fa-folder-open"></i> Gallery / Files</button></div><div id="m-mp-preview"></div></div>
         <div class="form-group-item"><label class="form-field-label">Content</label><textarea class="textarea-box-field" id="m-mp-content" rows="3" required></textarea></div>
       `;
       document.getElementById("form-generic-input").onsubmit = (e) => {
@@ -3171,14 +3942,16 @@
       document.getElementById("form-driver-profile")?.addEventListener("submit", (e) => {
         e.preventDefault();
         if (AUTH.user.nameLocked) { alert("Customization locked by Owner."); return; }
-        const un = document.getElementById("profile-name-input").value.trim();
+        const rawInput = document.getElementById("profile-name-input").value.trim();
+        const parsed = parseRDSPlayerId(rawInput);
         const av = document.getElementById("profile-avatar-input").value.trim();
-        if (un.length > 20) { alert("Max 20 characters."); return; }
-        AUTH.user.username = un;
+        AUTH.user.username = parsed.cleanName || "StreetRacer";
+        AUTH.user.gameUid = parsed.gameUid || AUTH.user.gameUid || "";
         if (av) AUTH.user.avatar = av;
         AUTH.save();
         closeAppModal("modal-driver-profile");
-        NOTIF.notify("Profile Saved", "Driver profile updated.");
+        showMicroToast(`Profile saved as ${AUTH.user.username}!`);
+        renderHubView();
       });
 
       // Car Form
@@ -3279,10 +4052,12 @@
 
     // Start App on DOM Ready
     document.addEventListener("DOMContentLoaded", () => {
-      detectUserTimezone();
       applyGlobalConfig();
       updateHeaderUserUI();
       setupFormListeners();
+      applyNavPosition();
+      setupCategoryBarMouseScroll();
+      if (localStorage.getItem("RDS_MOTION_ENABLED") === "false") toggleBackgroundMotions(false);
 
       // Category Nav Clicks
       document.querySelectorAll(".hub-nav-btn").forEach(btn => {
