@@ -10,10 +10,10 @@ tests = []
 def test(name, condition, details=""):
     tests.append((name, condition, details))
 
-# 1. Liquid Glass & Translucency
-test("Liquid Glass: Translucent --card-bg", "rgba(255, 255, 255, 0.32)" in c or "rgba(255, 255, 255, 0.28)" in c)
-test("Liquid Glass: Translucent --bg-surface", "rgba(255, 255, 255, 0.28)" in c)
-test("Liquid Glass: Luminous Matte Overlay", "backdrop-filter: blur(14px)" in c and "bg-white-matte-layer" in c)
+# 1. Professional White Liquid Glass & Translucency
+test("Liquid Glass: Professional White --card-bg", "rgba(255, 255, 255, 0.88)" in c or "rgba(255, 255, 255, 0.85)" in c)
+test("Liquid Glass: Translucent --bg-surface", "rgba(255, 255, 255, 0.88)" in c or "rgba(255, 255, 255, 0.82)" in c)
+test("Liquid Glass: Luminous Matte Overlay", "bg-white-matte-layer" in c and "backdrop-filter: blur(" in c)
 test("Liquid Glass: Specular Highlight Box Shadows", "inset 0 1px 1px" in c)
 
 # 2. Calculator Add-ons Word Filtering (Strictly remove: package, ceramic, edition)

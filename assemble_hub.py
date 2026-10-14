@@ -18,11 +18,11 @@ MASTER_HEAD = r'''<!DOCTYPE html>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>">
 
   <!-- Mobile PWA Meta Tags -->
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="RDS Portal">
-  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Real%20Driving%20School%20Portal%22%2C%22short_name%22%3A%22RDS%20Portal%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%23ff6b00%22%7D">
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Real%20Driving%20School%20Portal%22%2C%22short_name%22%3A%22RDS%20Portal%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%23ffffff%22%7D">
 '''
 
 full_html = MASTER_HEAD + CSS_CONTENT + HTML_CONTENT + JS_CORE_CONTENT + JS_STATE_CONTENT + JS_VIEWS_CONTENT + JS_INIT_CONTENT

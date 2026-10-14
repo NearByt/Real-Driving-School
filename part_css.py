@@ -24,36 +24,36 @@ CSS_CONTENT = r'''
        to shine and move through them dynamically!
        ========================================================================== */
     :root, [data-theme="frost"] {
-      /* Theme 1: Liquid Frost (Default Pure Translucent Frosted Glass) */
-      --bg-base: #0b1120;
-      --bg-surface: rgba(255, 255, 255, 0.28);
-      --bg-surface-elevated: rgba(255, 255, 255, 0.42);
-      --bg-glass-matte: rgba(255, 255, 255, 0.12);
-      --card-bg: rgba(255, 255, 255, 0.32);
+      /* Theme 1: Liquid Frost (Default Professional Clean White Liquid Glass) */
+      --bg-base: #f8fafc;
+      --bg-surface: rgba(255, 255, 255, 0.88);
+      --bg-surface-elevated: rgba(255, 255, 255, 0.96);
+      --bg-glass-matte: rgba(248, 250, 252, 0.86);
+      --card-bg: rgba(255, 255, 255, 0.88);
 
       --glass-blur: 24px;
-      --glass-border: rgba(255, 255, 255, 0.65);
-      --glass-border-subtle: rgba(255, 255, 255, 0.38);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.14), inset 0 1px 1px 0 rgba(255, 255, 255, 0.7);
-      --glass-shadow-lg: 0 16px 48px 0 rgba(0, 0, 0, 0.22), inset 0 1px 1px 0 rgba(255, 255, 255, 0.8);
+      --glass-border: rgba(255, 255, 255, 0.95);
+      --glass-border-subtle: rgba(226, 232, 240, 0.85);
+      --glass-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03), inset 0 1px 1px 0 rgba(255, 255, 255, 1);
+      --glass-shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.1), 0 8px 12px -4px rgba(15, 23, 42, 0.05), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
 
       --text-main: #0f172a;
-      --text-muted: #1e293b;
-      --text-dim: #475569;
+      --text-muted: #334155;
+      --text-dim: #64748b;
 
       /* ONLY GAME NAME & ACCENTS ARE ORANGE */
       --brand-orange: #ff6b00;
-      --brand-orange-glow: rgba(255, 107, 0, 0.45);
+      --brand-orange-glow: rgba(255, 107, 0, 0.35);
 
       /* BUTTONS USE SLEEK MIDNIGHT SLATE & TRANSLUCENT GLASS */
       --btn-primary-bg: #0f172a;
       --btn-primary-hover: #1e293b;
       --btn-primary-text: #ffffff;
 
-      --btn-secondary-bg: rgba(255, 255, 255, 0.45);
-      --btn-secondary-hover: rgba(255, 255, 255, 0.75);
+      --btn-secondary-bg: rgba(255, 255, 255, 0.9);
+      --btn-secondary-hover: #ffffff;
       --btn-secondary-text: #0f172a;
-      --btn-secondary-border: rgba(255, 255, 255, 0.65);
+      --btn-secondary-border: rgba(203, 213, 225, 0.85);
 
       --accent-green: #15803d;
       --accent-blue: #0284c7;
@@ -186,7 +186,7 @@ CSS_CONTENT = r'''
       height: 100vh;
       z-index: -3;
       overflow: hidden;
-      background: #000;
+      background: var(--bg-base);
     }
 
     .bg-video-element, .bg-image-element {
@@ -223,8 +223,8 @@ CSS_CONTENT = r'''
       height: 100vh;
       z-index: -1;
       background: var(--bg-glass-matte);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
       pointer-events: none;
     }
 
@@ -740,6 +740,7 @@ CSS_CONTENT = r'''
       text-transform: uppercase;
       letter-spacing: 1px;
       line-height: 1.1;
+      color: var(--text-main);
     }
     .view-subtitle-main {
       font-size: 0.9rem;
@@ -823,7 +824,7 @@ CSS_CONTENT = r'''
       color: var(--text-main);
     }
     .car-quick-specs {
-      background: rgba(255, 255, 255, 0.25);
+      background: var(--bg-surface-elevated);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border-subtle);
@@ -853,7 +854,7 @@ CSS_CONTENT = r'''
     }
     .stage-choice-chip {
       padding: 0.45rem 0.95rem;
-      background: rgba(255, 255, 255, 0.35);
+      background: var(--bg-surface-elevated);
       backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-sm);
@@ -865,8 +866,9 @@ CSS_CONTENT = r'''
       user-select: none;
     }
     .stage-choice-chip:hover {
-      background: rgba(255, 255, 255, 0.65);
+      background: #ffffff;
       color: var(--text-main);
+      border-color: var(--brand-orange);
     }
     .stage-choice-chip.active {
       background: var(--btn-primary-bg);
@@ -933,10 +935,10 @@ CSS_CONTENT = r'''
     .input-box-field, .select-box-field, .textarea-box-field {
       width: 100%;
       padding: 0.75rem 1rem;
-      background: rgba(255, 255, 255, 0.4);
+      background: var(--bg-surface-elevated);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
+      border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-sm);
       color: var(--text-main);
       font-family: var(--font-main);
@@ -944,9 +946,12 @@ CSS_CONTENT = r'''
       transition: var(--transition);
       outline: none;
     }
+    .input-box-field::placeholder, .textarea-box-field::placeholder {
+      color: var(--text-dim);
+    }
     .input-box-field:focus, .select-box-field:focus, .textarea-box-field:focus {
       border-color: var(--brand-orange);
-      background: rgba(255, 255, 255, 0.65);
+      background: #ffffff;
       box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
     }
 
@@ -1042,7 +1047,7 @@ CSS_CONTENT = r'''
     }
     .update-tab-btn {
       padding: 0.55rem 1.25rem;
-      background: rgba(255, 255, 255, 0.35);
+      background: var(--bg-surface-elevated);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-pill);
       font-size: 0.9rem;
@@ -1050,6 +1055,10 @@ CSS_CONTENT = r'''
       color: var(--text-muted);
       cursor: pointer;
       transition: var(--transition);
+    }
+    .update-tab-btn:hover {
+      background: #ffffff;
+      color: var(--text-main);
     }
     .update-tab-btn.active {
       background: var(--btn-primary-bg);
@@ -1059,7 +1068,7 @@ CSS_CONTENT = r'''
     /* Subtabs in Owner Panel */
     .admin-subtab-btn {
       padding: 0.5rem 1rem;
-      background: rgba(255, 255, 255, 0.35);
+      background: var(--bg-surface-elevated);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-sm);
       font-size: 0.85rem;
@@ -1068,6 +1077,10 @@ CSS_CONTENT = r'''
       cursor: pointer;
       transition: var(--transition);
       white-space: nowrap;
+    }
+    .admin-subtab-btn:hover {
+      background: #ffffff;
+      color: var(--text-main);
     }
     .admin-subtab-btn.active {
       background: var(--btn-primary-bg);
@@ -1081,7 +1094,7 @@ CSS_CONTENT = r'''
       align-items: center;
       gap: 0.5rem;
       padding: 0.45rem 1rem;
-      background: rgba(255, 255, 255, 0.4);
+      background: var(--bg-surface-elevated);
       border: 1px solid var(--glass-border-subtle);
       border-radius: var(--radius-pill);
       font-size: 0.78rem;
