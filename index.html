@@ -14,70 +14,126 @@
 
   <style>
     /* ==========================================================================
-     * 1. HIGH-CONTRAST THEME ENGINE
+     * 1. THEME ENGINE (INCLUDING HALLOWEEN SLIME & PRO TELEMETRY THEMES)
      * ========================================================================== */
     :root,
     [data-theme="liquid-frost"] {
       --brand-orange: #ff6b00;
-      --bg-base: #e8eef5;
+      --bg-base: #e2e8f0;
       --text-main: #0f172a;
       --text-secondary: #334155;
       --text-muted: #475569;
-      --glass-bg: rgba(255, 255, 255, 0.65);
-      --glass-bg-strong: rgba(255, 255, 255, 0.88);
-      --glass-dock: rgba(255, 255, 255, 0.55);
-      --glass-border: rgba(255, 255, 255, 0.9);
-      --glass-inner-glow: inset 0 1px 2px rgba(255, 255, 255, 0.95), inset 0 -1px 1px rgba(15, 23, 42, 0.06);
-      --glass-shadow: 0 12px 32px -6px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(15, 23, 42, 0.05);
-      --input-bg: rgba(255, 255, 255, 0.92);
-      --input-border: rgba(148, 163, 184, 0.6);
-      --btn-bg: #0f172a;
+      --glass-bg: rgba(255, 255, 255, 0.78);
+      --glass-bg-strong: rgba(255, 255, 255, 0.94);
+      --glass-dock: rgba(255, 255, 255, 0.85);
+      --glass-border: rgba(148, 163, 184, 0.45);
+      --glass-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.06);
+      --input-bg: #ffffff;
+      --input-border: #94a3b8;
+      --btn-bg: linear-gradient(135deg, #ff6b00 0%, #e05500 100%);
       --btn-text: #ffffff;
+      --btn-sec-bg: #0f172a;
+      --btn-sec-text: #ffffff;
       --badge-bg: #0f172a;
       --badge-text: #ffffff;
-      --orb-1: rgba(56, 189, 248, 0.28);
-      --orb-2: rgba(99, 102, 241, 0.22);
-      --orb-3: rgba(14, 165, 233, 0.2);
+      --orb-1: rgba(56, 189, 248, 0.25);
+      --orb-2: rgba(255, 107, 0, 0.18);
+      --orb-3: rgba(99, 102, 241, 0.2);
     }
 
     [data-theme="midnight-stealth"] {
-      --bg-base: #0b0e14;
+      --bg-base: #090d16;
       --text-main: #f8fafc;
       --text-secondary: #cbd5e1;
       --text-muted: #94a3b8;
-      --glass-bg: rgba(17, 24, 39, 0.72);
-      --glass-bg-strong: rgba(15, 23, 42, 0.92);
-      --glass-dock: rgba(15, 23, 42, 0.68);
-      --glass-border: rgba(255, 255, 255, 0.14);
-      --glass-inner-glow: inset 0 1px 1.5px rgba(255, 255, 255, 0.18), inset 0 -1px 1px rgba(0, 0, 0, 0.4);
-      --glass-shadow: 0 18px 42px -6px rgba(0, 0, 0, 0.65);
-      --input-bg: rgba(15, 23, 42, 0.9);
-      --input-border: rgba(148, 163, 184, 0.35);
-      --btn-bg: #38bdf8;
-      --btn-text: #0f172a;
-      --badge-bg: #1e293b;
-      --badge-text: #f8fafc;
-      --orb-1: rgba(56, 189, 248, 0.2);
-      --orb-2: rgba(99, 102, 241, 0.2);
-      --orb-3: rgba(30, 64, 175, 0.25);
+      --glass-bg: rgba(17, 24, 39, 0.82);
+      --glass-bg-strong: rgba(15, 23, 42, 0.95);
+      --glass-dock: rgba(15, 23, 42, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.16);
+      --glass-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.7);
+      --input-bg: #0f172a;
+      --input-border: #475569;
+      --btn-bg: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
+      --btn-text: #090d16;
+      --btn-sec-bg: #1e293b;
+      --btn-sec-text: #f8fafc;
+      --badge-bg: #38bdf8;
+      --badge-text: #090d16;
+      --orb-1: rgba(56, 189, 248, 0.18);
+      --orb-2: rgba(99, 102, 241, 0.18);
+      --orb-3: rgba(30, 64, 175, 0.22);
+    }
+
+    /* HALLOWEEN PUMPKIN & ORANGE SLIME THEME */
+    [data-theme="halloween-slime"] {
+      --bg-base: #0c0612;
+      --text-main: #fff7ed;
+      --text-secondary: #fed7aa;
+      --text-muted: #fdba74;
+      --glass-bg: rgba(26, 11, 38, 0.84);
+      --glass-bg-strong: rgba(20, 8, 30, 0.95);
+      --glass-dock: rgba(28, 10, 42, 0.9);
+      --glass-border: rgba(255, 117, 24, 0.55);
+      --glass-shadow: 0 16px 38px -6px rgba(255, 107, 0, 0.32), inset 0 2px 10px rgba(163, 230, 53, 0.18);
+      --input-bg: #160921;
+      --input-border: #ff7518;
+      --btn-bg: linear-gradient(135deg, #ff7518 0%, #ea580c 60%, #84cc16 100%);
+      --btn-text: #0c0612;
+      --btn-sec-bg: #2e1042;
+      --btn-sec-text: #fde047;
+      --badge-bg: #84cc16;
+      --badge-text: #0c0612;
+      --orb-1: rgba(255, 117, 24, 0.35);
+      --orb-2: rgba(132, 204, 22, 0.25);
+      --orb-3: rgba(147, 51, 234, 0.3);
+    }
+
+    [data-theme="halloween-slime"] .glass-card,
+    [data-theme="halloween-slime"] .section-header {
+      border-top: 3px solid #ff7518;
+      box-shadow: 0 10px 28px rgba(255, 117, 24, 0.2), inset 0 3px 0 rgba(132, 204, 22, 0.45);
+    }
+
+    [data-theme="gold-apex"] {
+      --bg-base: #0a0907;
+      --text-main: #fefce8;
+      --text-secondary: #fde68a;
+      --text-muted: #d97706;
+      --glass-bg: rgba(24, 20, 14, 0.84);
+      --glass-bg-strong: rgba(18, 15, 10, 0.95);
+      --glass-dock: rgba(24, 20, 14, 0.9);
+      --glass-border: rgba(245, 158, 11, 0.45);
+      --glass-shadow: 0 16px 38px -6px rgba(217, 119, 6, 0.28);
+      --input-bg: #14110b;
+      --input-border: #d97706;
+      --btn-bg: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      --btn-text: #0a0907;
+      --btn-sec-bg: #272015;
+      --btn-sec-text: #fde68a;
+      --badge-bg: #f59e0b;
+      --badge-text: #0a0907;
+      --orb-1: rgba(245, 158, 11, 0.25);
+      --orb-2: rgba(217, 119, 6, 0.2);
+      --orb-3: rgba(120, 53, 15, 0.25);
     }
 
     [data-theme="f1-scuderia"] {
-      --bg-base: #0f0a0c;
+      --bg-base: #0f080a;
       --text-main: #ffffff;
-      --text-secondary: #f1f5f9;
-      --text-muted: #cbd5e1;
-      --glass-bg: rgba(28, 14, 18, 0.74);
-      --glass-bg-strong: rgba(24, 10, 14, 0.94);
-      --glass-dock: rgba(32, 12, 16, 0.66);
-      --glass-border: rgba(239, 68, 68, 0.42);
-      --glass-inner-glow: inset 0 1px 2px rgba(254, 202, 202, 0.22);
-      --glass-shadow: 0 18px 42px -6px rgba(185, 28, 28, 0.32);
-      --input-bg: rgba(20, 10, 14, 0.92);
-      --input-border: rgba(239, 68, 68, 0.45);
-      --btn-bg: #e11d48;
+      --text-secondary: #fecdd3;
+      --text-muted: #fda4af;
+      --glass-bg: rgba(31, 12, 17, 0.84);
+      --glass-bg-strong: rgba(24, 9, 13, 0.95);
+      --glass-dock: rgba(31, 12, 17, 0.9);
+      --glass-border: rgba(244, 63, 94, 0.45);
+      --glass-shadow: 0 16px 38px -6px rgba(225, 29, 72, 0.32);
+      --input-bg: #19090d;
+      --input-border: #e11d48;
+      --btn-bg: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
       --btn-text: #ffffff;
-      --badge-bg: #be123c;
+      --btn-sec-bg: #2e1018;
+      --btn-sec-text: #ffffff;
+      --badge-bg: #e11d48;
       --badge-text: #ffffff;
       --orb-1: rgba(225, 29, 72, 0.28);
       --orb-2: rgba(153, 27, 27, 0.25);
@@ -85,73 +141,30 @@
     }
 
     [data-theme="f1-petronas"] {
-      --bg-base: #071114;
-      --text-main: #f8fafc;
-      --text-secondary: #e2e8f0;
-      --text-muted: #99f6e4;
-      --glass-bg: rgba(13, 28, 34, 0.74);
-      --glass-bg-strong: rgba(9, 22, 28, 0.94);
-      --glass-dock: rgba(11, 27, 33, 0.66);
-      --glass-border: rgba(45, 212, 191, 0.4);
-      --glass-inner-glow: inset 0 1px 2px rgba(153, 246, 228, 0.22);
-      --glass-shadow: 0 18px 42px -6px rgba(13, 148, 136, 0.3);
-      --input-bg: rgba(8, 20, 26, 0.92);
-      --input-border: rgba(45, 212, 191, 0.42);
-      --btn-bg: #14b8a6;
+      --bg-base: #061013;
+      --text-main: #f0fdfa;
+      --text-secondary: #99f6e4;
+      --text-muted: #5eead4;
+      --glass-bg: rgba(11, 27, 33, 0.84);
+      --glass-bg-strong: rgba(8, 21, 26, 0.95);
+      --glass-dock: rgba(11, 27, 33, 0.9);
+      --glass-border: rgba(20, 184, 166, 0.45);
+      --glass-shadow: 0 16px 38px -6px rgba(13, 148, 136, 0.3);
+      --input-bg: #08181d;
+      --input-border: #14b8a6;
+      --btn-bg: linear-gradient(135deg, #2dd4bf 0%, #0d9488 100%);
       --btn-text: #042f2e;
-      --badge-bg: #0f766e;
-      --badge-text: #ffffff;
+      --btn-sec-bg: #112e36;
+      --btn-sec-text: #ccfbf1;
+      --badge-bg: #14b8a6;
+      --badge-text: #042f2e;
       --orb-1: rgba(20, 184, 166, 0.28);
       --orb-2: rgba(56, 189, 248, 0.2);
       --orb-3: rgba(15, 118, 110, 0.25);
     }
 
-    [data-theme="f1-papaya"] {
-      --bg-base: #0d1017;
-      --text-main: #ffffff;
-      --text-secondary: #f1f5f9;
-      --text-muted: #cbd5e1;
-      --glass-bg: rgba(23, 27, 38, 0.74);
-      --glass-bg-strong: rgba(17, 20, 30, 0.94);
-      --glass-dock: rgba(23, 27, 38, 0.66);
-      --glass-border: rgba(251, 146, 60, 0.42);
-      --glass-inner-glow: inset 0 1px 2px rgba(254, 215, 170, 0.22);
-      --glass-shadow: 0 18px 42px -6px rgba(234, 88, 12, 0.28);
-      --input-bg: rgba(15, 18, 28, 0.92);
-      --input-border: rgba(251, 146, 60, 0.45);
-      --btn-bg: #f97316;
-      --btn-text: #0f172a;
-      --badge-bg: #c2410c;
-      --badge-text: #ffffff;
-      --orb-1: rgba(249, 115, 22, 0.25);
-      --orb-2: rgba(56, 189, 248, 0.2);
-      --orb-3: rgba(30, 41, 59, 0.35);
-    }
-
-    [data-theme="cyber-velocity"] {
-      --bg-base: #080b14;
-      --text-main: #f8fafc;
-      --text-secondary: #e2e8f0;
-      --text-muted: #94a3b8;
-      --glass-bg: rgba(15, 23, 42, 0.72);
-      --glass-bg-strong: rgba(15, 23, 42, 0.92);
-      --glass-dock: rgba(15, 23, 42, 0.64);
-      --glass-border: rgba(56, 189, 248, 0.4);
-      --glass-inner-glow: inset 0 1px 2px rgba(125, 211, 252, 0.25);
-      --glass-shadow: 0 16px 38px -5px rgba(14, 165, 233, 0.25);
-      --input-bg: rgba(15, 23, 42, 0.9);
-      --input-border: rgba(56, 189, 248, 0.42);
-      --btn-bg: #0284c7;
-      --btn-text: #ffffff;
-      --badge-bg: #0369a1;
-      --badge-text: #ffffff;
-      --orb-1: rgba(6, 182, 212, 0.28);
-      --orb-2: rgba(99, 102, 241, 0.22);
-      --orb-3: rgba(14, 165, 233, 0.22);
-    }
-
     /* ==========================================================================
-     * 2. BASE RESET & TYPOGRAPHY
+     * 2. BASE RESET & HIDE MOBILE VIDEO PLAY BUTTON OVERLAYS
      * ========================================================================== */
     * {
       box-sizing: border-box;
@@ -169,6 +182,18 @@
       position: relative;
       line-height: 1.5;
       transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Strictly hide native mobile play buttons on background splash video */
+    #splash-video::-webkit-media-controls,
+    #splash-video::-webkit-media-controls-panel,
+    #splash-video::-webkit-media-controls-play-button,
+    #splash-video::-webkit-media-controls-start-playback-button,
+    #splash-video::-webkit-media-controls-enclosure {
+      display: none !important;
+      -webkit-appearance: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
 
     #ambient-bg-wrap {
@@ -191,7 +216,7 @@
     }
 
     #portal-custom-wallpaper.active {
-      opacity: 0.4;
+      opacity: 0.38;
     }
 
     .ambient-orb {
@@ -207,7 +232,7 @@
 
     @keyframes floatOrb {
       0% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, -25px) scale(1.06); }
+      50% { transform: translate(30px, -25px) scale(1.05); }
       100% { transform: translate(-20px, 25px) scale(0.95); }
     }
 
@@ -219,22 +244,22 @@
     }
 
     /* ==========================================================================
-     * 3. LIQUID GLASS & BUTTON UTILITIES
+     * 3. GLASS CARDS & DISTINCT, REAL 3D TACTILE BUTTONS
      * ========================================================================== */
     .liquid-glass {
       background: var(--glass-bg);
-      backdrop-filter: blur(18px) saturate(190%);
-      -webkit-backdrop-filter: blur(18px) saturate(190%);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-inner-glow), var(--glass-shadow);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border: 1.5px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
     }
 
     .liquid-glass-strong {
       background: var(--glass-bg-strong);
-      backdrop-filter: blur(26px) saturate(210%);
-      -webkit-backdrop-filter: blur(26px) saturate(210%);
+      backdrop-filter: blur(26px) saturate(200%);
+      -webkit-backdrop-filter: blur(26px) saturate(200%);
       border: 1.5px solid var(--glass-border);
-      box-shadow: var(--glass-inner-glow), var(--glass-shadow);
+      box-shadow: var(--glass-shadow);
     }
 
     .game-title-orange {
@@ -243,98 +268,108 @@
       letter-spacing: 0.02em;
       font-weight: 800;
       text-transform: uppercase;
-      text-shadow: 0 4px 22px rgba(255, 107, 0, 0.35);
+      text-shadow: 0 3px 16px rgba(255, 107, 0, 0.3);
     }
 
-    /* Compact Single-Line Name Styling */
     .one-line-name {
       display: inline-block;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 700;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 135px;
+      max-width: 130px;
       vertical-align: middle;
       line-height: 1.2;
     }
 
+    /* Real Distinct Primary Button */
     .btn-slate {
       background: var(--btn-bg);
       color: var(--btn-text);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      padding: 0.58rem 1.1rem;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-bottom: 3px solid rgba(0, 0, 0, 0.35);
+      padding: 0.6rem 1.15rem;
       border-radius: 12px;
       font-family: inherit;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.82rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.42rem;
-      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, filter 0.18s ease;
-      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.18);
+      gap: 0.45rem;
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
       user-select: none;
       white-space: nowrap;
+      text-decoration: none;
     }
 
     .btn-slate:hover {
       transform: translateY(-2px);
-      filter: brightness(1.06);
+      filter: brightness(1.08);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.32);
     }
 
+    .btn-slate:active {
+      transform: translateY(1px);
+    }
+
+    /* Real Distinct Secondary Button (Clearly stands out from cards) */
     .btn-glass {
-      background: var(--glass-bg-strong);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      color: var(--text-main);
-      border: 1px solid var(--glass-border);
-      padding: 0.55rem 1rem;
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 3px solid rgba(0, 0, 0, 0.4);
+      padding: 0.56rem 1.05rem;
       border-radius: 12px;
       font-family: inherit;
       font-weight: 700;
-      font-size: 0.81rem;
+      font-size: 0.8rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.38rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: var(--glass-inner-glow);
+      gap: 0.4rem;
+      transition: transform 0.16s ease, filter 0.16s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       user-select: none;
       white-space: nowrap;
+      text-decoration: none;
     }
 
     .btn-glass:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+      filter: brightness(1.15);
     }
 
     .btn-danger {
-      background: rgba(239, 68, 68, 0.14);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      padding: 0.48rem 0.82rem;
+      background: #ef4444;
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border-bottom: 3px solid #991b1b;
+      padding: 0.5rem 0.85rem;
       border-radius: 10px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.78rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.32rem;
-      transition: all 0.18s ease;
+      gap: 0.35rem;
+      transition: all 0.16s ease;
       white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
     }
 
     .btn-danger:hover {
-      background: #ef4444;
-      color: #ffffff;
+      filter: brightness(1.1);
+      transform: translateY(-1px);
     }
 
     /* ==========================================================================
-     * 4. REDESIGNED PROFESSIONAL WELCOME SPLASH SCREEN (NO BOX, LEFT ALIGNED)
+     * 4. WELCOME SPLASH SCREEN (1ST PAGE)
      * ========================================================================== */
     #welcome-splash {
       position: fixed;
@@ -343,9 +378,9 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: clamp(1.8rem, 5vw, 4.5rem);
+      padding: clamp(1.5rem, 5vw, 4rem);
       overflow: hidden;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
     }
 
     #welcome-splash.hidden {
@@ -381,88 +416,84 @@
       display: block !important;
     }
 
-    /* Sleek Cinematic Left Vignette instead of a clumsy box */
     .splash-cinematic-vignette {
       position: absolute;
       inset: 0;
       z-index: -1;
       background:
-        linear-gradient(90deg, rgba(6, 9, 17, 0.92) 0%, rgba(6, 9, 17, 0.68) 48%, rgba(6, 9, 17, 0.22) 100%),
-        linear-gradient(0deg, rgba(6, 9, 17, 0.88) 0%, transparent 40%);
+        linear-gradient(90deg, rgba(5, 8, 15, 0.92) 0%, rgba(5, 8, 15, 0.72) 50%, rgba(5, 8, 15, 0.28) 100%),
+        linear-gradient(0deg, rgba(5, 8, 15, 0.9) 0%, transparent 45%);
     }
 
     .splash-hero-left {
       max-width: 720px;
-      margin-top: clamp(2rem, 8vh, 6rem);
+      margin-top: clamp(1.5rem, 7vh, 5rem);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.15rem;
+      gap: 1.1rem;
       user-select: none;
-      animation: fadeSlideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .splash-logo-title-line {
       display: flex;
       align-items: center;
-      gap: 1.15rem;
+      gap: 1rem;
       flex-wrap: wrap;
     }
 
     .splash-logo-img {
-      width: clamp(64px, 7vw, 88px);
-      height: clamp(64px, 7vw, 88px);
-      border-radius: 20px;
+      width: clamp(60px, 7vw, 84px);
+      height: clamp(60px, 7vw, 84px);
+      border-radius: 18px;
       object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6);
       flex-shrink: 0;
     }
 
     .splash-title {
-      font-size: clamp(1.85rem, 4.8vw, 3.6rem);
-      line-height: 1.04;
-      letter-spacing: 0.03em;
-      white-space: normal;
+      font-size: clamp(1.75rem, 4.8vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
     }
 
     .splash-desc {
-      font-size: clamp(0.84rem, 1.15vw, 0.96rem);
-      color: rgba(255, 255, 255, 0.88) !important;
-      line-height: 1.68;
+      font-size: clamp(0.84rem, 1.2vw, 0.96rem);
+      color: rgba(255, 255, 255, 0.9) !important;
+      line-height: 1.65;
       font-weight: 500;
-      max-width: 560px;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+      max-width: 550px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
 
     .splash-socials-row {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
       flex-wrap: wrap;
-      margin-top: 0.35rem;
+      margin-top: 0.25rem;
     }
 
     .splash-social-pill {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.48rem 0.95rem;
+      padding: 0.5rem 0.95rem;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1.5px solid rgba(255, 255, 255, 0.35);
       color: #ffffff;
       font-size: 0.76rem;
       font-weight: 700;
       text-decoration: none;
       transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
     }
 
     .splash-social-pill:hover {
-      background: rgba(255, 107, 0, 0.9);
-      border-color: #ff6b00;
+      background: #ff6b00;
+      border-color: #ffffff;
       transform: translateY(-2px);
     }
 
@@ -474,35 +505,30 @@
       gap: 1rem;
       width: 100%;
       padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-top: 1px solid rgba(255, 255, 255, 0.16);
     }
 
     .btn-continue-splash {
-      background: #ff6b00;
+      background: linear-gradient(135deg, #ff6b00 0%, #e05500 100%);
       color: #ffffff;
       font-family: inherit;
       font-size: 0.95rem;
       font-weight: 800;
       letter-spacing: 0.08em;
-      padding: 0.98rem 2.6rem;
+      padding: 0.95rem 2.4rem;
       border-radius: 999px;
-      border: 1.5px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 14px 36px rgba(255, 107, 0, 0.42);
+      border: 2px solid #ffffff;
+      box-shadow: 0 12px 32px rgba(255, 107, 0, 0.5);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
-      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.24s ease;
+      gap: 0.65rem;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
 
     .btn-continue-splash .arrow-mark {
       font-size: 1.2rem;
-      transition: transform 0.22s ease;
-    }
-
-    .btn-continue-splash:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 18px 44px rgba(255, 107, 0, 0.6);
+      transition: transform 0.2s ease;
     }
 
     .btn-continue-splash:hover .arrow-mark {
@@ -510,56 +536,56 @@
     }
 
     /* ==========================================================================
-     * 5. STICKY HEADER & NAVIGATION DOCK
+     * 5. POLISHED MOBILE-FIRST HEADER & NAVIGATION DOCK
      * ========================================================================== */
     #main-header {
       position: sticky;
       top: 0;
       z-index: 900;
-      padding: 0.6rem clamp(0.65rem, 2.5vw, 1.5rem);
+      padding: 0.55rem clamp(0.6rem, 2.5vw, 1.4rem);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.5rem;
-      border-bottom: 1px solid var(--glass-border);
+      gap: 0.45rem;
+      border-bottom: 1.5px solid var(--glass-border);
     }
 
     .header-brand {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       min-width: 0;
-      pointer-events: none;
-    }
-
-    body.live-edit-active .header-brand,
-    body.live-edit-active .header-logo,
-    body.live-edit-active .splash-logo-img {
-      pointer-events: auto !important;
-      cursor: pointer !important;
+      flex-shrink: 1;
     }
 
     .header-logo {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
       object-fit: cover;
       border: 1.5px solid var(--glass-border);
       flex-shrink: 0;
     }
 
     .header-title {
-      font-size: clamp(0.78rem, 2vw, 1.12rem);
+      font-size: clamp(0.76rem, 2.2vw, 1.1rem);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       display: block;
     }
 
+    @media (max-width: 480px) {
+      .header-title {
+        max-width: 115px;
+        font-size: 0.72rem;
+      }
+    }
+
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
       flex-shrink: 0;
     }
 
@@ -567,28 +593,35 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      padding: 0.36rem 0.68rem;
+      padding: 0.32rem 0.6rem;
       border-radius: 999px;
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 700;
-      color: var(--text-main);
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
       cursor: pointer;
       white-space: nowrap;
-      transition: transform 0.18s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
     }
 
-    .header-pill:hover {
-      transform: translateY(-1px);
+    .header-user-pfp {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #ff6b00;
+      flex-shrink: 0;
     }
 
     .staff-role-tag {
-      font-size: 0.64rem;
+      font-size: 0.62rem;
       font-weight: 800;
-      padding: 0.14rem 0.45rem;
+      padding: 0.12rem 0.42rem;
       border-radius: 999px;
-      background: #0f172a;
+      background: #ff6b00;
       color: #ffffff;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
     }
 
     .sync-dot {
@@ -601,7 +634,7 @@
     }
 
     .sync-dot.offline {
-      background: #64748b;
+      background: #f59e0b;
       box-shadow: none;
     }
 
@@ -616,21 +649,19 @@
       position: relative;
       flex-shrink: 0;
       font-size: 0.95rem;
-      color: var(--text-main);
-      transition: transform 0.2s ease;
-    }
-
-    .icon-btn:hover {
-      transform: scale(1.07);
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
     }
 
     .notif-badge {
       position: absolute;
-      top: -2px;
-      right: -2px;
+      top: -3px;
+      right: -3px;
       background: #ef4444;
       color: #fff;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       font-weight: 800;
       min-width: 16px;
       height: 16px;
@@ -638,29 +669,27 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 4px;
+      padding: 0 3px;
       border: 1.5px solid #ffffff;
     }
 
     #category-dock-wrapper {
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.48rem 0.68rem;
+      gap: 0.35rem;
+      padding: 0.45rem 0.6rem;
       border-radius: 999px;
       z-index: 9999;
       background: var(--glass-dock);
-      backdrop-filter: blur(28px) saturate(220%);
-      -webkit-backdrop-filter: blur(28px) saturate(220%);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
       border: 1.5px solid var(--glass-border);
-      box-shadow:
-        inset 0 2px 3px rgba(255, 255, 255, 0.8),
-        0 18px 44px rgba(15, 23, 42, 0.22);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
     }
 
     body[data-dock-pos="bottom"] #category-dock-wrapper {
       position: fixed;
-      bottom: 14px;
+      bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       width: min(96vw, 1080px);
@@ -668,18 +697,18 @@
 
     body[data-dock-pos="top"] #category-dock-wrapper {
       position: sticky;
-      top: 56px;
-      margin: 0.6rem auto;
+      top: 54px;
+      margin: 0.55rem auto;
       width: min(96vw, 1180px);
     }
 
     .dock-arrow {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg-strong);
-      color: var(--text-main);
+      border: 1.5px solid rgba(255, 255, 255, 0.25);
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
       font-weight: 800;
       font-size: 1rem;
       display: inline-flex;
@@ -705,17 +734,17 @@
     }
 
     .cat-tab {
-      padding: 0.48rem 0.92rem;
+      padding: 0.48rem 0.9rem;
       border-radius: 999px;
       font-family: inherit;
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 700;
       white-space: nowrap;
       cursor: pointer;
-      border: 1px solid transparent;
-      background: transparent;
+      border: 1.5px solid transparent;
+      background: rgba(15, 23, 42, 0.08);
       color: var(--text-main);
-      transition: all 0.2s ease;
+      transition: all 0.18s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
@@ -724,17 +753,17 @@
     .cat-tab.active {
       background: var(--btn-bg);
       color: var(--btn-text);
-      border-color: rgba(255, 255, 255, 0.35);
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
 
     /* ==========================================================================
-     * 6. MAIN CONTAINER, CARDS & CUSTOM CATEGORY SHAPES/SIZES
+     * 6. CLEAN VERTICAL STACK ("DOWN BY DOWN") & RESPONSIVE GRIDS
      * ========================================================================== */
     #main-container {
-      max-width: 1240px;
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 1.2rem clamp(0.65rem, 2.5vw, 1.5rem) 8.5rem;
+      padding: 1rem clamp(0.65rem, 2.5vw, 1.4rem) 8rem;
     }
 
     .section-header {
@@ -742,248 +771,171 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.85rem;
-      margin-bottom: 1.15rem;
-      padding: 1.1rem 1.3rem;
-      border-radius: 20px;
-      animation: fadeSlideUp 0.28s ease;
-    }
-
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      gap: 0.8rem;
+      margin-bottom: 1.1rem;
+      padding: 1.05rem 1.25rem;
+      border-radius: 18px;
     }
 
     .section-title {
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      font-size: clamp(1.02rem, 2.2vw, 1.32rem);
       font-weight: 800;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.01em;
     }
 
     .section-subtitle {
-      font-size: 0.82rem;
+      font-size: 0.81rem;
       color: var(--text-secondary);
       margin-top: 0.2rem;
       font-weight: 500;
     }
 
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+    /* Down-by-Down Vertical Feed (Used for Updates, Events, Rules, Clans, & Mobile Cards) */
+    .vertical-stack-list {
+      display: flex;
+      flex-direction: column;
       gap: 0.95rem;
     }
 
-    /* Custom Category Dynamic Grid Sizes */
-    .catalog-grid.size-compact { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
-    .catalog-grid.size-balanced { grid-template-columns: repeat(auto-fill, minmax(275px, 1fr)); }
-    .catalog-grid.size-wide { grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.95rem;
+    }
+
+    .catalog-grid.size-compact { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .catalog-grid.size-balanced { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+    .catalog-grid.size-wide { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
     .catalog-grid.size-banner { grid-template-columns: 1fr; }
 
-    @media (max-width: 768px) {
-      .catalog-grid:not(.size-banner) {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 0.6rem;
+    /* On phones: stack cards cleanly 1-by-1 so nothing is ever squished or clumsy! */
+    @media (max-width: 680px) {
+      .catalog-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.85rem;
       }
       .one-line-name {
-        max-width: 82px;
+        max-width: 95px;
       }
     }
 
     .glass-card {
-      border-radius: 20px;
-      padding: 0.95rem;
+      border-radius: 18px;
+      padding: 1.1rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 0.65rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      gap: 0.75rem;
       position: relative;
       overflow: hidden;
     }
 
-    .glass-card:hover {
-      transform: translateY(-3px);
-    }
-
-    /* Custom Category Card Shapes */
-    .glass-card.shape-rounded { border-radius: 20px; }
+    .glass-card.shape-rounded { border-radius: 18px; }
     .glass-card.shape-sharp { border-radius: 6px; }
-    .glass-card.shape-capsule { border-radius: 30px; padding: 1.15rem; }
-    .glass-card.shape-telemetry {
-      border-radius: 4px 20px 4px 20px;
-      border-left: 4px solid #ff6b00;
-    }
+    .glass-card.shape-capsule { border-radius: 28px; padding: 1.2rem; }
+    .glass-card.shape-telemetry { border-radius: 4px 18px 4px 18px; border-left: 5px solid #ff6b00; }
 
     .card-thumb {
       width: 100%;
-      height: 142px;
+      height: 165px;
       border-radius: 12px;
       object-fit: cover;
-      background: rgba(15, 23, 42, 0.1);
+      background: rgba(15, 23, 42, 0.12);
       border: 1px solid var(--glass-border);
     }
 
     .card-order-badge {
       position: absolute;
-      top: 0.65rem;
-      left: 0.65rem;
+      top: 0.75rem;
+      left: 0.75rem;
       background: var(--badge-bg);
       color: var(--badge-text);
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.22rem 0.55rem;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.4);
+      border: 1.5px solid rgba(255,255,255,0.4);
       z-index: 2;
     }
 
     .card-title {
       font-weight: 800;
-      font-size: 0.96rem;
-      line-height: 1.3;
+      font-size: 1.02rem;
+      line-height: 1.35;
       color: var(--text-main);
     }
 
     .card-meta {
-      font-size: 0.77rem;
+      font-size: 0.8rem;
       color: var(--text-secondary);
-      font-weight: 500;
+      font-weight: 600;
     }
 
-    /* Compact Single-Line Author Chip */
     .author-chip {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.22rem 0.55rem 0.22rem 0.26rem;
+      gap: 0.45rem;
+      padding: 0.28rem 0.65rem 0.28rem 0.3rem;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.08);
+      background: rgba(15, 23, 42, 0.12);
       border: 1px solid var(--glass-border);
       width: fit-content;
       max-width: 100%;
     }
 
     .author-pfp {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       object-fit: cover;
-      border: 1px solid rgba(255, 255, 255, 0.7);
+      border: 1.5px solid #ff6b00;
       flex-shrink: 0;
     }
 
     /* ==========================================================================
-     * 7. REDESIGNED RULES OF CONDUCT (EXECUTIVE CODEBOOK CARDS)
-     * ========================================================================== */
-    .rules-list-layout {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .rules-list-layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .rule-pro-card {
-      border-radius: 18px;
-      padding: 1.15rem 1.25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 0.75rem;
-      border-left: 5px solid #ff6b00;
-      position: relative;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .rule-pro-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .rule-top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .rule-article-pill {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 0.22rem 0.55rem;
-      border-radius: 6px;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      letter-spacing: 0.05em;
-    }
-
-    .rule-penalty-pill {
-      font-size: 0.7rem;
-      font-weight: 800;
-      padding: 0.22rem 0.62rem;
-      border-radius: 999px;
-      background: rgba(239, 68, 68, 0.15);
-      color: #ef4444;
-      border: 1px solid rgba(239, 68, 68, 0.35);
-    }
-
-    /* ==========================================================================
-     * 8. FORMS, PERMISSIONS MATRIX & MODALS
+     * 7. FORMS, MODALS & CALCULATOR INVOICE
      * ========================================================================== */
     .glass-input,
     .glass-select,
     .glass-textarea {
       width: 100%;
-      padding: 0.62rem 0.85rem;
+      padding: 0.65rem 0.85rem;
       border-radius: 11px;
       border: 1.5px solid var(--input-border);
       background: var(--input-bg);
       color: var(--text-main);
       font-family: inherit;
-      font-size: 0.84rem;
-      font-weight: 500;
+      font-size: 0.85rem;
+      font-weight: 600;
       outline: none;
-    }
-
-    .glass-input:focus,
-    .glass-select:focus,
-    .glass-textarea:focus {
-      border-color: var(--btn-bg);
-      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
     }
 
     .form-label {
       display: block;
-      font-size: 0.72rem;
+      font-size: 0.73rem;
       font-weight: 800;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.32rem;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
 
-    /* Fixed & Highly Visible A-Z Permissions Checklist Grid */
     .perm-checklist-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
       gap: 0.5rem;
       padding: 0.65rem;
       border-radius: 14px;
-      background: rgba(15, 23, 42, 0.06);
+      background: rgba(15, 23, 42, 0.08);
       border: 1.5px solid var(--input-border);
     }
 
     .perm-item-box {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
-      padding: 0.52rem 0.68rem;
+      gap: 0.5rem;
+      padding: 0.5rem 0.65rem;
       border-radius: 10px;
       background: var(--input-bg);
       border: 1px solid var(--input-border);
@@ -991,7 +943,6 @@
       font-size: 0.76rem;
       font-weight: 700;
       color: var(--text-main);
-      user-select: none;
     }
 
     .perm-item-box input[type="checkbox"] {
@@ -999,14 +950,13 @@
       height: 17px;
       accent-color: #ff6b00;
       flex-shrink: 0;
-      cursor: pointer;
     }
 
     .custom-upload-studio {
       padding: 0.8rem;
       border-radius: 14px;
       border: 1.5px dashed var(--input-border);
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(15, 23, 42, 0.04);
       display: flex;
       flex-direction: column;
       gap: 0.55rem;
@@ -1019,10 +969,11 @@
       gap: 0.5rem;
       padding: 0.65rem 1rem;
       border-radius: 12px;
-      background: var(--btn-bg);
-      color: var(--btn-text);
-      font-weight: 700;
-      font-size: 0.82rem;
+      background: var(--btn-sec-bg);
+      color: var(--btn-sec-text);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      font-weight: 800;
+      font-size: 0.81rem;
       cursor: pointer;
       text-align: center;
     }
@@ -1034,7 +985,7 @@
     .media-status-badge {
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.25rem 0.6rem;
+      padding: 0.24rem 0.6rem;
       border-radius: 999px;
       background: var(--badge-bg);
       color: var(--badge-text);
@@ -1056,7 +1007,7 @@
 
     .addon-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 0.5rem;
       margin-top: 0.4rem;
     }
@@ -1071,13 +1022,6 @@
       font-size: 0.8rem;
       font-weight: 700;
       color: var(--text-main);
-      user-select: none;
-    }
-
-    .addon-toggle input {
-      accent-color: var(--btn-bg);
-      width: 16px;
-      height: 16px;
     }
 
     .luxury-invoice {
@@ -1111,13 +1055,13 @@
       position: fixed;
       inset: 0;
       z-index: 10500;
-      background: rgba(15, 23, 42, 0.58);
+      background: rgba(9, 13, 22, 0.68);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 0.85rem;
     }
 
     .modal-backdrop.open {
@@ -1125,34 +1069,28 @@
     }
 
     .modal-panel {
-      width: min(96vw, 760px);
+      width: min(96vw, 720px);
       max-height: 90vh;
       overflow-y: auto;
       border-radius: 22px;
-      padding: 1.35rem;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
-      gap: 0.9rem;
+      gap: 0.85rem;
       color: var(--text-main);
-      animation: popInModal 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @keyframes popInModal {
-      from { opacity: 0; transform: scale(0.94) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     #live-edit-toolbar {
       position: fixed;
-      top: 64px;
-      right: 14px;
+      top: 62px;
+      right: 12px;
       z-index: 9800;
-      padding: 0.65rem 0.95rem;
-      border-radius: 18px;
+      padding: 0.65rem 0.9rem;
+      border-radius: 16px;
       display: none;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       max-width: 94vw;
     }
 
@@ -1160,42 +1098,35 @@
       display: flex;
     }
 
-    [contenteditable="true"] {
-      outline: 2px dashed #ff6b00;
-      outline-offset: 3px;
-      border-radius: 6px;
-      cursor: text;
-    }
-
     .spec-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.79rem;
+      font-size: 0.78rem;
       text-align: left;
     }
 
     .spec-table th,
     .spec-table td {
-      padding: 0.48rem 0.52rem;
+      padding: 0.48rem;
       border-bottom: 1px solid var(--input-border);
     }
 
     .platform-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.28rem;
-      padding: 0.2rem 0.55rem;
+      gap: 0.3rem;
+      padding: 0.24rem 0.62rem;
       border-radius: 8px;
-      font-size: 0.7rem;
+      font-size: 0.73rem;
       font-weight: 700;
-      background: rgba(15, 23, 42, 0.1);
+      background: rgba(15, 23, 42, 0.12);
       border: 1px solid var(--glass-border);
     }
 
     #toast-container {
       position: fixed;
-      bottom: 82px;
-      right: 16px;
+      bottom: 80px;
+      right: 14px;
       z-index: 12000;
       display: flex;
       flex-direction: column;
@@ -1203,12 +1134,11 @@
     }
 
     .toast-item {
-      padding: 0.7rem 1.05rem;
+      padding: 0.7rem 1rem;
       border-radius: 12px;
-      font-size: 0.82rem;
-      font-weight: 700;
+      font-size: 0.81rem;
+      font-weight: 800;
       color: var(--text-main);
-      animation: popInModal 0.22s ease;
     }
   </style>
 </head>
@@ -1223,10 +1153,10 @@
   </div>
   <canvas id="particle-canvas"></canvas>
 
-  <!-- 1. PROFESSIONAL WELCOME SPLASH SCREEN (NO BOX, LEFT ALIGNED, VIDEO + SOCIALS + ARROW) -->
+  <!-- 1. WELCOME SPLASH SCREEN (AUTOPLAY VIDEO WITHOUT MOBILE PLAY SYMBOL) -->
   <section id="welcome-splash">
     <div class="splash-media-layer">
-      <video id="splash-video" autoplay muted loop playsinline>
+      <video id="splash-video" autoplay muted loop playsinline webkit-playsinline preload="auto" disablePictureInPicture>
         <source id="splash-video-src" src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-in-the-city-at-night-41568-large.mp4" type="video/mp4" />
       </video>
       <img id="splash-image" alt="Welcome Background" />
@@ -1235,7 +1165,7 @@
 
     <div class="splash-hero-left">
       <div class="splash-logo-title-line">
-        <img id="splash-logo" class="splash-logo-img" onclick="window.RDSApp.handleLiveLogoClick(event)" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='26' fill='%230f172a'/><path d='M22 76 L38 44 L82 44 L98 76 Z' fill='none' stroke='%23ffffff' stroke-width='6'/><circle cx='38' cy='78' r='10' fill='%23ff6b00'/><circle cx='82' cy='78' r='10' fill='%23ff6b00'/><text x='60' y='32' font-family='Arial' font-weight='900' font-size='18' fill='%23ffffff' text-anchor='middle'>RDS</text></svg>" alt="Game Logo" />
+        <img id="splash-logo" class="splash-logo-img" onclick="window.RDSApp.handleLiveLogoClick(event)" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%230f172a'/><stop offset='100%' stop-color='%231e293b'/></linearGradient></defs><rect width='120' height='120' rx='26' fill='url(%23g)' stroke='%23ff6b00' stroke-width='4'/><path d='M18 78 L34 46 L86 46 L102 78 Z' fill='none' stroke='%23ffffff' stroke-width='5' stroke-linejoin='round'/><circle cx='36' cy='80' r='11' fill='%23ff6b00'/><circle cx='84' cy='80' r='11' fill='%23ff6b00'/><text x='60' y='34' font-family='Arial,sans-serif' font-weight='900' font-size='20' fill='%23ff6b00' text-anchor='middle' letter-spacing='2'>RDS</text></svg>" alt="Game Logo" />
         <h1 class="game-title-orange splash-title" id="editable-splash-title">REAL DRIVING SCHOOL</h1>
       </div>
 
@@ -1243,12 +1173,11 @@
         Precision open-world driving simulator, competitive telemetry & stage tuning valuation index, verified tyre codes, drift circuits, and live multiplayer clan operations.
       </p>
 
-      <!-- Official Social Media Links on 1st Page -->
       <div class="splash-socials-row" id="splash-socials-container"></div>
     </div>
 
     <div class="splash-bottom-bar">
-      <div style="color:rgba(255,255,255,0.65);font-size:0.76rem;font-weight:600;letter-spacing:0.04em;">
+      <div style="color:rgba(255,255,255,0.72);font-size:0.75rem;font-weight:700;letter-spacing:0.04em;">
         OFFICIAL TELEMETRY & VALUATION PORTAL • v1.2.120
       </div>
       <button class="btn-continue-splash" id="btn-splash-continue">
@@ -1260,70 +1189,66 @@
 
   <!-- GOD-MODE LIVE IN-PLACE EDITING TOOLBAR -->
   <div id="live-edit-toolbar" class="liquid-glass-strong">
-    <span style="font-size:0.76rem;font-weight:800;">✏️ Live Editor: Click text, Logo, or Images!</span>
-    <label class="btn-glass" style="padding:0.32rem 0.65rem;font-size:0.74rem;cursor:pointer;">
-      🖼️ Game Logo
+    <span style="font-size:0.75rem;font-weight:800;">✏️ Live Editor:</span>
+    <label class="btn-glass" style="padding:0.32rem 0.65rem;font-size:0.73rem;cursor:pointer;">
+      🖼️ Logo
       <input type="file" accept="image/*" style="display:none;" onchange="window.RDSApp.uploadNewGameLogo(this)" />
     </label>
-    <label class="btn-glass" style="padding:0.32rem 0.65rem;font-size:0.74rem;cursor:pointer;">
-      🎬 Splash Video
+    <label class="btn-glass" style="padding:0.32rem 0.65rem;font-size:0.73rem;cursor:pointer;">
+      🎬 Video
       <input type="file" accept="video/*" style="display:none;" onchange="window.RDSApp.uploadNewSplashVideo(this)" />
     </label>
-    <label class="btn-glass" style="padding:0.32rem 0.65rem;font-size:0.74rem;cursor:pointer;">
-      🎨 Accent
-      <input type="color" id="live-accent-picker" value="#0f172a" style="width:20px;height:20px;border:none;background:none;cursor:pointer;" onchange="window.RDSApp.previewLiveAccentColor(this.value)" />
-    </label>
-    <button class="btn-slate" style="padding:0.35rem 0.8rem;font-size:0.75rem;" onclick="window.RDSApp.saveLiveEdits()">💾 Save & Sync</button>
-    <button class="btn-glass" style="padding:0.35rem 0.7rem;font-size:0.75rem;" onclick="window.RDSApp.toggleLiveEditMode(false)">✕</button>
+    <button class="btn-slate" style="padding:0.35rem 0.75rem;font-size:0.74rem;" onclick="window.RDSApp.saveLiveEdits()">💾 Save & Sync</button>
+    <button class="btn-glass" style="padding:0.35rem 0.65rem;font-size:0.74rem;" onclick="window.RDSApp.toggleLiveEditMode(false)">✕</button>
   </div>
 
   <!-- STICKY HEADER -->
   <header id="main-header" class="liquid-glass-strong">
     <div class="header-brand" onclick="window.RDSApp.handleLiveLogoClick(event)">
-      <img id="header-logo" class="header-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='26' fill='%230f172a'/><path d='M22 76 L38 44 L82 44 L98 76 Z' fill='none' stroke='%23ffffff' stroke-width='6'/><circle cx='38' cy='78' r='10' fill='%23ff6b00'/><circle cx='82' cy='78' r='10' fill='%23ff6b00'/></svg>" alt="Logo" />
+      <img id="header-logo" class="header-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='26' fill='%230f172a' stroke='%23ff6b00' stroke-width='5'/><path d='M18 78 L34 46 L86 46 L102 78 Z' fill='none' stroke='%23ffffff' stroke-width='6'/><circle cx='36' cy='80' r='11' fill='%23ff6b00'/><circle cx='84' cy='80' r='11' fill='%23ff6b00'/><text x='60' y='34' font-family='Arial' font-weight='900' font-size='20' fill='%23ff6b00' text-anchor='middle'>RDS</text></svg>" alt="Logo" />
       <div class="header-title-wrap">
         <span class="game-title-orange header-title" id="editable-header-title">REAL DRIVING SCHOOL</span>
       </div>
     </div>
 
     <div class="header-actions">
-      <!-- 5TB Google Drive Sync Status (HIDDEN FROM PUBLIC, VISIBLE ONLY TO STAFF) -->
-      <div class="header-pill liquid-glass" id="sync-status-pill" style="display:none;" onclick="window.RDSApp.pullFromGoogleOneDrive(true)" title="5TB Google Drive Sync">
+      <!-- 5TB Sync Pill (Staff Only) -->
+      <div class="header-pill" id="sync-status-pill" style="display:none;" onclick="window.RDSApp.pullFromGoogleOneDrive(true)" title="Click to Force Sync">
         <span class="sync-dot" id="sync-dot"></span>
-        <span id="sync-status-text" style="font-size:0.72rem;">Local Vault</span>
+        <span id="sync-status-text" style="font-size:0.7rem;">5TB Live</span>
       </div>
 
-      <!-- Admin / Owner Top Badge & Colored Name (VISIBLE WHEN LOGGED IN AS STAFF) -->
-      <button class="header-pill liquid-glass" id="staff-header-pill" style="display:none;" onclick="window.RDSApp.switchCategory('owner')" title="Open Command Center">
+      <!-- Staff Role & Colored Name Pill (Visible when logged in as Admin/Owner) -->
+      <button class="header-pill" id="staff-header-pill" style="display:none;" onclick="window.RDSApp.switchCategory('owner')" title="Open Command Center">
         <span class="staff-role-tag" id="staff-header-role">OWNER</span>
         <span class="one-line-name" id="staff-header-name">Staff</span>
       </button>
 
-      <!-- Compact Single-Line Driver Profile & Name Directory Pill -->
-      <button class="header-pill driver-name-pill liquid-glass" onclick="window.RDSApp.openOnboardingModal()" title="Edit Name, Search Players & Change Theme">
-        <span style="font-size:0.82rem;">🏎️</span>
-        <span class="one-line-name" id="header-driver-name">Guest Driver</span>
-        <span style="font-size:0.68rem;opacity:0.7;">✏️</span>
+      <!-- Driver Profile Pill (Shows PFP + Name + Role) -->
+      <button class="header-pill driver-name-pill" onclick="window.RDSApp.openOnboardingModal()" title="View Profile, Role & PFP">
+        <img id="header-driver-pfp" class="header-user-pfp" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><rect width='80' height='80' rx='40' fill='%231e293b'/><text x='40' y='52' font-family='Arial' font-size='34' text-anchor='middle'>🏎️</text></svg>" alt="PFP" />
+        <span class="one-line-name" id="header-driver-name">Guest</span>
+        <span class="staff-role-tag" id="header-driver-role" style="background:#38bdf8;color:#0f172a;">DRIVER</span>
       </button>
 
-      <!-- Notification Center Bell -->
-      <button class="icon-btn liquid-glass" onclick="window.RDSApp.openNotificationsModal()" title="Notifications">
+      <!-- Notification Bell -->
+      <button class="icon-btn" onclick="window.RDSApp.openNotificationsModal()" title="Notifications">
         🔔
         <span class="notif-badge" id="notif-count">1</span>
       </button>
 
       <!-- Settings Gear -->
-      <button class="icon-btn liquid-glass" onclick="window.RDSApp.openSettingsModal()" title="Settings">
+      <button class="icon-btn" onclick="window.RDSApp.openSettingsModal()" title="Settings">
         ⚙️
       </button>
     </div>
   </header>
 
-  <!-- NAVIGATION CATEGORY DOCK -->
+  <!-- NAVIGATION DOCK -->
   <nav id="category-dock-wrapper" aria-label="Category Navigation">
-    <button class="dock-arrow" onclick="window.RDSApp.scrollCategoryDock(-240)" title="Scroll Left">‹</button>
+    <button class="dock-arrow" onclick="window.RDSApp.scrollCategoryDock(-220)">‹</button>
     <div id="category-scroll-strip"></div>
-    <button class="dock-arrow" onclick="window.RDSApp.scrollCategoryDock(240)" title="Scroll Right">›</button>
+    <button class="dock-arrow" onclick="window.RDSApp.scrollCategoryDock(220)">›</button>
   </nav>
 
   <!-- MAIN VIEWPORT -->
@@ -1339,14 +1264,15 @@
 
   <!-- CONFIRMATION MODAL -->
   <div class="modal-backdrop" id="confirm-modal" style="z-index:11500;">
-    <div class="modal-panel liquid-glass-strong" id="confirm-modal-body" style="max-width:430px;text-align:center;"></div>
+    <div class="modal-panel liquid-glass-strong" id="confirm-modal-body" style="max-width:420px;text-align:center;"></div>
   </div>
 
   <script>
     /* ============================================================================
-     * 1. SECURITY VAULT & SHA-256 AUTHENTICATION
+     * 1. BUILT-IN LIVE GOOGLE APPS SCRIPT URL (SYNCS TO ALL DEVICES AUTOMATICALLY)
      * ============================================================================ */
-    const DEFAULT_GOOGLE_ONE_API_URL = "";
+    const DEFAULT_GOOGLE_ONE_API_URL = "https://script.google.com/macros/s/AKfycbxgpNNZugRioXf8gXQTl4osfGhRMJKBmcZPEWa0ON_HMrpSx5ehfT1r8fgvb3vrRnc/exec";
+
     const MASTER_EMAIL_VAULT = [119,108,117,117,104,105,104,107,112,106,111,104,121,112,123,111,71,110,116,104,112,115,53,106,118,116];
     const MASTER_PASS_VAULT  = [74,111,108,121,121,128,56,56,56,56];
 
@@ -1384,7 +1310,17 @@
     }
 
     /* ============================================================================
-     * 2. WEB AUDIO SYNTHESIZER & TOASTS
+     * 2. REAL BRAND SVG LOGOS (DISCORD, INSTAGRAM, GOOGLE PLAY, APPLE)
+     * ============================================================================ */
+    const BRAND_SVGS = {
+      discord: `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>`,
+      instagram: `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>`,
+      play: `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83.94-1.3 1.6-.8l14 8.5c.6.37.6 1.23 0 1.6l-14 8.5c-.66.5-1.6.03-1.6-.8z"/></svg>`,
+      apple: `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.79-.96 2.84 1.04.08 2.08-.52 2.72-1.3z"/></svg>`
+    };
+
+    /* ============================================================================
+     * 3. AUDIO & CONFIRMATION ENGINE
      * ============================================================================ */
     function playNotificationSound(type = 'chime') {
       if (!State.settings.notificationsEnabled || State.settings.muteAudio) return;
@@ -1396,24 +1332,13 @@
         const gain = ctx.createGain();
         osc.connect(gain);
         gain.connect(ctx.destination);
-        if (type === 'chime') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(587.33, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.18);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
-          osc.start(now);
-          osc.stop(now + 0.34);
-        } else {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, now);
-          osc.frequency.setValueAtTime(659.25, now + 0.08);
-          osc.frequency.setValueAtTime(1046.5, now + 0.16);
-          gain.gain.setValueAtTime(0.12, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.36);
-          osc.start(now);
-          osc.stop(now + 0.38);
-        }
+        osc.type = type === 'chime' ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(587.33, now);
+        osc.frequency.exponentialRampToValueAtTime(880, now + 0.2);
+        gain.gain.setValueAtTime(0.12, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.34);
+        osc.start(now);
+        osc.stop(now + 0.35);
       } catch (e) {}
     }
 
@@ -1444,9 +1369,6 @@
       modal.classList.add('open');
     }
 
-    /* ============================================================================
-     * 3. CURRENCY & MEDIA HELPERS
-     * ============================================================================ */
     function parsePriceValue(input) {
       if (typeof input === 'number') return input;
       if (!input) return 0;
@@ -1483,7 +1405,7 @@
             img.onload = () => {
               const canvas = document.createElement('canvas');
               let w = img.width, h = img.height;
-              const maxDim = 2048;
+              const maxDim = 1600;
               if (w > maxDim || h > maxDim) {
                 if (w > h) { h = Math.round((h * maxDim) / w); w = maxDim; }
                 else { w = Math.round((w * maxDim) / h); h = maxDim; }
@@ -1494,7 +1416,7 @@
               ctx.imageSmoothingEnabled = true;
               ctx.imageSmoothingQuality = 'high';
               ctx.drawImage(img, 0, 0, w, h);
-              const hqDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+              const hqDataUrl = canvas.toDataURL('image/jpeg', 0.88);
               resolve({ url: hqDataUrl, mimeType: file.type, fileName: file.name, sizeKB: `${sizeKB} KB` });
             };
             img.onerror = reject;
@@ -1508,7 +1430,7 @@
       });
     }
 
-    function renderMediaAttachment(mediaUrl, mediaType, altText = "Attachment", customHeight = "142px") {
+    function renderMediaAttachment(mediaUrl, mediaType, altText = "Attachment", customHeight = "165px") {
       if (!mediaUrl) return "";
       const type = (mediaType || "").toLowerCase();
       if (type.startsWith("video/") || mediaUrl.endsWith(".mp4") || mediaUrl.endsWith(".webm")) {
@@ -1516,9 +1438,9 @@
       }
       if (type.startsWith("audio/") || mediaUrl.endsWith(".mp3") || mediaUrl.endsWith(".wav")) {
         return `
-          <div style="padding:0.5rem;border-radius:10px;background:rgba(15,23,42,0.08);border:1px solid var(--glass-border);">
-            <div style="font-size:0.7rem;font-weight:700;margin-bottom:0.2rem;">🔊 Audio Clip</div>
-            <audio src="${mediaUrl}" controls style="width:100%;height:32px;"></audio>
+          <div style="padding:0.55rem;border-radius:10px;background:rgba(15,23,42,0.08);border:1px solid var(--glass-border);">
+            <div style="font-size:0.72rem;font-weight:700;margin-bottom:0.25rem;">🔊 Attached Audio Clip</div>
+            <audio src="${mediaUrl}" controls style="width:100%;height:34px;"></audio>
           </div>
         `;
       }
@@ -1532,14 +1454,14 @@
       return `
         <div class="author-chip" title="Published by ${author.role || 'Staff'}">
           <img class="author-pfp" src="${pfp}" alt="" />
-          <span class="one-line-name" style="color:${color};font-weight:800;">${author.name}</span>
-          ${author.role ? `<span style="font-size:0.62rem;font-weight:800;opacity:0.75;">• ${author.role}</span>` : ''}
+          <span class="one-line-name" style="color:${color};font-weight:800;max-width:165px;">${author.name}</span>
+          ${author.role ? `<span style="font-size:0.65rem;font-weight:800;opacity:0.85;">• ${author.role}</span>` : ''}
         </div>
       `;
     }
 
     /* ============================================================================
-     * 4. A–Z GRANULAR PERMISSIONS & DEFAULT DATA
+     * 4. PERMISSIONS & INITIAL DATA
      * ============================================================================ */
     const AZ_PERMISSIONS = [
       { key: "cars",          code: "A", label: "A — Add & Edit Vehicles & Specs" },
@@ -1569,6 +1491,8 @@
       role: "OWNER",
       pfp: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><rect width='80' height='80' rx='40' fill='%230f172a'/><text x='40' y='52' font-family='Arial' font-weight='900' font-size='34' fill='%23ff6b00' text-anchor='middle'>⚡</text></svg>"
     };
+
+    const DEFAULT_DRIVER_PFP = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 80'><rect width='80' height='80' rx='40' fill='%231e293b'/><text x='40' y='52' font-family='Arial' font-size='34' text-anchor='middle'>🏎️</text></svg>";
 
     const DEFAULT_CARS = [
       {
@@ -1657,7 +1581,7 @@
         id: "upd_1", branch: "public", version: "v1.2.120", tag: "STABLE RELEASE",
         androidStatus: "✅ Released on Android", iosStatus: "✅ Released on iOS", date: "Oct 2026",
         title: "5TB Google Drive High-Res Vault & Stage 7 Telemetry",
-        notes: "Added full Stage 1-7 turbo/non-turbo matrix, clean tyre codes, platform release trackers, and 5TB Drive sync.",
+        notes: "Added full Stage 1-7 turbo/non-turbo matrix, clean tyre codes, platform release trackers, and real-time multi-device cloud sync.",
         mediaUrl: "", mediaType: "", author: DEFAULT_AUTHOR
       },
       {
@@ -1670,8 +1594,8 @@
     ];
 
     const DEFAULT_EVENTS = [
-      { id: "evt_1", title: "Touge Tandem Championship", status: "LIVE", dates: "Oct 14 – Oct 20, 2026", reward: "$45M In-Game Cash + ⭐ Premium Car", desc: "Score the highest twin-drift proximity points across 3 consecutive mountain passes.", mediaUrl: "", mediaType: "", author: DEFAULT_AUTHOR },
-      { id: "evt_2", title: "Highway 500 KM/H Speed Trap", status: "UPCOMING", dates: "Oct 24 – Oct 28, 2026", reward: "$60M + 🌈 Rainbow Smoke Unlock", desc: "Open-class Stage 7 top speed shootout on the Midnight Wangan straight.", mediaUrl: "", mediaType: "", author: DEFAULT_AUTHOR }
+      { id: "evt_1", title: "Touge Tandem Championship", status: "LIVE", dates: "Oct 14 – Oct 20, 2026", serverSize: "30 / 30 Players", reward: "$45M In-Game Cash + ⭐ Premium Car", desc: "Score the highest twin-drift proximity points across 3 consecutive mountain passes.", mediaUrl: "", mediaType: "", author: DEFAULT_AUTHOR },
+      { id: "evt_2", title: "Highway 500 KM/H Speed Trap", status: "UPCOMING", dates: "Oct 24 – Oct 28, 2026", serverSize: "24 / 24 Players", reward: "$60M + 🌈 Rainbow Smoke Unlock", desc: "Open-class Stage 7 top speed shootout on the Midnight Wangan straight.", mediaUrl: "", mediaType: "", author: DEFAULT_AUTHOR }
     ];
 
     const DEFAULT_ROLES = [
@@ -1682,9 +1606,8 @@
     ];
 
     const DEFAULT_PRESENCE = [
-      { id: "p_1", name: "「 ⚡| Hyper_DαʀкSтαʀ 」", rawId: "「 ⚡| Hyper_DαʀкSтαʀ 」", role: "👑 Portal Owner", roleColor: "#ff6b00", status: "Online • Managing Portal", device: "DEV-MASTER-01", theme: "midnight-stealth", joinedAt: "2026-10-14 10:00" },
-      { id: "p_2", name: "Veloce_GT", rawId: "Veloce_GT 992GT3RS", role: "⚡ Stage 7 Grinder", roleColor: "#10b981", status: "Online • Wangan Loop Lobby #4", device: "DEV-88A21C", theme: "f1-petronas", joinedAt: "2026-10-14 11:15" },
-      { id: "p_3", name: "ApexKing", rawId: "ApexKing X8821", role: "🏎️ Verified Driver", roleColor: "#a855f7", status: "Online • Touge Time Attack", device: "DEV-34F19B", theme: "f1-scuderia", joinedAt: "2026-10-14 11:30" }
+      { id: "p_1", name: "「 ⚡| Hyper_DαʀкSтαʀ 」", rawId: "「 ⚡| Hyper_DαʀкSтαʀ 」", role: "👑 Portal Owner", roleColor: "#ff6b00", pfp: DEFAULT_AUTHOR.pfp, status: "Online • Managing Portal", device: "DEV-MASTER-01", theme: "midnight-stealth", joinedAt: "2026-10-14 10:00" },
+      { id: "p_2", name: "Veloce_GT", rawId: "Veloce_GT 992GT3RS", role: "⚡ Stage 7 Grinder", roleColor: "#10b981", pfp: DEFAULT_DRIVER_PFP, status: "Online • Wangan Loop Lobby #4", device: "DEV-88A21C", theme: "f1-petronas", joinedAt: "2026-10-14 11:15" }
     ];
 
     const DEFAULT_CONFIG = {
@@ -1703,7 +1626,7 @@
     };
 
     /* ============================================================================
-     * 5. APPLICATION STATE & CLOUD SYNC
+     * 5. STATE, PERMANENT LOG MERGING & REAL-TIME MULTI-DEVICE CLOUD SYNC
      * ============================================================================ */
     const DOC_KEYS = ['cars','tyres','maps','rules','clans','updates','events','roles','admins','categories','logs','presence','config'];
 
@@ -1721,18 +1644,16 @@
       calcCustomLiveryPrice: "5m",
       calcResult: null,
       logSearchQuery: "",
-      logTypeFilter: "ALL",
-      logRoleFilter: "ALL",
-      logSortOrder: "NEWEST",
       userDirectorySearch: "",
-      onboardingNameSearch: "",
       driverName: localStorage.getItem('rds_driver_name') || "",
+      driverPfp: localStorage.getItem('rds_driver_pfp') || DEFAULT_DRIVER_PFP,
       settings: JSON.parse(localStorage.getItem('rds_settings') || '{"theme":"liquid-frost","dockPos":"bottom","muteAudio":false,"notificationsEnabled":true}'),
       session: JSON.parse(sessionStorage.getItem('rds_staff_session') || 'null'),
       secretTapCount: 0,
       secretTapTimer: null,
       deferredPwaPrompt: null,
       liveEditActive: false,
+      isSyncing: false,
       docs: {
         cars: DEFAULT_CARS,
         tyres: DEFAULT_TYRES,
@@ -1745,61 +1666,101 @@
         admins: [],
         categories: [],
         logs: [
-          { id: "log_init", time: new Date().toLocaleString(), timestamp: Date.now(), actor: "System", role: "SYSTEM", type: "SYNC", action: "Portal Vault initialized (v1.2.120)" }
+          { id: "log_init", time: "2026-10-14 10:00:00", timestamp: 1760416200000, actor: "System", role: "SYSTEM", type: "SYNC", action: "Portal Vault initialized (v1.2.120)" }
         ],
         presence: DEFAULT_PRESENCE,
         config: DEFAULT_CONFIG
       }
     };
 
+    // Load saved local docs first so logs & items never vanish on page reload
     DOC_KEYS.forEach(k => {
       const saved = localStorage.getItem('rds_doc_' + k);
       if (saved) {
-        try { State.docs[k] = JSON.parse(saved); } catch(e) {}
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed !== null && parsed !== undefined) State.docs[k] = parsed;
+        } catch(e) {}
       }
     });
+
+    function mergeLogsPermanently(localLogs, remoteLogs) {
+      const map = new Map();
+      (Array.isArray(localLogs) ? localLogs : []).forEach(l => { if (l && l.id) map.set(l.id, l); });
+      (Array.isArray(remoteLogs) ? remoteLogs : []).forEach(l => { if (l && l.id) map.set(l.id, l); });
+      return Array.from(map.values())
+        .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0))
+        .slice(0, 250);
+    }
 
     function getGoogleOneApiUrl() {
       return localStorage.getItem('rds_google_one_url') ||
              (State.docs.config && State.docs.config.googleOneWebAppUrl) ||
-             DEFAULT_GOOGLE_ONE_API_URL || "";
+             DEFAULT_GOOGLE_ONE_API_URL;
     }
 
     async function pullFromGoogleOneDrive(manual = false) {
+      if (State.isSyncing) return;
       const apiUrl = getGoogleOneApiUrl();
-      if (!apiUrl) {
-        updateSyncStatusBadge(false, "Local Vault");
-        if (manual) showToast("Paste your Google Apps Script URL in Owner -> 7. 5TB Cloud Vault.");
-        return;
-      }
+      if (!apiUrl) return;
+
       try {
-        const res = await fetch(apiUrl + "?t=" + Date.now(), { method: "GET" });
+        const res = await fetch(apiUrl + "?action=getAll&t=" + Date.now(), {
+          method: "GET",
+          redirect: "follow"
+        });
         const data = await res.json();
-        if (data && data.status === "ok" && data.docs) {
-          updateSyncStatusBadge(true, "5TB Drive Live");
+        const incomingDocs = (data && data.docs) ? data.docs : (data && data.cars ? data : null);
+
+        if (incomingDocs) {
+          updateSyncStatusBadge(true, "5TB Live");
+          let changed = false;
+
           DOC_KEYS.forEach(k => {
-            if (data.docs[k] !== undefined) {
-              State.docs[k] = data.docs[k];
-              localStorage.setItem('rds_doc_' + k, JSON.stringify(data.docs[k]));
+            if (incomingDocs[k] !== undefined && incomingDocs[k] !== null) {
+              if (k === 'logs') {
+                const merged = mergeLogsPermanently(State.docs.logs, incomingDocs.logs);
+                if (JSON.stringify(merged) !== JSON.stringify(State.docs.logs)) {
+                  State.docs.logs = merged;
+                  localStorage.setItem('rds_doc_logs', JSON.stringify(merged));
+                  changed = true;
+                }
+              } else {
+                const incStr = JSON.stringify(incomingDocs[k]);
+                const curStr = JSON.stringify(State.docs[k]);
+                if (incStr !== curStr && (Array.isArray(incomingDocs[k]) ? incomingDocs[k].length > 0 : true)) {
+                  State.docs[k] = incomingDocs[k];
+                  localStorage.setItem('rds_doc_' + k, incStr);
+                  changed = true;
+                }
+              }
             }
           });
-          applyBrandingConfig();
-          renderCategoryDock();
-          renderMainContent();
+
+          if (changed) {
+            applyBrandingConfig();
+            applyUserSettings();
+            renderCategoryDock();
+            // Only re-render main content if modal isn't open so typing isn't interrupted
+            if (!document.getElementById('universal-modal').classList.contains('open')) {
+              renderMainContent();
+            }
+          }
           if (manual) showToast("Synced with 5TB Google Drive!", "success");
         }
       } catch (err) {
-        updateSyncStatusBadge(false, "Drive Offline");
+        updateSyncStatusBadge(false, "Syncing...");
       }
     }
 
     async function syncDoc(docKey, newPayload, logMsg = null, logType = "CREATE") {
+      State.isSyncing = true;
       State.docs[docKey] = newPayload;
       localStorage.setItem('rds_doc_' + docKey, JSON.stringify(newPayload));
 
       if (logMsg) {
         const entry = {
-          id: "log_" + Date.now(),
+          id: "log_" + Date.now() + "_" + Math.random().toString(36).substring(2, 6),
           time: new Date().toLocaleString(),
           timestamp: Date.now(),
           actor: State.session ? (State.session.displayName || State.session.email) : (State.driverName || "Driver"),
@@ -1807,7 +1768,7 @@
           type: logType,
           action: logMsg
         };
-        State.docs.logs = [entry, ...(State.docs.logs || []).slice(0, 150)];
+        State.docs.logs = mergeLogsPermanently([entry], State.docs.logs);
         localStorage.setItem('rds_doc_logs', JSON.stringify(State.docs.logs));
       }
 
@@ -1819,16 +1780,38 @@
       const apiUrl = getGoogleOneApiUrl();
       if (apiUrl) {
         try {
+          // Send both single docKey AND full docs snapshot so any Google Apps Script handler format updates all devices
           await fetch(apiUrl, {
             method: "POST",
+            redirect: "follow",
             headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({ action: "syncDoc", docKey, payload: newPayload })
+            body: JSON.stringify({
+              action: "syncDoc",
+              docKey: docKey,
+              payload: newPayload,
+              logs: State.docs.logs,
+              docs: State.docs
+            })
           });
-          updateSyncStatusBadge(true, "5TB Drive Live");
+          if (logMsg) {
+            await fetch(apiUrl, {
+              method: "POST",
+              redirect: "follow",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify({
+                action: "syncDoc",
+                docKey: "logs",
+                payload: State.docs.logs,
+                docs: State.docs
+              })
+            });
+          }
+          updateSyncStatusBadge(true, "5TB Live");
         } catch (e) {
-          updateSyncStatusBadge(false, "Cached Locally");
+          updateSyncStatusBadge(false, "Saved Locally");
         }
       }
+      State.isSyncing = false;
     }
 
     function updateSyncStatusBadge(online, text) {
@@ -1837,16 +1820,46 @@
       if (!dot || !txt) return;
       if (online) {
         dot.classList.remove('offline');
-        txt.textContent = text || "5TB Drive Live";
+        txt.textContent = text || "5TB Live";
       } else {
         dot.classList.add('offline');
-        txt.textContent = text || "Local Vault";
+        txt.textContent = text || "Saved";
       }
     }
 
+    // Poll every 3.5 seconds so tyre codes, events, and logs sync across all devices automatically
+    setInterval(() => {
+      pullFromGoogleOneDrive(false);
+    }, 3500);
+
     /* ============================================================================
-     * 6. BRANDING, SPLASH VIDEO, SOCIALS & HEADER STAFF PILLS
+     * 6. BRANDING, AUTOPLAY VIDEO & PROFILE ROLE DISPLAY
      * ============================================================================ */
+    function ensureSplashVideoAutoplay() {
+      const v = document.getElementById('splash-video');
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      v.setAttribute('webkit-playsinline', '');
+      v.removeAttribute('controls');
+      const p = v.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Fallback: trigger play on first touch/click anywhere on screen
+          const resumePlay = () => {
+            v.muted = true;
+            v.play().catch(() => {});
+            document.removeEventListener('touchstart', resumePlay);
+            document.removeEventListener('click', resumePlay);
+          };
+          document.addEventListener('touchstart', resumePlay, { once: true });
+          document.addEventListener('click', resumePlay, { once: true });
+        });
+      }
+    }
+
     function applyBrandingConfig() {
       const cfg = State.docs.config || DEFAULT_CONFIG;
       const splashDescEl = document.getElementById('editable-splash-desc');
@@ -1859,23 +1872,15 @@
         if (hLogo) hLogo.src = cfg.gameLogo;
       }
 
-      if (cfg.customAccentColor && cfg.customAccentColor.trim() !== "") {
-        document.documentElement.style.setProperty('--btn-bg', cfg.customAccentColor);
-      } else {
-        document.documentElement.style.removeProperty('--btn-bg');
-      }
-
-      // Splash Video Source
       const videoEl = document.getElementById('splash-video');
       const videoSrc = document.getElementById('splash-video-src');
       const targetVideo = cfg.splashBgVideo || DEFAULT_CONFIG.splashBgVideo;
       if (videoEl && videoSrc && videoSrc.getAttribute('src') !== targetVideo) {
         videoSrc.setAttribute('src', targetVideo);
         videoEl.load();
-        videoEl.play().catch(() => {});
+        ensureSplashVideoAutoplay();
       }
 
-      // Splash Custom Image Overlay
       const splashImg = document.getElementById('splash-image');
       const portalWall = document.getElementById('portal-custom-wallpaper');
       if (cfg.splashBgImage && cfg.splashBgImage.trim() !== "") {
@@ -1888,16 +1893,27 @@
         portalWall.classList.remove('active');
       }
 
-      // Render Social Media Links on 1st Page Splash Screen
+      // Real SVG Logos in 1st Page Social Pills
       const socialsWrap = document.getElementById('splash-socials-container');
       if (socialsWrap) {
         socialsWrap.innerHTML = `
-          <a class="splash-social-pill" href="${cfg.discordUrl || '#'}" target="_blank" rel="noopener noreferrer">💬 Discord</a>
-          <a class="splash-social-pill" href="${cfg.instagramUrl || '#'}" target="_blank" rel="noopener noreferrer">📸 Instagram</a>
-          <a class="splash-social-pill" href="${cfg.androidDownloadUrl || '#'}" target="_blank" rel="noopener noreferrer">🤖 Google Play</a>
-          <a class="splash-social-pill" href="${cfg.iosDownloadUrl || '#'}" target="_blank" rel="noopener noreferrer">🍎 App Store</a>
+          <a class="splash-social-pill" href="${cfg.discordUrl || '#'}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.discord} <span>Discord</span></a>
+          <a class="splash-social-pill" href="${cfg.instagramUrl || '#'}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.instagram} <span>Instagram</span></a>
+          <a class="splash-social-pill" href="${cfg.androidDownloadUrl || '#'}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.play} <span>Google Play</span></a>
+          <a class="splash-social-pill" href="${cfg.iosDownloadUrl || '#'}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.apple} <span>App Store</span></a>
         `;
       }
+    }
+
+    function getDriverRecord() {
+      const clean = State.driverName || "Guest Driver";
+      const found = (State.docs.presence || []).find(p => p.name.toLowerCase() === clean.toLowerCase());
+      return {
+        name: clean,
+        role: found?.role || (State.session?.role === 'owner' ? '👑 Portal Owner' : '🏎️ Verified Driver'),
+        roleColor: found?.roleColor || (State.session?.role === 'owner' ? '#ff6b00' : '#38bdf8'),
+        pfp: found?.pfp || State.driverPfp || DEFAULT_DRIVER_PFP
+      };
     }
 
     function applyUserSettings() {
@@ -1905,23 +1921,34 @@
       document.body.setAttribute('data-dock-pos', State.settings.dockPos || 'bottom');
       localStorage.setItem('rds_settings', JSON.stringify(State.settings));
 
-      // Single-line compact driver name in header
+      // Update Driver Header Pill (PFP + Name + Role Badge)
+      const rec = getDriverRecord();
       const driverLabel = document.getElementById('header-driver-name');
+      const driverPfpEl = document.getElementById('header-driver-pfp');
+      const driverRoleEl = document.getElementById('header-driver-role');
       if (driverLabel) {
-        const clean = State.driverName || "Guest Driver";
-        driverLabel.textContent = clean;
-        // Find if user has a custom role color in presence list
-        const foundP = (State.docs.presence || []).find(p => p.name === clean);
-        driverLabel.style.color = (foundP && foundP.roleColor) ? foundP.roleColor : '';
+        driverLabel.textContent = rec.name;
+        driverLabel.style.color = rec.roleColor;
+      }
+      if (driverPfpEl) {
+        driverPfpEl.src = rec.pfp;
+        driverPfpEl.style.borderColor = rec.roleColor;
+      }
+      if (driverRoleEl) {
+        // Short role badge in header pill
+        const shortRole = rec.role.replace(/^[^\w]+/, '').trim().split(' ').pop().toUpperCase();
+        driverRoleEl.textContent = shortRole || "DRIVER";
+        driverRoleEl.style.background = rec.roleColor;
+        driverRoleEl.style.color = "#ffffff";
       }
 
-      // Hide 5TB Sync Pill from Public; Show ONLY to Logged-in Admin/Owner
+      // 5TB Sync Pill strictly hidden from public
       const syncPill = document.getElementById('sync-status-pill');
       if (syncPill) {
         syncPill.style.display = State.session ? 'inline-flex' : 'none';
       }
 
-      // Show Admin / Owner Top Badge & Colored Name in Header when logged in
+      // Admin / Owner Header Badge
       const staffPill = document.getElementById('staff-header-pill');
       const staffRoleEl = document.getElementById('staff-header-role');
       const staffNameEl = document.getElementById('staff-header-name');
@@ -1945,7 +1972,7 @@
     }
 
     /* ============================================================================
-     * 7. NAVIGATION DOCK (ACTIVE GRINDERS REMOVED & OWNER HIDDEN FROM PUBLIC)
+     * 7. NAVIGATION DOCK
      * ============================================================================ */
     const BASE_CATEGORIES = [
       { id: "cars", label: "🏎️ Vehicle Valuation" },
@@ -1966,7 +1993,6 @@
         label: (c.icon || "✨") + " " + c.name
       }));
 
-      // Owner & Staff tab is strictly hidden unless authenticated via 15-tap gate
       const allTabs = [...BASE_CATEGORIES, ...customCats];
       if (State.session) {
         allTabs.push({ id: "owner", label: "👑 Owner & Staff" });
@@ -1980,13 +2006,6 @@
       `).join('');
     }
 
-    document.getElementById('category-scroll-strip').addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > 0) {
-        e.preventDefault();
-        e.currentTarget.scrollLeft += e.deltaY;
-      }
-    }, { passive: false });
-
     function hasPermission(permKey) {
       if (!State.session) return false;
       if (State.session.role === 'owner') return true;
@@ -1997,7 +2016,6 @@
       const cfgOwner = (State.docs.config && State.docs.config.ownerProfile) || DEFAULT_AUTHOR;
       if (!State.session) return cfgOwner;
       if (State.session.role === 'owner') return cfgOwner;
-      // Lookup latest admin record for live color updates
       const latestAdmin = (State.docs.admins || []).find(a => a.email.toLowerCase() === State.session.email.toLowerCase());
       return {
         name: (latestAdmin && latestAdmin.displayName) || State.session.displayName || State.session.email.split('@')[0],
@@ -2008,7 +2026,7 @@
     }
 
     /* ============================================================================
-     * 8. MAIN VIEWPORT RENDERER
+     * 8. MAIN VIEWPORT SECTIONS
      * ============================================================================ */
     function renderMainContent() {
       const container = document.getElementById('main-container');
@@ -2031,7 +2049,7 @@
       if (tab.startsWith('custom_')) return renderCustomCategorySection(container, tab.replace('custom_', ''));
     }
 
-    /* A. VEHICLE VALUATION INDEX & CALCULATOR */
+    /* A. VEHICLE VALUATION & CALCULATOR (WITH COPY RECEIPT IN TEXT) */
     function renderCarsSection(container) {
       const cars = [...(State.docs.cars || [])].sort((a, b) => (Number(a.order) || 999) - (Number(b.order) || 999));
       const q = State.carSearchQuery.trim().toLowerCase();
@@ -2056,17 +2074,17 @@
         <div class="section-header liquid-glass">
           <div>
             <h2 class="section-title">🏎️ Vehicle Valuation Index & Stage Telemetry</h2>
-            <p class="section-subtitle">Inspect Stage 1–7 speeds & base prices or jump below to calculate custom builds.</p>
+            <p class="section-subtitle">Tap any vehicle card to inspect Stage 1–7 speeds & prices, or calculate a custom build receipt below.</p>
           </div>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <button class="btn-glass" onclick="document.getElementById('calc-anchor').scrollIntoView({behavior:'smooth'})">⚡ Valuation Calculator</button>
+            <button class="btn-glass" onclick="document.getElementById('calc-anchor').scrollIntoView({behavior:'smooth'})">⚡ Jump to Calculator</button>
             ${canEditCars ? `<button class="btn-slate" onclick="window.RDSApp.openAddCarModal()">+ Add Vehicle</button>` : ''}
           </div>
         </div>
 
         <div class="liquid-glass" style="padding:0.7rem 0.95rem;border-radius:14px;margin-bottom:1rem;display:flex;gap:0.6rem;align-items:center;">
           <span>🔍</span>
-          <input type="text" class="glass-input" placeholder="Search vehicles by name, #order number, or class..."
+          <input type="text" class="glass-input" autocomplete="off" placeholder="Search vehicles by name, #order number, or class..."
                  value="${State.carSearchQuery.replace(/"/g, '&quot;')}"
                  oninput="window.RDSApp.setCarSearch(this.value)" />
         </div>
@@ -2081,13 +2099,13 @@
                 ${renderMediaAttachment(car.image, car.mediaType || 'image/jpeg', car.name)}
                 <div>
                   <div class="card-title">${car.name}</div>
-                  <div class="card-meta">${car.category || 'Performance'} • S1: ${s1.toUpperCase()} ➔ S7: ${s7.toUpperCase()}</div>
+                  <div class="card-meta" style="margin-top:0.2rem;">${car.category || 'Performance'} • S1: ${s1.toUpperCase()} ➔ S7: ${s7.toUpperCase()}</div>
                 </div>
-                <div style="display:flex;gap:0.35rem;flex-wrap:wrap;" onclick="event.stopPropagation()">
-                  <button class="btn-slate" style="flex:1;padding:0.42rem 0.55rem;font-size:0.74rem;" onclick="window.RDSApp.openCarSpecsModal('${car.id}')">📊 Specs</button>
-                  <button class="btn-glass" style="flex:1;padding:0.42rem 0.55rem;font-size:0.74rem;" onclick="window.RDSApp.selectCarForCalc('${car.id}')">🧮 Calc</button>
-                  ${canEditCars ? `<button class="btn-glass" style="padding:0.42rem 0.52rem;" onclick="window.RDSApp.confirmEditCar('${car.id}')">✏️</button>` : ''}
-                  ${canDelete ? `<button class="btn-danger" style="padding:0.42rem 0.52rem;" onclick="window.RDSApp.confirmDeleteItem('cars','${car.id}','${car.name.replace(/'/g,"")}')">🗑️</button>` : ''}
+                <div style="display:flex;gap:0.4rem;flex-wrap:wrap;" onclick="event.stopPropagation()">
+                  <button class="btn-slate" style="flex:1;" onclick="window.RDSApp.openCarSpecsModal('${car.id}')">📊 Specs</button>
+                  <button class="btn-glass" style="flex:1;" onclick="window.RDSApp.selectCarForCalc('${car.id}')">🧮 Calc</button>
+                  ${canEditCars ? `<button class="btn-glass" onclick="window.RDSApp.confirmEditCar('${car.id}')">✏️</button>` : ''}
+                  ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('cars','${car.id}','${car.name.replace(/'/g,"")}')">🗑️</button>` : ''}
                 </div>
               </div>
             `;
@@ -2101,7 +2119,7 @@
 
             <div style="margin-bottom:0.75rem;">
               <label class="form-label">🔍 Search Vehicle Inside Calculator</label>
-              <input type="text" class="glass-input" placeholder="Filter vehicle dropdown..."
+              <input type="text" class="glass-input" autocomplete="off" placeholder="Filter vehicle dropdown..."
                      value="${State.calcCarSearchQuery.replace(/"/g, '&quot;')}"
                      oninput="window.RDSApp.setCalcCarSearch(this.value)" />
             </div>
@@ -2145,7 +2163,7 @@
             ` : ''}
 
             <button class="btn-slate" style="width:100%;margin-top:1rem;padding:0.8rem;" onclick="window.RDSApp.runCarCalculation()">
-              ⚡ Calculate Valuation Invoice
+              ⚡ Generate Valuation Receipt
             </button>
           </div>
 
@@ -2161,10 +2179,10 @@
       if (!State.calcResult) {
         return `
           <div style="text-align:center;padding:2rem 1rem;">
-            <div style="font-size:2rem;margin-bottom:0.4rem;">🧾</div>
-            <div style="font-weight:800;font-size:0.95rem;">LUXURY TELEMETRY INVOICE</div>
-            <p style="font-size:0.78rem;color:var(--text-secondary);margin-top:0.35rem;">
-              Select your Stage and Add-ons, then click <b>Calculate Valuation Invoice</b>.
+            <div style="font-size:2.2rem;margin-bottom:0.4rem;">🧾</div>
+            <div style="font-weight:800;font-size:0.95rem;">LUXURY TELEMETRY RECEIPT</div>
+            <p style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.35rem;">
+              Select your Stage and Add-ons, then tap <b>Generate Valuation Receipt</b>.
             </p>
           </div>
         `;
@@ -2173,10 +2191,10 @@
       return `
         <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--text-main);padding-bottom:0.5rem;">
           <div>
-            <div style="font-weight:800;font-size:0.9rem;">OFFICIAL RDS VALUATION BILL</div>
+            <div style="font-weight:800;font-size:0.9rem;">OFFICIAL RDS VALUATION RECEIPT</div>
             <div style="font-size:0.7rem;color:var(--text-secondary);">Order #${r.carOrder} • Verified</div>
           </div>
-          <span style="font-size:0.7rem;font-weight:800;padding:0.2rem 0.55rem;border-radius:8px;background:var(--btn-bg);color:var(--btn-text);">STAGE ${r.stageUsed}</span>
+          <span style="font-size:0.7rem;font-weight:800;padding:0.2rem 0.55rem;border-radius:8px;background:#ff6b00;color:#fff;">STAGE ${r.stageUsed}</span>
         </div>
         <div class="invoice-row"><span>Vehicle</span><strong>${r.carName}</strong></div>
         <div class="invoice-row"><span>Speed (No Turbo)</span><strong>${r.noTurboKmh} km/h (${r.noTurboMph} mph)</strong></div>
@@ -2186,8 +2204,11 @@
         <div class="invoice-total-box">
           <div style="font-size:0.7rem;opacity:0.85;">APPROXIMATE VALUATION RANGE</div>
           <div style="font-size:1.25rem;font-weight:900;margin-top:0.15rem;color:#ff6b00;">${r.rangeLow} - ${r.rangeHigh}</div>
-          <div style="font-size:0.74rem;opacity:0.9;margin-top:0.1rem;">Net Build: ${formatCurrencyShort(r.total)}</div>
+          <div style="font-size:0.75rem;opacity:0.9;margin-top:0.1rem;">Exact Net Build: ${formatCurrencyShort(r.total)}</div>
         </div>
+        <button class="btn-slate" style="width:100%;margin-top:0.4rem;" onclick="window.RDSApp.copyReceiptText()">
+          📋 Copy Receipt in Text
+        </button>
       `;
     }
 
@@ -2200,7 +2221,7 @@
         <div class="section-header liquid-glass">
           <div>
             <h2 class="section-title">🛞 Verified Tyre Codes</h2>
-            <p class="section-subtitle">One-click copy Unity TextMeshPro rich-text tyre sidewall strings.</p>
+            <p class="section-subtitle">One-click copy Unity TextMeshPro rich-text tyre sidewall strings. Syncs live across all devices.</p>
           </div>
           ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddTyreModal()">+ Add Tyre Code</button>` : ''}
         </div>
@@ -2209,12 +2230,12 @@
             <div class="glass-card liquid-glass">
               ${renderMediaAttachment(t.mediaUrl, t.mediaType, t.name)}
               <div>
-                <div class="card-title" style="margin-bottom:0.35rem;">${t.name}</div>
-                <pre style="padding:0.52rem;border-radius:10px;background:rgba(15,23,42,0.12);font-family:'JetBrains Mono',monospace;font-size:0.72rem;overflow-x:auto;border:1px solid var(--input-border);">${t.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+                <div class="card-title" style="margin-bottom:0.4rem;">${t.name}</div>
+                <pre style="padding:0.6rem;border-radius:10px;background:rgba(15,23,42,0.14);font-family:'JetBrains Mono',monospace;font-size:0.74rem;overflow-x:auto;border:1px solid var(--input-border);">${t.code.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
               </div>
               ${renderAuthorBadge(t.author || DEFAULT_AUTHOR)}
-              <div style="display:flex;gap:0.38rem;">
-                <button class="btn-slate" style="flex:1;padding:0.45rem;" onclick="window.RDSApp.copyText(${JSON.stringify(t.code).replace(/"/g,'&quot;')})">📋 Copy</button>
+              <div style="display:flex;gap:0.4rem;">
+                <button class="btn-slate" style="flex:1;" onclick="window.RDSApp.copyText(${JSON.stringify(t.code).replace(/"/g,'&quot;')})">📋 Copy Code</button>
                 ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.confirmEditTyre('${t.id}')">✏️</button>` : ''}
                 ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('tyres','${t.id}','${t.name.replace(/'/g,"")}')">🗑️</button>` : ''}
               </div>
@@ -2243,12 +2264,12 @@
               ${renderMediaAttachment(m.image, m.mediaType || 'image/jpeg', m.name)}
               <div>
                 <div class="card-title">${m.name}</div>
-                ${m.record ? `<div class="card-meta" style="margin-top:0.2rem;">⏱️ Record: <strong>${m.record}</strong></div>` : ''}
+                ${m.record ? `<div class="card-meta" style="margin-top:0.25rem;">⏱️ Record: <strong>${m.record}</strong></div>` : ''}
                 ${m.difficulty ? `<div class="card-meta">🔥 Difficulty: ${m.difficulty}</div>` : ''}
-                ${m.driftGuide ? `<p style="font-size:0.78rem;margin-top:0.4rem;color:var(--text-secondary);">${m.driftGuide}</p>` : ''}
+                ${m.driftGuide ? `<p style="font-size:0.82rem;margin-top:0.45rem;color:var(--text-secondary);">${m.driftGuide}</p>` : ''}
               </div>
               ${(canEdit || canDelete) ? `
-                <div style="display:flex;gap:0.38rem;">
+                <div style="display:flex;gap:0.4rem;">
                   ${canEdit ? `<button class="btn-glass" style="flex:1;" onclick="window.RDSApp.confirmEditMap('${m.id}')">✏️ Edit</button>` : ''}
                   ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('maps','${m.id}','${m.name.replace(/'/g,"")}')">🗑️</button>` : ''}
                 </div>
@@ -2259,7 +2280,7 @@
       `;
     }
 
-    /* D. LIVE EVENTS */
+    /* D. LIVE EVENTS (VERTICAL "DOWN BY DOWN" STACK + SERVER SIZE FIELD) */
     function renderEventsSection(container) {
       const events = State.docs.events || [];
       const canEdit = hasPermission('events');
@@ -2268,39 +2289,44 @@
         <div class="section-header liquid-glass">
           <div>
             <h2 class="section-title">🏁 Live Events & Seasonal Tournaments</h2>
-            <p class="section-subtitle">Official server-wide championships and reward pools.</p>
+            <p class="section-subtitle">Official server-wide championships, lobby server sizes, and reward pools.</p>
           </div>
-          ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddEventModal()">+ Add Event</button>` : ''}
+          ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddEventModal()">+ Create Event</button>` : ''}
         </div>
-        <div class="catalog-grid">
+        <div class="vertical-stack-list">
           ${events.map(ev => `
             <div class="glass-card liquid-glass">
-              ${renderMediaAttachment(ev.mediaUrl, ev.mediaType, ev.title)}
+              ${renderMediaAttachment(ev.mediaUrl, ev.mediaType, ev.title, '200px')}
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+                <div style="display:flex;align-items:center;gap:0.45rem;flex-wrap:wrap;">
+                  <span style="font-size:0.72rem;font-weight:800;padding:0.22rem 0.65rem;border-radius:999px;background:#ff6b00;color:#fff;">${ev.status}</span>
+                  <span class="platform-pill">🖧 Server Size: <strong>${ev.serverSize || '30 / 30 Players'}</strong></span>
+                </div>
+                <span class="card-meta">📅 ${ev.dates}</span>
+              </div>
               <div>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
-                  <span style="font-size:0.68rem;font-weight:800;padding:0.18rem 0.55rem;border-radius:999px;background:var(--btn-bg);color:var(--btn-text);">${ev.status}</span>
-                  <span class="card-meta">${ev.dates}</span>
-                </div>
-                <div class="card-title">${ev.title}</div>
-                <p style="font-size:0.79rem;margin:0.4rem 0;color:var(--text-secondary);">${ev.desc}</p>
+                <div class="card-title" style="font-size:1.12rem;">${ev.title}</div>
+                <p style="font-size:0.85rem;margin-top:0.35rem;line-height:1.55;color:var(--text-secondary);">${ev.desc}</p>
               </div>
-              <div style="padding:0.5rem;border-radius:10px;background:rgba(15,23,42,0.08);font-size:0.75rem;font-weight:700;">
-                🏆 Reward: ${ev.reward}
+              <div style="padding:0.65rem 0.85rem;border-radius:12px;background:rgba(15,23,42,0.1);font-size:0.82rem;font-weight:800;">
+                🏆 Reward Pool: ${ev.reward}
               </div>
-              ${renderAuthorBadge(ev.author || DEFAULT_AUTHOR)}
-              ${(canEdit || canDelete) ? `
-                <div style="display:flex;gap:0.38rem;">
-                  ${canEdit ? `<button class="btn-glass" style="flex:1;" onclick="window.RDSApp.confirmEditEvent('${ev.id}')">✏️ Edit</button>` : ''}
-                  ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('events','${ev.id}','${ev.title.replace(/'/g,"")}')">🗑️</button>` : ''}
-                </div>
-              ` : ''}
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                ${renderAuthorBadge(ev.author || DEFAULT_AUTHOR)}
+                ${(canEdit || canDelete) ? `
+                  <div style="display:flex;gap:0.4rem;">
+                    ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.confirmEditEvent('${ev.id}')">✏️ Edit</button>` : ''}
+                    ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('events','${ev.id}','${ev.title.replace(/'/g,"")}')">🗑️ Delete</button>` : ''}
+                  </div>
+                ` : ''}
+              </div>
             </div>
           `).join('')}
         </div>
       `;
     }
 
-    /* E. RDS UPDATES */
+    /* E. RDS UPDATES (CLEAN VERTICAL "DOWN BY DOWN" FEED — NEVER SMASHED TOGETHER) */
     function renderUpdatesSection(container) {
       const updates = (State.docs.updates || []).filter(u => u.branch === State.updateBranchTab);
       const canEdit = hasPermission('updates') || (State.updateBranchTab === 'beta' && hasPermission('beta'));
@@ -2309,45 +2335,52 @@
         <div class="section-header liquid-glass">
           <div>
             <h2 class="section-title">🚀 RDS Updates & Rollout Tracker</h2>
-            <p class="section-subtitle">Live Android & iOS rollout statuses across Public and Beta branches.</p>
+            <p class="section-subtitle">Official changelog stacked cleanly down-by-down with Android & iOS rollout statuses.</p>
           </div>
-          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
-            <button class="${State.updateBranchTab === 'public' ? 'btn-slate' : 'btn-glass'}" onclick="window.RDSApp.setUpdateBranch('public')">🌐 Public</button>
-            <button class="${State.updateBranchTab === 'beta' ? 'btn-slate' : 'btn-glass'}" onclick="window.RDSApp.setUpdateBranch('beta')">🧪 Beta</button>
+          <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
+            <button class="${State.updateBranchTab === 'public' ? 'btn-slate' : 'btn-glass'}" onclick="window.RDSApp.setUpdateBranch('public')">🌐 Public Releases</button>
+            <button class="${State.updateBranchTab === 'beta' ? 'btn-slate' : 'btn-glass'}" onclick="window.RDSApp.setUpdateBranch('beta')">🧪 Beta Branch</button>
             ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddUpdateModal()">+ Publish Update</button>` : ''}
           </div>
         </div>
-        <div class="catalog-grid">
+        <div class="vertical-stack-list">
           ${updates.map(u => `
-            <div class="glass-card liquid-glass">
-              ${renderMediaAttachment(u.mediaUrl, u.mediaType, u.title)}
-              <div>
-                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;">
-                  <span style="font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.82rem;">${u.version}</span>
-                  <span style="font-size:0.66rem;font-weight:800;padding:0.18rem 0.52rem;border-radius:999px;background:var(--btn-bg);color:var(--btn-text);">${u.tag}</span>
+            <div class="glass-card liquid-glass" style="border-left:5px solid #ff6b00;">
+              ${renderMediaAttachment(u.mediaUrl, u.mediaType, u.title, '200px')}
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span style="font-family:'JetBrains Mono',monospace;font-weight:800;font-size:0.95rem;padding:0.2rem 0.6rem;border-radius:8px;background:var(--btn-sec-bg);color:var(--btn-sec-text);">${u.version}</span>
+                  <span style="font-size:0.7rem;font-weight:800;padding:0.22rem 0.6rem;border-radius:999px;background:#ff6b00;color:#fff;">${u.tag}</span>
                 </div>
-                <div class="card-title">${u.title}</div>
-                <div class="card-meta" style="margin-bottom:0.4rem;">Published: ${u.date}</div>
-                <div style="display:flex;gap:0.35rem;flex-wrap:wrap;margin-bottom:0.5rem;">
-                  <span class="platform-pill">🤖 ${u.androidStatus || '✅ Released'}</span>
-                  <span class="platform-pill">🍎 ${u.iosStatus || '✅ Released'}</span>
-                </div>
-                <p style="font-size:0.79rem;color:var(--text-secondary);">${u.notes}</p>
+                <span class="card-meta">📅 Published: ${u.date}</span>
               </div>
-              ${renderAuthorBadge(u.author || DEFAULT_AUTHOR)}
-              ${(canEdit || canDelete) ? `
-                <div style="display:flex;gap:0.38rem;">
-                  ${canEdit ? `<button class="btn-glass" style="flex:1;" onclick="window.RDSApp.confirmEditUpdate('${u.id}')">✏️ Edit</button>` : ''}
-                  ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('updates','${u.id}','${u.version.replace(/'/g,"")}')">🗑️</button>` : ''}
-                </div>
-              ` : ''}
+
+              <div>
+                <div class="card-title" style="font-size:1.12rem;margin-bottom:0.35rem;">${u.title}</div>
+                <p style="font-size:0.86rem;line-height:1.6;color:var(--text-secondary);">${u.notes}</p>
+              </div>
+
+              <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                <span class="platform-pill">🤖 Android: <strong>${u.androidStatus || '✅ Released'}</strong></span>
+                <span class="platform-pill">🍎 iOS: <strong>${u.iosStatus || '✅ Released'}</strong></span>
+              </div>
+
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;padding-top:0.4rem;border-top:1px dashed var(--input-border);">
+                ${renderAuthorBadge(u.author || DEFAULT_AUTHOR)}
+                ${(canEdit || canDelete) ? `
+                  <div style="display:flex;gap:0.4rem;">
+                    ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.confirmEditUpdate('${u.id}')">✏️ Edit</button>` : ''}
+                    ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('updates','${u.id}','${u.version.replace(/'/g,"")}')">🗑️ Delete</button>` : ''}
+                  </div>
+                ` : ''}
+              </div>
             </div>
           `).join('')}
         </div>
       `;
     }
 
-    /* F. REDESIGNED RULES OF CONDUCT PAGE (PROFESSIONAL CODEBOOK LAYOUT) */
+    /* F. RULES OF CONDUCT (CLEAN DOWN-BY-DOWN CODEBOOK ARTICLES) */
     function renderRulesSection(container) {
       const rules = State.docs.rules || [];
       const canEdit = hasPermission('rules');
@@ -2360,43 +2393,42 @@
       container.innerHTML = `
         <div class="section-header liquid-glass">
           <div>
-            <h2 class="section-title">⚖️ Official Motorsport Code of Conduct & Regulations</h2>
+            <h2 class="section-title">⚖️ Official Motorsport Code of Conduct</h2>
             <p class="section-subtitle">Mandatory fair-play articles governing trading valuations, convoy etiquette, and lobby integrity.</p>
           </div>
-          <div style="display:flex;gap:0.45rem;flex-wrap:wrap;align-items:center;">
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
             ${categories.map(cat => `
               <button class="${State.ruleCategoryFilter === cat ? 'btn-slate' : 'btn-glass'}"
-                      style="padding:0.42rem 0.8rem;font-size:0.75rem;"
                       onclick="window.RDSApp.setRuleFilter('${cat.replace(/'/g,"")}')">
                 ${cat}
               </button>
             `).join('')}
-            ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddRuleModal()">+ Add Regulation</button>` : ''}
+            ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddRuleModal()">+ Add Rule</button>` : ''}
           </div>
         </div>
 
-        <div class="rules-list-layout">
+        <div class="vertical-stack-list">
           ${filteredRules.map((r, idx) => {
             const borderCol = r.severityColor || "#ff6b00";
             const articleNum = String(idx + 1).padStart(2, '0');
             return `
-              <div class="rule-pro-card liquid-glass" style="border-left-color:${borderCol};">
+              <div class="glass-card liquid-glass" style="border-left:6px solid ${borderCol};">
                 ${renderMediaAttachment(r.mediaUrl, r.mediaType, r.title)}
-                <div>
-                  <div class="rule-top-bar">
-                    <div style="display:flex;align-items:center;gap:0.45rem;">
-                      <span class="rule-article-pill">ARTICLE ${articleNum}</span>
-                      <span class="card-meta" style="font-weight:700;">${r.category || 'Regulation'}</span>
-                    </div>
-                    <span class="rule-penalty-pill">⚠️ ${r.penalty || 'Warning'}</span>
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:800;padding:0.22rem 0.6rem;border-radius:6px;background:var(--btn-sec-bg);color:var(--btn-sec-text);">ARTICLE ${articleNum}</span>
+                    <span class="card-meta">${r.category || 'Regulation'}</span>
                   </div>
-                  <div class="card-title" style="font-size:1.02rem;margin-top:0.6rem;">${r.title}</div>
-                  <p style="font-size:0.82rem;margin-top:0.38rem;line-height:1.58;color:var(--text-secondary);">${r.desc}</p>
+                  <span style="font-size:0.74rem;font-weight:800;padding:0.24rem 0.7rem;border-radius:999px;background:rgba(239,68,68,0.16);color:#ef4444;border:1px solid rgba(239,68,68,0.4);">⚠️ Penalty: ${r.penalty || 'Warning'}</span>
+                </div>
+                <div>
+                  <div class="card-title" style="font-size:1.08rem;">${r.title}</div>
+                  <p style="font-size:0.85rem;margin-top:0.35rem;line-height:1.58;color:var(--text-secondary);">${r.desc}</p>
                 </div>
                 ${(canEdit || canDelete) ? `
-                  <div style="display:flex;gap:0.4rem;justify-content:flex-end;padding-top:0.4rem;border-top:1px dashed var(--input-border);">
-                    ${canEdit ? `<button class="btn-glass" style="padding:0.36rem 0.7rem;font-size:0.74rem;" onclick="window.RDSApp.openAddRuleModal('${r.id}')">✏️ Edit Rule</button>` : ''}
-                    ${canDelete ? `<button class="btn-danger" style="padding:0.36rem 0.7rem;font-size:0.74rem;" onclick="window.RDSApp.confirmDeleteItem('rules','${r.id}','${r.title.replace(/'/g,"")}')">🗑️ Remove</button>` : ''}
+                  <div style="display:flex;gap:0.4rem;justify-content:flex-end;">
+                    ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.openAddRuleModal('${r.id}')">✏️ Edit</button>` : ''}
+                    ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('rules','${r.id}','${r.title.replace(/'/g,"")}')">🗑️ Remove</button>` : ''}
                   </div>
                 ` : ''}
               </div>
@@ -2406,7 +2438,7 @@
       `;
     }
 
-    /* G. MULTIPLAYER & CLANS */
+    /* G. MULTIPLAYER & CLANS (DOWN BY DOWN) */
     function renderClansSection(container) {
       const clans = State.docs.clans || [];
       const canEdit = hasPermission('clans');
@@ -2419,25 +2451,24 @@
           </div>
           ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddClanModal()">+ Add Clan Guide</button>` : ''}
         </div>
-        <div class="catalog-grid">
+        <div class="vertical-stack-list">
           ${clans.map(c => `
             <div class="glass-card liquid-glass">
               ${renderMediaAttachment(c.mediaUrl, c.mediaType, c.name)}
-              <div>
-                <div class="card-title">${c.name}</div>
-                <div class="card-meta" style="margin-top:0.25rem;">👑 Leader: <span class="one-line-name">${c.leader}</span></div>
-                <div class="card-meta">🕒 Meetups: ${c.schedule}</div>
-                <div class="card-meta">👥 Roster: ${c.roster}</div>
-                <p style="font-size:0.79rem;margin-top:0.4rem;color:var(--text-secondary);">${c.guide}</p>
+              <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+                <div class="card-title" style="font-size:1.1rem;">${c.name}</div>
+                <span class="platform-pill">👥 Roster: <strong>${c.roster}</strong></span>
               </div>
-              ${canDelete ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('clans','${c.id}','${c.name.replace(/'/g,"")}')">🗑️ Remove</button>` : ''}
+              <div class="card-meta">👑 Leader: <strong>${c.leader}</strong> • 🕒 Meetups: ${c.schedule}</div>
+              <p style="font-size:0.84rem;color:var(--text-secondary);line-height:1.55;">${c.guide}</p>
+              ${canDelete ? `<div><button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('clans','${c.id}','${c.name.replace(/'/g,"")}')">🗑️ Remove Clan</button></div>` : ''}
             </div>
           `).join('')}
         </div>
       `;
     }
 
-    /* H. COMMUNITY LINKS */
+    /* H. COMMUNITY LINKS WITH REAL BRAND SVG LOGOS */
     function renderLinksSection(container) {
       const cfg = State.docs.config || DEFAULT_CONFIG;
       const canEdit = hasPermission('links');
@@ -2451,37 +2482,37 @@
         </div>
         <div class="catalog-grid">
           <div class="glass-card liquid-glass">
-            <div class="card-title">💬 Official Discord Server</div>
+            <div class="card-title" style="display:flex;align-items:center;gap:0.5rem;">${BRAND_SVGS.discord} <span>Official Discord Server</span></div>
             <p class="card-meta">Join live trading lobbies, stage telemetry discussions, and clan meetups.</p>
-            <a class="btn-slate" href="${cfg.discordUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Join Discord</a>
+            <a class="btn-slate" href="${cfg.discordUrl}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.discord} <span>Join Discord</span></a>
           </div>
           <div class="glass-card liquid-glass">
-            <div class="card-title">📸 Official Instagram</div>
+            <div class="card-title" style="display:flex;align-items:center;gap:0.5rem;">${BRAND_SVGS.instagram} <span>Official Instagram</span></div>
             <p class="card-meta">Community car photography, cinematics, and update teasers.</p>
-            <a class="btn-slate" href="${cfg.instagramUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Open Instagram</a>
+            <a class="btn-slate" href="${cfg.instagramUrl}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.instagram} <span>Open Instagram</span></a>
           </div>
           <div class="glass-card liquid-glass">
-            <div class="card-title">🤖 Google Play Store</div>
+            <div class="card-title" style="display:flex;align-items:center;gap:0.5rem;">${BRAND_SVGS.play} <span>Google Play Store</span></div>
             <p class="card-meta">Download the latest Android build.</p>
-            <a class="btn-slate" href="${cfg.androidDownloadUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">Android Download</a>
+            <a class="btn-slate" href="${cfg.androidDownloadUrl}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.play} <span>Android Download</span></a>
           </div>
           <div class="glass-card liquid-glass">
-            <div class="card-title">🍎 Apple App Store</div>
+            <div class="card-title" style="display:flex;align-items:center;gap:0.5rem;">${BRAND_SVGS.apple} <span>Apple App Store</span></div>
             <p class="card-meta">Download the latest iOS / iPadOS build.</p>
-            <a class="btn-slate" href="${cfg.iosDownloadUrl}" target="_blank" rel="noopener noreferrer" style="text-decoration:none;">iOS Download</a>
+            <a class="btn-slate" href="${cfg.iosDownloadUrl}" target="_blank" rel="noopener noreferrer">${BRAND_SVGS.apple} <span>iOS Download</span></a>
           </div>
         </div>
       `;
     }
 
-    /* I. FULLY CUSTOMIZABLE DYNAMIC CATEGORY RENDERER */
+    /* I. CUSTOM CATEGORY RENDERER */
     function renderCustomCategorySection(container, catId) {
       const cat = (State.docs.categories || []).find(c => c.id === catId);
       if (!cat) return;
       const canEdit = hasPermission('files') || hasPermission('cars');
       const gridSizeClass = cat.gridSize || 'size-balanced';
       const cardShapeClass = cat.cardShape || 'shape-rounded';
-      const mediaHeight = cat.mediaHeight || '150px';
+      const mediaHeight = cat.mediaHeight || '165px';
       const accentBorder = cat.accentColor ? `border-color:${cat.accentColor};` : '';
 
       container.innerHTML = `
@@ -2491,7 +2522,7 @@
             <p class="section-subtitle">${cat.description || 'Custom portal category'}</p>
           </div>
           <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
-            ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.openAddCategoryModal('${cat.id}')">⚙️ Customize Layout & Shape</button>` : ''}
+            ${canEdit ? `<button class="btn-glass" onclick="window.RDSApp.openAddCategoryModal('${cat.id}')">⚙️ Customize Shape & Size</button>` : ''}
             ${canEdit ? `<button class="btn-slate" onclick="window.RDSApp.openAddCustomCardModal('${cat.id}')">+ Add Entry</button>` : ''}
           </div>
         </div>
@@ -2501,7 +2532,7 @@
               ${renderMediaAttachment(item.mediaUrl || item.image, item.mediaType, item.title, mediaHeight)}
               <div>
                 <div class="card-title">${item.title}</div>
-                <p style="font-size:0.8rem;margin-top:0.3rem;line-height:1.45;color:var(--text-secondary);">${item.body}</p>
+                <p style="font-size:0.82rem;margin-top:0.35rem;line-height:1.5;color:var(--text-secondary);">${item.body}</p>
               </div>
               ${canEdit ? `<button class="btn-danger" onclick="window.RDSApp.deleteCustomCard('${cat.id}','${item.id}')">🗑️ Remove</button>` : ''}
             </div>
@@ -2510,7 +2541,7 @@
       `;
     }
 
-    /* J. 👑 OWNER & STAFF COMMAND CENTER (HIDDEN FROM PUBLIC UNTIL 15-TAP LOGIN) */
+    /* J. 👑 OWNER & STAFF COMMAND CENTER */
     function renderOwnerSection(container) {
       if (!State.session) return;
       const sub = State.ownerSubTab || 'admins';
@@ -2521,20 +2552,20 @@
       container.innerHTML = `
         <div class="section-header liquid-glass">
           <div style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-            <img src="${author.pfp}" alt="PFP" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid ${author.color};" />
+            <img src="${author.pfp}" alt="PFP" style="width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid ${author.color};" />
             <div>
               <div style="display:flex;align-items:center;gap:0.45rem;">
                 <span class="staff-role-tag" style="background:${author.color};">${State.session.role.toUpperCase()}</span>
-                <span class="one-line-name" style="color:${author.color};font-size:0.9rem;max-width:220px;">${author.name}</span>
+                <span class="one-line-name" style="color:${author.color};font-size:0.95rem;max-width:220px;">${author.name}</span>
               </div>
               <p class="section-subtitle">
-                🟢 ${onlineCount} Logged-In Users • Device: ${getDeviceFingerprint()}
+                🟢 ${onlineCount} Logged-In Users • Permanent Cloud Sync Active
               </p>
             </div>
           </div>
           <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
-            <button class="btn-glass" onclick="window.RDSApp.openEditAuthorProfileModal()">🎨 My Profile & PFP</button>
-            ${(isOwner || hasPermission('liveEdit')) ? `<button class="btn-slate" onclick="window.RDSApp.toggleLiveEditMode(true)">✏️ God-Mode Live Editor</button>` : ''}
+            <button class="btn-glass" onclick="window.RDSApp.openEditAuthorProfileModal()">🎨 My Staff PFP & Color</button>
+            ${(isOwner || hasPermission('liveEdit')) ? `<button class="btn-slate" onclick="window.RDSApp.toggleLiveEditMode(true)">✏️ Live Editor</button>` : ''}
             <button class="btn-danger" onclick="window.RDSApp.logoutStaff()">🚪 Sign Out</button>
           </div>
         </div>
@@ -2542,11 +2573,11 @@
         <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:1.1rem;">
           <button class="${sub==='admins'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('admins')">1. A–Z Admins & Colors</button>
           <button class="${sub==='users'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('users')">2. Logged-In Users (${onlineCount})</button>
-          <button class="${sub==='logs'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('logs')">3. Audit Logs</button>
-          <button class="${sub==='branding'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('branding')">4. Logo, Video & Splash</button>
+          <button class="${sub==='logs'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('logs')">3. Permanent Logs (${(State.docs.logs||[]).length})</button>
+          <button class="${sub==='branding'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('branding')">4. Video, Logo & Splash</button>
           <button class="${sub==='roles'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('roles')">5. Roles</button>
           <button class="${sub==='categories'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('categories')">6. Custom Categories</button>
-          <button class="${sub==='cloud'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('cloud')">7. 5TB Cloud Vault</button>
+          <button class="${sub==='cloud'?'btn-slate':'btn-glass'}" onclick="window.RDSApp.setOwnerSubTab('cloud')">7. 5TB Cloud Sync</button>
         </div>
 
         <div class="liquid-glass" style="padding:1.25rem;border-radius:20px;">
@@ -2561,30 +2592,30 @@
         return `
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
             <div>
-              <h3 style="font-weight:800;">🛡️ A–Z Granular Admin Accounts & Custom Name Colors</h3>
-              <p class="section-subtitle">Assign custom colored names, PFPs, device limits, and A–Z permissions.</p>
+              <h3 style="font-weight:800;">🛡️ A–Z Admin Accounts & Custom Name Colors</h3>
+              <p class="section-subtitle">Create admins with custom name colors, PFPs, device limits, and A–Z permissions.</p>
             </div>
             ${isOwner ? `<button class="btn-slate" onclick="window.RDSApp.openCreateAdminModal()">+ Create Admin Account</button>` : ''}
           </div>
           <div class="catalog-grid">
-            ${admins.length === 0 ? `<div class="card-meta">No secondary admins created yet. Click "+ Create Admin Account" to add one and configure A–Z permissions.</div>` : ''}
+            ${admins.length === 0 ? `<div class="card-meta">No secondary admins created yet. Tap "+ Create Admin Account" to add one.</div>` : ''}
             ${admins.map(a => {
               const enabledPerms = AZ_PERMISSIONS.filter(p => a.permissions && a.permissions[p.key]);
               return `
                 <div class="glass-card liquid-glass">
                   <div style="display:flex;align-items:center;gap:0.55rem;">
-                    <img src="${a.pfp || DEFAULT_AUTHOR.pfp}" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid ${a.nameColor || '#38bdf8'};" />
+                    <img src="${a.pfp || DEFAULT_AUTHOR.pfp}" style="width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid ${a.nameColor || '#38bdf8'};" />
                     <div style="min-width:0;">
-                      <div class="one-line-name" style="color:${a.nameColor || '#38bdf8'};font-size:0.86rem;max-width:180px;">${a.displayName || a.email}</div>
+                      <div class="one-line-name" style="color:${a.nameColor || '#38bdf8'};font-size:0.88rem;max-width:180px;">${a.displayName || a.email}</div>
                       <div class="card-meta">${a.email} • Devices: ${(a.devices || []).length}/${a.maxDevices || 2}</div>
                     </div>
                   </div>
-                  <div style="display:flex;gap:0.25rem;flex-wrap:wrap;margin-top:0.35rem;">
-                    ${enabledPerms.map(p => `<span style="font-size:0.64rem;font-weight:800;padding:0.14rem 0.42rem;border-radius:6px;background:var(--badge-bg);color:var(--badge-text);" title="${p.label}">${p.code}: ${p.key.toUpperCase()}</span>`).join('')}
+                  <div style="display:flex;gap:0.25rem;flex-wrap:wrap;">
+                    ${enabledPerms.map(p => `<span style="font-size:0.65rem;font-weight:800;padding:0.14rem 0.42rem;border-radius:6px;background:var(--badge-bg);color:var(--badge-text);">${p.code}: ${p.key.toUpperCase()}</span>`).join('')}
                   </div>
                   ${isOwner ? `
-                    <div style="display:flex;gap:0.4rem;margin-top:0.4rem;">
-                      <button class="btn-glass" style="flex:1;" onclick="window.RDSApp.openCreateAdminModal('${a.id}')">✏️ Edit Perms & Color</button>
+                    <div style="display:flex;gap:0.4rem;">
+                      <button class="btn-glass" style="flex:1;" onclick="window.RDSApp.openCreateAdminModal('${a.id}')">✏️ Edit Perms</button>
                       <button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('admins','${a.id}','${a.email}')">🗑️</button>
                     </div>
                   ` : ''}
@@ -2595,10 +2626,8 @@
         `;
       }
 
-      /* 2. LOGGED-IN USERS, ROLES & OWNER USER INSPECTOR */
       if (sub === 'users') {
         const users = State.docs.presence || [];
-        const roles = State.docs.roles || [];
         const q = State.userDirectorySearch.trim().toLowerCase();
         const filteredUsers = users.filter(u =>
           u.name.toLowerCase().includes(q) ||
@@ -2608,35 +2637,31 @@
         return `
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.9rem;flex-wrap:wrap;gap:0.5rem;">
             <div>
-              <h3 style="font-weight:800;">👥 Logged-In Users & Role Directory (${users.length} Active)</h3>
-              <p class="section-subtitle">View everyone logged in, their assigned roles, and ${isOwner ? 'inspect user details or assign roles.' : 'active statuses.'}</p>
+              <h3 style="font-weight:800;">👥 Logged-In Users & Role Management (${users.length} Active)</h3>
+              <p class="section-subtitle">View logged-in players, inspect their device/session info, and assign roles.</p>
             </div>
-            <div style="display:flex;gap:0.45rem;flex-wrap:wrap;">
-              <button class="btn-slate" onclick="window.RDSApp.openAddDirectoryUserModal()">+ Add / Register Player Name</button>
-            </div>
+            <button class="btn-slate" onclick="window.RDSApp.openAddDirectoryUserModal()">+ Add Player & Role</button>
           </div>
 
-          <div style="margin-bottom:0.9rem;">
-            <input type="text" class="glass-input" placeholder="🔍 Search logged-in players by name or role..."
-                   value="${State.userDirectorySearch.replace(/"/g,'&quot;')}"
-                   oninput="window.RDSApp.setUserDirectorySearch(this.value)" />
-          </div>
+          <input type="text" class="glass-input" autocomplete="off" style="margin-bottom:0.9rem;" placeholder="🔍 Search players by name or role..."
+                 value="${State.userDirectorySearch.replace(/"/g,'&quot;')}"
+                 oninput="window.RDSApp.setUserDirectorySearch(this.value)" />
 
           <div class="catalog-grid">
             ${filteredUsers.map(u => `
               <div class="glass-card liquid-glass">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:0.4rem;">
-                  <div style="display:flex;align-items:center;gap:0.45rem;min-width:0;">
-                    <span class="sync-dot"></span>
-                    <span class="one-line-name" style="color:${u.roleColor || 'var(--text-main)'};font-size:0.84rem;max-width:150px;">${u.name}</span>
+                  <div style="display:flex;align-items:center;gap:0.5rem;min-width:0;">
+                    <img src="${u.pfp || DEFAULT_DRIVER_PFP}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid ${u.roleColor || '#38bdf8'};" />
+                    <span class="one-line-name" style="color:${u.roleColor || 'var(--text-main)'};font-size:0.86rem;max-width:140px;">${u.name}</span>
                   </div>
-                  <span style="font-size:0.66rem;font-weight:800;padding:0.16rem 0.5rem;border-radius:999px;background:${u.roleColor || '#0f172a'};color:#fff;">${u.role || 'Driver'}</span>
+                  <span style="font-size:0.66rem;font-weight:800;padding:0.18rem 0.52rem;border-radius:999px;background:${u.roleColor || '#0f172a'};color:#fff;">${u.role || 'Driver'}</span>
                 </div>
                 <div class="card-meta">🎮 ${u.status || 'Online in Portal'}</div>
-                <div style="display:flex;gap:0.35rem;flex-wrap:wrap;margin-top:0.3rem;">
-                  <button class="btn-glass" style="padding:0.35rem 0.55rem;font-size:0.72rem;" onclick="window.RDSApp.openEditUserModal('${u.id}')">✏️ Edit Name / Role</button>
-                  ${isOwner ? `<button class="btn-slate" style="padding:0.35rem 0.55rem;font-size:0.72rem;" onclick="window.RDSApp.openInspectUserModal('${u.id}')">ℹ️ Info</button>` : ''}
-                  ${isOwner ? `<button class="btn-danger" style="padding:0.35rem 0.55rem;font-size:0.72rem;" onclick="window.RDSApp.confirmDeleteItem('presence','${u.id}','${u.name.replace(/'/g,"")}')">🗑️</button>` : ''}
+                <div style="display:flex;gap:0.35rem;flex-wrap:wrap;">
+                  <button class="btn-glass" style="flex:1;" onclick="window.RDSApp.openEditUserModal('${u.id}')">🎭 Role / Edit</button>
+                  ${isOwner ? `<button class="btn-slate" onclick="window.RDSApp.openInspectUserModal('${u.id}')">ℹ️ Info</button>` : ''}
+                  ${isOwner ? `<button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('presence','${u.id}','${u.name.replace(/'/g,"")}')">🗑️</button>` : ''}
                 </div>
               </div>
             `).join('')}
@@ -2653,18 +2678,21 @@
           (l.action && l.action.toLowerCase().includes(q))
         );
         return `
-          <h3 style="font-weight:800;margin-bottom:0.75rem;">🔍 Security Audit Logs (${filteredLogs.length})</h3>
-          <input type="text" class="glass-input" style="margin-bottom:0.8rem;" placeholder="🔍 Search actor or action..."
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;">
+            <h3 style="font-weight:800;">🔍 Permanent Audit Logs (${filteredLogs.length})</h3>
+            <span class="media-status-badge">Auto-Merged & Persisted Across Restarts</span>
+          </div>
+          <input type="text" class="glass-input" autocomplete="off" style="margin-bottom:0.8rem;" placeholder="🔍 Search logs by actor or action..."
                  value="${State.logSearchQuery.replace(/"/g,'&quot;')}"
                  oninput="window.RDSApp.setLogSearch(this.value)" />
-          <div style="display:flex;flex-direction:column;gap:0.45rem;max-height:380px;overflow-y:auto;">
+          <div class="vertical-stack-list" style="max-height:420px;overflow-y:auto;">
             ${filteredLogs.map(l => `
-              <div style="padding:0.6rem 0.85rem;border-radius:10px;background:rgba(15,23,42,0.08);font-size:0.78rem;display:flex;justify-content:space-between;gap:0.6rem;flex-wrap:wrap;">
+              <div style="padding:0.7rem 0.9rem;border-radius:12px;background:rgba(15,23,42,0.1);font-size:0.8rem;display:flex;justify-content:space-between;gap:0.6rem;flex-wrap:wrap;border:1px solid var(--glass-border);">
                 <div>
-                  <span style="font-size:0.65rem;font-weight:800;padding:0.12rem 0.4rem;border-radius:5px;background:var(--badge-bg);color:var(--badge-text);margin-right:0.35rem;">${l.type || 'LOG'}</span>
-                  <strong class="one-line-name">${l.actor}</strong> — ${l.action}
+                  <span style="font-size:0.66rem;font-weight:800;padding:0.14rem 0.45rem;border-radius:6px;background:var(--badge-bg);color:var(--badge-text);margin-right:0.4rem;">${l.type || 'LOG'}</span>
+                  <strong>${l.actor}</strong> — ${l.action}
                 </div>
-                <span style="font-family:'JetBrains Mono',monospace;opacity:0.75;font-size:0.72rem;">${l.time}</span>
+                <span style="font-family:'JetBrains Mono',monospace;opacity:0.8;font-size:0.72rem;">${l.time}</span>
               </div>
             `).join('')}
           </div>
@@ -2674,8 +2702,8 @@
       if (sub === 'branding') {
         const cfg = State.docs.config || DEFAULT_CONFIG;
         return `
-          <h3 style="font-weight:800;margin-bottom:0.3rem;">🎬 1st Page Game Video, Logo & Splash Wallpaper</h3>
-          <p class="section-subtitle" style="margin-bottom:1rem;">Customize the 1st page welcome video, game logo, and background image.</p>
+          <h3 style="font-weight:800;margin-bottom:0.3rem;">🎬 1st Page Game Video, Logo & Wallpaper</h3>
+          <p class="section-subtitle" style="margin-bottom:1rem;">Upload a custom video or paste a direct video URL for the 1st page background.</p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0.9rem;">
             <div class="custom-upload-studio">
               <div class="form-label">1. Official Game Logo</div>
@@ -2688,9 +2716,9 @@
             </div>
 
             <div class="custom-upload-studio">
-              <div class="form-label">2. 1st Page Game Video (MP4 / WebM)</div>
+              <div class="form-label">2. 1st Page Background Video</div>
               <label class="upload-trigger-btn">
-                <span>🎬 Upload Custom Game Video File</span>
+                <span>🎬 Upload Video File (MP4/WebM)</span>
                 <input type="file" accept="video/*" onchange="window.RDSApp.handleMediaUpload(this, 'vid-up-status', 'vid-up-preview', (m) => window.RDSApp.updateSplashVideo(m.url))" />
               </label>
               <span class="media-status-badge" id="vid-up-status">Ready</span>
@@ -2699,7 +2727,7 @@
             </div>
 
             <div class="custom-upload-studio">
-              <div class="form-label">3. Optional Static Wallpaper Override</div>
+              <div class="form-label">3. Optional Static Wallpaper</div>
               <label class="upload-trigger-btn">
                 <span>🌌 Upload Static Wallpaper</span>
                 <input type="file" accept="image/*" onchange="window.RDSApp.handleMediaUpload(this, 'splash-bg-status', 'splash-bg-preview', (m) => window.RDSApp.updateSplashBackground(m.url))" />
@@ -2722,12 +2750,12 @@
           <div class="catalog-grid">
             ${roles.map(r => `
               <div class="glass-card liquid-glass">
-                <div style="display:flex;align-items:center;gap:0.45rem;">
-                  <span style="width:12px;height:12px;border-radius:50%;background:${r.color};"></span>
-                  <span class="one-line-name" style="color:${r.color};font-size:0.86rem;max-width:180px;">${r.name}</span>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <span style="width:14px;height:14px;border-radius:50%;background:${r.color};"></span>
+                  <span class="one-line-name" style="color:${r.color};font-size:0.9rem;max-width:180px;">${r.name}</span>
                 </div>
-                <div class="card-meta">Badge: ${r.badge} • Members: ${r.members}</div>
-                <button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('roles','${r.id}','${r.name.replace(/'/g,"")}')">🗑️ Delete</button>
+                <div class="card-meta">Badge: ${r.badge}</div>
+                <button class="btn-danger" onclick="window.RDSApp.confirmDeleteItem('roles','${r.id}','${r.name.replace(/'/g,"")}')">🗑️ Delete Role</button>
               </div>
             `).join('')}
           </div>
@@ -2740,12 +2768,11 @@
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
             <div>
               <h3 style="font-weight:800;">✨ Fully Customizable Navigation Categories</h3>
-              <p class="section-subtitle">Customize shape, grid size, media aspect height, and accent color.</p>
+              <p class="section-subtitle">Customize card shape, grid size, media height, and accent color.</p>
             </div>
             <button class="btn-slate" onclick="window.RDSApp.openAddCategoryModal()">+ Create Custom Category</button>
           </div>
           <div class="catalog-grid">
-            ${cats.length === 0 ? `<div class="card-meta">No custom categories yet. Click "+ Create Custom Category" to build one.</div>` : ''}
             ${cats.map(c => `
               <div class="glass-card liquid-glass">
                 <div class="card-title">${c.icon || '✨'} ${c.name}</div>
@@ -2763,23 +2790,23 @@
       if (sub === 'cloud') {
         const currentUrl = getGoogleOneApiUrl();
         return `
-          <h3 style="font-weight:800;margin-bottom:0.35rem;">☁️ 5TB Google Drive High-Res Vault</h3>
-          <p class="section-subtitle" style="margin-bottom:0.9rem;">Visible only to Staff. Paste your Google Apps Script Web App URL below.</p>
-          <input type="text" id="google-one-url-input" class="glass-input" style="margin-bottom:0.8rem;" placeholder="https://script.google.com/macros/s/.../exec" value="${currentUrl}" />
+          <h3 style="font-weight:800;margin-bottom:0.35rem;">☁️ 5TB Google Drive Multi-Device Sync</h3>
+          <p class="section-subtitle" style="margin-bottom:0.9rem;">Connected to your live Google Apps Script endpoint. All devices sync automatically.</p>
+          <input type="text" id="google-one-url-input" class="glass-input" style="margin-bottom:0.8rem;" value="${currentUrl}" />
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <button class="btn-slate" onclick="window.RDSApp.saveGoogleOneEndpoint()">💾 Save & Sync to 5TB Drive</button>
-            <button class="btn-glass" onclick="window.RDSApp.pullFromGoogleOneDrive(true)">🔄 Force Pull</button>
+            <button class="btn-slate" onclick="window.RDSApp.saveGoogleOneEndpoint()">💾 Push All Data to Cloud Now</button>
+            <button class="btn-glass" onclick="window.RDSApp.pullFromGoogleOneDrive(true)">🔄 Force Pull from Cloud</button>
           </div>
         `;
       }
     }
 
-    function renderStudioUploadBox(badgeId, previewContainerId, labelText = "Attach Photo, Video, or Audio (Optional)") {
+    function renderStudioUploadBox(badgeId, previewContainerId, labelText = "Attach High-Res Photo, Video, or Audio (Optional)") {
       return `
         <div class="custom-upload-studio">
           <span class="form-label">${labelText}</span>
           <label class="upload-trigger-btn">
-            <span>✨ Choose High-Res Photo / Video / Audio</span>
+            <span>✨ Choose File (Photo / Video / Audio)</span>
             <input type="file" accept="image/*,video/*,audio/*" onchange="window.RDSApp.handleMediaUpload(this, '${badgeId}', '${previewContainerId}')" />
           </label>
           <span class="media-status-badge" id="${badgeId}">Ready</span>
@@ -2789,7 +2816,7 @@
     }
 
     /* ============================================================================
-     * 9. PUBLIC API & MODALS (window.RDSApp)
+     * 9. PUBLIC API & MODALS
      * ============================================================================ */
     function openModal(html) {
       const backdrop = document.getElementById('universal-modal');
@@ -2852,12 +2879,12 @@
         if (!file) return;
         const badge = document.getElementById(badgeId);
         const preview = document.getElementById(previewId);
-        if (badge) badge.textContent = "⏳ Processing Media...";
+        if (badge) badge.textContent = "⏳ Processing...";
         try {
           const result = await processHighResMediaFile(file);
           tempUploadedMedia = { url: result.url, mimeType: result.mimeType };
           if (badge) badge.textContent = `✅ Attached: ${result.fileName}`;
-          if (preview) preview.innerHTML = renderMediaAttachment(result.url, result.mimeType, result.fileName);
+          if (preview) preview.innerHTML = renderMediaAttachment(result.url, result.mimeType, result.fileName, '130px');
           playNotificationSound('success');
           if (onComplete) onComplete(result);
         } catch (err) {
@@ -2909,11 +2936,7 @@
       updateSplashVideo(videoUrl) {
         const nextCfg = { ...(State.docs.config || DEFAULT_CONFIG), splashBgVideo: videoUrl, splashBgImage: "" };
         syncDoc('config', nextCfg, "Updated 1st Page Game Video", "EDIT");
-        showToast("1st Page Splash Video updated!", "success");
-      },
-
-      previewLiveAccentColor(hex) {
-        document.documentElement.style.setProperty('--btn-bg', hex);
+        showToast("1st Page Video updated!", "success");
       },
 
       updateSplashBackground(dataUrl) {
@@ -2923,75 +2946,85 @@
       },
 
       /* ==========================================================================
-       * ONBOARDING MODAL: ASK FOR WEB THEME + SEARCH / ADD / EDIT PLAYER NAME
+       * DRIVER PROFILE MODAL: SHOWS ROLE, THEME, PFP UPLOAD & NO NAME SUGGESTIONS
        * ========================================================================== */
       openOnboardingModal() {
-        const players = State.docs.presence || [];
+        const rec = getDriverRecord();
+        tempUploadedMedia = { url: rec.pfp, mimeType: "image/jpeg" };
         openModal(`
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="section-title">🏎️ Driver Setup: Theme & Player Name</h3>
+            <h3 class="section-title">🏎️ Driver Profile, Role & Theme</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <p class="section-subtitle">
-            Select your preferred portal theme and type, edit, or search your player name below.
-          </p>
+
+          <!-- Current Profile Card showing PFP, Name & Assigned Role -->
+          <div class="liquid-glass" style="padding:0.9rem;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:0.7rem;">
+              <img id="driver-modal-pfp-img" src="${rec.pfp}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2.5px solid ${rec.roleColor};" />
+              <div>
+                <div style="font-weight:800;font-size:0.98rem;color:${rec.roleColor};">${rec.name}</div>
+                <div style="font-size:0.75rem;color:var(--text-secondary);">Active Portal Profile</div>
+              </div>
+            </div>
+            <span style="font-size:0.74rem;font-weight:800;padding:0.28rem 0.75rem;border-radius:999px;background:${rec.roleColor};color:#ffffff;">
+              ${rec.role}
+            </span>
+          </div>
 
           <div>
-            <label class="form-label">1. Choose Portal Theme</label>
+            <label class="form-label">1. Select Portal Theme</label>
             <select class="glass-select" onchange="window.RDSApp.changeTheme(this.value)">
               <option value="liquid-frost" ${State.settings.theme==='liquid-frost'?'selected':''}>❄️ Liquid Frost (Crisp Light Glass)</option>
               <option value="midnight-stealth" ${State.settings.theme==='midnight-stealth'?'selected':''}>🌑 Midnight Stealth (Pro Dark Glass)</option>
-              <option value="f1-scuderia" ${State.settings.theme==='f1-scuderia'?'selected':''}>🏎️ F1 Scuderia Rosso (Ferrari Telemetry)</option>
+              <option value="halloween-slime" ${State.settings.theme==='halloween-slime'?'selected':''}>🎃 Halloween Pumpkin & Orange Slime</option>
+              <option value="gold-apex" ${State.settings.theme==='gold-apex'?'selected':''}>👑 Gold Apex VIP (Carbon & Gold)</option>
+              <option value="f1-scuderia" ${State.settings.theme==='f1-scuderia'?'selected':''}>🏎️ F1 Scuderia Rosso (Ferrari Red)</option>
               <option value="f1-petronas" ${State.settings.theme==='f1-petronas'?'selected':''}>🏁 F1 Silver Arrows (Petronas Teal)</option>
-              <option value="f1-papaya" ${State.settings.theme==='f1-papaya'?'selected':''}>🧡 F1 Papaya Apex (McLaren Orange)</option>
-              <option value="cyber-velocity" ${State.settings.theme==='cyber-velocity'?'selected':''}>⚡ Cyber Velocity (Neon Blue)</option>
             </select>
           </div>
 
           <div>
-            <label class="form-label">2. Type or Edit Your Player Name / Game ID</label>
+            <label class="form-label">2. Enter or Edit Player Name / Game ID</label>
             <input type="text" id="onboarding-id-input" class="glass-input"
+                   autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
                    value="${State.driverName.replace(/"/g, '&quot;')}"
-                   placeholder="Type your name or paste Game ID (trailing code is auto-removed)..." />
+                   placeholder="Enter your player name..." />
           </div>
 
-          <div>
-            <label class="form-label">🔍 Or Search & Pick From Registered Player Names</label>
-            <input type="text" class="glass-input" style="margin-bottom:0.5rem;"
-                   placeholder="Search registered names..."
-                   oninput="window.RDSApp.filterOnboardingNames(this.value)" />
-            <div id="onboarding-names-list" style="display:flex;gap:0.4rem;flex-wrap:wrap;max-height:120px;overflow-y:auto;padding:0.35rem;border-radius:10px;background:rgba(15,23,42,0.06);">
-              ${players.map(p => `
-                <button type="button" class="btn-glass" style="padding:0.28rem 0.65rem;font-size:0.73rem;"
-                        onclick="document.getElementById('onboarding-id-input').value='${p.name.replace(/'/g,"")}'">
-                  <span class="one-line-name" style="color:${p.roleColor || 'inherit'};">${p.name}</span>
-                </button>
-              `).join('')}
-            </div>
+          <div class="custom-upload-studio">
+            <span class="form-label">3. Upload Custom Profile Picture (PFP)</span>
+            <label class="upload-trigger-btn">
+              <span>📸 Choose Profile Picture</span>
+              <input type="file" accept="image/*" onchange="window.RDSApp.handleDriverPfpUpload(this)" />
+            </label>
+            <span class="media-status-badge" id="driver-pfp-status">Current PFP Active</span>
           </div>
 
-          <button class="btn-slate" onclick="window.RDSApp.saveDriverOnboarding()">✅ Save Theme & Player Name</button>
+          <button class="btn-slate" style="padding:0.8rem;" onclick="window.RDSApp.saveDriverOnboarding()">✅ Save Profile, PFP & Theme</button>
         `);
       },
 
-      filterOnboardingNames(q) {
-        const wrap = document.getElementById('onboarding-names-list');
-        if (!wrap) return;
-        const cleanQ = (q || '').trim().toLowerCase();
-        const matches = (State.docs.presence || []).filter(p => p.name.toLowerCase().includes(cleanQ));
-        wrap.innerHTML = matches.map(p => `
-          <button type="button" class="btn-glass" style="padding:0.28rem 0.65rem;font-size:0.73rem;"
-                  onclick="document.getElementById('onboarding-id-input').value='${p.name.replace(/'/g,"")}'">
-            <span class="one-line-name" style="color:${p.roleColor || 'inherit'};">${p.name}</span>
-          </button>
-        `).join('');
+      async handleDriverPfpUpload(inputEl) {
+        const file = inputEl.files && inputEl.files[0];
+        if (!file) return;
+        const badge = document.getElementById('driver-pfp-status');
+        if (badge) badge.textContent = "⏳ Uploading PFP...";
+        const res = await processHighResMediaFile(file);
+        tempUploadedMedia = { url: res.url, mimeType: res.mimeType };
+        const imgEl = document.getElementById('driver-modal-pfp-img');
+        if (imgEl) imgEl.src = res.url;
+        if (badge) badge.textContent = "✅ New PFP Ready!";
       },
 
       saveDriverOnboarding() {
         const raw = document.getElementById('onboarding-id-input').value;
         const cleanName = parsePlayerNickname(raw);
+        const newPfp = tempUploadedMedia.url || State.driverPfp || DEFAULT_DRIVER_PFP;
+
         State.driverName = cleanName;
+        State.driverPfp = newPfp;
         localStorage.setItem('rds_driver_name', cleanName);
+        localStorage.setItem('rds_driver_pfp', newPfp);
 
         const list = [...(State.docs.presence || [])];
         const existingIdx = list.findIndex(p => p.name.toLowerCase() === cleanName.toLowerCase());
@@ -3003,6 +3036,7 @@
           rawId: raw.trim() || cleanName,
           role: existing ? existing.role : (State.session?.role === 'owner' ? '👑 Portal Owner' : '🏎️ Verified Driver'),
           roleColor: existing ? existing.roleColor : (State.session?.role === 'owner' ? '#ff6b00' : '#38bdf8'),
+          pfp: newPfp,
           status: "Online in Portal",
           device: getDeviceFingerprint(),
           theme: State.settings.theme,
@@ -3011,31 +3045,64 @@
         if (existingIdx >= 0) list[existingIdx] = entry;
         else list.unshift(entry);
 
-        syncDoc('presence', list.slice(0, 60), `Player ${cleanName} updated profile`, "AUTH");
+        syncDoc('presence', list.slice(0, 80), `Player ${cleanName} updated profile`, "AUTH");
         applyUserSettings();
         closeModal();
-        showToast(`Saved as ${cleanName}!`, 'success');
+        showToast(`Profile saved as ${cleanName}!`, 'success');
       },
 
       /* ==========================================================================
-       * OWNER USER INSPECTOR & ROLE ASSIGNER
+       * COPY VALUATION RECEIPT IN TEXT
        * ========================================================================== */
+      copyReceiptText() {
+        const r = State.calcResult;
+        if (!r) return;
+        const addonsText = r.addonLines.length > 0
+          ? r.addonLines.map(a => `• ${a.label}: ${formatCurrencyShort(a.amount)}`).join('\n')
+          : '• None';
+
+        const receiptStr = [
+          `🧾 OFFICIAL REAL DRIVING SCHOOL RECEIPT`,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `🏎️ Vehicle: #${r.carOrder} ${r.carName}`,
+          `⚡ Tuning Stage: Stage ${r.stageUsed}`,
+          `🚀 Speed (No Turbo): ${r.noTurboKmh} km/h (${r.noTurboMph} mph)`,
+          `🔥 Speed (With Turbo): ${r.turboKmh} km/h (${r.turboMph} mph)`,
+          `💵 Stage ${r.stageUsed} Base: ${formatCurrencyShort(r.baseStagePrice)}`,
+          `🛠️ Add-Ons:`,
+          addonsText,
+          `━━━━━━━━━━━━━━━━━━━━━━`,
+          `💰 Valuation Range: ${r.rangeLow} - ${r.rangeHigh}`,
+          `💎 Exact Net Build: ${formatCurrencyShort(r.total)}`
+        ].join('\n');
+
+        navigator.clipboard.writeText(receiptStr).then(() => {
+          showToast("Receipt copied in text!", "success");
+        });
+      },
+
+      /* Owner User Inspector & Role Assigner */
       openInspectUserModal(userId) {
         const u = (State.docs.presence || []).find(x => x.id === userId);
         if (!u) return;
         openModal(`
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="section-title">ℹ️ Player Telemetry & Session Info</h3>
+            <h3 class="section-title">ℹ️ Player Session & Telemetry Info</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div class="liquid-glass" style="padding:1rem;border-radius:14px;display:flex;flex-direction:column;gap:0.55rem;font-size:0.82rem;">
-            <div><strong>Display Name:</strong> <span style="color:${u.roleColor || '#ff6b00'};font-weight:800;">${u.name}</span></div>
+          <div class="liquid-glass" style="padding:1rem;border-radius:14px;display:flex;flex-direction:column;gap:0.55rem;font-size:0.83rem;">
+            <div style="display:flex;align-items:center;gap:0.65rem;margin-bottom:0.3rem;">
+              <img src="${u.pfp || DEFAULT_DRIVER_PFP}" style="width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid ${u.roleColor || '#ff6b00'};" />
+              <div>
+                <div style="color:${u.roleColor || '#ff6b00'};font-weight:800;font-size:0.95rem;">${u.name}</div>
+                <div>${u.role || '🏎️ Verified Driver'}</div>
+              </div>
+            </div>
             <div><strong>Raw Submitted ID:</strong> <code>${u.rawId || u.name}</code></div>
-            <div><strong>Assigned Role:</strong> ${u.role || '🏎️ Verified Driver'}</div>
             <div><strong>Device Fingerprint:</strong> <code>${u.device || 'DEV-LOCAL'}</code></div>
             <div><strong>Active Theme:</strong> ${u.theme || 'liquid-frost'}</div>
-            <div><strong>Session Status:</strong> ${u.status || 'Online'}</div>
-            <div><strong>First Logged In:</strong> ${u.joinedAt || 'Oct 2026'}</div>
+            <div><strong>Status:</strong> ${u.status || 'Online'}</div>
+            <div><strong>Joined At:</strong> ${u.joinedAt || 'Oct 2026'}</div>
           </div>
           <div style="display:flex;gap:0.5rem;">
             <button class="btn-slate" style="flex:1;" onclick="window.RDSApp.openEditUserModal('${u.id}')">🎭 Assign Role / Edit Name</button>
@@ -3053,24 +3120,15 @@
             <h3 class="section-title">🎭 Edit Player Name, Role & Color</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div>
-            <label class="form-label">Player Display Name</label>
-            <input id="edit-u-name" class="glass-input" value="${u.name.replace(/"/g,'&quot;')}" />
-          </div>
+          <div><label class="form-label">Player Display Name</label><input id="edit-u-name" class="glass-input" autocomplete="off" value="${u.name.replace(/"/g,'&quot;')}" /></div>
           <div>
             <label class="form-label">Assign Role</label>
             <select id="edit-u-role" class="glass-select" onchange="window.RDSApp.syncRoleColorSelect(this.value)">
-              ${roles.map(r => `<option value="${r.name}" data-color="${r.color}" ${u.role===r.name?'selected':''}>${r.name}</option>`).join('')}
+              ${roles.map(r => `<option value="${r.name}" ${u.role===r.name?'selected':''}>${r.name}</option>`).join('')}
             </select>
           </div>
-          <div>
-            <label class="form-label">Custom Name & Role Color</label>
-            <input type="color" id="edit-u-color" class="glass-input" value="${u.roleColor || '#38bdf8'}" style="height:42px;cursor:pointer;" />
-          </div>
-          <div>
-            <label class="form-label">Status Note</label>
-            <input id="edit-u-status" class="glass-input" value="${(u.status || 'Online').replace(/"/g,'&quot;')}" />
-          </div>
+          <div><label class="form-label">Name & Role Color</label><input type="color" id="edit-u-color" class="glass-input" value="${u.roleColor || '#38bdf8'}" style="height:42px;cursor:pointer;" /></div>
+          <div><label class="form-label">Status Note</label><input id="edit-u-status" class="glass-input" value="${(u.status || 'Online').replace(/"/g,'&quot;')}" /></div>
           <button class="btn-slate" onclick="window.RDSApp.saveEditedUser('${u.id}')">💾 Save Player Changes</button>
         `);
       },
@@ -3101,10 +3159,10 @@
         const roles = State.docs.roles || [];
         openModal(`
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="section-title">➕ Register New Player & Role</h3>
+            <h3 class="section-title">➕ Register Player & Role</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Player Name</label><input id="new-dir-name" class="glass-input" placeholder="e.g. DriftKing_99" /></div>
+          <div><label class="form-label">Player Name</label><input id="new-dir-name" class="glass-input" autocomplete="off" placeholder="e.g. DriftKing_99" /></div>
           <div>
             <label class="form-label">Assign Role</label>
             <select id="new-dir-role" class="glass-select">
@@ -3121,19 +3179,12 @@
         const role = document.getElementById('new-dir-role').value;
         const roleColor = document.getElementById('new-dir-color').value;
         const entry = {
-          id: "p_" + Date.now(),
-          name,
-          rawId: name,
-          role,
-          roleColor,
-          status: "Registered by Staff",
-          device: "DEV-STAFF-REG",
-          theme: "liquid-frost",
-          joinedAt: new Date().toLocaleString()
+          id: "p_" + Date.now(), name, rawId: name, role, roleColor, pfp: DEFAULT_DRIVER_PFP,
+          status: "Registered by Staff", device: "DEV-STAFF-REG", theme: "liquid-frost", joinedAt: new Date().toLocaleString()
         };
         syncDoc('presence', [entry, ...(State.docs.presence || [])], `Registered player ${name}`, "CREATE");
         closeModal();
-        showToast("Player added to directory!", "success");
+        showToast("Player registered!", "success");
       },
 
       openEditAuthorProfileModal() {
@@ -3144,10 +3195,10 @@
             <h3 class="section-title">🎨 My Staff Profile, Name Color & PFP</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Display Name</label><input id="prof-name" class="glass-input" value="${author.name.replace(/"/g,'&quot;')}" /></div>
+          <div><label class="form-label">Display Name</label><input id="prof-name" class="glass-input" autocomplete="off" value="${author.name.replace(/"/g,'&quot;')}" /></div>
           <div><label class="form-label">Custom Name Color</label><input type="color" id="prof-color" class="glass-input" value="${author.color || '#ff6b00'}" style="height:42px;cursor:pointer;" /></div>
           ${renderStudioUploadBox('prof-pfp-badge', 'prof-pfp-preview', 'Upload Profile Picture (PFP)')}
-          <button class="btn-slate" onclick="window.RDSApp.saveAuthorProfile()">💾 Save Profile</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveAuthorProfile()">💾 Save Staff Profile</button>
         `);
       },
 
@@ -3277,9 +3328,7 @@
         navigator.clipboard.writeText(str).then(() => showToast("Copied to clipboard!", "success"));
       },
 
-      /* ==========================================================================
-       * SETTINGS MODAL WITH 15-TAP SECRET LOGIN GATE ON v1.2.120
-       * ========================================================================== */
+      /* SETTINGS MODAL WITH HALLOWEEN SLIME THEME & 15-TAP GATE */
       openSettingsModal() {
         State.secretTapCount = 0;
         openModal(`
@@ -3289,14 +3338,14 @@
           </div>
 
           <div>
-            <label class="form-label">🎨 Visual & F1 Telemetry Theme</label>
+            <label class="form-label">🎨 Visual Theme</label>
             <select class="glass-select" onchange="window.RDSApp.changeTheme(this.value)">
-              <option value="liquid-frost" ${State.settings.theme==='liquid-frost'?'selected':''}>❄️ Liquid Frost (Light Glass)</option>
-              <option value="midnight-stealth" ${State.settings.theme==='midnight-stealth'?'selected':''}>🌑 Midnight Stealth (Dark Glass)</option>
-              <option value="f1-scuderia" ${State.settings.theme==='f1-scuderia'?'selected':''}>🏎️ F1 Scuderia Rosso</option>
-              <option value="f1-petronas" ${State.settings.theme==='f1-petronas'?'selected':''}>🏁 F1 Silver Arrows</option>
-              <option value="f1-papaya" ${State.settings.theme==='f1-papaya'?'selected':''}>🧡 F1 Papaya Apex</option>
-              <option value="cyber-velocity" ${State.settings.theme==='cyber-velocity'?'selected':''}>⚡ Cyber Velocity</option>
+              <option value="liquid-frost" ${State.settings.theme==='liquid-frost'?'selected':''}>❄️ Liquid Frost (Crisp Light Glass)</option>
+              <option value="midnight-stealth" ${State.settings.theme==='midnight-stealth'?'selected':''}>🌑 Midnight Stealth (Pro Dark Glass)</option>
+              <option value="halloween-slime" ${State.settings.theme==='halloween-slime'?'selected':''}>🎃 Halloween Pumpkin & Orange Slime</option>
+              <option value="gold-apex" ${State.settings.theme==='gold-apex'?'selected':''}>👑 Gold Apex VIP (Carbon & Gold)</option>
+              <option value="f1-scuderia" ${State.settings.theme==='f1-scuderia'?'selected':''}>🏎️ F1 Scuderia Rosso (Ferrari Red)</option>
+              <option value="f1-petronas" ${State.settings.theme==='f1-petronas'?'selected':''}>🏁 F1 Silver Arrows (Petronas Teal)</option>
             </select>
           </div>
 
@@ -3317,18 +3366,13 @@
             </button>
           </div>
 
-          <div class="liquid-glass" style="padding:0.85rem;border-radius:14px;">
-            <div class="form-label">📲 Install Web App</div>
-            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.35rem;">
-              <button class="btn-slate" style="flex:1;" onclick="window.RDSApp.triggerDirectAppInstall()">⚡ Install to Home Screen</button>
-            </div>
-          </div>
+          <button class="btn-slate" onclick="window.RDSApp.triggerDirectAppInstall()">📲 Install Web App to Home Screen</button>
 
           <!-- 15-Tap Secret Staff Gate -->
-          <div style="text-align:center;margin-top:0.5rem;padding-top:0.65rem;border-top:1px solid var(--glass-border);">
+          <div style="text-align:center;margin-top:0.4rem;padding-top:0.65rem;border-top:1px solid var(--glass-border);">
             <span id="version-secret-gate"
                   onclick="window.RDSApp.handleSecretVersionTap()"
-                  style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-secondary);cursor:pointer;user-select:none;padding:0.3rem 0.8rem;border-radius:8px;display:inline-block;">
+                  style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text-secondary);cursor:pointer;user-select:none;padding:0.35rem 0.85rem;border-radius:8px;display:inline-block;">
               Web Version: v1.2.120
             </span>
           </div>
@@ -3347,10 +3391,9 @@
 
       triggerDirectAppInstall() {
         if (State.deferredPwaPrompt) State.deferredPwaPrompt.prompt();
-        else showToast("Use your browser menu -> 'Add to Home Screen' to install!");
+        else showToast("Tap your browser menu -> 'Add to Home Screen' to install!");
       },
 
-      /* 15-TAP SECRET GATE */
       handleSecretVersionTap() {
         State.secretTapCount += 1;
         clearTimeout(State.secretTapTimer);
@@ -3367,7 +3410,7 @@
             <p class="section-subtitle">Unlocked via 15-tap version verification (v1.2.120).</p>
             <div>
               <label class="form-label">Owner / Admin Email</label>
-              <input type="email" id="modal-staff-email" class="glass-input" placeholder="Enter authorized email" />
+              <input type="email" id="modal-staff-email" class="glass-input" autocomplete="off" placeholder="Enter authorized email" />
             </div>
             <div>
               <label class="form-label">Security Password</label>
@@ -3390,12 +3433,8 @@
           AZ_PERMISSIONS.forEach(p => { allPerms[p.key] = true; });
           const cfgOwner = (State.docs.config && State.docs.config.ownerProfile) || DEFAULT_AUTHOR;
           State.session = {
-            email,
-            displayName: cfgOwner.name,
-            nameColor: cfgOwner.color,
-            pfp: cfgOwner.pfp,
-            role: 'owner',
-            permissions: allPerms
+            email, displayName: cfgOwner.name, nameColor: cfgOwner.color, pfp: cfgOwner.pfp,
+            role: 'owner', permissions: allPerms
           };
           sessionStorage.setItem('rds_staff_session', JSON.stringify(State.session));
           closeModal();
@@ -3425,12 +3464,9 @@
             await syncDoc('admins', admins, `Admin ${admin.displayName || email} registered device`, "AUTH");
           }
           State.session = {
-            email,
-            displayName: admin.displayName || email.split('@')[0],
-            nameColor: admin.nameColor || "#38bdf8",
-            pfp: admin.pfp || DEFAULT_AUTHOR.pfp,
-            role: 'admin',
-            permissions: admin.permissions || {}
+            email, displayName: admin.displayName || email.split('@')[0],
+            nameColor: admin.nameColor || "#38bdf8", pfp: admin.pfp || DEFAULT_AUTHOR.pfp,
+            role: 'admin', permissions: admin.permissions || {}
           };
           sessionStorage.setItem('rds_staff_session', JSON.stringify(State.session));
           closeModal();
@@ -3474,11 +3510,9 @@
 
       saveLiveEdits() {
         const descEl = document.getElementById('editable-splash-desc');
-        const accentEl = document.getElementById('live-accent-picker');
         const nextCfg = {
           ...(State.docs.config || DEFAULT_CONFIG),
-          splashDesc: descEl ? descEl.textContent.trim() : DEFAULT_CONFIG.splashDesc,
-          customAccentColor: accentEl ? accentEl.value : ""
+          splashDesc: descEl ? descEl.textContent.trim() : DEFAULT_CONFIG.splashDesc
         };
         syncDoc('config', nextCfg, "Published live branding edits", "EDIT");
         this.toggleLiveEditMode(false);
@@ -3487,17 +3521,17 @@
 
       openNotificationsModal() {
         document.getElementById('notif-count').textContent = "0";
-        const logs = (State.docs.logs || []).slice(0, 12);
+        const logs = (State.docs.logs || []).slice(0, 15);
         openModal(`
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="section-title">🔔 Live Portal Notifications</h3>
+            <h3 class="section-title">🔔 Live Portal Activity & Alerts</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div style="display:flex;flex-direction:column;gap:0.5rem;max-height:360px;overflow-y:auto;">
+          <div class="vertical-stack-list" style="max-height:380px;overflow-y:auto;">
             ${logs.map(l => `
-              <div class="liquid-glass" style="padding:0.7rem 0.85rem;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
+              <div class="liquid-glass" style="padding:0.7rem 0.9rem;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;flex-wrap:wrap;">
                 <div>
-                  <strong class="one-line-name">${l.actor}</strong>
+                  <strong>${l.actor}</strong>
                   <div style="font-size:0.78rem;color:var(--text-secondary);">${l.action}</div>
                 </div>
                 <span style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text-muted);">${l.time}</span>
@@ -3530,7 +3564,7 @@
           </div>
           <div style="display:grid;grid-template-columns:1fr 2fr;gap:0.55rem;">
             <div><label class="form-label">Order #</label><input type="number" id="new-car-order" class="glass-input" value="${editCar ? editCar.order : (State.docs.cars?.length || 0) + 1}" /></div>
-            <div><label class="form-label">Vehicle Name</label><input type="text" id="new-car-name" class="glass-input" value="${editCar ? editCar.name.replace(/"/g,'&quot;') : ''}" /></div>
+            <div><label class="form-label">Vehicle Name</label><input type="text" id="new-car-name" class="glass-input" autocomplete="off" value="${editCar ? editCar.name.replace(/"/g,'&quot;') : ''}" /></div>
           </div>
           ${renderStudioUploadBox('car-upload-status', 'car-upload-preview', 'Vehicle Photo / Video')}
           <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;">
@@ -3552,7 +3586,7 @@
               `;
             }).join('')}
           </div>
-          <button class="btn-slate" onclick="window.RDSApp.saveCar('${editCar ? editCar.id : ''}')">💾 Save Vehicle</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveCar('${editCar ? editCar.id : ''}')">💾 Save & Sync Vehicle</button>
         `);
       },
 
@@ -3592,7 +3626,7 @@
           syncDoc('cars', [...list, carObj], `Added vehicle ${name}`, "CREATE");
         }
         closeModal();
-        showToast("Vehicle saved!", "success");
+        showToast("Vehicle synced to all devices!", "success");
       },
 
       /* 2. Tyre Code Modal */
@@ -3603,10 +3637,10 @@
             <h3 class="section-title">${editTyre ? '✏️ Edit Tyre Code' : '🛞 Add Tyre Code'}</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Tyre Title</label><input id="tyre-name" class="glass-input" value="${editTyre ? editTyre.name.replace(/"/g,'&quot;') : ''}" /></div>
-          <div><label class="form-label">Tyre Code String</label><input id="tyre-code" class="glass-input" value="${editTyre ? editTyre.code.replace(/"/g,'&quot;') : ''}" /></div>
+          <div><label class="form-label">Tyre Title</label><input id="tyre-name" class="glass-input" autocomplete="off" value="${editTyre ? editTyre.name.replace(/"/g,'&quot;') : ''}" /></div>
+          <div><label class="form-label">Tyre Code String</label><input id="tyre-code" class="glass-input" autocomplete="off" value="${editTyre ? editTyre.code.replace(/"/g,'&quot;') : ''}" /></div>
           ${renderStudioUploadBox('tyre-up-badge', 'tyre-up-preview')}
-          <button class="btn-slate" onclick="window.RDSApp.saveTyre('${editTyre ? editTyre.id : ''}')">💾 Save Tyre Code</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveTyre('${editTyre ? editTyre.id : ''}')">💾 Save & Sync Tyre Code</button>
         `);
       },
 
@@ -3633,7 +3667,7 @@
           syncDoc('tyres', [item, ...list], `Added tyre code ${item.name}`, "CREATE");
         }
         closeModal();
-        showToast("Tyre code saved!", "success");
+        showToast("Tyre code synced to all devices!", "success");
       },
 
       /* 3. Track Map Modal */
@@ -3644,7 +3678,7 @@
             <h3 class="section-title">${editMap ? '✏️ Edit Map' : '🗺️ Add Track Map'}</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Track Name</label><input id="map-name" class="glass-input" value="${editMap ? editMap.name.replace(/"/g,'&quot;') : ''}" /></div>
+          <div><label class="form-label">Track Name</label><input id="map-name" class="glass-input" autocomplete="off" value="${editMap ? editMap.name.replace(/"/g,'&quot;') : ''}" /></div>
           <div><label class="form-label">Lap Record (Optional)</label><input id="map-record" class="glass-input" value="${editMap?.record || ''}" /></div>
           <div><label class="form-label">Difficulty (Optional)</label><input id="map-diff" class="glass-input" value="${editMap?.difficulty || ''}" /></div>
           <div><label class="form-label">Drift & Racing Guide (Optional)</label><textarea id="map-guide" class="glass-textarea" rows="3">${editMap?.driftGuide || ''}</textarea></div>
@@ -3689,7 +3723,7 @@
             <h3 class="section-title">${existing ? '✏️ Edit Regulation Article' : '⚖️ Add Regulation Article'}</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Regulation Title</label><input id="rule-title" class="glass-input" value="${existing ? existing.title.replace(/"/g,'&quot;') : ''}" placeholder="e.g. Clean Tandem Drift Etiquette" /></div>
+          <div><label class="form-label">Regulation Title</label><input id="rule-title" class="glass-input" autocomplete="off" value="${existing ? existing.title.replace(/"/g,'&quot;') : ''}" /></div>
           <div style="display:grid;grid-template-columns:1fr 1fr 0.6fr;gap:0.5rem;">
             <div><label class="form-label">Category</label><input id="rule-cat" class="glass-input" value="${existing?.category || 'Lobby Conduct'}" /></div>
             <div><label class="form-label">Penalty Tier</label><input id="rule-pen" class="glass-input" value="${existing?.penalty || '24h Suspension'}" /></div>
@@ -3732,8 +3766,8 @@
             <h3 class="section-title">🛡️ Add Clan Guide</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Clan Name</label><input id="clan-name" class="glass-input" /></div>
-          <div><label class="form-label">Leader</label><input id="clan-leader" class="glass-input" /></div>
+          <div><label class="form-label">Clan Name</label><input id="clan-name" class="glass-input" autocomplete="off" /></div>
+          <div><label class="form-label">Leader</label><input id="clan-leader" class="glass-input" autocomplete="off" /></div>
           <div><label class="form-label">Schedule</label><input id="clan-sched" class="glass-input" /></div>
           <div><label class="form-label">Roster</label><input id="clan-roster" class="glass-input" placeholder="e.g. 20 / 30" /></div>
           <div><label class="form-label">Guide</label><textarea id="clan-guide" class="glass-textarea" rows="3"></textarea></div>
@@ -3758,7 +3792,7 @@
         showToast("Clan saved!", "success");
       },
 
-      /* 6. Live Event Modal */
+      /* 6. Live Event Modal (WITH SERVER SIZE FIELD) */
       openAddEventModal(editEvt = null) {
         tempUploadedMedia = { url: editEvt?.mediaUrl || "", mimeType: editEvt?.mediaType || "" };
         openModal(`
@@ -3766,8 +3800,8 @@
             <h3 class="section-title">${editEvt ? '✏️ Edit Event' : '🏁 Publish Live Event'}</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Event Title</label><input id="evt-title" class="glass-input" value="${editEvt ? editEvt.title.replace(/"/g,'&quot;') : ''}" /></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+          <div><label class="form-label">Event Title</label><input id="evt-title" class="glass-input" autocomplete="off" value="${editEvt ? editEvt.title.replace(/"/g,'&quot;') : ''}" /></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.5rem;">
             <div><label class="form-label">Status</label>
               <select id="evt-status" class="glass-select">
                 <option value="LIVE" ${editEvt?.status==='LIVE'?'selected':''}>LIVE</option>
@@ -3775,12 +3809,13 @@
                 <option value="ENDED" ${editEvt?.status==='ENDED'?'selected':''}>ENDED</option>
               </select>
             </div>
-            <div><label class="form-label">Dates</label><input id="evt-dates" class="glass-input" value="${editEvt?.dates || ''}" /></div>
+            <div><label class="form-label">🖧 Server Size</label><input id="evt-server-size" class="glass-input" value="${editEvt?.serverSize || '30 / 30 Players'}" placeholder="e.g. 30 / 30 Players" /></div>
+            <div><label class="form-label">Dates</label><input id="evt-dates" class="glass-input" value="${editEvt?.dates || 'Oct 2026'}" /></div>
           </div>
-          <div><label class="form-label">Reward</label><input id="evt-reward" class="glass-input" value="${editEvt?.reward || ''}" /></div>
+          <div><label class="form-label">Reward Pool</label><input id="evt-reward" class="glass-input" value="${editEvt?.reward || '$50M + Premium Car'}" /></div>
           <div><label class="form-label">Description</label><textarea id="evt-desc" class="glass-textarea" rows="3">${editEvt?.desc || ''}</textarea></div>
           ${renderStudioUploadBox('evt-up-badge', 'evt-up-preview')}
-          <button class="btn-slate" onclick="window.RDSApp.saveEvent('${editEvt ? editEvt.id : ''}')">💾 Save Event</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveEvent('${editEvt ? editEvt.id : ''}')">💾 Publish & Sync Event</button>
         `);
       },
 
@@ -3794,6 +3829,7 @@
           id: editId || ("evt_" + Date.now()),
           title: document.getElementById('evt-title').value.trim() || "Championship",
           status: document.getElementById('evt-status').value,
+          serverSize: document.getElementById('evt-server-size').value.trim() || "30 / 30 Players",
           dates: document.getElementById('evt-dates').value.trim() || "TBA",
           reward: document.getElementById('evt-reward').value.trim() || "$25M",
           desc: document.getElementById('evt-desc').value.trim() || "",
@@ -3810,7 +3846,7 @@
           syncDoc('events', [item, ...list], `Published event ${item.title}`, "CREATE");
         }
         closeModal();
-        showToast("Event saved!", "success");
+        showToast("Event synced to all devices!", "success");
       },
 
       /* 7. Update Modal */
@@ -3836,10 +3872,10 @@
             <div><label class="form-label">🍎 iOS Status</label><select id="upd-ios" class="glass-select">${statusOptions.map(o => `<option value="${o}" ${editUpd?.iosStatus===o?'selected':''}>${o}</option>`).join('')}</select></div>
           </div>
           <div><label class="form-label">Badge</label><input id="upd-tag" class="glass-input" value="${editUpd?.tag || 'STABLE RELEASE'}" /></div>
-          <div><label class="form-label">Title</label><input id="upd-title" class="glass-input" value="${editUpd ? editUpd.title.replace(/"/g,'&quot;') : ''}" /></div>
+          <div><label class="form-label">Title</label><input id="upd-title" class="glass-input" autocomplete="off" value="${editUpd ? editUpd.title.replace(/"/g,'&quot;') : ''}" /></div>
           <div><label class="form-label">Notes</label><textarea id="upd-notes" class="glass-textarea" rows="3">${editUpd?.notes || ''}</textarea></div>
           ${renderStudioUploadBox('upd-up-badge', 'upd-up-preview')}
-          <button class="btn-slate" onclick="window.RDSApp.saveUpdate('${editUpd ? editUpd.id : ''}')">💾 Save Update</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveUpdate('${editUpd ? editUpd.id : ''}')">💾 Save & Sync Update</button>
         `);
       },
 
@@ -3868,24 +3904,23 @@
           const idx = list.findIndex(x => x.id === editId);
           if (idx >= 0) list[idx] = item;
           syncDoc('updates', list, `Edited update ${item.version}`, "EDIT");
-        } else {
-          syncDoc('updates', [item, ...list], `Published update ${item.version}`, "CREATE");
+        } else {syncDoc('updates', [item, ...list], `Published update ${item.version}`, "CREATE");
         }
         closeModal();
-        showToast("Update saved!", "success");
+        showToast("Update synced to all devices!", "success");
       },
 
       /* 8. Create Role Modal */
       openCreateRoleModal() {
         openModal(`
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <h3 class="section-title">🎭 Create Role</h3>
+            <h3 class="section-title">🎭 Create Community Role</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Role Name</label><input id="role-name" class="glass-input" placeholder="e.g. 🏆 Touge Legend" /></div>
-          <div><label class="form-label">Badge Text</label><input id="role-badge" class="glass-input" placeholder="e.g. LEGEND" /></div>
+          <div><label class="form-label">Role Name</label><input id="role-name" class="glass-input" autocomplete="off" placeholder="e.g. 🏆 Touge Legend" /></div>
+          <div><label class="form-label">Badge Text</label><input id="role-badge" class="glass-input" autocomplete="off" placeholder="e.g. LEGEND" /></div>
           <div><label class="form-label">Role Hex Color</label><input type="color" id="role-color" class="glass-input" value="#ff6b00" style="height:42px;cursor:pointer;" /></div>
-          <button class="btn-slate" onclick="window.RDSApp.saveNewRole()">Create Role</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveNewRole()">💾 Create & Sync Role</button>
         `);
       },
 
@@ -3899,7 +3934,7 @@
         };
         syncDoc('roles', [...(State.docs.roles || []), item], `Created role ${item.name}`, "CREATE");
         closeModal();
-        showToast("Role created!", "success");
+        showToast("Role created & synced!", "success");
       },
 
       /* 9. FULLY CUSTOMIZABLE CATEGORY MODAL (SHAPE, SIZE, MEDIA HEIGHT, ACCENT) */
@@ -3912,17 +3947,17 @@
           </div>
           <div style="display:grid;grid-template-columns:0.5fr 1.5fr;gap:0.5rem;">
             <div><label class="form-label">Emoji Icon</label><input id="cat-icon" class="glass-input" value="${existing?.icon || '✨'}" /></div>
-            <div><label class="form-label">Category Name</label><input id="cat-name" class="glass-input" value="${existing ? existing.name.replace(/"/g,'&quot;') : ''}" placeholder="e.g. Livery Showcase" /></div>
+            <div><label class="form-label">Category Name</label><input id="cat-name" class="glass-input" autocomplete="off" value="${existing ? existing.name.replace(/"/g,'&quot;') : ''}" placeholder="e.g. Livery Showcase" /></div>
           </div>
-          <div><label class="form-label">Description</label><input id="cat-desc" class="glass-input" value="${existing ? (existing.description || '').replace(/"/g,'&quot;') : ''}" placeholder="Subtitle description..." /></div>
+          <div><label class="form-label">Description</label><input id="cat-desc" class="glass-input" autocomplete="off" value="${existing ? (existing.description || '').replace(/"/g,'&quot;') : ''}" placeholder="Subtitle description..." /></div>
 
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.55rem;">
             <div>
               <label class="form-label">Card Shape Style</label>
               <select id="cat-shape" class="glass-select">
-                <option value="shape-rounded" ${existing?.cardShape==='shape-rounded'?'selected':''}>Rounded Liquid Glass (20px)</option>
+                <option value="shape-rounded" ${existing?.cardShape==='shape-rounded'?'selected':''}>Rounded Liquid Glass (18px)</option>
                 <option value="shape-sharp" ${existing?.cardShape==='shape-sharp'?'selected':''}>Sharp Pro Box (6px)</option>
-                <option value="shape-capsule" ${existing?.cardShape==='shape-capsule'?'selected':''}>Soft Capsule Pill (30px)</option>
+                <option value="shape-capsule" ${existing?.cardShape==='shape-capsule'?'selected':''}>Soft Capsule Pill (28px)</option>
                 <option value="shape-telemetry" ${existing?.cardShape==='shape-telemetry'?'selected':''}>Telemetry Cut + Left Accent</option>
               </select>
             </div>
@@ -3932,7 +3967,7 @@
                 <option value="size-compact" ${existing?.gridSize==='size-compact'?'selected':''}>Compact Grid (More Cards/Row)</option>
                 <option value="size-balanced" ${(!existing || existing?.gridSize==='size-balanced')?'selected':''}>Balanced Grid (Standard)</option>
                 <option value="size-wide" ${existing?.gridSize==='size-wide'?'selected':''}>Wide Showcase Cards</option>
-                <option value="size-banner" ${existing?.gridSize==='size-banner'?'selected':''}>Full-Width Banner Stack</option>
+                <option value="size-banner" ${existing?.gridSize==='size-banner'?'selected':''}>Down-by-Down Vertical Stack</option>
               </select>
             </div>
           </div>
@@ -3941,9 +3976,9 @@
             <div>
               <label class="form-label">Media Thumbnail Height</label>
               <select id="cat-height" class="glass-select">
-                <option value="120px" ${existing?.mediaHeight==='120px'?'selected':''}>Compact (120px)</option>
-                <option value="155px" ${(!existing || existing?.mediaHeight==='155px')?'selected':''}>Standard (155px)</option>
-                <option value="210px" ${existing?.mediaHeight==='210px'?'selected':''}>Cinematic Widescreen (210px)</option>
+                <option value="130px" ${existing?.mediaHeight==='130px'?'selected':''}>Compact (130px)</option>
+                <option value="165px" ${(!existing || existing?.mediaHeight==='165px')?'selected':''}>Standard (165px)</option>
+                <option value="220px" ${existing?.mediaHeight==='220px'?'selected':''}>Cinematic Widescreen (220px)</option>
               </select>
             </div>
             <div>
@@ -3978,7 +4013,7 @@
           syncDoc('categories', [...list, item], `Created category ${item.name}`, "CREATE");
         }
         closeModal();
-        showToast("Category saved & optimized!", "success");
+        showToast("Category saved & synced!", "success");
       },
 
       openAddCustomCardModal(catId) {
@@ -3988,10 +4023,10 @@
             <h3 class="section-title">✨ Add Entry to Category</h3>
             <button class="btn-glass" onclick="window.RDSApp.closeModal()">✕</button>
           </div>
-          <div><label class="form-label">Title</label><input id="cc-title" class="glass-input" /></div>
+          <div><label class="form-label">Title</label><input id="cc-title" class="glass-input" autocomplete="off" /></div>
           <div><label class="form-label">Details</label><textarea id="cc-body" class="glass-textarea" rows="3"></textarea></div>
           ${renderStudioUploadBox('cc-status', 'cc-preview')}
-          <button class="btn-slate" onclick="window.RDSApp.saveCustomCard('${catId}')">Save Entry</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveCustomCard('${catId}')">💾 Save & Sync Entry</button>
         `);
       },
 
@@ -4011,7 +4046,7 @@
         ];
         syncDoc('categories', cats, `Added entry to ${cats[idx].name}`, "CREATE");
         closeModal();
-        showToast("Entry added!", "success");
+        showToast("Entry added & synced!", "success");
       },
 
       deleteCustomCard(catId, itemId) {
@@ -4022,9 +4057,7 @@
         syncDoc('categories', cats, `Removed entry from ${cats[idx].name}`, "DELETE");
       },
 
-      /* ==========================================================================
-       * 10. FIXED A–Z ADMIN PERMISSIONS MODAL (HIGHLY VISIBLE CHECKLIST + EDITING)
-       * ========================================================================== */
+      /* 10. A–Z ADMIN PERMISSIONS MODAL (UNCLIPPED & EDITABLE) */
       openCreateAdminModal(editAdminId = "") {
         const existing = (State.docs.admins || []).find(a => a.id === editAdminId);
         tempUploadedMedia = { url: existing?.pfp || "", mimeType: "image/jpeg" };
@@ -4037,7 +4070,7 @@
           <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:0.55rem;">
             <div>
               <label class="form-label">Admin Display Name</label>
-              <input id="adm-name" class="glass-input" value="${existing ? existing.displayName.replace(/"/g,'&quot;') : ''}" placeholder="e.g. ApexModerator" />
+              <input id="adm-name" class="glass-input" autocomplete="off" value="${existing ? existing.displayName.replace(/"/g,'&quot;') : ''}" placeholder="e.g. ApexModerator" />
             </div>
             <div>
               <label class="form-label">Admin Name Hex Color</label>
@@ -4048,7 +4081,7 @@
           <div style="display:grid;grid-template-columns:1fr 1fr 0.6fr;gap:0.55rem;">
             <div>
               <label class="form-label">Admin Login Email</label>
-              <input type="email" id="adm-email" class="glass-input" value="${existing?.email || ''}" placeholder="staff@example.com" />
+              <input type="email" id="adm-email" class="glass-input" autocomplete="off" value="${existing?.email || ''}" placeholder="staff@example.com" />
             </div>
             <div>
               <label class="form-label">${existing ? 'New Password (Optional)' : 'Password (SHA-256)'}</label>
@@ -4060,15 +4093,14 @@
             </div>
           </div>
 
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.2rem;">
-            <label class="form-label" style="margin:0;color:#ff6b00;">✅ Select A–Z Granular Permissions Below:</label>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:0.2rem;flex-wrap:wrap;gap:0.4rem;">
+            <label class="form-label" style="margin:0;color:#ff6b00;">✅ Select A–Z Granular Permissions:</label>
             <div style="display:flex;gap:0.4rem;">
               <button type="button" class="btn-slate" style="padding:0.28rem 0.65rem;font-size:0.72rem;" onclick="document.querySelectorAll('.az-perm-cb').forEach(cb=>cb.checked=true)">Select All A–Z</button>
               <button type="button" class="btn-glass" style="padding:0.28rem 0.65rem;font-size:0.72rem;" onclick="document.querySelectorAll('.az-perm-cb').forEach(cb=>cb.checked=false)">Clear All</button>
             </div>
           </div>
 
-          <!-- Spacious, unclipped 2-column A-Z permissions grid -->
           <div class="perm-checklist-grid">
             ${AZ_PERMISSIONS.map(p => {
               const isChecked = existing ? Boolean(existing.permissions && existing.permissions[p.key]) : true;
@@ -4084,7 +4116,7 @@
           ${renderStudioUploadBox('adm-pfp-badge', 'adm-pfp-preview', 'Admin Profile Picture (Optional)')}
 
           <button class="btn-slate" style="padding:0.8rem;" onclick="window.RDSApp.saveNewAdmin('${existing ? existing.id : ''}')">
-            💾 ${existing ? 'Save Admin Permissions & Color' : 'Create Admin Account'}
+            💾 ${existing ? 'Save Admin Permissions & Color' : 'Create & Sync Admin Account'}
           </button>
         `);
       },
@@ -4129,7 +4161,7 @@
           await syncDoc('admins', [...list, adminObj], `Created admin ${displayName}`, "AUTH");
         }
         closeModal();
-        showToast("Admin account & permissions saved!", "success");
+        showToast("Admin account synced to all devices!", "success");
       },
 
       openEditLinksModal() {
@@ -4143,7 +4175,7 @@
           <div><label class="form-label">Instagram URL</label><input id="lnk-insta" class="glass-input" value="${cfg.instagramUrl}" /></div>
           <div><label class="form-label">Android Download URL</label><input id="lnk-android" class="glass-input" value="${cfg.androidDownloadUrl}" /></div>
           <div><label class="form-label">iOS Download URL</label><input id="lnk-ios" class="glass-input" value="${cfg.iosDownloadUrl}" /></div>
-          <button class="btn-slate" onclick="window.RDSApp.saveCommunityLinks()">💾 Save Links</button>
+          <button class="btn-slate" onclick="window.RDSApp.saveCommunityLinks()">💾 Save & Sync Links</button>
         `);
       },
 
@@ -4157,31 +4189,30 @@
         };
         syncDoc('config', nextCfg, "Updated community links", "EDIT");
         closeModal();
-        showToast("Links updated!", "success");
+        showToast("Links synced!", "success");
       },
 
       async saveGoogleOneEndpoint() {
-        const url = document.getElementById('google-one-url-input').value.trim();
+        const url = document.getElementById('google-one-url-input').value.trim() || DEFAULT_GOOGLE_ONE_API_URL;
         localStorage.setItem('rds_google_one_url', url);
         const nextCfg = { ...(State.docs.config || DEFAULT_CONFIG), googleOneWebAppUrl: url };
         State.docs.config = nextCfg;
         for (const k of DOC_KEYS) {
           await syncDoc(k, State.docs[k]);
         }
-        showToast("Connected & synced to 5TB Google Drive!", "success");
+        showToast("All collections synced to 5TB Google Drive!", "success");
       }
     };
 
     /* ============================================================================
-     * 11. BOOTSTRAP & PARTICLES
+     * 11. BOOTSTRAP, MOBILE VIDEO AUTOPLAY & AMBIENT PARTICLES
      * ============================================================================ */
     document.getElementById('btn-splash-continue').addEventListener('click', () => {
       document.getElementById('welcome-splash').classList.add('hidden');
       playNotificationSound('chime');
-      // Always prompt onboarding on first join or if name isn't set so user picks theme & name
-      if (!State.driverName || !localStorage.getItem('rds_onboarded_v2')) {
-        localStorage.setItem('rds_onboarded_v2', 'true');
-        setTimeout(() => window.RDSApp.openOnboardingModal(), 300);
+      if (!State.driverName || !localStorage.getItem('rds_onboarded_v3')) {
+        localStorage.setItem('rds_onboarded_v3', 'true');
+        setTimeout(() => window.RDSApp.openOnboardingModal(), 280);
       }
     });
 
@@ -4199,14 +4230,14 @@
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
       });
-      const particles = Array.from({ length: 36 }, () => ({
+      const particles = Array.from({ length: 34 }, () => ({
         x: Math.random() * w, y: Math.random() * h,
         r: Math.random() * 2 + 0.8,
         vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35
       }));
       function draw() {
         ctx.clearRect(0, 0, w, h);
-        ctx.fillStyle = "rgba(148, 163, 184, 0.38)";
+        ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
         particles.forEach((p, i) => {
           p.x += p.vx; p.y += p.vy;
           if (p.x < 0 || p.x > w) p.vx *= -1;
@@ -4215,8 +4246,8 @@
           for (let j = i + 1; j < particles.length; j++) {
             const p2 = particles[j];
             const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 130) {
-              ctx.strokeStyle = `rgba(148, 163, 184, ${0.14 * (1 - dist / 130)})`;
+            if (dist < 125) {
+              ctx.strokeStyle = `rgba(148, 163, 184, ${0.12 * (1 - dist / 125)})`;
               ctx.lineWidth = 1;
               ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
             }
@@ -4227,6 +4258,8 @@
       draw();
     }
 
+    // Boot Application & Start Auto-Sync
+    ensureSplashVideoAutoplay();
     applyUserSettings();
     applyBrandingConfig();
     renderCategoryDock();
