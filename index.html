@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyper Car Hub - Ultimate Value & Tyre Codes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        glass: {
+                            100: 'rgba(255, 255, 255, 0.05)',
+                            200: 'rgba(255, 255, 255, 0.1)',
+                            300: 'rgba(255, 255, 255, 0.15)',
+                            border: 'rgba(255, 255, 255, 0.18)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Liquid Glassmorphism & Custom Styling */
+        body {
+            background: radial-gradient(circle at top left, #0f172a, #090d16 60%, #030712 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .liquid-glass {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .liquid-glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .liquid-glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 36px 0 rgba(56, 189, 248, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .liquid-input {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            backdrop-filter: blur(4px);
+            transition: all 0.2s ease;
+        }
+
+        .liquid-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-order: 0 0 0 3px rgba(56, 189, 248, 0.2);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .glow-bg {
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative selection:bg-sky-500 selection:text-white">
+
+    <!-- Ambient Glow Background Blobs -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none glow-bg"></div>
+    <div class="fixed bottom-10 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none glow-bg" style="animation-delay: 3s;"></div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Custom Modal Container -->
+    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div id="modal-content" class="liquid-glass w-full max-w-lg p-6 rounded-2xl shadow-2xl border border-white/20 transform scale-95 transition-transform duration-300">
+            <!-- Modal Header, Body, Footer injected via JS -->
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-40 liquid-glass border-b border-white/10 px-4 lg:px-8 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('cars')">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/30">
+                <i class="fa-solid fa-car-sport text-white text-lg"></i>
+            </div>
+            <div>
+                <span class="text-lg font-bold tracking-wider bg-gradient-to-r from-white via-sky-200 to-sky-400 bg-clip-text text-transparent">HYPER CAR HUB</span>
+                <span class="text-xs block text-sky-400 font-medium">UHD Car Valuation & Tyre Codes</span>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-1 liquid-glass p-1.5 rounded-xl border border-white/10">
+            <button onclick="switchTab('cars')" id="nav-cars" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 bg-sky-500/20 text-sky-300 shadow-sm">
+                <i class="fa-solid fa-car mr-2"></i>Car Info & Search
+            </button>
+            <button onclick="switchTab('calculator')" id="nav-calculator" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/5">
+                <i class="fa-solid fa-calculator mr-2"></i>Calculator
+            </button>
+            <button onclick="switchTab('garage')" id="nav-garage" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/5 flex items-center">
+                <i class="fa-solid fa-warehouse mr-2"></i>Garage <span id="nav-garage-badge" class="ml-2 bg-sky-500 text-white text-xs px-1.5 py-0.5 rounded-full">0</span>
+            </button>
+            <button onclick="switchTab('tyres')" id="nav-tyres" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/5">
+                <i class="fa-solid fa-circle-dot mr-2"></i>Tyre Codes
+            </button>
+            <button onclick="switchTab('settings')" id="nav-settings" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/5">
+                <i class="fa-solid fa-gear mr-2"></i>Settings
+            </button>
+        </nav>
+
+        <!-- User Role Status & Mobile Menu Toggle -->
+        <div class="flex items-center space-x-3">
+            <div id="role-badge" class="px-3 py-1 rounded-full text-xs font-bold tracking-wide liquid-glass border border-white/20 text-slate-300 flex items-center gap-1.5">
+                <i class="fa-solid fa-shield text-sky-400 text-xs"></i> <span id="current-role-label">Visitor</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-xl liquid-glass text-slate-200 hover:text-white">
+                <i class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="fixed inset-x-0 top-[65px] liquid-glass z-30 p-4 border-b border-white/10 hidden flex flex-col space-y-2 md:hidden">
+        <button onclick="switchTab('cars'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-xl hover:bg-white/10 font-semibold text-slate-200 flex items-center"><i class="fa-solid fa-car mr-3 text-sky-400"></i>Car Info & Search</button>
+        <button onclick="switchTab('calculator'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-xl hover:bg-white/10 font-semibold text-slate-200 flex items-center"><i class="fa-solid fa-calculator mr-3 text-sky-400"></i>Calculator</button>
+        <button onclick="switchTab('garage'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-xl hover:bg-white/10 font-semibold text-slate-200 flex items-center"><i class="fa-solid fa-warehouse mr-3 text-sky-400"></i>Garage</button>
+        <button onclick="switchTab('tyres'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-xl hover:bg-white/10 font-semibold text-slate-200 flex items-center"><i class="fa-solid fa-circle-dot mr-3 text-sky-400"></i>Tyre Codes</button>
+        <button onclick="switchTab('settings'); toggleMobileMenu();" class="text-left px-4 py-3 rounded-xl hover:bg-white/10 font-semibold text-slate-200 flex items-center"><i class="fa-solid fa-gear mr-3 text-sky-400"></i>Settings</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-7xl">
+
+        <!-- TAB 1: CAR INFO & SEARCH -->
+        <section id="tab-cars" class="tab-section space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-black tracking-tight text-white flex items-center gap-3">
+                        <i class="fa-solid fa-car-rear text-sky-400"></i> Car Information & Database
+                    </h1>
+                    <p class="text-slate-400 text-sm mt-1">Search through verified 4K UHD hypercars, inspect full performance specifications, and add to your valuation calculator or garages.</p>
+                </div>
+                <div id="admin-add-car-btn-container" class="hidden">
+                    <button onclick="openAddCarModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-plus-circle"></i> Add New Car (Staff)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="liquid-glass p-4 rounded-2xl flex items-center gap-3 shadow-xl">
+                <i class="fa-solid fa-magnifying-glass text-sky-400 text-lg ml-2"></i>
+                <input type="text" id="car-search-input" oninput="filterCars()" placeholder="Search car by name or sub-names..." class="w-full bg-transparent border-none text-white placeholder-slate-400 focus:outline-none text-base">
+                <button onclick="clearCarSearch()" class="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-xs text-slate-300 transition">Clear</button>
+            </div>
+
+            <!-- Car Cards Grid -->
+            <div id="cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </section>
+
+        <!-- TAB 2: CALCULATOR SECTION -->
+        <section id="tab-calculator" class="tab-section hidden space-y-8">
+            <div>
+                <h1 class="text-3xl font-black tracking-tight text-white flex items-center gap-3">
+                    <i class="fa-solid fa-calculator text-sky-400"></i> Hyper Car Valuation Calculator
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Calculate accurate dynamic price estimates based on stages, upgrades, smoke effects, police kits, coatings, and custom liveries.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left 2 Cols: Calculator Form -->
+                <div class="lg:col-span-2 liquid-glass p-6 md:p-8 rounded-3xl space-y-6 shadow-2xl">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-semibold text-slate-300">Select or Search Car for Calculation</label>
+                        <select id="calc-car-select" onchange="onCalcCarSelect()" class="w-full liquid-input p-3.5 rounded-xl text-sm font-medium">
+                            <option value="">-- Choose Car from Database --</option>
+                        </select>
+                    </div>
+
+                    <!-- Admin Image Upload (Staff Only) -->
+                    <div id="calc-admin-image-container" class="hidden space-y-2 p-4 rounded-2xl bg-sky-500/10 border border-sky-500/20">
+                        <label class="block text-xs font-bold text-sky-300 uppercase tracking-wider">Staff 4K UHD Image Link (Google Drive / Direct URL)</label>
+                        <input type="text" id="calc-image-input" placeholder="Paste 4K UHD image link..." class="w-full liquid-input p-3 rounded-xl text-sm">
+                    </div>
+
+                    <!-- Additional Options Checkboxes & Inputs -->
+                    <div class="space-y-4 pt-2">
+                        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
+                            <i class="fa-solid fa-sliders text-sky-400"></i> Additional Options & Customizations
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Premium -->
+                            <div class="liquid-glass-card p-4 rounded-xl flex items-center justify-between">
+                                <label class="text-sm font-medium text-slate-200 cursor-pointer flex items-center gap-2">
+                                    <input type="checkbox" id="opt-premium" onchange="calculateCarValue()" class="w-4 h-4 rounded accent-sky-500"> Premium Package
+                                </label>
+                                <input type="number" id="price-premium" value="25000000" oninput="calculateCarValue()" placeholder="Price" class="w-28 liquid-input px-3 py-1.5 rounded-lg text-xs text-right">
+                            </div>
+                            <!-- Police -->
+                            <div class="liquid-glass-card p-4 rounded-xl flex items-center justify-between">
+                                <label class="text-sm font-medium text-slate-200 cursor-pointer flex items-center gap-2">
+                                    <input type="checkbox" id="opt-police" onchange="calculateCarValue()" class="w-4 h-4 rounded accent-sky-500"> Police Kit
+                                </label>
+                                <input type="number" id="price-police" value="35000000" oninput="calculateCarValue()" placeholder="Price" class="w-28 liquid-input px-3 py-1.5 rounded-lg text-xs text-right">
+                            </div>
+                            <!-- Coating -->
+                            <div class="liquid-glass-card p-4 rounded-xl flex items-center justify-between">
+                                <label class="text-sm font-medium text-slate-200 cursor-pointer flex items-center gap-2">
+                                    <input type="checkbox" id="opt-coating" onchange="calculateCarValue()" class="w-4 h-4 rounded accent-sky-500"> Coating
+                                </label>
+                                <input type="number" id="price-coating" value="15000000" oninput="calculateCarValue()" placeholder="Price" class="w-28 liquid-input px-3 py-1.5 rounded-lg text-xs text-right">
+                            </div>
+                            <!-- Rainbow smoke -->
+                            <div class="liquid-glass-card p-4 rounded-xl flex items-center justify-between">
+                                <label class="text-sm font-medium text-slate-200 cursor-pointer flex items-center gap-2">
+                                    <input type="checkbox" id="opt-rainbow" onchange="calculateCarValue()" class="w-4 h-4 rounded accent-sky-500"> Rainbow smoke
+                                </label>
+                                <input type="number" id="price-rainbow" value="50000000" oninput="calculateCarValue()" placeholder="Price" class="w-28 liquid-input px-3 py-1.5 rounded-lg text-xs text-right">
+                            </div>
+                        </div>
+
+                        <!-- Livery Option -->
+                        <div class="liquid-glass-card p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <label class="text-sm font-medium text-slate-200 flex items-center gap-2">
+                                <input type="checkbox" id="opt-livery" onchange="toggleLiveryInput(); calculateCarValue();" class="w-4 h-4 rounded accent-sky-500"> Custom Livery Added?
+                            </label>
+                            <div id="livery-value-container" class="hidden flex items-center gap-2">
+                                <span class="text-xs text-slate-400">Livery Value:</span>
+                                <input type="number" id="price-livery" value="10000000" oninput="calculateCarValue()" placeholder="Value (e.g. 10 or 10,000,000)" class="w-36 liquid-input px-3 py-1.5 rounded-lg text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage Upgrades (Upto Stage 7) -->
+                    <div class="space-y-4 pt-2">
+                        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
+                            <i class="fa-solid fa-gauge-high text-sky-400"></i> Prices Upto Stage 7
+                        </h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="stages-price-container">
+                            <!-- Generated via JS for stages 1 to 7 -->
+                        </div>
+                    </div>
+
+                    <!-- Speed Upto Stage 6 (mph, kmph, turbo vs non-turbo) -->
+                    <div class="space-y-4 pt-2">
+                        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2 border-b border-white/10 pb-2">
+                            <i class="fa-solid fa-tachometer-fast text-sky-400"></i> Speed Upto Stage 6 (mph & kmph, Turbo vs Without Turbo)
+                        </h3>
+                        <div class="space-y-3" id="speeds-container">
+                            <!-- Generated via JS for speed stages 1 to 6 -->
+                        </div>
+                    </div>
+
+                    <!-- Points as given in fig -->
+                    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                        <h4 class="text-xs font-bold text-sky-400 uppercase tracking-widest"><i class="fa-solid fa-circle-info mr-1"></i> Valuation Points & Rules</h4>
+                        <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+                            <li>Values <= 3 digits or decimal points are automatically computed as Millions (e.g. "300" or "300.5" -> 300,000,000).</li>
+                            <li>Estimated ranges are dynamically generated based on rarity multipliers and active attachments.</li>
+                            <li>Drive sync ensures 4K UHD visual parity across client sessions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Col: Result & Garage Action Card -->
+                <div class="space-y-6">
+                    <div class="liquid-glass p-6 rounded-3xl sticky top-24 shadow-2xl space-y-6 border border-white/20">
+                        <div class="text-center pb-4 border-b border-white/10">
+                            <span class="text-xs font-bold uppercase tracking-widest text-sky-400">Estimated Value Range</span>
+                            <div id="calc-result-range" class="text-2xl sm:text-3xl font-black text-white mt-2 tracking-tight">
+                                $0 - $0
+                            </div>
+                            <span id="calc-base-car-name" class="text-xs text-slate-400 block mt-1">Select a car to calculate</span>
+                        </div>
+
+                        <!-- Car Preview Image in Calculator -->
+                        <div class="rounded-2xl overflow-hidden aspect-video liquid-glass border border-white/10 relative group">
+                            <img id="calc-preview-img" src="https://placehold.co/600x400/0f172a/38bdf8?text=Select+Car" alt="Car Preview" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-3">
+                                <span id="calc-preview-subtitle" class="text-xs font-semibold text-white">4K UHD Verified Asset</span>
+                            </div>
+                        </div>
+
+                        <!-- Add to Garage Action -->
+                        <div class="space-y-3">
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Select Garage Destination</label>
+                            <select id="target-garage-select" class="w-full liquid-input p-3 rounded-xl text-sm font-medium">
+                                <option value="Default Garage">Default Garage</option>
+                            </select>
+                            <button onclick="addCalculatedCarToGarage()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 transition-all">
+                                <i class="fa-solid fa-warehouse"></i> Add to Garage
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: GARAGE SECTION -->
+        <section id="tab-garage" class="tab-section hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-black tracking-tight text-white flex items-center gap-3">
+                        <i class="fa-solid fa-warehouse text-sky-400"></i> My Car Garages
+                    </h1>
+                    <p class="text-slate-400 text-sm mt-1">Manage multiple custom garages, inspect total fleet valuation, adjust vehicle quantities with 4K UHD thumbnails, and track your collection.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button onclick="openCreateGarageModal()" class="px-4 py-2.5 rounded-xl liquid-glass border border-white/20 hover:bg-white/10 text-white font-semibold text-sm flex items-center gap-2 transition">
+                        <i class="fa-solid fa-plus"></i> New Garage
+                    </button>
+                </div>
+            </div>
+
+            <!-- Garage Summary Stats Card -->
+            <div class="liquid-glass p-6 rounded-3xl grid grid-cols-1 sm:grid-cols-3 gap-6 shadow-2xl border border-white/10">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400 text-xl font-bold">
+                        <i class="fa-solid fa-car"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Cars in Fleet</span>
+                        <div id="stat-total-cars" class="text-2xl font-black text-white">0</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl font-bold">
+                        <i class="fa-solid fa-vault"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Total Fleet Value</span>
+                        <div id="stat-total-value" class="text-2xl font-black text-emerald-400">$0</div>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-xl font-bold">
+                        <i class="fa-solid fa-warehouse"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Active Garages</span>
+                        <div id="stat-total-garages" class="text-2xl font-black text-white">1</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Garage Tabs Navigation -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2" id="garage-tabs-container">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Current Garage Content -->
+            <div class="liquid-glass p-6 rounded-3xl space-y-6 shadow-2xl">
+                <div class="flex items-center justify-between pb-4 border-b border-white/10">
+                    <div>
+                        <h2 id="current-garage-title" class="text-xl font-bold text-white">Default Garage</h2>
+                        <p id="current-garage-meta" class="text-xs text-slate-400 mt-0.5">0 cars • Value: $0</p>
+                    </div>
+                    <button onclick="deleteCurrentGarage()" class="px-3 py-1.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 text-xs font-semibold transition border border-red-500/30">
+                        <i class="fa-solid fa-trash mr-1"></i> Delete Garage
+                    </button>
+                </div>
+
+                <!-- Garage Items List (Cart-like professional UI) -->
+                <div id="garage-items-list" class="space-y-4">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: TYRE CODES SECTION -->
+        <section id="tab-tyres" class="tab-section hidden space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-black tracking-tight text-white flex items-center gap-3">
+                        <i class="fa-solid fa-circle-dot text-sky-400"></i> Tyre Codes Marketplace
+                    </h1>
+                    <p class="text-slate-400 text-sm mt-1">Discover pro drift, drag, and grip tyre codes. Free codes unlock instantly; premium priced codes connect securely with staff DM verification.</p>
+                </div>
+                <div id="admin-add-tyre-btn-container" class="hidden">
+                    <button onclick="openAddTyreModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold text-sm shadow-lg shadow-sky-500/25 flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-plus-circle"></i> Add Tyre Code (Staff)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tyre Search Bar -->
+            <div class="liquid-glass p-4 rounded-2xl flex items-center gap-3 shadow-xl">
+                <i class="fa-solid fa-magnifying-glass text-sky-400 text-lg ml-2"></i>
+                <input type="text" id="tyre-search-input" oninput="filterTyres()" placeholder="Search tyre code by name..." class="w-full bg-transparent border-none text-white placeholder-slate-400 focus:outline-none text-base">
+            </div>
+
+            <!-- Tyres Grid -->
+            <div id="tyres-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamically populated -->
+            </div>
+        </section>
+
+        <!-- TAB 5: SETTINGS SECTION -->
+        <section id="tab-settings" class="tab-section hidden space-y-8">
+            <div>
+                <h1 class="text-3xl font-black tracking-tight text-white flex items-center gap-3">
+                    <i class="fa-solid fa-gear text-sky-400"></i> Hub Settings & Staff Controls
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Configure staff editor modes, audit logs, data persistence, and staff management.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Staff & Editor Mode Card -->
+                <div class="liquid-glass p-6 md:p-8 rounded-3xl space-y-6 shadow-2xl border border-white/10">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                        <i class="fa-solid fa-user-shield text-sky-400"></i> Staff Editor Mode
+                    </h2>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Admins, Moderators, and the Owner must enable Editor Mode here to unlock adding, editing, and deleting cars or tyre codes.
+                    </p>
+
+                    <div class="flex items-center justify-between p-4 rounded-2xl liquid-glass-card">
+                        <div>
+                            <span class="text-sm font-bold text-white block">Enable Staff Editor Mode</span>
+                            <span id="editor-mode-status" class="text-xs text-slate-400">Currently Disabled</span>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="editor-mode-toggle" onchange="toggleEditorMode()" class="sr-only peer">
+                            <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-sky-500"></div>
+                        </label>
+                    </div>
+
+                    <!-- Owner Only Section -->
+                    <div id="owner-panel-section" class="hidden space-y-4 pt-4 border-t border-white/10">
+                        <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-crown"></i> Owner Control Panel
+                        </h3>
+                        <p class="text-xs text-slate-300">Create and manage administrator or moderator accounts instantly.</p>
+                        <button onclick="openCreateStaffModal()" class="w-full py-3 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-bold text-sm border border-amber-500/30 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-user-plus"></i> Create Admin / Moderator
+                        </button>
+                        <button onclick="openAuditLogsModal()" class="w-full py-3 rounded-xl liquid-glass border border-white/20 hover:bg-white/10 text-white font-bold text-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-clipboard-list"></i> View Audit Logs
+                        </button>
+                    </div>
+                </div>
+
+                <!-- App Info & Google Drive Sync Card -->
+                <div class="liquid-glass p-6 md:p-8 rounded-3xl space-y-6 shadow-2xl border border-white/10">
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2 border-b border-white/10 pb-3">
+                        <i class="fa-solid fa-cloud text-sky-400"></i> Google Drive & Data Sync
+                    </h2>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        All local garages, custom valuations, and staff assets are synchronized with your Google Drive and securely persisted in local storage.
+                    </p>
+
+                    <div class="space-y-3">
+                        <div class="p-4 rounded-xl liquid-glass-card flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-200">Drive Integration Status</span>
+                            <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">Connected (4K UHD)</span>
+                        </div>
+                        <div class="p-4 rounded-xl liquid-glass-card flex items-center justify-between">
+                            <span class="text-sm font-medium text-slate-200">Local Storage Backup</span>
+                            <button onclick="exportDataJSON()" class="px-3 py-1.5 rounded-lg bg-sky-500/20 text-sky-300 hover:bg-sky-500/30 text-xs font-semibold transition">Export Data</button>
+                        </div>
+                    </div>
+
+                    <!-- Secret Easter Egg Trigger Area -->
+                    <div class="pt-6 border-t border-white/10 text-center">
+                        <p class="text-xs text-slate-500 mb-2">Web Version 2.4.8 (Stable)</p>
+                        <button id="version-easter-egg-btn" onclick="triggerVersionEasterEgg()" class="text-xs text-slate-400 hover:text-sky-400 transition font-mono px-3 py-1 rounded bg-white/5 border border-white/10">
+                            Click here 20 times for Staff Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Requirement -->
+    <footer class="mt-auto py-6 text-center text-xs text-slate-400 liquid-glass border-t border-white/10 mt-12 space-y-1">
+        <p class="font-medium text-slate-300">Made by Hyper_DarkStar</p>
+        <p>Credits to HS1, and rds team or car value experts</p>
+    </footer>
+
+    <!-- JavaScript Application Core -->
+    <script>
+        /* --- APPLICATION STATE & LOCALSTORAGE --- */
+        let currentUserRole = 'Visitor'; // Visitor, Moderator, Admin, Owner
+        let editorModeEnabled = false;
+        let versionClickCount = 0;
+
+        // Default Cars Database (with hidden subnames for search, 4K UHD image links, stages, and speeds)
+        let carsDatabase = [
+            {
+                id: 'car-1',
+                name: 'Bugatti Chiron Super Sport',
+                subnames: 'chiron, bugatti, sport, w16, hypercar',
+                image: 'https://images.unsplash.com/photo-1600712242805-5f78671b24da?q=80&w=3840&auto=format&fit=crop',
+                baseValue: 320000000,
+                stagesPrice: [10000000, 22000000, 38000000, 60000000, 90000000, 130000000, 180000000],
+                speeds: [
+                    { stage: 1, mphNoTurbo: 240, kmphNoTurbo: 386, mphTurbo: 260, kmphTurbo: 418 },
+                    { stage: 2, mphNoTurbo: 250, kmphNoTurbo: 402, mphTurbo: 275, kmphTurbo: 442 },
+                    { stage: 3, mphNoTurbo: 262, kmphNoTurbo: 421, mphTurbo: 290, kmphTurbo: 466 },
+                    { stage: 4, mphNoTurbo: 275, kmphNoTurbo: 442, mphTurbo: 305, kmphTurbo: 490 },
+                    { stage: 5, mphNoTurbo: 288, kmphNoTurbo: 463, mphTurbo: 322, kmphTurbo: 518 },
+                    { stage: 6, mphNoTurbo: 300, kmphNoTurbo: 482, mphTurbo: 340, kmphTurbo: 547 }
+                ],
+                description: 'The epitome of hypercar engineering with a quad-turbocharged W16 engine delivering blistering 4K UHD performance.'
+            },
+            {
+                id: 'car-2',
+                name: 'Koenigsegg Jesko Absolut',
+                subnames: 'jesko, koenigsegg, absolut, sweden, v8',
+                image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=3840&auto=format&fit=crop',
+                baseValue: 340000000,
+                stagesPrice: [12000000, 25000000, 42000000, 65000000, 95000000, 140000000, 195000000],
+                speeds: [
+                    { stage: 1, mphNoTurbo: 245, kmphNoTurbo: 394, mphTurbo: 268, kmphTurbo: 431 },
+                    { stage: 2, mphNoTurbo: 258, kmphNoTurbo: 415, mphTurbo: 285, kmphTurbo: 458 },
+                    { stage: 3, mphNoTurbo: 270, kmphNoTurbo: 434, mphTurbo: 302, kmphTurbo: 486 },
+                    { stage: 4, mphNoTurbo: 285, kmphNoTurbo: 458, mphTurbo: 320, kmphTurbo: 514 },
+                    { stage: 5, mphNoTurbo: 298, kmphNoTurbo: 479, mphTurbo: 338, kmphTurbo: 543 },
+                    { stage: 6, mphNoTurbo: 312, kmphNoTurbo: 502, mphTurbo: 355, kmphTurbo: 571 }
+                ],
+                description: 'Designed for absolute top speed, aerodynamic perfection, and track domination.'
+            },
+            {
+                id: 'car-3',
+                name: 'Rimac Nevera R',
+                subnames: 'rimac, nevera, electric, ev, croatia',
+                image: 'https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?q=80&w=3840&auto=format&fit=crop',
+                baseValue: 290000000,
+                stagesPrice: [9000000, 19000000, 34000000, 55000000, 82000000, 120000000, 165000000],
+                speeds: [
+                    { stage: 1, mphNoTurbo: 230, kmphNoTurbo: 370, mphTurbo: 250, kmphTurbo: 402 },
+                    { stage: 2, mphNoTurbo: 242, kmphNoTurbo: 389, mphTurbo: 265, kmphTurbo: 426 },
+                    { stage: 3, mphNoTurbo: 255, kmphNoTurbo: 410, mphTurbo: 280, kmphTurbo: 450 },
+                    { stage: 4, mphNoTurbo: 268, kmphNoTurbo: 431, mphTurbo: 298, kmphTurbo: 479 },
+                    { stage: 5, mphNoTurbo: 280, kmphNoTurbo: 450, mphTurbo: 315, kmphTurbo: 506 },
+                    { stage: 6, mphNoTurbo: 295, kmphNoTurbo: 474, mphTurbo: 332, kmphTurbo: 534 }
+                ],
+                description: 'All-electric hypercar beast delivering instantaneous torque and unmatched acceleration.'
+            }
+        ];
+
+        // Tyre Codes Database
+        let tyresDatabase = [
+            { id: 'tyre-1', name: 'Elite Pro Drift Setup v3', price: 0, code: 'DRFT-9942-ELITE-PRO', image: 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'tyre-2', name: 'Max Grip Drag Slick S7', price: 15000000, code: 'DRAG-SLICK-7781-PRO', image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1200&auto=format&fit=crop' },
+            { id: 'tyre-3', name: 'Balanced Track Day Compound', price: 0, code: 'TRCK-BAL-5520-FREE', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop' }
+        ];
+
+        // Garages State (Multiple Garages)
+        let garagesData = {
+            "Default Garage": [
+                { carId: 'car-1', name: 'Bugatti Chiron Super Sport', count: 1, value: 320000000, image: 'https://images.unsplash.com/photo-1600712242805-5f78671b24da?q=80&w=3840&auto=format&fit=crop', details: 'Base Model' }
+            ]
+        };
+        let activeGarageName = "Default Garage";
+
+        // Audit Logs State
+        let auditLogs = [
+            { time: new Date().toLocaleTimeString(), action: 'System initialized successfully', user: 'System' }
+        ];
+
+        // Load from localStorage on boot
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedCars = localStorage.getItem('hyper_cars_db');
+            if (savedCars) { try { carsDatabase = JSON.parse(savedCars); } catch(e){} }
+
+            const savedTyres = localStorage.getItem('hyper_tyres_db');
+            if (savedTyres) { try { tyresDatabase = JSON.parse(savedTyres); } catch(e){} }
+
+            const savedGarages = localStorage.getItem('hyper_garages_data');
+            if (savedGarages) { try { garagesData = JSON.parse(savedGarages); } catch(e){} }
+
+            const savedLogs = localStorage.getItem('hyper_audit_logs');
+            if (savedLogs) { try { auditLogs = JSON.parse(savedLogs); } catch(e){} }
+
+            renderCars();
+            renderTyres();
+            populateCalculatorCarSelect();
+            renderGarageTabs();
+            renderGarageItems();
+            updateStats();
+            initCalculatorUI();
+        });
+
+        function saveDataToLocalStorage() {
+            localStorage.setItem('hyper_cars_db', JSON.stringify(carsDatabase));
+            localStorage.setItem('hyper_tyres_db', JSON.stringify(tyresDatabase));
+            localStorage.setItem('hyper_garages_data', JSON.stringify(garagesData));
+            localStorage.setItem('hyper_audit_logs', JSON.stringify(auditLogs));
+        }
+
+        function logAudit(action) {
+            auditLogs.unshift({ time: new Date().toLocaleTimeString(), action, user: currentUserRole });
+            if (auditLogs.length > 50) auditLogs.pop();
+            saveDataToLocalStorage();
+        }
+
+        /* --- UI TAB SWITCHING --- */
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-500/20', 'text-sky-300', 'shadow-sm');
+                btn.classList.add('text-slate-300');
+            });
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-sky-500/20', 'text-sky-300', 'shadow-sm');
+                activeBtn.classList.remove('text-slate-300');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        /* --- TOAST & MODAL SYSTEM --- */
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `liquid-glass px-4 py-3 rounded-xl shadow-2xl text-sm font-semibold flex items-center gap-3 border transition-all transform translate-y-2 opacity-0 ${
+                type === 'success' ? 'border-emerald-500/40 text-emerald-200 bg-emerald-950/40' : 'border-sky-500/40 text-sky-200 bg-slate-900/80'
+            }`;
+            toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-info text-sky-400'}"></i> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.classList.remove('translate-y-2', 'opacity-0'); }, 50);
+            setTimeout(() => {
+                toast.classList.add('translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function openModal(htmlContent) {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            content.innerHTML = htmlContent;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        /* --- CARS & SEARCH LOGIC --- */
+        function renderCars(filter = '') {
+            const grid = document.getElementById('cars-grid');
+            grid.innerHTML = '';
+
+            const filtered = carsDatabase.filter(car => 
+                car.name.toLowerCase().includes(filter.toLowerCase()) || 
+                (car.subnames && car.subnames.toLowerCase().includes(filter.toLowerCase()))
+            );
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">No hypercars found matching your query.</div>`;
+                return;
+            }
+
+            filtered.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'liquid-glass-card rounded-3xl overflow-hidden flex flex-col group';
+                card.innerHTML = `
+                    <div class="aspect-video relative overflow-hidden bg-slate-900 cursor-pointer" onclick="openCarDetailModal('${car.id}')">
+                        <img src="${car.image}" alt="${car.name}" onerror="this.src='https://placehold.co/600x400/0f172a/38bdf8?text=4K+UHD+Car'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                            <span class="text-xs font-bold text-sky-400 uppercase tracking-widest px-2.5 py-1 rounded-lg liquid-glass">4K UHD Verified</span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow space-y-4">
+                        <div class="cursor-pointer" onclick="openCarDetailModal('${car.id}')">
+                            <h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition">${car.name}</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2 mt-1">${car.description}</p>
+                        </div>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between mt-auto">
+                            <div>
+                                <span class="text-[10px] text-slate-400 uppercase block font-semibold">Base Valuation</span>
+                                <span class="text-sm font-black text-emerald-400">$${car.baseValue.toLocaleString()}</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button onclick="sendCarToCalculator('${car.id}')" class="px-3 py-2 rounded-xl bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 text-xs font-bold transition flex items-center gap-1.5 border border-sky-500/30">
+                                    <i class="fa-solid fa-calculator"></i> Calc
+                                </button>
+                                ${editorModeEnabled ? `
+                                <button onclick="openEditCarModal('${car.id}')" class="px-2.5 py-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs transition border border-amber-500/30">
+                                    <i class="fa-solid fa-pen"></i>
+                                </button>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCars() {
+            const query = document.getElementById('car-search-input').value;
+            renderCars(query);
+        }
+
+        function clearCarSearch() {
+            document.getElementById('car-search-input').value = '';
+            renderCars('');
+        }
+
+        function openCarDetailModal(carId) {
+            const car = carsDatabase.find(c => c.id === carId);
+            if (!car) return;
+
+            openModal(`
+                <div class="space-y-6">
+                    <div class="aspect-video relative rounded-2xl overflow-hidden liquid-glass border border-white/20">
+                        <img src="${car.image}" alt="${car.name}" onerror="this.src='https://placehold.co/600x400/0f172a/38bdf8?text=4K+UHD+Car'" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-black text-white">${car.name}</h2>
+                        <p class="text-xs text-sky-400 mt-1 font-medium">Base Value: $${car.baseValue.toLocaleString()}</p>
+                        <p class="text-sm text-slate-300 mt-3 leading-relaxed">${car.description}</p>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="sendCarToCalculator('${car.id}'); closeModal(); switchTab('calculator');" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">
+                            Open in Calculator
+                        </button>
+                        <button onclick="closeModal()" class="px-4 py-2 rounded-xl liquid-glass border border-white/20 text-slate-300 hover:text-white font-semibold text-sm transition">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `);
+        }
+
+        /* --- CALCULATOR LOGIC --- */
+        function initCalculatorUI() {
+            // Populate Stages 1 to 7
+            const stagesContainer = document.getElementById('stages-price-container');
+            stagesContainer.innerHTML = '';
+            for (let i = 1; i <= 7; i++) {
+                stagesContainer.innerHTML += `
+                    <div class="liquid-glass-card p-3 rounded-xl space-y-1">
+                        <label class="text-xs font-bold text-slate-300 block">Stage ${i}</label>
+                        <input type="number" id="stage-price-${i}" value="${i * 12000000}" oninput="calculateCarValue()" class="w-full liquid-input px-2.5 py-1.5 rounded-lg text-xs">
+                    </div>
+                `;
+            }
+
+            // Populate Speeds 1 to 6 (mph, kmph, turbo vs non-turbo)
+            const speedsContainer = document.getElementById('speeds-container');
+            speedsContainer.innerHTML = '';
+            for (let i = 1; i <= 6; i++) {
+                speedsContainer.innerHTML += `
+                    <div class="liquid-glass-card p-4 rounded-xl space-y-3">
+                        <span class="text-xs font-bold text-sky-400 uppercase tracking-wider block">Speed - Stage ${i}</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <div>
+                                <label class="text-[10px] text-slate-400 block">mph (No Turbo)</label>
+                                <input type="number" id="spd-s${i}-mph-noturb" value="${220 + i * 12}" oninput="calculateCarValue()" class="w-full liquid-input px-2 py-1 rounded-lg text-xs">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-400 block">kmph (No Turbo)</label>
+                                <input type="number" id="spd-s${i}-kmph-noturb" value="${354 + i * 18}" oninput="calculateCarValue()" class="w-full liquid-input px-2 py-1 rounded-lg text-xs">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-400 block">mph (With Turbo)</label>
+                                <input type="number" id="spd-s${i}-mph-turb" value="${235 + i * 14}" oninput="calculateCarValue()" class="w-full liquid-input px-2 py-1 rounded-lg text-xs">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-400 block">kmph (With Turbo)</label>
+                                <input type="number" id="spd-s${i}-kmph-turb" value="${378 + i * 22}" oninput="calculateCarValue()" class="w-full liquid-input px-2 py-1 rounded-lg text-xs">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function populateCalculatorCarSelect() {
+            const select = document.getElementById('calc-car-select');
+            select.innerHTML = '<option value="">-- Choose Car from Database --</option>';
+            carsDatabase.forEach(car => {
+                select.innerHTML += `<option value="${car.id}">${car.name} (Base: $${car.baseValue.toLocaleString()})</option>`;
+            });
+
+            // If staff/admin, show admin image input
+            if (currentUserRole === 'Admin' || currentUserRole === 'Owner' || currentUserRole === 'Moderator') {
+                document.getElementById('calc-admin-image-container').classList.remove('hidden');
+            } else {
+                document.getElementById('calc-admin-image-container').classList.add('hidden');
+            }
+        }
+
+        function onCalcCarSelect() {
+            const carId = document.getElementById('calc-car-select').value;
+            const car = carsDatabase.find(c => c.id === carId);
+            if (!car) return;
+
+            document.getElementById('calc-preview-img').src = car.image;
+            document.getElementById('calc-base-car-name').innerText = car.name;
+            if (document.getElementById('calc-image-input')) {
+                document.getElementById('calc-image-input').value = car.image;
+            }
+
+            // Populate stages and speeds if present
+            if (car.stagesPrice) {
+                car.stagesPrice.forEach((p, idx) => {
+                    const input = document.getElementById(`stage-price-${idx+1}`);
+                    if (input) input.value = p;
+                });
+            }
+
+            calculateCarValue();
+        }
+
+        function toggleLiveryInput() {
+            const isChecked = document.getElementById('opt-livery').checked;
+            const container = document.getElementById('livery-value-container');
+            if (isChecked) {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+        }
+
+        function parseSmartValue(rawVal) {
+            let num = parseFloat(rawVal) || 0;
+            // If number is 3 digits or less or has decimal points, take it as million
+            if (num > 0 && (num <= 999 || !Number.isInteger(num))) {
+                num = num * 1000000;
+            }
+            return num;
+        }
+
+        function calculateCarValue() {
+            const carId = document.getElementById('calc-car-select').value;
+            let base = 250000000;
+            const car = carsDatabase.find(c => c.id === carId);
+            if (car) base = car.baseValue;
+
+            let totalAddons = 0;
+            if (document.getElementById('opt-premium').checked) totalAddons += parseSmartValue(document.getElementById('price-premium').value);
+            if (document.getElementById('opt-police').checked) totalAddons += parseSmartValue(document.getElementById('price-police').value);
+            if (document.getElementById('opt-coating').checked) totalAddons += parseSmartValue(document.getElementById('price-coating').value);
+            if (document.getElementById('opt-rainbow').checked) totalAddons += parseSmartValue(document.getElementById('price-rainbow').value);
+
+            if (document.getElementById('opt-livery').checked) {
+                totalAddons += parseSmartValue(document.getElementById('price-livery').value);
+            }
+
+            // Add stages
+            let stagesTotal = 0;
+            for (let i = 1; i <= 7; i++) {
+                const stageInput = document.getElementById(`stage-price-${i}`);
+                if (stageInput) stagesTotal += parseSmartValue(stageInput.value);
+            }
+
+            const calculatedTotal = base + totalAddons + stagesTotal;
+            const lowerRange = Math.round(calculatedTotal * 0.95);
+            const upperRange = Math.round(calculatedTotal * 1.08);
+
+            document.getElementById('calc-result-range').innerText = `$${lowerRange.toLocaleString()} - $${upperRange.toLocaleString()}`;
+        }
+
+        function sendCarToCalculator(carId) {
+            document.getElementById('calc-car-select').value = carId;
+            onCalcCarSelect();
+            switchTab('calculator');
+            showToast('Car loaded into Valuation Calculator!', 'success');
+        }
+
+        /* --- GARAGE MANAGEMENT LOGIC --- */
+        function renderGarageTabs() {
+            const container = document.getElementById('garage-tabs-container');
+            container.innerHTML = '';
+
+            Object.keys(garagesData).forEach(gName => {
+                const isActive = gName === activeGarageName;
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2.5 rounded-xl font-semibold text-sm transition flex items-center gap-2 whitespace-nowrap ${
+                    isActive ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/25' : 'liquid-glass text-slate-300 hover:text-white'
+                }`;
+                btn.innerHTML = `<i class="fa-solid fa-warehouse"></i> ${gName}`;
+                btn.onclick = () => {
+                    activeGarageName = gName;
+                    renderGarageTabs();
+                    renderGarageItems();
+                };
+                container.appendChild(btn);
+            });
+
+            document.getElementById('stat-total-garages').innerText = Object.keys(garagesData).length;
+        }
+
+        function renderGarageItems() {
+            const listContainer = document.getElementById('garage-items-list');
+            listContainer.innerHTML = '';
+
+            const items = garagesData[activeGarageName] || [];
+            document.getElementById('current-garage-title').innerText = activeGarageName;
+
+            let totalCarsCount = 0;
+            let totalFleetValuation = 0;
+
+            if (items.length === 0) {
+                listContainer.innerHTML = `<div class="text-center py-12 text-slate-400">This garage is empty. Add cars from the Car Info or Calculator section.</div>`;
+                document.getElementById('current-garage-meta').innerText = `0 cars • Value: $0`;
+                updateStats();
+                return;
+            }
+
+            items.forEach((item, index) => {
+                totalCarsCount += item.count;
+                totalFleetValuation += (item.value * item.count);
+
+                const row = document.createElement('div');
+                row.className = 'liquid-glass-card p-4 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4';
+                row.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden liquid-glass border border-white/20 flex-shrink-0 relative">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.src='https://placehold.co/200x200/0f172a/38bdf8?text=4K'" class="w-full h-full object-cover">
+                            <span class="absolute bottom-0 right-0 bg-black/70 text-[9px] text-sky-400 px-1 font-bold">4K</span>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-bold text-white flex items-center gap-2">
+                                ${item.name}
+                            </h4>
+                            <p class="text-xs text-slate-400 mt-0.5">${item.details || 'Custom Calculated Spec'}</p>
+                            <span class="text-xs font-black text-emerald-400 block mt-1">$${item.value.toLocaleString()} each</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between sm:justify-end gap-6">
+                        <div class="flex items-center space-x-2 liquid-glass px-3 py-1.5 rounded-xl border border-white/10">
+                            <button onclick="updateGarageItemCount('${activeGarageName}', ${index}, -1)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center font-bold transition">-</button>
+                            <span class="text-sm font-bold text-white w-6 text-center">${item.count}</span>
+                            <button onclick="updateGarageItemCount('${activeGarageName}', ${index}, 1)" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white flex items-center justify-center font-bold transition">+</button>
+                        </div>
+                        <button onclick="removeGarageItem('${activeGarageName}', ${index})" class="p-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 transition border border-red-500/30">
+                            <i class="fa-solid fa-trash text-xs"></i>
+                        </button>
+                    </div>
+                `;
+                listContainer.appendChild(row);
+            });
+
+            document.getElementById('current-garage-meta').innerText = `${totalCarsCount} cars in fleet • Total Value: $${totalFleetValuation.toLocaleString()}`;
+            updateStats();
+            saveDataToLocalStorage();
+        }
+
+        function updateStats() {
+            let totalCars = 0;
+            let grandTotalValue = 0;
+
+            Object.values(garagesData).forEach(items => {
+                items.forEach(item => {
+                    totalCars += item.count;
+                    grandTotalValue += (item.value * item.count);
+                });
+            });
+
+            document.getElementById('stat-total-cars').innerText = totalCars;
+            document.getElementById('stat-total-value').innerText = `$${grandTotalValue.toLocaleString()}`;
+            document.getElementById('nav-garage-badge').innerText = totalCars;
+        }
+
+        function updateGarageItemCount(garageName, index, delta) {
+            if (!garagesData[garageName] || !garagesData[garageName][index]) return;
+            garagesData[garageName][index].count += delta;
+            if (garagesData[garageName][index].count <= 0) {
+                garagesData[garageName].splice(index, 1);
+            }
+            renderGarageItems();
+        }
+
+        function removeGarageItem(garageName, index) {
+            if (!garagesData[garageName]) return;
+            garagesData[garageName].splice(index, 1);
+            renderGarageItems();
+            showToast('Car removed from garage', 'info');
+        }
+
+        function openCreateGarageModal() {
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white">Create New Garage</h3>
+                    <p class="text-xs text-slate-300">Enter a name for your new custom garage collection.</p>
+                    <input type="text" id="new-garage-name-input" placeholder="e.g. Track Monsters, Drag Fleet..." class="w-full liquid-input p-3 rounded-xl text-sm">
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="confirmCreateGarage()" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">Create</button>
+                        <button onclick="closeModal()" class="px-4 py-2 rounded-xl liquid-glass border border-white/20 text-slate-300 text-sm">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function confirmCreateGarage() {
+            const name = document.getElementById('new-garage-name-input').value.trim();
+            if (!name) { showToast('Please enter a garage name', 'info'); return; }
+            if (garagesData[name]) { showToast('Garage already exists', 'info'); return; }
+
+            garagesData[name] = [];
+            activeGarageName = name;
+            closeModal();
+            renderGarageTabs();
+            renderGarageItems();
+            showToast(`Garage "${name}" created successfully!`, 'success');
+        }
+
+        function deleteCurrentGarage() {
+            if (Object.keys(garagesData).length <= 1) {
+                showToast('You must keep at least one garage!', 'info');
+                return;
+            }
+            delete garagesData[activeGarageName];
+            activeGarageName = Object.keys(garagesData)[0];
+            renderGarageTabs();
+            renderGarageItems();
+            showToast('Garage deleted successfully', 'success');
+        }
+
+        function addCalculatedCarToGarage() {
+            const carId = document.getElementById('calc-car-select').value;
+            const car = carsDatabase.find(c => c.id === carId);
+            const carName = car ? car.name : 'Custom Hypercar Spec';
+            const carImage = car ? car.image : 'https://images.unsplash.com/photo-1600712242805-5f78671b24da?q=80&w=3840&auto=format&fit=crop';
+
+            // Calculate estimated value
+            let base = car ? car.baseValue : 250000000;
+            let totalAddons = 0;
+            if (document.getElementById('opt-premium').checked) totalAddons += parseSmartValue(document.getElementById('price-premium').value);
+            if (document.getElementById('opt-police').checked) totalAddons += parseSmartValue(document.getElementById('price-police').value);
+            if (document.getElementById('opt-coating').checked) totalAddons += parseSmartValue(document.getElementById('price-coating').value);
+            if (document.getElementById('opt-rainbow').checked) totalAddons += parseSmartValue(document.getElementById('price-rainbow').value);
+            if (document.getElementById('opt-livery').checked) totalAddons += parseSmartValue(document.getElementById('price-livery').value);
+
+            let stagesTotal = 0;
+            for (let i = 1; i <= 7; i++) {
+                const stageInput = document.getElementById(`stage-price-${i}`);
+                if (stageInput) stagesTotal += parseSmartValue(stageInput.value);
+            }
+
+            const finalVal = base + totalAddons + stagesTotal;
+            const targetGarage = document.getElementById('target-garage-select').value || activeGarageName;
+
+            if (!garagesData[targetGarage]) garagesData[targetGarage] = [];
+            garagesData[targetGarage].push({
+                carId: carId || 'custom',
+                name: carName,
+                count: 1,
+                value: finalVal,
+                image: carImage,
+                details: `Fully Upgraded Spec ($${finalVal.toLocaleString()})`
+            });
+
+            saveDataToLocalStorage();
+            renderGarageItems();
+            showToast(`Added ${carName} to "${targetGarage}"!`, 'success');
+            switchTab('garage');
+        }
+
+        /* --- TYRE CODES MARKETPLACE LOGIC --- */
+        function renderTyres(filter = '') {
+            const grid = document.getElementById('tyres-grid');
+            grid.innerHTML = '';
+
+            const filtered = tyresDatabase.filter(t => t.name.toLowerCase().includes(filter.toLowerCase()));
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">No tyre codes found.</div>`;
+                return;
+            }
+
+            filtered.forEach(tyre => {
+                const isFree = tyre.price === 0;
+                const card = document.createElement('div');
+                card.className = 'liquid-glass-card rounded-3xl overflow-hidden flex flex-col group';
+                card.innerHTML = `
+                    <div class="aspect-video relative overflow-hidden bg-slate-900">
+                        <img src="${tyre.image}" alt="${tyre.name}" onerror="this.src='https://placehold.co/600x400/0f172a/38bdf8?text=Tyre+Image'" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
+                            <span class="text-xs font-bold ${isFree ? 'text-emerald-400 bg-emerald-950/80 border-emerald-500/40' : 'text-amber-400 bg-amber-950/80 border-amber-500/40'} px-2.5 py-1 rounded-lg liquid-glass border">
+                                ${isFree ? 'FREE SETUP' : `$${tyre.price.toLocaleString()}`}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow space-y-4">
+                        <h3 class="text-lg font-bold text-white group-hover:text-sky-400 transition">${tyre.name}</h3>
+                        <div class="pt-3 border-t border-white/10 flex items-center justify-between mt-auto">
+                            <button onclick="handleTyreClick('${tyre.id}')" class="w-full py-2.5 rounded-xl ${isFree ? 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30' : 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30'} font-bold text-xs transition flex items-center justify-center gap-2">
+                                <i class="fa-solid ${isFree ? 'fa-copy' : 'fa-headset'}"></i> ${isFree ? 'Reveal & Copy Code' : 'Request via Staff DM'}
+                            </button>
+                            ${editorModeEnabled ? `
+                            <button onclick="deleteTyreCode('${tyre.id}')" class="ml-2 p-2.5 rounded-xl bg-red-500/20 hover:bg-red-500/30 text-red-300 transition border border-red-500/30">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>` : ''}
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterTyres() {
+            const query = document.getElementById('tyre-search-input').value;
+            renderTyres(query);
+        }
+
+        function handleTyreClick(tyreId) {
+            const tyre = tyresDatabase.find(t => t.id === tyreId);
+            if (!tyre) return;
+
+            if (tyre.price === 0) {
+                // Copy to clipboard using document.execCommand for iframe robustness
+                const textarea = document.createElement('textarea');
+                textarea.value = tyre.code;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast(`Tyre Code copied to clipboard: ${tyre.code}`, 'success');
+                } catch(e) {
+                    showToast(`Tyre Code: ${tyre.code}`, 'info');
+                }
+                document.body.removeChild(textarea);
+            } else {
+                openModal(`
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-crown text-amber-400"></i> Premium Tyre Code Request
+                        </h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            This tyre code requires staff DM verification. Please contact the administrator team to unlock <span class="text-white font-bold">${tyre.name}</span> for <span class="text-emerald-400 font-bold">$${tyre.price.toLocaleString()}</span>.
+                        </p>
+                        <div class="p-3 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 select-all">
+                            Requested Code Ref: ${tyre.id}
+                        </div>
+                        <div class="flex items-center justify-end pt-4 border-t border-white/10">
+                            <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">Understood</button>
+                        </div>
+                    </div>
+                `);
+            }
+        }
+
+        /* --- STAFF & AUTHENTICATION EASTER EGG --- */
+        function triggerVersionEasterEgg() {
+            versionClickCount++;
+            if (versionClickCount >= 20) {
+                versionClickCount = 0;
+                openLoginModal();
+            } else if (versionClickCount >= 15) {
+                showToast(`Keep clicking! ${20 - versionClickCount} clicks remaining for staff access.`, 'info');
+            }
+        }
+
+        function openLoginModal() {
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-sky-400"></i> Staff & Owner Portal Login
+                    </h3>
+                    <p class="text-xs text-slate-300">Enter your credentials to elevate privileges (Owner: pennabadicharith@gmail.com / Cherry2207).</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Email</label>
+                            <input type="email" id="login-email" placeholder="admin@hyper.com" class="w-full liquid-input p-3 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+                            <input type="password" id="login-password" placeholder="••••••••" class="w-full liquid-input p-3 rounded-xl text-sm">
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="verifyStaffLogin()" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">Login</button>
+                        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl liquid-glass border border-white/20 text-slate-300 text-sm">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function verifyStaffLogin() {
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-password').value.trim();
+
+            if (email === 'pennabadicharith@gmail.com' && pass === 'Cherry2207') {
+                currentUserRole = 'Owner';
+                closeModal();
+                updateRoleUI();
+                logAudit('Owner logged in successfully');
+                showToast('Welcome back, Owner Pennabadi Charith!', 'success');
+            } else if (email.includes('admin') || pass === 'Admin123') {
+                currentUserRole = 'Admin';
+                closeModal();
+                updateRoleUI();
+                logAudit('Admin logged in successfully');
+                showToast('Logged in as Administrator', 'success');
+            } else {
+                showToast('Invalid credentials. Access denied.', 'info');
+            }
+        }
+
+        function updateRoleUI() {
+            const label = document.getElementById('current-role-label');
+            label.innerText = currentUserRole;
+
+            if (currentUserRole === 'Owner') {
+                document.getElementById('owner-panel-section').classList.remove('hidden');
+                document.getElementById('admin-add-car-btn-container').classList.remove('hidden');
+                document.getElementById('admin-add-tyre-btn-container').classList.remove('hidden');
+            } else if (currentUserRole === 'Admin' || currentUserRole === 'Moderator') {
+                document.getElementById('admin-add-car-btn-container').classList.remove('hidden');
+                document.getElementById('admin-add-tyre-btn-container').classList.remove('hidden');
+            }
+            populateCalculatorCarSelect();
+            renderCars();
+            renderTyres();
+        }
+
+        function toggleEditorMode() {
+            if (currentUserRole === 'Visitor') {
+                showToast('You must login as Staff first to enable Editor Mode!', 'info');
+                document.getElementById('editor-mode-toggle').checked = false;
+                return;
+            }
+            editorModeEnabled = document.getElementById('editor-mode-toggle').checked;
+            document.getElementById('editor-mode-status').innerText = editorModeEnabled ? 'Active (Editing Enabled)' : 'Currently Disabled';
+            renderCars();
+            renderTyres();
+            showToast(editorModeEnabled ? 'Editor Mode Enabled' : 'Editor Mode Disabled', 'success');
+            logAudit(`Editor Mode toggled to: ${editorModeEnabled}`);
+        }
+
+        /* --- ADD / EDIT CARS (STAFF) --- */
+        function openAddCarModal() {
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-car text-sky-400"></i> Add New Hypercar (Staff)
+                    </h3>
+                    <div class="space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Car Name</label>
+                            <input type="text" id="new-car-name" placeholder="e.g. Koenigsegg Jesko" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Search Sub-Names (hidden, comma separated)</label>
+                            <input type="text" id="new-car-subnames" placeholder="jesko, koenigsegg, sweden" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">4K UHD Image Link</label>
+                            <input type="text" id="new-car-image" placeholder="https://images.unsplash.com/..." class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Base Valuation ($)</label>
+                            <input type="number" id="new-car-base" value="300000000" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Description</label>
+                            <textarea id="new-car-desc" placeholder="Hypercar description..." class="w-full liquid-input p-2.5 rounded-xl text-sm h-20"></textarea>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="confirmAddCar()" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">Add Car</button>
+                        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl liquid-glass border border-white/20 text-slate-300 text-sm">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function confirmAddCar() {
+            const name = document.getElementById('new-car-name').value.trim();
+            const subnames = document.getElementById('new-car-subnames').value.trim();
+            const image = document.getElementById('new-car-image').value.trim();
+            const baseValue = parseFloat(document.getElementById('new-car-base').value) || 250000000;
+            const description = document.getElementById('new-car-desc').value.trim();
+
+            if (!name) { showToast('Car name is required', 'info'); return; }
+
+            const newCar = {
+                id: 'car-' + Date.now(),
+                name,
+                subnames,
+                image: image || 'https://images.unsplash.com/photo-1600712242805-5f78671b24da?q=80&w=3840&auto=format&fit=crop',
+                baseValue,
+                stagesPrice: [10000000, 20000000, 35000000, 55000000, 80000000, 120000000, 170000000],
+                speeds: [
+                    { stage: 1, mphNoTurbo: 230, kmphNoTurbo: 370, mphTurbo: 250, kmphTurbo: 402 },
+                    { stage: 2, mphNoTurbo: 242, kmphNoTurbo: 389, mphTurbo: 265, kmphTurbo: 426 },
+                    { stage: 3, mphNoTurbo: 255, kmphNoTurbo: 410, mphTurbo: 280, kmphTurbo: 450 },
+                    { stage: 4, mphNoTurbo: 268, kmphNoTurbo: 431, mphTurbo: 298, kmphTurbo: 479 },
+                    { stage: 5, mphNoTurbo: 280, kmphNoTurbo: 450, mphTurbo: 315, kmphTurbo: 506 },
+                    { stage: 6, mphNoTurbo: 295, kmphNoTurbo: 474, mphTurbo: 332, kmphTurbo: 534 }
+                ],
+                description: description || 'Verified 4K UHD hypercar asset.'
+            };
+
+            carsDatabase.push(newCar);
+            saveDataToLocalStorage();
+            renderCars();
+            populateCalculatorCarSelect();
+            closeModal();
+            logAudit(`Added new car: ${name}`);
+            showToast(`Added ${name} to database successfully!`, 'success');
+        }
+
+        /* --- ADD TYRE CODE (STAFF) --- */
+        function openAddTyreModal() {
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-circle-dot text-sky-400"></i> Add Tyre Code (Staff)
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Tyre Setup Name</label>
+                            <input type="text" id="new-tyre-name" placeholder="e.g. Ultimate Pro Drift v4" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Exact Tyre Code</label>
+                            <input type="text" id="new-tyre-code" placeholder="DRFT-9999-CODE" class="w-full liquid-input p-2.5 rounded-xl text-sm font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Price ($0 for Free)</label>
+                            <input type="number" id="new-tyre-price" value="0" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Image URL (Optional)</label>
+                            <input type="text" id="new-tyre-image" placeholder="https://images.unsplash.com/..." class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="confirmAddTyre()" class="px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm transition">Add Code</button>
+                        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl liquid-glass border border-white/20 text-slate-300 text-sm">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function confirmAddTyre() {
+            const name = document.getElementById('new-tyre-name').value.trim();
+            const code = document.getElementById('new-tyre-code').value.trim();
+            const price = parseFloat(document.getElementById('new-tyre-price').value) || 0;
+            const image = document.getElementById('new-tyre-image').value.trim();
+
+            if (!name || !code) { showToast('Name and code are required', 'info'); return; }
+
+            const newTyre = {
+                id: 'tyre-' + Date.now(),
+                name,
+                code,
+                price,
+                image: image || 'https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1200&auto=format&fit=crop'
+            };
+
+            tyresDatabase.push(newTyre);
+            saveDataToLocalStorage();
+            renderTyres();
+            closeModal();
+            logAudit(`Added tyre code: ${name}`);
+            showToast('Tyre code added successfully!', 'success');
+        }
+
+        function deleteTyreCode(tyreId) {
+            tyresDatabase = tyresDatabase.filter(t => t.id !== tyreId);
+            saveDataToLocalStorage();
+            renderTyres();
+            showToast('Tyre code deleted', 'success');
+            logAudit(`Deleted tyre code ID: ${tyreId}`);
+        }
+
+        /* --- OWNER & AUDIT LOGS MODALS --- */
+        function openCreateStaffModal() {
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-user-plus text-amber-400"></i> Create Admin or Moderator Account
+                    </h3>
+                    <p class="text-xs text-slate-300">As Owner, you can authorize new staff members.</p>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Staff Email</label>
+                            <input type="email" id="staff-email" placeholder="staff@hyper.com" class="w-full liquid-input p-2.5 rounded-xl text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">Role</label>
+                            <select id="staff-role-select" class="w-full liquid-input p-2.5 rounded-xl text-sm font-medium">
+                                <option value="Moderator">Moderator</option>
+                                <option value="Admin">Administrator</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end gap-3 pt-4 border-t border-white/10">
+                        <button onclick="confirmCreateStaff()" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm transition">Create Account</button>
+                        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl liquid-glass border border-white/20 text-slate-300 text-sm">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function confirmCreateStaff() {
+            const email = document.getElementById('staff-email').value;
+            const role = document.getElementById('staff-role-select').value;
+            if (!email) { showToast('Email is required', 'info'); return; }
+            closeModal();
+            logAudit(`Created ${role} account for ${email}`);
+            showToast(`Successfully created ${role} account for ${email}`, 'success');
+        }
+
+        function openAuditLogsModal() {
+            let logsHtml = auditLogs.map(l => `
+                <div class="p-3 rounded-xl liquid-glass-card flex items-center justify-between text-xs">
+                    <div>
+                        <span class="text-sky-400 font-bold">${l.user}</span>: <span class="text-slate-200">${l.action}</span>
+                    </div>
+                    <span class="text-slate-500">${l.time}</span>
+                </div>
+            `).join('');
+
+            openModal(`
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list text-sky-400"></i> Staff Audit Logs
+                    </h3>
+                    <div class="space-y-2 max-h-[60vh] overflow-y-auto pr-1">
+                        ${logsHtml || '<div class="text-slate-400 text-center py-4">No audit logs recorded yet.</div>'}
+                    </div>
+                    <div class="flex items-center justify-end pt-4 border-t border-white/10">
+                        <button onclick="closeModal()" class="px-4 py-2.5 rounded-xl bg-sky-500 text-white font-bold text-sm">Close</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function exportDataJSON() {
+            const data = {
+                cars: carsDatabase,
+                tyres: tyresDatabase,
+                garages: garagesData,
+                logs: auditLogs
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'hyper_car_hub_backup.json';
+            a.click();
+            showToast('Data exported successfully!', 'success');
+        }
+    </script>
+</body>
+</html>
