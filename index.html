@@ -9,22 +9,23 @@
   <!-- Tailwind CSS CDN for adaptive responsive utilities -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Inter & JetBrains Mono Typography -->
+  <!-- Distinct Typography Families for Full Structural Themes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Orbitron:wght@600;700;800;900&family=Playfair+Display:wght@600;700;800;900&family=Rajdhani:wght@600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     /* =====================================================================
-       10 LIQUID GLASS THEMES & DESIGN TOKENS (ORGANIC SQUIRCLE GEOMETRY)
+       10 DISTINCT FULL-ARCHITECTURE THEMES (FONTS, SHAPES, PATTERNS, DEPTH)
        ===================================================================== */
     :root {
       --bg-base: #050a14;
       --bg-mesh-1: rgba(0, 255, 136, 0.18);
       --bg-mesh-2: rgba(56, 189, 248, 0.18);
       --bg-mesh-3: rgba(139, 92, 246, 0.15);
+      --bg-pattern: none;
       --glass-bg: rgba(14, 22, 40, 0.54);
-      --glass-bg-strong: rgba(8, 14, 28, 0.90);
+      --glass-bg-strong: rgba(8, 14, 28, 0.92);
       --glass-border: rgba(255, 255, 255, 0.15);
       --glass-specular: rgba(255, 255, 255, 0.30);
       --glass-shadow: 0 22px 60px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.18);
@@ -37,122 +38,194 @@
       --text-primary: #f8fafc;
       --text-secondary: #94a3b8;
       --text-muted: #64748b;
-      --card-radius: 28px;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --card-radius: 26px;
       --btn-radius: 9999px;
       --blur-px: 28px;
+      --border-w: 1px;
       --ease: 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Theme 2: Hyper DarkStar */
+    /* Theme 2: Hyper DarkStar — Carbon Fiber Telemetry Motorsport HUD */
     [data-theme="hyper-darkstar"] {
-      --bg-base: #0c060c;
-      --bg-mesh-1: rgba(255, 107, 0, 0.24);
-      --bg-mesh-2: rgba(244, 63, 94, 0.20);
-      --bg-mesh-3: rgba(251, 191, 36, 0.14);
+      --bg-base: #090608;
+      --bg-mesh-1: rgba(255, 107, 0, 0.22);
+      --bg-mesh-2: rgba(244, 63, 94, 0.18);
+      --bg-mesh-3: rgba(251, 191, 36, 0.12);
+      --bg-pattern: repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 8px), repeating-linear-gradient(-45deg, rgba(255,107,0,0.02) 0 2px, transparent 2px 8px);
+      --glass-bg: rgba(18, 12, 14, 0.78);
+      --glass-border: rgba(255, 107, 0, 0.32);
+      --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 150, 60, 0.25);
       --accent: #ff6b00;
       --accent-2: #fbbf24;
-      --accent-glow: rgba(255, 107, 0, 0.38);
+      --accent-glow: rgba(255, 107, 0, 0.42);
+      --font-body: 'Rajdhani', 'Inter', sans-serif;
+      --font-display: 'Orbitron', sans-serif;
+      --card-radius: 14px;
+      --btn-radius: 10px;
+      --blur-px: 16px;
     }
 
-    /* Theme 3: Liquid Frost */
+    /* Theme 3: Liquid Frost — Apple VisionOS Ultra-Translucent Crystal Glass */
     [data-theme="liquid-frost"] {
-      --bg-base: #071126;
-      --bg-mesh-1: rgba(56, 189, 248, 0.26);
-      --bg-mesh-2: rgba(192, 132, 252, 0.22);
-      --bg-mesh-3: rgba(236, 72, 153, 0.14);
-      --glass-bg: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.24);
+      --bg-base: #08142b;
+      --bg-mesh-1: rgba(56, 189, 248, 0.30);
+      --bg-mesh-2: rgba(192, 132, 252, 0.24);
+      --bg-mesh-3: rgba(236, 72, 153, 0.16);
+      --glass-bg: rgba(255, 255, 255, 0.10);
+      --glass-bg-strong: rgba(12, 22, 46, 0.88);
+      --glass-border: rgba(255, 255, 255, 0.32);
+      --glass-shadow: 0 24px 64px rgba(3, 10, 28, 0.45), inset 0 1.5px 0 rgba(255, 255, 255, 0.42);
       --accent: #38bdf8;
-      --accent-2: #c084fc;
-      --accent-glow: rgba(56, 189, 248, 0.38);
+      --accent-2: #e879f9;
+      --accent-glow: rgba(56, 189, 248, 0.40);
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --card-radius: 34px;
+      --btn-radius: 9999px;
+      --blur-px: 38px;
     }
 
-    /* Theme 4: Royal Amethyst */
+    /* Theme 4: Royal Amethyst — Velvet Luxury Editorial */
     [data-theme="royal-amethyst"] {
-      --bg-base: #0c0618;
+      --bg-base: #0b0516;
       --bg-mesh-1: rgba(168, 85, 247, 0.28);
-      --bg-mesh-2: rgba(236, 72, 153, 0.20);
-      --bg-mesh-3: rgba(99, 102, 241, 0.18);
-      --accent: #c084fc;
-      --accent-2: #f472b6;
-      --accent-glow: rgba(192, 132, 252, 0.38);
-    }
-
-    /* Theme 5: Cyber Sakura */
-    [data-theme="cyber-sakura"] {
-      --bg-base: #130712;
-      --bg-mesh-1: rgba(244, 114, 182, 0.26);
-      --bg-mesh-2: rgba(251, 146, 60, 0.18);
-      --bg-mesh-3: rgba(232, 121, 249, 0.16);
-      --accent: #f472b6;
-      --accent-2: #fda4af;
-      --accent-glow: rgba(244, 114, 182, 0.38);
-    }
-
-    /* Theme 6: Obsidian Gold */
-    [data-theme="obsidian-gold"] {
-      --bg-base: #080808;
-      --bg-mesh-1: rgba(250, 204, 21, 0.20);
-      --bg-mesh-2: rgba(245, 158, 11, 0.16);
-      --bg-mesh-3: rgba(120, 113, 108, 0.16);
-      --glass-bg: rgba(22, 20, 16, 0.62);
-      --glass-border: rgba(253, 224, 71, 0.20);
-      --accent: #facc15;
-      --accent-2: #fb923c;
-      --accent-glow: rgba(250, 204, 21, 0.34);
-    }
-
-    /* Theme 7: Aurora Borealis */
-    [data-theme="aurora-borealis"] {
-      --bg-base: #041217;
-      --bg-mesh-1: rgba(45, 212, 191, 0.26);
-      --bg-mesh-2: rgba(163, 230, 53, 0.18);
+      --bg-mesh-2: rgba(236, 72, 153, 0.18);
       --bg-mesh-3: rgba(99, 102, 241, 0.22);
+      --bg-pattern: radial-gradient(rgba(216, 180, 254, 0.08) 1px, transparent 1px);
+      --glass-bg: rgba(24, 12, 44, 0.62);
+      --glass-border: rgba(216, 180, 254, 0.26);
+      --accent: #d8b4fe;
+      --accent-2: #f472b6;
+      --accent-glow: rgba(192, 132, 252, 0.42);
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-display: 'Playfair Display', serif;
+      --card-radius: 24px;
+      --btn-radius: 16px;
+      --blur-px: 26px;
+    }
+
+    /* Theme 5: Cyber Sakura — Tokyo Synthwave Grid Arcade */
+    [data-theme="cyber-sakura"] {
+      --bg-base: #120614;
+      --bg-mesh-1: rgba(244, 114, 182, 0.28);
+      --bg-mesh-2: rgba(34, 211, 238, 0.20);
+      --bg-mesh-3: rgba(232, 121, 249, 0.20);
+      --bg-pattern: linear-gradient(rgba(244,114,182,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.06) 1px, transparent 1px);
+      --glass-bg: rgba(28, 10, 34, 0.70);
+      --glass-border: rgba(244, 114, 182, 0.36);
+      --glass-shadow: 0 0 28px rgba(244, 114, 182, 0.18), 0 18px 46px rgba(0,0,0,0.6);
+      --accent: #f472b6;
+      --accent-2: #22d3ee;
+      --accent-glow: rgba(244, 114, 182, 0.45);
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-display: 'Orbitron', sans-serif;
+      --card-radius: 18px;
+      --btn-radius: 12px;
+      --blur-px: 20px;
+    }
+
+    /* Theme 6: Obsidian Gold — Concours Supercar Showroom (Serif Prestige) */
+    [data-theme="obsidian-gold"] {
+      --bg-base: #070707;
+      --bg-mesh-1: rgba(250, 204, 21, 0.16);
+      --bg-mesh-2: rgba(217, 119, 6, 0.12);
+      --bg-mesh-3: rgba(120, 113, 108, 0.12);
+      --bg-pattern: linear-gradient(180deg, rgba(250,204,21,0.03) 0%, transparent 40%);
+      --glass-bg: rgba(16, 15, 13, 0.84);
+      --glass-border: rgba(234, 179, 8, 0.34);
+      --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(254, 240, 138, 0.28);
+      --accent: #facc15;
+      --accent-2: #f59e0b;
+      --accent-glow: rgba(250, 204, 21, 0.34);
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --card-radius: 16px;
+      --btn-radius: 8px;
+      --blur-px: 18px;
+    }
+
+    /* Theme 7: Aurora Borealis — Organic Nordic Bioluminescent Bento */
+    [data-theme="aurora-borealis"] {
+      --bg-base: #031116;
+      --bg-mesh-1: rgba(45, 212, 191, 0.28);
+      --bg-mesh-2: rgba(163, 230, 53, 0.20);
+      --bg-mesh-3: rgba(99, 102, 241, 0.24);
+      --glass-bg: rgba(6, 28, 36, 0.56);
+      --glass-border: rgba(45, 212, 191, 0.28);
       --accent: #2dd4bf;
       --accent-2: #a3e635;
-      --accent-glow: rgba(45, 212, 191, 0.36);
+      --accent-glow: rgba(45, 212, 191, 0.38);
+      --font-body: 'Space Grotesk', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --card-radius: 32px;
+      --btn-radius: 9999px;
+      --blur-px: 34px;
     }
 
-    /* Theme 8: Crimson Velocity */
+    /* Theme 8: Crimson Velocity — Track Pit-Wall Tactical Console */
     [data-theme="crimson-velocity"] {
-      --bg-base: #120508;
+      --bg-base: #0f0407;
       --bg-mesh-1: rgba(239, 68, 68, 0.26);
-      --bg-mesh-2: rgba(249, 115, 22, 0.20);
+      --bg-mesh-2: rgba(249, 115, 22, 0.18);
       --bg-mesh-3: rgba(190, 18, 60, 0.18);
-      --accent: #fb7185;
+      --bg-pattern: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 4px);
+      --glass-bg: rgba(26, 8, 12, 0.76);
+      --glass-border: rgba(251, 113, 133, 0.34);
+      --accent: #ff3b5c;
       --accent-2: #f97316;
-      --accent-glow: rgba(239, 68, 68, 0.38);
+      --accent-glow: rgba(255, 59, 92, 0.42);
+      --font-body: 'Rajdhani', sans-serif;
+      --font-display: 'Orbitron', sans-serif;
+      --card-radius: 12px;
+      --btn-radius: 6px;
+      --blur-px: 14px;
     }
 
-    /* Theme 9: Ocean Abyss */
+    /* Theme 9: Ocean Abyss — Deep Sonar Glass Submarine UI */
     [data-theme="ocean-abyss"] {
-      --bg-base: #030b1a;
-      --bg-mesh-1: rgba(14, 165, 233, 0.26);
-      --bg-mesh-2: rgba(34, 211, 238, 0.20);
-      --bg-mesh-3: rgba(37, 99, 235, 0.22);
+      --bg-base: #020917;
+      --bg-mesh-1: rgba(14, 165, 233, 0.28);
+      --bg-mesh-2: rgba(34, 211, 238, 0.22);
+      --bg-mesh-3: rgba(37, 99, 235, 0.24);
+      --bg-pattern: radial-gradient(circle at 50% 50%, rgba(34,211,238,0.06) 1px, transparent 1px);
+      --glass-bg: rgba(5, 20, 44, 0.62);
+      --glass-border: rgba(56, 189, 248, 0.28);
       --accent: #22d3ee;
       --accent-2: #60a5fa;
-      --accent-glow: rgba(34, 211, 238, 0.36);
+      --accent-glow: rgba(34, 211, 238, 0.40);
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --card-radius: 28px;
+      --btn-radius: 20px;
+      --blur-px: 30px;
     }
 
-    /* Theme 10: Solar Prism (Light Frosted Glass) */
+    /* Theme 10: Solar Prism — Clean Swiss Frosted Daylight Ceramic */
     [data-theme="solar-prism"] {
-      --bg-base: #e7eef8;
-      --bg-mesh-1: rgba(14, 165, 233, 0.24);
-      --bg-mesh-2: rgba(16, 185, 129, 0.22);
-      --bg-mesh-3: rgba(168, 85, 247, 0.20);
-      --glass-bg: rgba(255, 255, 255, 0.65);
-      --glass-bg-strong: rgba(248, 250, 252, 0.96);
-      --glass-border: rgba(15, 23, 42, 0.12);
-      --glass-specular: rgba(255, 255, 255, 0.85);
-      --glass-shadow: 0 20px 50px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --bg-base: #edf2f8;
+      --bg-mesh-1: rgba(14, 165, 233, 0.22);
+      --bg-mesh-2: rgba(16, 185, 129, 0.20);
+      --bg-mesh-3: rgba(168, 85, 247, 0.16);
+      --bg-pattern: radial-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+      --glass-bg: rgba(255, 255, 255, 0.78);
+      --glass-bg-strong: rgba(255, 255, 255, 0.96);
+      --glass-border: rgba(15, 23, 42, 0.11);
+      --glass-specular: rgba(255, 255, 255, 0.95);
+      --glass-shadow: 0 18px 45px rgba(15, 23, 42, 0.09), inset 0 1px 0 rgba(255, 255, 255, 1);
       --accent: #059669;
       --accent-2: #0284c7;
-      --accent-glow: rgba(5, 150, 105, 0.28);
+      --accent-glow: rgba(5, 150, 105, 0.26);
       --accent-ink: #ffffff;
       --text-primary: #0f172a;
-      --text-secondary: #334155;
+      --text-secondary: #475569;
       --text-muted: #64748b;
+      --font-body: 'Inter', sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --card-radius: 26px;
+      --btn-radius: 9999px;
+      --blur-px: 26px;
     }
 
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -162,15 +235,19 @@
       margin: 0;
       background-color: var(--bg-base);
       color: var(--text-primary);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-body);
       overflow-x: hidden;
       transition: background-color 0.4s ease, color 0.3s ease;
+    }
+
+    h1, h2, h3, .title-grad, #brandTitleText {
+      font-family: var(--font-display);
     }
 
     .font-mono-num { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
 
     /* =====================================================================
-       MOTION GRAPHICS: AMBIENT LIQUID ORBS + FLOATING PARTICLE CANVAS
+       MOTION GRAPHICS: AMBIENT LIQUID ORBS + THEME PATTERN + PARTICLE CANVAS
        ===================================================================== */
     .ambient-canvas {
       position: fixed;
@@ -178,10 +255,12 @@
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
-      background:
+      background-image:
+        var(--bg-pattern),
         radial-gradient(circle at 12% 14%, var(--bg-mesh-1), transparent 46%),
         radial-gradient(circle at 88% 18%, var(--bg-mesh-2), transparent 48%),
         radial-gradient(circle at 50% 92%, var(--bg-mesh-3), transparent 52%);
+      background-size: 28px 28px, 100% 100%, 100% 100%, 100% 100%;
     }
     .ambient-orb {
       position: absolute;
@@ -272,14 +351,54 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Navigation Pills */
-    .nav-pills { scrollbar-width: none; }
+    /* Navigation Pills + Visible Scroll Arrows */
+    .nav-scroll-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+    }
+    .nav-pills {
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+    }
     .nav-pills::-webkit-scrollbar { display: none; }
+    .nav-arrow-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 9999px;
+      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.09);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: var(--ease);
+      user-select: none;
+    }
+    [data-theme="solar-prism"] .nav-arrow-btn {
+      background: rgba(15, 23, 42, 0.07);
+    }
+    .nav-arrow-btn:hover {
+      background: var(--accent);
+      color: var(--accent-ink);
+      border-color: transparent;
+      transform: scale(1.08);
+    }
+    .nav-arrow-btn.at-edge {
+      opacity: 0.34;
+    }
     .nav-btn {
       color: var(--text-secondary);
       transition: var(--ease);
       white-space: nowrap;
-      border-radius: 9999px;
+      border-radius: var(--btn-radius);
     }
     .nav-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.10); }
     .nav-btn.active {
@@ -399,26 +518,28 @@
     .addon-toggle.active .pill-switch { background: var(--accent); }
     .addon-toggle.active .pill-switch::after { transform: translateX(18px); background: var(--accent-ink); }
 
-    /* FULL IMAGE MOBILE-RATIO STAGE (ZERO ZOOM/CROP — FULL IMAGE VISIBLE ON ALL SIDES) */
+    /* IPHONE 11 PRO MAX SCREEN RATIO (9 / 19.5) — FULL IMAGE VISIBLE ALL SIDES */
     .media-frame-mobile {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
-      max-height: 360px;
+      aspect-ratio: 9 / 19.5;
       overflow: hidden;
-      background: rgba(4, 8, 18, 0.72);
+      background: rgba(4, 8, 18, 0.78);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 6px;
+    }
+    [data-theme="solar-prism"] .media-frame-mobile {
+      background: rgba(15, 23, 42, 0.08);
     }
     .media-frame-mobile .bg-blur-fill {
       position: absolute;
-      inset: -16px;
-      width: calc(100% + 32px);
-      height: calc(100% + 32px);
+      inset: -14px;
+      width: calc(100% + 28px);
+      height: calc(100% + 28px);
       object-fit: cover;
-      filter: blur(26px) brightness(0.45) saturate(150%);
+      filter: blur(22px) brightness(0.45) saturate(150%);
       transform: scale(1.08);
       pointer-events: none;
     }
@@ -430,33 +551,36 @@
       width: auto;
       height: auto;
       object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+      border-radius: 14px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.42);
       image-rendering: -webkit-optimize-contrast;
-      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .glass-card-hover:hover .media-frame-mobile .fg-full-img {
-      transform: scale(1.02);
+      transform: scale(1.015);
     }
 
     .media-frame-detail {
       position: relative;
       width: 100%;
-      max-height: 460px;
-      min-height: 220px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      aspect-ratio: 9 / 19.5;
+      max-height: 520px;
       overflow: hidden;
-      background: rgba(4, 8, 18, 0.75);
+      background: rgba(4, 8, 18, 0.78);
       border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 12px;
+      padding: 8px;
     }
     .media-frame-detail img.fg-full-img {
       position: relative;
       z-index: 2;
       max-width: 100%;
-      max-height: 436px;
+      max-height: 100%;
       object-fit: contain;
       border-radius: 16px;
     }
@@ -508,14 +632,25 @@
     .staff-only-block { display: none !important; }
     body.editor-active .staff-only-block { display: block !important; }
 
-    body.visual-edit-active [data-cms-key] {
-      outline: 2px dashed var(--accent);
-      outline-offset: 4px;
-      border-radius: 10px;
+    body.visual-edit-active [data-cms-key],
+    body.visual-edit-active h1,
+    body.visual-edit-active h2,
+    body.visual-edit-active h3,
+    body.visual-edit-active p,
+    body.visual-edit-active label,
+    body.visual-edit-active footer {
+      outline: 1.5px dashed color-mix(in srgb, var(--accent) 65%, transparent);
+      outline-offset: 3px;
+      border-radius: 8px;
       cursor: pointer !important;
       transition: background 0.2s;
     }
-    body.visual-edit-active [data-cms-key]:hover {
+    body.visual-edit-active [data-cms-key]:hover,
+    body.visual-edit-active h1:hover,
+    body.visual-edit-active h2:hover,
+    body.visual-edit-active h3:hover,
+    body.visual-edit-active p:hover,
+    body.visual-edit-active label:hover {
       background: color-mix(in srgb, var(--accent) 18%, transparent);
     }
 
@@ -559,43 +694,46 @@
     <!-- =================================================================
          FLOATING LIQUID GLASS TOP NAVIGATION BAR
          ================================================================= -->
-    <header class="glass sticky top-3 z-50 mx-auto mt-3 w-[min(1360px,calc(100%-24px))] !rounded-[28px] lg:!rounded-full px-4 py-2.5 flex flex-wrap lg:flex-nowrap items-center justify-between gap-3">
+    <header class="glass sticky top-3 z-50 mx-auto mt-3 w-[min(1360px,calc(100%-16px))] sm:w-[min(1360px,calc(100%-24px))] !rounded-[24px] lg:!rounded-full px-3 sm:px-4 py-2 sm:py-2.5 flex flex-wrap lg:flex-nowrap items-center justify-between gap-2 sm:gap-3">
       <!-- Editable Brand Logo & Title -->
-      <div class="flex items-center gap-3 cursor-pointer shrink-0" onclick="handleBrandClick()">
-        <div id="brandLogoWrap" data-cms-key="brandLogo" class="w-10 h-10 rounded-2xl bg-accent-grad grid place-items-center font-black text-sm tracking-tight overflow-hidden shrink-0">RDS</div>
-        <div class="leading-tight">
-          <div id="brandTitleText" data-cms-key="brandTitle" class="font-black text-sm tracking-wider uppercase">Real Driving School</div>
-          <div id="brandSubtitleText" data-cms-key="brandSubtitle" class="text-[11px] font-semibold text-muted-dyn">Car Values • Garages • Tyre Codes</div>
+      <div class="flex items-center gap-2.5 cursor-pointer shrink-0 min-w-0" onclick="handleBrandClick()">
+        <div id="brandLogoWrap" data-cms-key="brandLogo" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-accent-grad grid place-items-center font-black text-xs sm:text-sm tracking-tight overflow-hidden shrink-0">RDS</div>
+        <div class="leading-tight min-w-0">
+          <div id="brandTitleText" data-cms-key="brandTitle" class="font-black text-xs sm:text-sm tracking-wider uppercase truncate max-w-[140px] sm:max-w-none">Real Driving School</div>
+          <div id="brandSubtitleText" data-cms-key="brandSubtitle" class="text-[10px] sm:text-[11px] font-semibold text-muted-dyn truncate max-w-[140px] sm:max-w-none">Car Values • Garages • Tyre Codes</div>
         </div>
       </div>
 
-      <!-- Dynamic Rearrangeable Navigation Pills -->
-      <nav id="dynamicNavBar" class="nav-pills order-3 lg:order-2 w-full lg:w-auto flex items-center gap-1.5 overflow-x-auto pb-0.5 lg:pb-0"></nav>
+      <!-- Dynamic Scrollable Navigation Bar with Small Visible Arrows & Mouse Wheel Scroll -->
+      <div class="nav-scroll-wrap order-3 lg:order-2 w-full lg:w-auto lg:flex-1 lg:max-w-[650px]">
+        <button type="button" id="navArrowLeft" class="nav-arrow-btn" onclick="scrollNavBar(-180)" title="Scroll categories left" aria-label="Scroll left">‹</button>
+        <nav id="dynamicNavBar" class="nav-pills flex-1 flex items-center gap-1.5 overflow-x-auto py-0.5"></nav>
+        <button type="button" id="navArrowRight" class="nav-arrow-btn" onclick="scrollNavBar(180)" title="Scroll categories right" aria-label="Scroll right">›</button>
+      </div>
 
-      <!-- Right Controls: Credits Wallet, User Profile Chip & Drive Sync -->
-      <div class="order-2 lg:order-3 flex items-center gap-2 shrink-0">
+      <!-- Top-Right Controls: Sync/Edit, then WALLET (left of PFP), then ROUND PFP (far top-right) -->
+      <div class="order-2 lg:order-3 flex items-center gap-1.5 sm:gap-2 shrink-0">
         <!-- Quick Staff Editor Toggle (Visible ONLY when Staff/Owner is logged in) -->
-        <button type="button" id="headerEditorToggleBtn" onclick="toggleEditorMode()" title="Toggle Staff Editor Mode" class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-xs font-extrabold text-amber-300 transition">
-          <span id="headerEditorLabel">⚡ Edit: OFF</span>
+        <button type="button" id="headerEditorToggleBtn" onclick="toggleEditorMode()" title="Toggle Staff Editor Mode" class="hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-[11px] font-extrabold text-amber-300 transition">
+          <span id="headerEditorLabel">⚡ Edit</span>
         </button>
 
-        <!-- Credits Balance Pill -->
-        <button type="button" onclick="openWalletModal()" title="Open RDS Credits Wallet & Redeem Codes" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/35 text-xs font-extrabold transition">
+        <!-- Compact Google Drive Sync Indicator -->
+        <button type="button" id="syncChip" onclick="syncFromCloud(true)" title="Auto-syncs every few seconds — click to force sync now" class="inline-flex items-center gap-1.5 px-2 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-[11px] font-bold text-muted-dyn transition">
+          <span class="status-dot" id="syncDot"></span>
+          <span id="syncText" class="hidden xl:inline">Live Sync</span>
+        </button>
+
+        <!-- Wallet Pill (Directly to the LEFT of the round Profile PFP) -->
+        <button type="button" onclick="openWalletModal()" title="Open RDS Credits Wallet & Redeem Codes" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-xs font-extrabold transition shadow-sm">
           <span>💎</span>
           <span class="font-mono-num text-accent whitespace-nowrap" id="headerCreditsVal">$5M</span>
         </button>
 
-        <!-- User Profile Chip -->
-        <button type="button" onclick="openProfileModal(false)" title="Edit Profile & PFP" class="inline-flex items-center gap-2 pl-1.5 pr-3 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-bold transition max-w-[140px]">
-          <img id="headerUserPfp" src="" alt="" class="w-6 h-6 rounded-full object-cover hidden shrink-0 border border-white/25" />
-          <span id="headerUserInitials" class="w-6 h-6 rounded-full bg-accent-grad grid place-items-center text-[10px] font-black shrink-0">DR</span>
-          <span id="headerUserName" class="truncate">Driver</span>
-        </button>
-
-        <!-- Google Drive Sync Indicator -->
-        <button type="button" id="syncChip" onclick="syncFromCloud(true)" title="Auto-syncs every few seconds — click to force sync now" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-bold text-muted-dyn transition">
-          <span class="status-dot" id="syncDot"></span>
-          <span id="syncText" class="hidden sm:inline">Live Sync</span>
+        <!-- Round Circular Profile PFP Avatar (Far Top-Right) -->
+        <button type="button" onclick="openProfileModal(false)" id="headerProfileBtn" title="Driver Profile & PFP" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-emerald-400/55 hover:border-emerald-300 bg-slate-900 grid place-items-center shrink-0 shadow-md transition hover:scale-105">
+          <img id="headerUserPfp" src="" alt="Profile" class="w-full h-full object-cover hidden" />
+          <span id="headerUserInitials" class="w-full h-full bg-accent-grad grid place-items-center text-xs font-black">DR</span>
         </button>
       </div>
     </header>
@@ -645,8 +783,8 @@
           </select>
         </div>
 
-        <!-- Vehicle Cards Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="carInfoGrid"></div>
+        <!-- Vehicle Cards Grid (Clean 2-Column Side-by-Side on Mobile!) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-5" id="carInfoGrid"></div>
       </section>
 
       <!-- ---------------------------------------------------------------
@@ -860,10 +998,11 @@
 
         <div class="relative mb-6">
           <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">🛞</span>
-          <input type="text" id="tyreSearchInput" class="rds-input !rounded-full !pl-11 !py-3.5" placeholder="Search tyre designs by name or price (e.g. Free, Apex, VIP)..." oninput="renderTyresGrid()" />
+          <input type="text" id="tyreSearchInput" class="rds-input !rounded-full !pl-11 !py-3.5" placeholder="Search tyre designs by name, creator, or price..." oninput="renderTyresGrid()" />
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="tyresGrid"></div>
+        <!-- Tyre Cards Grid (Clean 2-Column Side-by-Side on Mobile!) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-5" id="tyresGrid"></div>
       </section>
 
       <!-- ---------------------------------------------------------------
@@ -1076,6 +1215,29 @@
 
             <!-- TAB 3: USERS & CREDITS ECONOMY MANAGER -->
             <div class="owner-tab-panel hidden space-y-4" id="otab-economy">
+              <!-- Editable Top-Up DM Usernames Manager -->
+              <div class="p-4 rounded-3xl glass-sub space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h3 class="text-sm sm:text-base font-black text-accent-2">💬 Add Balance / Money — DM Contacts</h3>
+                    <p class="text-xs text-muted-dyn">Customize the wallet top-up text and add multiple usernames players can DM to add balance.</p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div>
+                    <label class="block text-[10px] font-bold uppercase text-muted-dyn mb-1">Top-Up Message Text</label>
+                    <input type="text" id="adminTopUpMsgInput" class="rds-input !py-2 text-xs" placeholder="To add balance / credits, DM:" />
+                  </div>
+                  <div>
+                    <label class="block text-[10px] font-bold uppercase text-muted-dyn mb-1">DM Usernames (Comma-separated, supports multiple)</label>
+                    <div class="flex gap-2">
+                      <input type="text" id="adminTopUpUsersInput" class="rds-input !py-2 text-xs flex-1" placeholder="hyper_legend_1_og, hs1_rds" />
+                      <button type="button" class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="saveTopUpDmConfig()">Save</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h3 class="text-base font-black text-accent">💎 User Accounts &amp; Credits Control</h3>
@@ -1172,12 +1334,28 @@
                   </div>
                 </div>
                 <div>
-                  <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Card Corner Softness (<span id="cmsRadiusVal">28</span>px)</label>
-                  <input type="range" id="cmsCardRadius" min="14" max="40" value="28" class="w-full accent-emerald-400" oninput="document.getElementById('cmsRadiusVal').textContent=this.value" />
+                  <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Card Corner Softness (<span id="cmsRadiusVal">26</span>px)</label>
+                  <input type="range" id="cmsCardRadius" min="12" max="40" value="26" class="w-full accent-emerald-400" oninput="document.getElementById('cmsRadiusVal').textContent=this.value" />
                 </div>
                 <div>
                   <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Glass Blur Strength (<span id="cmsBlurVal">28</span>px)</label>
                   <input type="range" id="cmsGlassBlur" min="10" max="44" value="28" class="w-full accent-emerald-400" oninput="document.getElementById('cmsBlurVal').textContent=this.value" />
+                </div>
+                <div class="sm:col-span-2">
+                  <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Default Portal Theme (Synced to All Users)</label>
+                  <select id="cmsDefaultTheme" class="rds-input">
+                    <option value="">Keep User Choice</option>
+                    <option value="midnight-mint">Midnight Mint (Liquid Glass)</option>
+                    <option value="hyper-darkstar">Hyper DarkStar (Carbon Telemetry)</option>
+                    <option value="liquid-frost">Liquid Frost (Crystal VisionOS)</option>
+                    <option value="royal-amethyst">Royal Amethyst (Velvet Editorial)</option>
+                    <option value="cyber-sakura">Cyber Sakura (Synthwave Grid)</option>
+                    <option value="obsidian-gold">Obsidian Gold (Luxury Concours)</option>
+                    <option value="aurora-borealis">Aurora Borealis (Nordic Bento)</option>
+                    <option value="crimson-velocity">Crimson Velocity (Tactical Track)</option>
+                    <option value="ocean-abyss">Ocean Abyss (Deep Sonar)</option>
+                    <option value="solar-prism">Solar Prism (Swiss Ceramic Light)</option>
+                  </select>
                 </div>
                 <div class="sm:col-span-2 flex justify-end gap-2.5 pt-2">
                   <button type="button" class="rds-btn px-4 py-2 text-xs" onclick="resetVisualDefaults()">↺ Reset Visuals</button>
@@ -1186,22 +1364,46 @@
               </form>
             </div>
 
-            <!-- TAB 7: CATEGORIZED & SEARCHABLE AUDIT LOGS -->
+            <!-- TAB 7: CATEGORIZED & SEARCHABLE AUDIT LOGS + TYRE REVENUE ANALYTICS -->
             <div class="owner-tab-panel hidden space-y-4" id="otab-logs">
+              <!-- Tyre Code Revenue & Per-Person Spending Analytics -->
+              <div class="p-4 rounded-3xl glass-sub space-y-3">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h3 class="text-sm sm:text-base font-black text-accent">📊 Tyre Code Revenue &amp; Spender Analytics</h3>
+                    <p class="text-xs text-muted-dyn">Live breakdown of total revenue earned, earnings per tyre code, and how much each person spent.</p>
+                  </div>
+                  <div class="px-3.5 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/40 font-mono-num text-xs font-black text-accent whitespace-nowrap">
+                    Total Revenue: <span id="logsTotalTyreRevenue">$0</span>
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="p-3 rounded-2xl bg-black/25 border border-white/10">
+                    <div class="text-[11px] font-extrabold uppercase tracking-wider text-accent-2 mb-2">🛞 Revenue by Tyre Code</div>
+                    <div id="logsTyreRevenueList" class="space-y-1.5 max-h-48 overflow-y-auto pr-1 text-xs"></div>
+                  </div>
+                  <div class="p-3 rounded-2xl bg-black/25 border border-white/10">
+                    <div class="text-[11px] font-extrabold uppercase tracking-wider text-amber-300 mb-2">👤 Spending by Person</div>
+                    <div id="logsPersonSpendList" class="space-y-1.5 max-h-48 overflow-y-auto pr-1 text-xs"></div>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-2.5">
                 <h3 class="text-base font-black">📜 Categorized Audit &amp; Security Logs</h3>
                 <div class="flex items-center gap-2 flex-wrap">
-                  <input type="text" id="logSearchInput" class="rds-input !w-52 !py-1.5 !px-3 text-xs" placeholder="Search actor, action..." oninput="renderAuditLogs()" />
+                  <input type="text" id="logSearchInput" class="rds-input !w-52 !py-1.5 !px-3 text-xs" placeholder="Search actor, tyre, action..." oninput="renderAuditLogs()" />
                   <button class="rds-btn px-3 py-1.5 text-xs" onclick="exportAuditLogs()">⬇️ Export JSON</button>
                 </div>
               </div>
               <div class="flex items-center gap-1.5 flex-wrap" id="logCategoryPills">
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn rds-btn-primary" data-lcat="ALL" onclick="setLogCategory('ALL')">All</button>
-                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="AUTH" onclick="setLogCategory('AUTH')">Auth &amp; Security</button>
-                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CARS" onclick="setLogCategory('CARS')">Cars</button>
+                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="TYRE_SALES" onclick="setLogCategory('TYRE_SALES')">💰 Tyre Sales</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="TYRES" onclick="setLogCategory('TYRES')">Tyre Codes</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="ECONOMY" onclick="setLogCategory('ECONOMY')">Credits &amp; Economy</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CODES" onclick="setLogCategory('CODES')">Redeem Codes</button>
+                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CARS" onclick="setLogCategory('CARS')">Cars</button>
+                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="AUTH" onclick="setLogCategory('AUTH')">Auth &amp; Security</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="STAFF" onclick="setLogCategory('STAFF')">Staff &amp; Roles</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="UI" onclick="setLogCategory('UI')">Visuals &amp; Categories</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="SYNC" onclick="setLogCategory('SYNC')">Cloud Sync</button>
@@ -1214,14 +1416,14 @@
     </main>
 
     <!-- =================================================================
-         PERSISTENT FOOTER + STEALTH PLAIN NON-CLICKABLE VERSION AT BOTTOM
+         PERSISTENT FOOTER + DYNAMIC AUTO-UPDATING STEALTH VERSION TRIGGER
          ================================================================= -->
-    <footer class="glass mx-auto mb-5 mt-auto w-[min(1360px,calc(100%-24px))] !rounded-full px-6 py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-muted-dyn">
+    <footer class="glass mx-auto mb-5 mt-auto w-[min(1360px,calc(100%-16px))] sm:w-[min(1360px,calc(100%-24px))] !rounded-3xl sm:!rounded-full px-5 py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm text-muted-dyn">
       <div id="footerCreditsLine" data-cms-key="footerCredits">
         Made by <strong class="text-accent font-extrabold">Hyper_DarkStar</strong> • Credits to <strong class="text-accent font-extrabold">HS1</strong> &amp; <strong class="text-accent-2 font-extrabold">RDS Team</strong>
       </div>
       <div class="text-xs text-muted-dyn/80">
-        Real Driving School • <span id="webVersionTrigger" onclick="handleVersionClick()">v4.0.0-RDS</span>
+        <span data-cms-key="footerPortalLabel">Real Driving School</span> • <span id="webVersionTrigger" onclick="handleVersionClick()">v4.1.0</span>
       </div>
     </footer>
   </div>
@@ -1271,11 +1473,16 @@
         <div class="text-lg font-black">💎 RDS Credits Wallet</div>
         <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('walletModal')">×</button>
       </div>
-
-      <div class="p-5 rounded-3xl bg-gradient-to-br from-emerald-500/15 to-sky-500/15 border border-emerald-400/35 text-center mb-5">
-        <div class="text-[11px] font-extrabold uppercase tracking-widest text-accent">Available Balance</div>
+      <div class="p-5 rounded-3xl bg-gradient-to-br from-emerald-500/15 to-sky-500/15 border border-emerald-400/35 text-center mb-4">
+        <div class="text-[11px] font-extrabold uppercase tracking-widest text-accent" data-cms-key="walletBalanceLabel">Available Balance</div>
         <div class="font-mono-num text-3xl font-black my-1.5 whitespace-nowrap" id="walletBalanceDisplay">$5,000,000</div>
         <div class="text-[11px] text-muted-dyn" id="walletIntegrityBadge">🛡️ Anti-Fraud Verified • Synced</div>
+      </div>
+
+      <!-- Add Balance / Money DM Contacts Box (Multiple Editable Names) -->
+      <div class="mb-4 p-4 rounded-3xl bg-amber-500/10 border border-amber-400/35">
+        <div class="text-xs font-extrabold text-amber-300 mb-2" id="walletTopUpMsgDisplay" data-cms-key="walletTopUpText">To add balance or money, DM:</div>
+        <div id="walletTopUpDmList" class="flex flex-wrap gap-2"></div>
       </div>
 
       <!-- Redeem Promo Code Form -->
@@ -1431,9 +1638,15 @@
       </div>
       <form onsubmit="saveTyreFromEditor(event)" class="space-y-3.5">
         <input type="hidden" id="editTyreId" />
-        <div>
-          <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Tyre Name</label>
-          <input type="text" id="editTyreName" class="rds-input" required placeholder="e.g. Apex Neon Slick R1" />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Tyre Name</label>
+            <input type="text" id="editTyreName" class="rds-input" required placeholder="e.g. Apex Neon Slick R1" />
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Made by ___ (Creator Name)</label>
+            <input type="text" id="editTyreMadeBy" class="rds-input" placeholder="e.g. Hyper_DarkStar" />
+          </div>
         </div>
         <div>
           <label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Tyre Code (Protected — Hidden &amp; Non-Copiable if Priced)</label>
@@ -1996,8 +2209,14 @@
       footerCredits: 'Made by Hyper_DarkStar • Credits to HS1 & RDS Team',
       accent1: '',
       accent2: '',
-      cardRadius: 28,
+      cardRadius: 26,
       glassBlur: 28,
+      defaultTheme: '',
+      topUpMessage: 'To add balance or money, DM:',
+      topUpDmUsers: ['hyper_legend_1_og'],
+      versionMajor: 4,
+      versionMinor: 2,
+      versionPatch: 0,
       texts: {}
     };
 
@@ -2105,10 +2324,10 @@
     ];
 
     const DEFAULT_TYRES = [
-      { id: 'tyre_apex_r1', name: 'Apex Slick Soft R1', code: '<size=4><color=#ff6b00><b>APEX ZERO R1</b></color></size>', price: '', dmUser: 'hyper_legend_1_og', image: '' },
-      { id: 'tyre_neon_mint', name: 'Neon Mint Pro Drift', code: '<size=4><color=#00ff88><b>HYPER DRIFT PRO</b></color></size>', price: '', dmUser: 'hyper_legend_1_og', image: '' },
-      { id: 'tyre_gold_vip', name: 'DarkStar Carbon VIP Spec', code: '<size=5><color=#fbbf24><b>⚡ DARKSTAR VIP ⚡</b></color></size>', price: '2.5M', dmUser: 'hyper_legend_1_og', image: '' },
-      { id: 'tyre_frost_pro', name: 'Liquid Frost Street Spec', code: '<size=4><color=#38bdf8><b>FROST TRACK V2</b></color></size>', price: '1.5M', dmUser: 'hyper_legend_1_og', image: '' }
+      { id: 'tyre_apex_r1', name: 'Apex Slick Soft R1', madeBy: 'Hyper_DarkStar', code: '<size=4><color=#ff6b00><b>APEX ZERO R1</b></color></size>', price: '', dmUser: 'hyper_legend_1_og', image: '' },
+      { id: 'tyre_neon_mint', name: 'Neon Mint Pro Drift', madeBy: 'HS1', code: '<size=4><color=#00ff88><b>HYPER DRIFT PRO</b></color></size>', price: '', dmUser: 'hyper_legend_1_og', image: '' },
+      { id: 'tyre_gold_vip', name: 'DarkStar Carbon VIP Spec', madeBy: 'Hyper_DarkStar', code: '<size=5><color=#fbbf24><b>⚡ DARKSTAR VIP ⚡</b></color></size>', price: '2.5M', dmUser: 'hyper_legend_1_og', image: '' },
+      { id: 'tyre_frost_pro', name: 'Liquid Frost Street Spec', madeBy: 'RDS Team', code: '<size=4><color=#38bdf8><b>FROST TRACK V2</b></color></size>', price: '1.5M', dmUser: 'hyper_legend_1_og', image: '' }
     ];
 
     const nowMs = Date.now();
@@ -2139,6 +2358,7 @@
       carCategories: ['Hypercar', 'Supercar', 'JDM', 'SUV', 'Classic'],
       usersDirectory: {}, // Synced directory of all players { [userId]: userRecord }
       redeemCodes: [],    // Synced promo codes
+      tyreSales: [],      // Synced revenue & per-person spending ledger for Tyre Codes
       userProfile: null,  // Current device driver profile + credits wallet
       garages: [{ id: 'gar_default', name: 'Main Garage', items: [] }],
       activeGarageId: 'gar_default',
@@ -2161,14 +2381,101 @@
       versionClickTimer: null,
       failedLogins: 0,
       lockoutUntil: 0,
-      syncIntervalMs: 5000,
+      syncIntervalMs: 4000,
       syncTimerId: null,
       isSyncingPull: false,
       activeWritesCount: 0,
       localKeyUpdatedAt: {},
       lastCloudFingerprint: '',
-      lastSyncSuccessAt: 0
+      lastSyncSuccessAt: 0,
+      codeBuildHash: ''
     };
+
+    /* =====================================================================
+       DYNAMIC NAVIGATION, WHEEL SCROLL & SMALL VISIBLE ARROW CONTROLS
+       ===================================================================== */
+    function renderNavigationBar() {
+      const nav = document.getElementById('dynamicNavBar');
+      const visibleTabs = state.navCategories.filter(cat => {
+        if (!cat.enabled || cat.access === 'hidden') return false;
+        if (cat.access === 'staff' && !state.staff) return false;
+        return true;
+      });
+
+      const activeView = document.querySelector('.view-section.active')?.id.replace('view-', '') || 'cars';
+      nav.innerHTML = visibleTabs.map(cat => {
+        const isCurrent = cat.builtin ? (activeView === cat.id) : (activeView === 'custom' && state.activeCustomCatId === cat.id);
+        const garageBadge = cat.id === 'garage'
+          ? ` <span class="px-1.5 py-0.5 rounded-full bg-black/25 text-[10px] font-extrabold" id="navGarageCount">${getTotalGarageUnits()}</span>`
+          : '';
+        return `<button class="nav-btn ${isCurrent ? 'active' : ''} px-3 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-[13px] font-bold inline-flex items-center gap-1.5 shrink-0" data-view="${esc(cat.id)}" onclick="navigateToCategory('${esc(cat.id)}')">${esc(cat.icon || '✨')} ${esc(cat.label)}${garageBadge}</button>`;
+      }).join('');
+      requestAnimationFrame(updateNavArrows);
+    }
+
+    function scrollNavBar(deltaPx) {
+      const nav = document.getElementById('dynamicNavBar');
+      if (!nav) return;
+      nav.scrollBy({ left: deltaPx, behavior: 'smooth' });
+      setTimeout(updateNavArrows, 220);
+    }
+
+    function updateNavArrows() {
+      const nav = document.getElementById('dynamicNavBar');
+      const leftBtn = document.getElementById('navArrowLeft');
+      const rightBtn = document.getElementById('navArrowRight');
+      if (!nav || !leftBtn || !rightBtn) return;
+      const canLeft = nav.scrollLeft > 4;
+      const canRight = nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 4;
+      leftBtn.classList.toggle('at-edge', !canLeft);
+      rightBtn.classList.toggle('at-edge', !canRight);
+    }
+
+    function initNavScrollInteractions() {
+      const nav = document.getElementById('dynamicNavBar');
+      if (!nav || nav.dataset.scrollBound) return;
+      nav.dataset.scrollBound = '1';
+      // Mouse wheel vertical scroll -> horizontal category scroll!
+      nav.addEventListener('wheel', e => {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+          e.preventDefault();
+          nav.scrollLeft += e.deltaY * 1.15;
+          updateNavArrows();
+        }
+      }, { passive: false });
+      nav.addEventListener('scroll', updateNavArrows, { passive: true });
+      window.addEventListener('resize', updateNavArrows);
+    }
+
+    /* =====================================================================
+       AUTO-CHANGING DYNAMIC WEB VERSION (CODE HASH + LIVE REVISION BUMP)
+       ===================================================================== */
+    function computeSourceBuildHash() {
+      try {
+        const scripts = Array.from(document.querySelectorAll('script')).map(s => s.textContent || '').join('');
+        const styles = Array.from(document.querySelectorAll('style')).map(s => s.textContent || '').join('');
+        return sha256(scripts + '|' + styles).slice(0, 4).toUpperCase();
+      } catch (_) {
+        return 'LIVE';
+      }
+    }
+
+    function renderWebVersion() {
+      const el = document.getElementById('webVersionTrigger');
+      if (!el) return;
+      if (!state.codeBuildHash) state.codeBuildHash = computeSourceBuildHash();
+      const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
+      const maj = Number(cfg.versionMajor) || 4;
+      const min = Number(cfg.versionMinor) || 2;
+      const pat = Number(cfg.versionPatch) || 0;
+      el.textContent = `v${maj}.${min}.${pat}-${state.codeBuildHash}`;
+    }
+
+    function bumpWebVersion() {
+      state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...(state.siteConfig || {}) };
+      state.siteConfig.versionPatch = (Number(state.siteConfig.versionPatch) || 0) + 1;
+      renderWebVersion();
+    }
 
     /* =====================================================================
        HELPER: NORMALIZE LEGACY CAR STAGES (BACKWARD COMPATIBLE WITH DRIVE)
@@ -2363,27 +2670,6 @@
       return Boolean(state.staff.permissions && state.staff.permissions[permKey]);
     }
 
-    /* =====================================================================
-       DYNAMIC NAVIGATION & CUSTOM CATEGORIES
-       ===================================================================== */
-    function renderNavigationBar() {
-      const nav = document.getElementById('dynamicNavBar');
-      const visibleTabs = state.navCategories.filter(cat => {
-        if (!cat.enabled || cat.access === 'hidden') return false;
-        if (cat.access === 'staff' && !state.staff) return false;
-        return true;
-      });
-
-      const activeView = document.querySelector('.view-section.active')?.id.replace('view-', '') || 'cars';
-      nav.innerHTML = visibleTabs.map(cat => {
-        const isCurrent = cat.builtin ? (activeView === cat.id) : (activeView === 'custom' && state.activeCustomCatId === cat.id);
-        const garageBadge = cat.id === 'garage'
-          ? ` <span class="px-2 py-0.5 rounded-full bg-black/25 text-[11px] font-extrabold" id="navGarageCount">${getTotalGarageUnits()}</span>`
-          : '';
-        return `<button class="nav-btn ${isCurrent ? 'active' : ''} px-3.5 py-2 text-xs sm:text-[13px] font-bold inline-flex items-center gap-1.5" data-view="${esc(cat.id)}" onclick="navigateToCategory('${esc(cat.id)}')">${esc(cat.icon || '✨')} ${esc(cat.label)}${garageBadge}</button>`;
-      }).join('');
-    }
-
     function navigateToCategory(catId) {
       const cat = state.navCategories.find(c => c.id === catId);
       if (cat && !cat.builtin) {
@@ -2470,7 +2756,8 @@
       const u = state.userProfile;
       if (!u) return;
       document.getElementById('headerCreditsVal').textContent = fmtCompact(u.credits);
-      document.getElementById('headerUserName').textContent = u.username || 'Driver';
+      const profBtn = document.getElementById('headerProfileBtn');
+      if (profBtn) profBtn.title = `${u.username || 'Driver'} — Edit Profile & PFP`;
       const pfpEl = document.getElementById('headerUserPfp');
       const initEl = document.getElementById('headerUserInitials');
       const safePfp = safeImgUrl(u.pfp);
@@ -2553,6 +2840,23 @@
       document.getElementById('walletIntegrityBadge').textContent = verifyUserRecord(u)
         ? `🛡️ Verified Account • ID: ${u.id}`
         : '⚠️ Ledger Re-verifying...';
+
+      // Render Editable Top-Up DM Message & Multiple Usernames
+      const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
+      const topUpMsg = (cfg.texts && cfg.texts.walletTopUpText) || cfg.topUpMessage || 'To add balance or money, DM:';
+      const dmUsers = Array.isArray(cfg.topUpDmUsers) && cfg.topUpDmUsers.length ? cfg.topUpDmUsers : ['hyper_legend_1_og'];
+      const msgEl = document.getElementById('walletTopUpMsgDisplay');
+      if (msgEl) msgEl.textContent = topUpMsg;
+      const dmListEl = document.getElementById('walletTopUpDmList');
+      if (dmListEl) {
+        dmListEl.innerHTML = dmUsers.map(name => `
+          <button type="button" onclick="copyText('${esc(name)}', 'Copied DM username: @${esc(name)}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-950/65 hover:bg-emerald-500/25 border border-amber-400/40 font-mono-num text-xs font-extrabold text-white transition">
+            <span>@${esc(name)}</span>
+            <span class="text-[10px] text-amber-300">📋</span>
+          </button>
+        `).join('');
+      }
+
       document.getElementById('redeemCodeInput').value = '';
       const list = document.getElementById('walletLedgerList');
       const ledger = u.ledger || [];
@@ -2631,6 +2935,7 @@
 
     async function setTheme(themeId) {
       state.prefs.theme = themeId;
+      state.prefs.userChoseTheme = true;
       document.documentElement.setAttribute('data-theme', themeId);
       applySiteVisualConfig();
       renderThemeSwatches();
@@ -2664,8 +2969,10 @@
       else root.style.removeProperty('--accent');
       if (cfg.accent2) root.style.setProperty('--accent-2', cfg.accent2);
       else root.style.removeProperty('--accent-2');
-      root.style.setProperty('--card-radius', (cfg.cardRadius || 28) + 'px');
-      root.style.setProperty('--blur-px', (cfg.glassBlur || 28) + 'px');
+      if (cfg.cardRadius) root.style.setProperty('--card-radius', cfg.cardRadius + 'px');
+      else root.style.removeProperty('--card-radius');
+      if (cfg.glassBlur) root.style.setProperty('--blur-px', cfg.glassBlur + 'px');
+      else root.style.removeProperty('--blur-px');
 
       const logoWrap = document.getElementById('brandLogoWrap');
       if (safeImgUrl(cfg.logoImg)) {
@@ -2684,11 +2991,18 @@
         footerEl.innerHTML = `Made by <strong class="text-accent font-extrabold">Hyper_DarkStar</strong> • Credits to <strong class="text-accent font-extrabold">HS1</strong> &amp; <strong class="text-accent-2 font-extrabold">RDS Team</strong>`;
       }
 
+      // Apply all named CMS text overrides AND dynamic auto-path overrides across the whole web
       const texts = cfg.texts || {};
       Object.keys(texts).forEach(k => {
-        const el = document.querySelector(`[data-cms-key="${k}"]`);
-        if (el && k !== 'brandLogo') el.textContent = texts[k];
+        if (k === 'brandLogo') return;
+        let el = document.querySelector(`[data-cms-key="${k}"]`);
+        if (!el && k.startsWith('dom:')) {
+          try { el = document.querySelector(k.slice(4)); } catch (_) {}
+        }
+        if (el) el.textContent = texts[k];
       });
+
+      renderWebVersion();
     }
 
     function populateVisualStudioForm() {
@@ -2702,15 +3016,41 @@
       document.getElementById('cmsAccent2').value = cfg.accent2 || '';
       if (/^#[0-9a-f]{6}$/i.test(cfg.accent1 || '')) document.getElementById('cmsAccent1Picker').value = cfg.accent1;
       if (/^#[0-9a-f]{6}$/i.test(cfg.accent2 || '')) document.getElementById('cmsAccent2Picker').value = cfg.accent2;
-      document.getElementById('cmsCardRadius').value = cfg.cardRadius || 28;
-      document.getElementById('cmsRadiusVal').textContent = cfg.cardRadius || 28;
+      document.getElementById('cmsCardRadius').value = cfg.cardRadius || 26;
+      document.getElementById('cmsRadiusVal').textContent = cfg.cardRadius || 26;
       document.getElementById('cmsGlassBlur').value = cfg.glassBlur || 28;
       document.getElementById('cmsBlurVal').textContent = cfg.glassBlur || 28;
+      const defThemeSel = document.getElementById('cmsDefaultTheme');
+      if (defThemeSel) defThemeSel.value = cfg.defaultTheme || '';
+
+      const topMsgEl = document.getElementById('adminTopUpMsgInput');
+      const topUsrEl = document.getElementById('adminTopUpUsersInput');
+      if (topMsgEl) topMsgEl.value = cfg.topUpMessage || 'To add balance or money, DM:';
+      if (topUsrEl) topUsrEl.value = (Array.isArray(cfg.topUpDmUsers) ? cfg.topUpDmUsers : ['hyper_legend_1_og']).join(', ');
+    }
+
+    async function saveTopUpDmConfig() {
+      if (!hasPerm('manageEconomy')) return showToast('Permission denied.');
+      const msg = document.getElementById('adminTopUpMsgInput').value.trim() || 'To add balance or money, DM:';
+      const users = document.getElementById('adminTopUpUsersInput').value
+        .split(',')
+        .map(s => s.trim().replace(/^@/, ''))
+        .filter(Boolean);
+      state.siteConfig.topUpMessage = msg;
+      state.siteConfig.topUpDmUsers = users.length ? users : ['hyper_legend_1_og'];
+      state.siteConfig.texts = state.siteConfig.texts || {};
+      state.siteConfig.texts.walletTopUpText = msg;
+      bumpWebVersion();
+      addAuditLog('ECONOMY', `Updated top-up DM contacts: ${state.siteConfig.topUpDmUsers.join(', ')}`);
+      await savePortalCache();
+      await pushConfigBundleToCloud();
+      showToast('Top-up DM contacts saved & synced!');
     }
 
     async function saveSiteVisualConfig(e) {
       e.preventDefault();
       if (!hasPerm('manageVisuals')) return showToast('Permission denied.');
+      const defTheme = document.getElementById('cmsDefaultTheme')?.value || '';
       state.siteConfig = {
         ...state.siteConfig,
         brandTitle: document.getElementById('cmsBrandTitle').value.trim() || 'Real Driving School',
@@ -2720,9 +3060,16 @@
         footerCredits: document.getElementById('cmsFooterText').value.trim() || DEFAULT_SITE_CONFIG.footerCredits,
         accent1: document.getElementById('cmsAccent1').value.trim(),
         accent2: document.getElementById('cmsAccent2').value.trim(),
-        cardRadius: parseInt(document.getElementById('cmsCardRadius').value, 10) || 28,
-        glassBlur: parseInt(document.getElementById('cmsGlassBlur').value, 10) || 28
+        cardRadius: parseInt(document.getElementById('cmsCardRadius').value, 10) || 26,
+        glassBlur: parseInt(document.getElementById('cmsGlassBlur').value, 10) || 28,
+        defaultTheme: defTheme
       };
+      if (defTheme) {
+        state.prefs.theme = defTheme;
+        document.documentElement.setAttribute('data-theme', defTheme);
+        renderThemeSwatches();
+      }
+      bumpWebVersion();
       applySiteVisualConfig();
       addAuditLog('UI', 'Updated portal branding, colors & visual layout');
       await savePortalCache();
@@ -2732,7 +3079,8 @@
 
     async function resetVisualDefaults() {
       if (!hasPerm('manageVisuals')) return showToast('Permission denied.');
-      state.siteConfig = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
+      const keepPatch = (Number(state.siteConfig?.versionPatch) || 0) + 1;
+      state.siteConfig = { ...JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG)), versionPatch: keepPatch };
       applySiteVisualConfig();
       populateVisualStudioForm();
       addAuditLog('UI', 'Reset site visuals to default');
@@ -2749,16 +3097,45 @@
       state.visualClickEdit = !state.visualClickEdit;
       document.body.classList.toggle('visual-edit-active', state.visualClickEdit);
       document.getElementById('liveVisualEditToggleBtn').textContent = state.visualClickEdit ? '🎨 Click-to-Edit UI: ON' : '🎨 Click-to-Edit UI: OFF';
-      showToast(state.visualClickEdit ? 'Click any outlined text or logo on screen to edit it!' : 'Click-to-Edit UI disabled.');
+      showToast(state.visualClickEdit ? 'Click ANY text, heading, button, or logo on screen to edit it!' : 'Click-to-Edit UI disabled.');
+    }
+
+    function buildStableDomSelector(el) {
+      if (el.id) return '#' + CSS.escape(el.id);
+      const parts = [];
+      let cur = el;
+      while (cur && cur !== document.body && parts.length < 5) {
+        let sel = cur.tagName.toLowerCase();
+        if (cur.id) { parts.unshift('#' + CSS.escape(cur.id)); break; }
+        const sibs = cur.parentElement ? Array.from(cur.parentElement.children).filter(c => c.tagName === cur.tagName) : [];
+        if (sibs.length > 1) sel += `:nth-of-type(${sibs.indexOf(cur) + 1})`;
+        parts.unshift(sel);
+        cur = cur.parentElement;
+      }
+      return parts.join('>');
     }
 
     document.addEventListener('click', async e => {
       if (!state.visualClickEdit) return;
-      const target = e.target.closest('[data-cms-key]');
-      if (!target) return;
+      // Ignore clicks inside modals, inputs, or the editor banner itself
+      if (e.target.closest('#customDialogModal') || e.target.closest('#editorBanner') || e.target.closest('#webVersionTrigger')) return;
+
+      let target = e.target.closest('[data-cms-key]');
+      let key = target ? target.dataset.cmsKey : null;
+
+      // Support editing literally ANY visible text node on screen!
+      if (!target) {
+        const candidate = e.target.closest('h1, h2, h3, p, label, button, span');
+        if (!candidate || candidate.closest('header nav') || candidate.querySelector('input, select, textarea')) return;
+        const txt = (candidate.textContent || '').trim();
+        if (!txt || txt.length > 260) return;
+        target = candidate;
+        key = 'dom:' + buildStableDomSelector(candidate);
+      }
+
       e.preventDefault();
       e.stopPropagation();
-      const key = target.dataset.cmsKey;
+
       if (key === 'brandLogo') {
         const val = await openPromptDialog({
           title: 'Edit Brand Logo',
@@ -2771,8 +3148,8 @@
         else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 'RDS'; }
       } else {
         const val = await openPromptDialog({
-          title: `Edit Screen Element (${key})`,
-          message: 'Enter the new text to display for all users:',
+          title: 'Edit On-Screen Text',
+          message: 'Enter the new text to display live for all users:',
           defaultValue: target.textContent.trim(),
           confirmText: 'Save & Sync'
         });
@@ -2783,14 +3160,16 @@
         else {
           state.siteConfig.texts = state.siteConfig.texts || {};
           state.siteConfig.texts[key] = val;
+          if (key === 'walletTopUpText') state.siteConfig.topUpMessage = val;
         }
       }
+      bumpWebVersion();
       applySiteVisualConfig();
       populateVisualStudioForm();
-      addAuditLog('UI', `Edited UI element "${key}"`);
+      addAuditLog('UI', `Edited on-screen element (${key})`);
       await savePortalCache();
-      pushConfigBundleToCloud();
-      showToast('Updated & synced to Google Drive!');
+      await pushConfigBundleToCloud();
+      showToast('Updated & synced to all devices!');
     }, true);
 
     /* =====================================================================
@@ -2828,6 +3207,7 @@
     }
 
     function renderAuditLogs() {
+      renderTyreRevenueAnalytics();
       const el = document.getElementById('auditLogsList');
       if (!el) return;
       const q = (document.getElementById('logSearchInput')?.value || '').trim().toLowerCase();
@@ -2849,6 +3229,75 @@
           <span class="font-mono-num text-[11px] text-muted-dyn whitespace-nowrap">${esc(l.time)}</span>
         </div>
       `).join('');
+    }
+
+    function renderTyreRevenueAnalytics() {
+      const totalEl = document.getElementById('logsTotalTyreRevenue');
+      const byTyreEl = document.getElementById('logsTyreRevenueList');
+      const byPersonEl = document.getElementById('logsPersonSpendList');
+      if (!totalEl || !byTyreEl || !byPersonEl) return;
+
+      const sales = Array.isArray(state.tyreSales) ? state.tyreSales : [];
+      const q = (document.getElementById('logSearchInput')?.value || '').trim().toLowerCase();
+
+      let grandRevenue = 0;
+      const tyreMap = {};
+      const personMap = {};
+
+      sales.forEach(s => {
+        const amt = Number(s.amount) || 0;
+        grandRevenue += amt;
+
+        const tKey = s.tyreId || s.tyreName || 'unknown';
+        if (!tyreMap[tKey]) {
+          const liveT = state.tyres.find(t => t.id === s.tyreId);
+          tyreMap[tKey] = {
+            name: (liveT && liveT.name) || s.tyreName || 'Tyre Code',
+            madeBy: (liveT && liveT.madeBy) || s.madeBy || 'RDS Team',
+            count: 0,
+            revenue: 0
+          };
+        }
+        tyreMap[tKey].count += 1;
+        tyreMap[tKey].revenue += amt;
+
+        const pKey = s.buyerId || s.buyerName || 'unknown';
+        if (!personMap[pKey]) {
+          personMap[pKey] = { name: s.buyerName || 'Driver', id: s.buyerId || '', count: 0, spent: 0 };
+        }
+        personMap[pKey].count += 1;
+        personMap[pKey].spent += amt;
+      });
+
+      totalEl.textContent = fmtNum(grandRevenue);
+
+      const tyreRows = Object.values(tyreMap)
+        .filter(r => !q || r.name.toLowerCase().includes(q) || r.madeBy.toLowerCase().includes(q))
+        .sort((a, b) => b.revenue - a.revenue);
+
+      byTyreEl.innerHTML = tyreRows.length ? tyreRows.map(r => `
+        <div class="p-2 rounded-xl bg-white/5 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="font-bold truncate">${esc(r.name)}</div>
+            <div class="text-[10px] text-muted-dyn truncate">Made by ${esc(r.madeBy)} • ${r.count} sale${r.count === 1 ? '' : 's'}</div>
+          </div>
+          <span class="font-mono-num font-black text-accent whitespace-nowrap">${esc(fmtNum(r.revenue))}</span>
+        </div>
+      `).join('') : `<div class="text-muted-dyn py-3 text-center">No tyre code sales recorded yet.</div>`;
+
+      const personRows = Object.values(personMap)
+        .filter(r => !q || r.name.toLowerCase().includes(q) || r.id.toLowerCase().includes(q))
+        .sort((a, b) => b.spent - a.spent);
+
+      byPersonEl.innerHTML = personRows.length ? personRows.map(r => `
+        <div class="p-2 rounded-xl bg-white/5 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="font-bold truncate">${esc(r.name)}</div>
+            <div class="text-[10px] text-muted-dyn truncate">${r.count} tyre${r.count === 1 ? '' : 's'} unlocked</div>
+          </div>
+          <span class="font-mono-num font-black text-amber-300 whitespace-nowrap">${esc(fmtNum(r.spent))}</span>
+        </div>
+      `).join('') : `<div class="text-muted-dyn py-3 text-center">No player spending recorded yet.</div>`;
     }
 
     function exportAuditLogs() {
@@ -2909,36 +3358,38 @@
         const topKmph = (car.speeds && car.speeds[6] && car.speeds[6].kmphTurbo) || '—';
 
         return `
-          <article class="glass glass-card-hover overflow-hidden flex flex-col cursor-pointer" onclick="openCarDetailModal('${esc(car.id)}')">
+          <article class="glass glass-card-hover overflow-hidden flex flex-col cursor-pointer min-w-0" onclick="openCarDetailModal('${esc(car.id)}')">
+            <!-- iPhone 11 Pro Max Ratio (9:19.5) Full-Image Frame -->
             <div class="media-frame-mobile">
               <img src="${esc(img)}" alt="" aria-hidden="true" onerror="this.src='${CAR_FALLBACK_IMG}'" class="bg-blur-fill" />
               <img src="${esc(img)}" alt="${esc(car.name)}" loading="lazy" onerror="this.src='${CAR_FALLBACK_IMG}'" class="fg-full-img" />
-              ${car.category ? `<span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-950/75 backdrop-blur-md border border-white/15 text-white">${esc(car.category)}</span>` : ''}
+              ${car.category ? `<span class="absolute top-2 right-2 z-10 px-2 py-0.5 rounded-full text-[9px] sm:text-[11px] font-bold bg-slate-950/75 backdrop-blur-md border border-white/15 text-white max-w-[75%] truncate">${esc(car.category)}</span>` : ''}
             </div>
 
-            <div class="p-4 flex flex-col gap-3 flex-1">
-              <div class="flex items-start justify-between gap-2">
-                <h3 class="text-lg font-extrabold leading-snug">${esc(car.name)}</h3>
-                <div class="staff-only gap-1.5 shrink-0" onclick="event.stopPropagation()">
-                  ${hasPerm('manageCars') ? `<button class="rds-btn px-2.5 py-1 text-xs" title="Edit Car" onclick="openCarEditorModal('${esc(car.id)}')">✏️</button>` : ''}
-                  ${hasPerm('deleteCars') ? `<button class="rds-btn rds-btn-danger px-2.5 py-1 text-xs" title="Delete Car" onclick="deleteCar('${esc(car.id)}')">🗑️</button>` : ''}
+            <div class="p-2.5 sm:p-4 flex flex-col gap-2 sm:gap-3 flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-1.5 min-w-0">
+                <h3 class="text-xs sm:text-base font-extrabold leading-tight line-clamp-2 min-w-0">${esc(car.name)}</h3>
+                <div class="staff-only gap-1 shrink-0" onclick="event.stopPropagation()">
+                  ${hasPerm('manageCars') ? `<button class="rds-btn px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs" title="Edit Car" onclick="openCarEditorModal('${esc(car.id)}')">✏️</button>` : ''}
+                  ${hasPerm('deleteCars') ? `<button class="rds-btn rds-btn-danger px-1.5 sm:px-2 py-1 text-[10px] sm:text-xs" title="Delete Car" onclick="deleteCar('${esc(car.id)}')">🗑️</button>` : ''}
                 </div>
               </div>
 
-              <div class="space-y-2">
-                <div class="px-3.5 py-2 rounded-2xl glass-sub flex items-center justify-between gap-2">
-                  <span class="text-[11px] font-bold uppercase text-muted-dyn whitespace-nowrap">Stg 1 – Stg 7</span>
-                  <span class="font-mono-num text-xs font-extrabold text-accent whitespace-nowrap">${esc(fmtCompact(s1))} – ${esc(fmtCompact(s7))}</span>
+              <!-- Ultra-Clean Mobile-Safe Single-Line Stats -->
+              <div class="space-y-1.5">
+                <div class="px-2 sm:px-3 py-1.5 rounded-xl sm:rounded-2xl glass-sub flex items-center justify-between gap-1 min-w-0">
+                  <span class="text-[9px] sm:text-[11px] font-bold uppercase text-muted-dyn shrink-0">S1–S7</span>
+                  <span class="font-mono-num text-[10px] sm:text-xs font-extrabold text-accent truncate">${esc(fmtCompact(s1))}–${esc(fmtCompact(s7))}</span>
                 </div>
-                <div class="px-3.5 py-2 rounded-2xl glass-sub flex items-center justify-between gap-2">
-                  <span class="text-[11px] font-bold uppercase text-muted-dyn whitespace-nowrap">Stg 6 Top Speed</span>
-                  <span class="font-mono-num text-xs font-extrabold whitespace-nowrap">${esc(topMph)} MPH • ${esc(topKmph)} KMPH</span>
+                <div class="px-2 sm:px-3 py-1.5 rounded-xl sm:rounded-2xl glass-sub flex items-center justify-between gap-1 min-w-0">
+                  <span class="text-[9px] sm:text-[11px] font-bold uppercase text-muted-dyn shrink-0">Top</span>
+                  <span class="font-mono-num text-[10px] sm:text-xs font-extrabold truncate">${esc(topMph)} MPH</span>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-2 mt-auto pt-1" onclick="event.stopPropagation()">
-                <button class="rds-btn rds-btn-primary py-2.5 px-3 text-xs" onclick="sendCarToCalculator('${esc(car.id)}')">🧮 Calculator</button>
-                <button class="rds-btn py-2.5 px-3 text-xs" onclick="openAddToGarageModal('${esc(car.id)}')">🏁 + Garage</button>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-1.5 sm:gap-2 mt-auto pt-1" onclick="event.stopPropagation()">
+                <button class="rds-btn rds-btn-primary py-1.5 sm:py-2 px-2 text-[10px] sm:text-xs" onclick="sendCarToCalculator('${esc(car.id)}')">🧮 Calc</button>
+                <button class="rds-btn py-1.5 sm:py-2 px-2 text-[10px] sm:text-xs" onclick="openAddToGarageModal('${esc(car.id)}')">🏁 Garage</button>
               </div>
             </div>
           </article>
@@ -3615,7 +4066,9 @@
       const grid = document.getElementById('tyresGrid');
       const filtered = state.tyres.filter(t => {
         if (!q) return true;
-        return (t.name || '').toLowerCase().includes(q) || (t.price || 'free').toLowerCase().includes(q);
+        return (t.name || '').toLowerCase().includes(q)
+          || (t.madeBy || '').toLowerCase().includes(q)
+          || (t.price || 'free').toLowerCase().includes(q);
       });
 
       if (!filtered.length) {
@@ -3633,20 +4086,24 @@
           : 'bg-amber-500/15 border border-amber-400/45 text-amber-300';
 
         return `
-          <article class="glass glass-card-hover overflow-hidden flex flex-col cursor-pointer" onclick="openTyreViewModal('${esc(t.id)}')">
-            <div class="media-frame-mobile !aspect-square !max-h-[260px]">
+          <article class="glass glass-card-hover overflow-hidden flex flex-col cursor-pointer min-w-0" onclick="openTyreViewModal('${esc(t.id)}')">
+            <!-- iPhone 11 Pro Max Ratio (9:19.5) Full-Image Frame -->
+            <div class="media-frame-mobile">
               ${img
                 ? `<img src="${esc(img)}" alt="" aria-hidden="true" onerror="this.src='${TYRE_FALLBACK_IMG}'" class="bg-blur-fill" /><img src="${esc(img)}" alt="${esc(t.name)}" loading="lazy" onerror="this.src='${TYRE_FALLBACK_IMG}'" class="fg-full-img" />`
-                : `<div class="flex flex-col items-center gap-1.5 opacity-80"><span class="text-5xl">🛞</span><span class="text-[11px] font-bold uppercase tracking-widest text-muted-dyn">RDS Tyre</span></div>`
+                : `<div class="flex flex-col items-center gap-1.5 opacity-80"><span class="text-4xl sm:text-5xl">🛞</span><span class="text-[10px] font-bold uppercase tracking-widest text-muted-dyn">RDS Tyre</span></div>`
               }
-              <div class="staff-only absolute top-2.5 right-2.5 z-10 gap-1.5" onclick="event.stopPropagation()">
-                ${hasPerm('manageTyres') ? `<button class="rds-btn px-2.5 py-1 text-xs" onclick="openTyreEditorModal('${esc(t.id)}')">✏️</button>` : ''}
-                ${hasPerm('deleteTyres') ? `<button class="rds-btn rds-btn-danger px-2.5 py-1 text-xs" onclick="deleteTyre('${esc(t.id)}')">🗑️</button>` : ''}
+              <div class="staff-only absolute top-2 right-2 z-10 gap-1" onclick="event.stopPropagation()">
+                ${hasPerm('manageTyres') ? `<button class="rds-btn px-2 py-1 text-[10px] sm:text-xs" onclick="openTyreEditorModal('${esc(t.id)}')">✏️</button>` : ''}
+                ${hasPerm('deleteTyres') ? `<button class="rds-btn rds-btn-danger px-2 py-1 text-[10px] sm:text-xs" onclick="deleteTyre('${esc(t.id)}')">🗑️</button>` : ''}
               </div>
             </div>
-            <div class="p-3.5 flex items-center justify-between gap-2">
-              <div class="font-extrabold text-sm truncate">${esc(t.name)}</div>
-              <span class="px-3 py-1 rounded-full font-mono-num text-[11px] font-extrabold whitespace-nowrap shrink-0 ${badgeCls}">${esc(badgeText)}</span>
+            <div class="p-2.5 sm:p-3.5 flex flex-col gap-1.5 min-w-0">
+              <div class="flex items-center justify-between gap-1.5 min-w-0">
+                <div class="font-extrabold text-xs sm:text-sm truncate min-w-0">${esc(t.name)}</div>
+                <span class="px-2 sm:px-2.5 py-0.5 rounded-full font-mono-num text-[10px] sm:text-[11px] font-extrabold whitespace-nowrap shrink-0 ${badgeCls}">${esc(badgeText)}</span>
+              </div>
+              ${t.madeBy ? `<div class="text-[10px] sm:text-[11px] text-muted-dyn truncate">Made by <strong class="text-accent-2">${esc(t.madeBy)}</strong></div>` : ''}
             </div>
           </article>
         `;
@@ -3661,17 +4118,17 @@
       const unlocked = isTyreUnlockedByUser(t);
       const numericCost = parseFlexiblePrice(t.price, false);
       const dmHandle = (t.dmUser || 'hyper_legend_1_og').trim();
+      const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
+      const topUpDms = Array.isArray(cfg.topUpDmUsers) && cfg.topUpDmUsers.length ? cfg.topUpDmUsers : [dmHandle];
 
       let bodyHtml = '';
       if (unlocked) {
-        // FREE OR ALREADY PURCHASED: Show full tyre code & copy button
         bodyHtml = `
           <div class="text-[11px] font-extrabold uppercase tracking-wider text-muted-dyn mb-1.5">${free ? 'Free Verified Tyre Code' : '✅ Purchased & Unlocked Tyre Code'}</div>
           <div class="p-3.5 rounded-2xl bg-black/50 border border-emerald-400/40 font-mono-num text-xs sm:text-sm text-accent break-all mb-3 select-all">${esc(t.code || '')}</div>
           <button class="rds-btn rds-btn-primary w-full py-2.5 text-xs sm:text-sm" onclick="copyTyreCodeById('${esc(t.id)}')">📋 Copy Tyre Code</button>
         `;
       } else {
-        // STRICTLY PAID & LOCKED: Tyre code is hidden & non-copiable until purchased or unlocked!
         const canBuyWithCredits = numericCost > 0;
         const userCredits = state.userProfile ? Number(state.userProfile.credits) || 0 : 0;
         const hasEnough = userCredits >= numericCost;
@@ -3694,7 +4151,7 @@
                   <span class="font-mono-num font-bold whitespace-nowrap ${hasEnough ? 'text-white' : 'text-rose-400'}">${esc(fmtNum(userCredits))}</span>
                 </div>
                 <button class="rds-btn ${hasEnough ? 'rds-btn-primary' : ''} w-full py-2.5 text-xs sm:text-sm mt-1" onclick="buyTyreWithCredits('${esc(t.id)}')">
-                  ${hasEnough ? `💎 Unlock Instantly (${esc(fmtCompact(numericCost))})` : '💎 Insufficient Credits (Redeem a Code)'}
+                  ${hasEnough ? `💎 Unlock Instantly (${esc(fmtCompact(numericCost))})` : `💎 Need More Balance? DM ${esc(topUpDms.map(x => '@' + x).join(' / '))}`}
                 </button>
               </div>
             ` : ''}
@@ -3712,11 +4169,14 @@
         <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-white/10">
           <div>
             <div class="text-lg font-black">${esc(t.name)}</div>
-            <span class="inline-block mt-1 px-2.5 py-0.5 rounded-full font-mono-num text-[11px] font-extrabold ${free || unlocked ? 'bg-emerald-500/15 text-accent' : 'bg-amber-500/15 text-amber-300'}">${free ? 'FREE' : unlocked ? 'OWNED' : esc(t.price)}</span>
+            <div class="flex items-center gap-2 flex-wrap mt-1">
+              <span class="px-2.5 py-0.5 rounded-full font-mono-num text-[11px] font-extrabold ${free || unlocked ? 'bg-emerald-500/15 text-accent' : 'bg-amber-500/15 text-amber-300'}">${free ? 'FREE' : unlocked ? 'OWNED' : esc(t.price)}</span>
+              ${t.madeBy ? `<span class="text-xs text-muted-dyn">Made by <strong class="text-accent-2">${esc(t.madeBy)}</strong></span>` : ''}
+            </div>
           </div>
           <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('tyreViewModal')">×</button>
         </div>
-        ${img ? `<div class="media-frame-detail mb-4 !max-h-[280px] border border-white/15"><img src="${esc(img)}" onerror="this.src='${TYRE_FALLBACK_IMG}'" class="fg-full-img !max-h-[256px]" alt="" /></div>` : ''}
+        ${img ? `<div class="media-frame-detail mb-4 border border-white/15"><img src="${esc(img)}" onerror="this.src='${TYRE_FALLBACK_IMG}'" class="fg-full-img" alt="" /></div>` : ''}
         ${bodyHtml}
       `;
       openModal('tyreViewModal');
@@ -3731,7 +4191,9 @@
       const u = state.userProfile;
       if (!verifyUserRecord(u)) return showToast('Account integrity check failed. Syncing...');
       if ((Number(u.credits) || 0) < cost) {
-        showToast('Not enough Credits! Redeem a code in your Wallet or contact staff.');
+        closeModal('tyreViewModal');
+        openWalletModal();
+        showToast('Not enough balance! DM a staff contact in your Wallet to add credits.');
         return;
       }
 
@@ -3748,7 +4210,21 @@
       u.ledger = u.ledger || [];
       u.ledger.unshift({ time: new Date().toLocaleString(), delta: -cost, reason: `Unlocked Tyre: ${t.name}` });
 
-      addAuditLog('ECONOMY', `${u.username} unlocked tyre "${t.name}" for ${fmtNum(cost)} Credits`);
+      // Record exact revenue & buyer spending entry for Owner Analytics
+      state.tyreSales = Array.isArray(state.tyreSales) ? state.tyreSales : [];
+      state.tyreSales.unshift({
+        id: 'sale_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5),
+        tyreId: t.id,
+        tyreName: t.name,
+        madeBy: t.madeBy || 'RDS Team',
+        buyerId: u.id,
+        buyerName: u.username || 'Driver',
+        amount: cost,
+        time: new Date().toLocaleString(),
+        timestamp: Date.now()
+      });
+
+      addAuditLog('TYRE_SALES', `${u.username} bought tyre "${t.name}" (Made by ${t.madeBy || 'RDS Team'}) for ${fmtNum(cost)}`);
       await persistUserProfile(true);
       renderTyresGrid();
       openTyreViewModal(t.id);
@@ -4129,14 +4605,14 @@
 
       if (catVal && !state.carCategories.includes(catVal)) state.carCategories.push(catVal);
 
+      bumpWebVersion();
       await savePortalCache();
       renderCarInfoGrid();
       if (state.calc.carId === carObj.id) selectCalcCar(carObj.id);
       if (document.getElementById('view-garage').classList.contains('active')) renderGarageView();
       closeModal('carEditorModal');
       showToast(`Saved "${carObj.name}" — syncing to all devices...`);
-      await pushKeyToCloud('cars', state.cars);
-      if (catVal) await pushConfigBundleToCloud();
+      await pushAllToCloud(false);
     }
 
     async function deleteCar(carId) {
@@ -4152,10 +4628,11 @@
         document.getElementById('calcCarSearch').value = '';
         updateCalculatorOutput();
       }
+      bumpWebVersion();
       addAuditLog('CARS', `Deleted vehicle "${car.name}"`);
       await savePortalCache();
       renderCarInfoGrid();
-      await pushKeyToCloud('cars', state.cars);
+      await pushAllToCloud(false);
       showToast('Vehicle deleted & synced.');
     }
 
@@ -4165,6 +4642,7 @@
       document.getElementById('tyreEditorTitle').textContent = t ? `Edit ${t.name}` : 'Add New Tyre Code';
       document.getElementById('editTyreId').value = t ? t.id : '';
       document.getElementById('editTyreName').value = t ? t.name : '';
+      document.getElementById('editTyreMadeBy').value = t ? (t.madeBy || '') : (state.staff ? state.staff.name : '');
       document.getElementById('editTyreCode').value = t ? (t.code || '') : '';
       document.getElementById('editTyrePrice').value = t ? (t.price || '') : '';
       document.getElementById('editTyreDmUser').value = t ? (t.dmUser || 'hyper_legend_1_og') : 'hyper_legend_1_og';
@@ -4180,6 +4658,7 @@
       const obj = {
         id,
         name: document.getElementById('editTyreName').value.trim(),
+        madeBy: document.getElementById('editTyreMadeBy').value.trim(),
         code: document.getElementById('editTyreCode').value.trim(),
         price: document.getElementById('editTyrePrice').value.trim(),
         dmUser: document.getElementById('editTyreDmUser').value.trim() || 'hyper_legend_1_og',
@@ -4188,16 +4667,17 @@
       const idx = state.tyres.findIndex(x => x.id === id);
       if (idx >= 0) {
         state.tyres[idx] = obj;
-        addAuditLog('TYRES', `Updated tyre code "${obj.name}"`);
+        addAuditLog('TYRES', `Updated tyre code "${obj.name}" (Made by ${obj.madeBy || 'N/A'})`);
       } else {
         state.tyres.unshift(obj);
-        addAuditLog('TYRES', `Added tyre code "${obj.name}"`);
+        addAuditLog('TYRES', `Added tyre code "${obj.name}" (Made by ${obj.madeBy || 'N/A'})`);
       }
+      bumpWebVersion();
       await savePortalCache();
       renderTyresGrid();
       closeModal('tyreEditorModal');
       showToast(`Saved tyre code "${obj.name}" — syncing...`);
-      await pushKeyToCloud('tyres', state.tyres);
+      await pushAllToCloud(false);
     }
 
     async function deleteTyre(id) {
@@ -4207,10 +4687,11 @@
       const ok = await openConfirmDialog({ title: 'Delete Tyre Code', message: `Delete tyre code "${t.name}"?`, confirmText: 'Delete', danger: true });
       if (!ok) return;
       state.tyres = state.tyres.filter(x => x.id !== id);
+      bumpWebVersion();
       addAuditLog('TYRES', `Deleted tyre code "${t.name}"`);
       await savePortalCache();
       renderTyresGrid();
-      await pushKeyToCloud('tyres', state.tyres);
+      await pushAllToCloud(false);
       showToast('Tyre code deleted & synced.');
     }
 
@@ -5057,6 +5538,7 @@
         carCategories: state.carCategories,
         usersDirectory: state.usersDirectory,
         redeemCodes: state.redeemCodes,
+        tyreSales: state.tyreSales,
         bundleUpdatedAt: Date.now()
       };
     }
@@ -5085,16 +5567,15 @@
       }, state.syncIntervalMs || 5000);
     }
 
-    // Serialized write queue prevents Google Apps Script DriveApp race conditions!
     let cloudWriteChain = Promise.resolve();
 
     async function saveDriveEndpoint() {
-      const url = document.getElementById('driveEndpointInput').value.trim();
+      if (state.staff && !hasPerm('syncCloud')) return showToast('Permission denied.');
+      const url = (document.getElementById('driveEndpointInput')?.value || '').trim();
       state.driveUrl = url;
       await dbSet('drive_url', url);
-      addAuditLog('SYNC', 'Updated Google Drive Apps Script URL');
-      showToast('Drive URL saved! Testing connection...');
-      testDriveConnection();
+      addAuditLog('SYNC', 'Updated Google Drive Apps Script endpoint');
+      showToast('Google Drive endpoint saved!');
     }
 
     function pushKeyToCloud(key, payload, opts = {}) {
@@ -5102,7 +5583,7 @@
       const stamp = Date.now();
       state.localKeyUpdatedAt[key] = stamp;
 
-      cloudWriteChain = cloudWriteChain.then(async () => {
+      const task = async () => {
         state.activeWritesCount++;
         if (!opts.silent) setSyncStatus('syncing', 'Syncing...');
         try {
@@ -5113,61 +5594,111 @@
             body: JSON.stringify({ action: 'save', key, payload, updatedAt: stamp })
           });
           const text = await resp.text();
-          let ok = resp.ok;
-          try {
-            const parsed = JSON.parse(text);
-            if (parsed && parsed.ok === false) ok = false;
-          } catch (_) {
-            // If Google returned an HTML login/error page instead of JSON, flag it
-            if (text.trim().startsWith('<')) ok = false;
-          }
-
+          if (text.trim().startsWith('<')) throw new Error('HTML response');
+          const json = JSON.parse(text);
+          const ok = Boolean(resp.ok && json && json.ok === true);
           if (ok) {
             state.lastSyncSuccessAt = Date.now();
-            setSyncStatus('ok', 'Live Sync');
+            if (!opts.silent) setSyncStatus('ok', 'Live Sync');
             notifyOtherTabs();
-            return true;
-          } else {
+          } else if (!opts.silent) {
             setSyncStatus('offline', 'Sync Err');
-            if (!opts.silent) showToast('Drive rejected write — click "🔌 Test Drive" in Settings to verify script.');
-            return false;
           }
-        } catch (err) {
-          setSyncStatus('offline', 'Local');
-          if (!opts.silent) showToast('Could not reach Drive — saved locally.');
+          return ok;
+        } catch (_) {
+          if (!opts.silent) setSyncStatus('offline', 'Local');
           return false;
         } finally {
           state.activeWritesCount = Math.max(0, state.activeWritesCount - 1);
         }
-      });
-      return cloudWriteChain;
+      };
+
+      const next = cloudWriteChain.then(task, task);
+      cloudWriteChain = next.catch(() => false);
+      return next;
     }
 
-    // Conflict-safe config push: merges latest remote usersDirectory before pushing so concurrent players never overwrite each other
+    // Conflict-safe config push: merges remote usersDirectory & tyreSales before pushing
     async function pushConfigBundleToCloud(opts = {}) {
       if (!state.driveUrl) return false;
       try {
         const resp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`, { cache: 'no-store', redirect: 'follow' });
-        const data = await resp.json();
-        const remoteCfg = data && data.config ? (data.config.payload || data.config) : null;
-        if (remoteCfg && remoteCfg.usersDirectory && typeof remoteCfg.usersDirectory === 'object') {
-          Object.entries(remoteCfg.usersDirectory).forEach(([uid, remoteU]) => {
-            const localU = state.usersDirectory[uid];
-            if (!localU || ((remoteU.updatedAt || 0) > (localU.updatedAt || 0) && verifyUserRecord(remoteU))) {
-              state.usersDirectory[uid] = remoteU;
+        const raw = await resp.text();
+        if (!raw.trim().startsWith('<')) {
+          const data = JSON.parse(raw);
+          const remoteCfg = data && data.config ? (data.config.payload || data.config) : null;
+          if (remoteCfg) {
+            if (remoteCfg.usersDirectory && typeof remoteCfg.usersDirectory === 'object') {
+              Object.entries(remoteCfg.usersDirectory).forEach(([uid, remoteU]) => {
+                const localU = state.usersDirectory[uid];
+                if (!localU || ((remoteU.updatedAt || 0) > (localU.updatedAt || 0) && verifyUserRecord(remoteU))) {
+                  state.usersDirectory[uid] = remoteU;
+                }
+              });
             }
-          });
+            if (Array.isArray(remoteCfg.tyreSales)) {
+              const seen = new Set(state.tyreSales.map(s => s.id));
+              remoteCfg.tyreSales.forEach(s => { if (s && s.id && !seen.has(s.id)) state.tyreSales.push(s); });
+              state.tyreSales.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+            }
+          }
         }
       } catch (_) {}
       return pushKeyToCloud('config', buildConfigBundle(), opts);
     }
 
+    // Atomic batch push (1 fast request for everything, with automatic fallback to per-key save)
     async function pushAllToCloud(showAlertToast = true) {
       if (!state.driveUrl) return showToast('Configure your Google Drive URL first.');
       if (state.staff && !hasPerm('syncCloud')) return showToast('Permission denied.');
       setSyncStatus('syncing', 'Pushing...');
+
+      const stamp = Date.now();
+      const allKeys = {
+        cars: state.cars,
+        tyres: state.tyres,
+        events: state.events,
+        drivers: state.drivers,
+        admins: state.admins,
+        logs: state.logs.slice(0, 300),
+        config: buildConfigBundle()
+      };
+      Object.keys(allKeys).forEach(k => { state.localKeyUpdatedAt[k] = stamp; });
+
+      // First try fast atomic saveBatch
+      let batchOk = false;
+      try {
+        state.activeWritesCount++;
+        const resp = await fetch(state.driveUrl, {
+          method: 'POST',
+          redirect: 'follow',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'saveBatch', items: allKeys, updatedAt: stamp })
+        });
+        const text = await resp.text();
+        if (!text.trim().startsWith('<')) {
+          const parsed = JSON.parse(text);
+          if (resp.ok && parsed && parsed.ok === true && parsed.batch === true) batchOk = true;
+        }
+      } catch (_) {
+        batchOk = false;
+      } finally {
+        state.activeWritesCount = Math.max(0, state.activeWritesCount - 1);
+      }
+
+      if (batchOk) {
+        state.lastSyncSuccessAt = Date.now();
+        setSyncStatus('ok', 'Live Sync');
+        notifyOtherTabs();
+        if (showAlertToast) {
+          addAuditLog('SYNC', 'Full portal database synced to Google Drive (atomic batch)');
+          showToast('☁️ Everything synced to Google Drive for all devices!');
+        }
+        return true;
+      }
+
+      // Fallback for older Code.gs scripts that only implement single-key `save`
       const results = [];
-      // Push sequentially through write queue so Google Drive LockService never drops a file
       results.push(await pushKeyToCloud('cars', state.cars, { silent: true }));
       results.push(await pushKeyToCloud('tyres', state.tyres, { silent: true }));
       results.push(await pushKeyToCloud('events', state.events, { silent: true }));
@@ -5178,12 +5709,14 @@
 
       const allOk = results.every(Boolean);
       if (allOk) {
-        addAuditLog('SYNC', 'Full portal database pushed to Google Drive');
+        if (showAlertToast) {
+          addAuditLog('SYNC', 'Full portal database synced to Google Drive');
+          showToast('☁️ Everything synced to Google Drive for all devices!');
+        }
         setSyncStatus('ok', 'Live Sync');
-        if (showAlertToast) showToast('☁️ Everything synced to Google Drive for all devices!');
       } else {
         setSyncStatus('offline', 'Sync Err');
-        if (showAlertToast) showToast('⚠️ Some items failed to push — click "🔌 Test Drive" in Settings.');
+        if (showAlertToast) showToast('⚠️ Drive sync failed — paste the new Code.gs and update your URL in Settings.');
       }
       return allOk;
     }
@@ -5310,10 +5843,17 @@
               const cloudConfig = extract('config');
               if (cloudConfig && typeof cloudConfig === 'object') {
                 if (Array.isArray(cloudConfig.calcPoints) && cloudConfig.calcPoints.length) state.points = cloudConfig.calcPoints;
-                if (cloudConfig.siteConfig) state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...cloudConfig.siteConfig };
+                if (cloudConfig.siteConfig) {
+                  state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...cloudConfig.siteConfig };
+                  if (state.siteConfig.defaultTheme && !state.prefs.userChoseTheme) {
+                    state.prefs.theme = state.siteConfig.defaultTheme;
+                    document.documentElement.setAttribute('data-theme', state.prefs.theme);
+                  }
+                }
                 if (Array.isArray(cloudConfig.navCategories) && cloudConfig.navCategories.length) state.navCategories = cloudConfig.navCategories;
                 if (Array.isArray(cloudConfig.carCategories)) state.carCategories = cloudConfig.carCategories;
                 if (Array.isArray(cloudConfig.redeemCodes)) state.redeemCodes = cloudConfig.redeemCodes;
+                if (Array.isArray(cloudConfig.tyreSales)) state.tyreSales = cloudConfig.tyreSales;
                 if (cloudConfig.usersDirectory && typeof cloudConfig.usersDirectory === 'object') {
                   Object.entries(cloudConfig.usersDirectory).forEach(([uid, remoteU]) => {
                     const localU = state.usersDirectory[uid];
@@ -5378,11 +5918,19 @@ function getOrCreateFolder_(parent, name) {
   return it.hasNext() ? it.next() : parent.createFolder(name);
 }
 
+function writeJsonFile_(root, key, payload, updatedAt) {
+  const fname = String(key).replace(/[^a-z0-9_-]/gi, '') + '.json';
+  const content = JSON.stringify({ payload: payload, updatedAt: updatedAt || Date.now() });
+  const it = root.getFilesByName(fname);
+  if (it.hasNext()) it.next().setContent(content);
+  else root.createFile(fname, content, MimeType.PLAIN_TEXT);
+}
+
 function doGet(e) {
   const root = getOrCreateFolder_(DriveApp.getRootFolder(), VAULT_FOLDER_NAME);
   const keys = ['cars', 'tyres', 'events', 'drivers', 'admins', 'logs', 'config'];
   const out = {};
-  keys.forEach(k => {
+  keys.forEach(function(k) {
     const it = root.getFilesByName(k + '.json');
     if (it.hasNext()) {
       try { out[k] = JSON.parse(it.next().getBlob().getDataAsString()); } catch (_) {}
@@ -5393,7 +5941,7 @@ function doGet(e) {
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
-  lock.waitLock(15000);
+  lock.waitLock(20000);
   try {
     const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     const root = getOrCreateFolder_(DriveApp.getRootFolder(), VAULT_FOLDER_NAME);
@@ -5410,12 +5958,16 @@ function doPost(e) {
       })).setMimeType(ContentService.MimeType.JSON);
     }
 
+    if (body.action === 'saveBatch' && body.items && typeof body.items === 'object') {
+      const stamp = body.updatedAt || Date.now();
+      Object.keys(body.items).forEach(function(k) {
+        writeJsonFile_(root, k, body.items[k], stamp);
+      });
+      return ContentService.createTextOutput(JSON.stringify({ ok: true, batch: true, updatedAt: stamp })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     if (body.action === 'save' && body.key) {
-      const fname = String(body.key).replace(/[^a-z0-9_-]/gi, '') + '.json';
-      const content = JSON.stringify({ payload: body.payload, updatedAt: body.updatedAt || Date.now() });
-      const it = root.getFilesByName(fname);
-      if (it.hasNext()) it.next().setContent(content);
-      else root.createFile(fname, content, MimeType.PLAIN_TEXT);
+      writeJsonFile_(root, body.key, body.payload, body.updatedAt || Date.now());
       return ContentService.createTextOutput(JSON.stringify({ ok: true, key: body.key })).setMimeType(ContentService.MimeType.JSON);
     }
 
@@ -5471,6 +6023,7 @@ function doPost(e) {
         if (Array.isArray(cBundle.carCategories)) state.carCategories = cBundle.carCategories;
         if (cBundle.usersDirectory) state.usersDirectory = cBundle.usersDirectory;
         if (Array.isArray(cBundle.redeemCodes)) state.redeemCodes = cBundle.redeemCodes;
+        if (Array.isArray(cBundle.tyreSales)) state.tyreSales = cBundle.tyreSales;
       }
 
       initOrVerifyUserProfile(cProfile);
@@ -5485,6 +6038,7 @@ function doPost(e) {
       } catch (_) {}
 
       initMotionCanvas();
+      initNavScrollInteractions();
       renderThemeSwatches();
       applySiteVisualConfig();
       renderNavigationBar();
@@ -5495,13 +6049,14 @@ function doPost(e) {
       renderEventsGrid();
       renderDriversGrid();
       updateStaffUI();
+      renderWebVersion();
 
       // Prompt new drivers once to pick their username & optional PFP (with $5M starter Credits)
       if (!state.userProfile.setupComplete) {
         setTimeout(() => openProfileModal(true), 350);
       }
 
-      // Immediate pull + continuous 5-second live sync across all devices
+      // Immediate pull + continuous 4-second live sync across all devices
       await syncFromCloud(false);
       startLiveSyncLoop();
 
