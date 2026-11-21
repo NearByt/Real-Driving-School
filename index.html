@@ -524,6 +524,7 @@
       cursor: default;
       user-select: none;
       -webkit-user-select: none;
+      touch-action: manipulation;
       background: transparent;
       border: none;
       padding: 0;
@@ -573,6 +574,11 @@
 
       <!-- Right Controls: Credits Wallet, User Profile Chip & Drive Sync -->
       <div class="order-2 lg:order-3 flex items-center gap-2 shrink-0">
+        <!-- Quick Staff Editor Toggle (Visible ONLY when Staff/Owner is logged in) -->
+        <button type="button" id="headerEditorToggleBtn" onclick="toggleEditorMode()" title="Toggle Staff Editor Mode" class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-xs font-extrabold text-amber-300 transition">
+          <span id="headerEditorLabel">⚡ Edit: OFF</span>
+        </button>
+
         <!-- Credits Balance Pill -->
         <button type="button" onclick="openWalletModal()" title="Open RDS Credits Wallet & Redeem Codes" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/35 text-xs font-extrabold transition">
           <span>💎</span>
@@ -587,9 +593,9 @@
         </button>
 
         <!-- Google Drive Sync Indicator -->
-        <button type="button" id="syncChip" onclick="syncFromCloud(true)" title="Sync latest data from Google Drive" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-bold text-muted-dyn transition">
+        <button type="button" id="syncChip" onclick="syncFromCloud(true)" title="Auto-syncs every few seconds — click to force sync now" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/15 text-xs font-bold text-muted-dyn transition">
           <span class="status-dot" id="syncDot"></span>
-          <span id="syncText" class="hidden sm:inline">Synced</span>
+          <span id="syncText" class="hidden sm:inline">Live Sync</span>
         </button>
       </div>
     </header>
@@ -604,7 +610,7 @@
       </div>
       <div class="flex items-center gap-2 flex-wrap">
         <button id="liveVisualEditToggleBtn" class="rds-btn px-3.5 py-1.5 text-xs" onclick="toggleVisualClickEdit()">🎨 Click-to-Edit UI: OFF</button>
-        <button class="rds-btn rds-btn-primary px-3.5 py-1.5 text-xs" onclick="pushAllToCloud()">☁️ Sync All to Drive</button>
+        <button class="rds-btn rds-btn-primary px-3.5 py-1.5 text-xs" onclick="pushAllToCloud(true)">☁️ Sync All to Drive</button>
         <button class="rds-btn px-3.5 py-1.5 text-xs" onclick="toggleEditorMode(false)">Exit Editor</button>
       </div>
     </div>
@@ -1033,16 +1039,26 @@
               <div class="p-5 rounded-3xl glass-sub">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
                   <h3 class="text-sm sm:text-base font-extrabold">☁️ Google Drive Live Cloud Sync</h3>
-                  <button class="rds-btn px-3 py-1.5 text-xs" onclick="openAppsScriptModal()">📜 View Drive Script</button>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <select id="syncIntervalSelect" class="rds-input !w-36 !py-1.5 !px-3 text-xs font-bold" onchange="setSyncIntervalMs(this.value)" title="Auto-sync interval for all connected devices">
+                      <option value="3000">Auto-Sync: 3s</option>
+                      <option value="5000" selected>Auto-Sync: 5s</option>
+                      <option value="10000">Auto-Sync: 10s</option>
+                      <option value="20000">Auto-Sync: 20s</option>
+                    </select>
+                    <button class="rds-btn px-3 py-1.5 text-xs" onclick="testDriveConnection()">🔌 Test Drive</button>
+                    <button class="rds-btn px-3 py-1.5 text-xs" onclick="openAppsScriptModal()">📜 View Drive Script</button>
+                  </div>
                 </div>
                 <label class="block text-[11px] font-bold uppercase tracking-wider text-muted-dyn mb-1.5">Connected Google Drive Apps Script URL</label>
                 <div class="flex flex-wrap gap-2">
                   <input type="url" id="driveEndpointInput" class="rds-input flex-1 min-w-[220px]" placeholder="https://script.google.com/macros/s/.../exec" />
                   <button class="rds-btn px-3.5 py-2 text-xs" onclick="saveDriveEndpoint()">Save URL</button>
-                  <button class="rds-btn rds-btn-primary px-3.5 py-2 text-xs" onclick="pushAllToCloud()">⬆️ Push All to Drive</button>
+                  <button class="rds-btn rds-btn-primary px-3.5 py-2 text-xs" onclick="pushAllToCloud(true)">⬆️ Push All to Drive</button>
                   <button class="rds-btn px-3.5 py-2 text-xs" onclick="syncFromCloud(true)">⬇️ Pull Latest</button>
                 </div>
-                <p class="text-[11px] text-muted-dyn mt-2">Automatically syncs Cars, Tyre Codes, Users &amp; Credits, Redeem Codes, Categories, Visual CMS Edits, Staff Accounts, and Audit Logs to your Google Drive for all players.</p>
+                <div id="driveDiagBox" class="hidden mt-3 p-3 rounded-2xl bg-black/35 border border-white/10 text-xs font-mono-num"></div>
+                <p class="text-[11px] text-muted-dyn mt-2">Automatically syncs Cars, Tyre Codes, Users &amp; Credits, Redeem Codes, Categories, Visual CMS Edits, Staff Accounts, and Audit Logs to your Google Drive for all players every few seconds.</p>
               </div>
             </div>
 
@@ -2144,7 +2160,14 @@
       versionClicks: 0,
       versionClickTimer: null,
       failedLogins: 0,
-      lockoutUntil: 0
+      lockoutUntil: 0,
+      syncIntervalMs: 5000,
+      syncTimerId: null,
+      isSyncingPull: false,
+      activeWritesCount: 0,
+      localKeyUpdatedAt: {},
+      lastCloudFingerprint: '',
+      lastSyncSuccessAt: 0
     };
 
     /* =====================================================================
@@ -2299,11 +2322,44 @@
     }
 
     /* =====================================================================
-       PERMISSION CHECKER (GRANULAR STAFF ACCESS)
+       PERMISSION CHECKER (GRANULAR STAFF ACCESS — OWNER ALWAYS FULL ACCESS)
        ===================================================================== */
+    function isOwnerSession(staffObj = state.staff) {
+      if (!staffObj) return false;
+      const role = String(staffObj.role || '').trim().toUpperCase();
+      const email = String(staffObj.email || '').trim().toLowerCase();
+      return role === 'OWNER' || email === OWNER_MAIL;
+    }
+
+    function normalizeStaffSession(staffObj) {
+      if (!staffObj || !staffObj.email) return null;
+      const normalized = { ...staffObj };
+      if (isOwnerSession(normalized)) {
+        normalized.role = 'OWNER';
+        normalized.name = normalized.name || 'Hyper_DarkStar';
+        const fullPerms = {};
+        ALL_PERMS.forEach(p => { fullPerms[p] = true; });
+        normalized.permissions = fullPerms;
+        return normalized;
+      }
+      // Backward-compatible permission upgrade for older v3.5 admin records
+      const p = { ...(normalized.permissions || {}) };
+      if (p.cars && p.manageCars === undefined) p.manageCars = true;
+      if (p.tyres && p.manageTyres === undefined) p.manageTyres = true;
+      if (p.community && p.manageCommunity === undefined) p.manageCommunity = true;
+      if (p.delete) {
+        if (p.deleteCars === undefined) p.deleteCars = true;
+        if (p.deleteTyres === undefined) p.deleteTyres = true;
+      }
+      if (p.logs && p.viewLogs === undefined) p.viewLogs = true;
+      if (p.syncCloud === undefined) p.syncCloud = true;
+      normalized.permissions = p;
+      return normalized;
+    }
+
     function hasPerm(permKey) {
       if (!state.staff) return false;
-      if (state.staff.role === 'OWNER') return true;
+      if (isOwnerSession(state.staff)) return true;
       return Boolean(state.staff.permissions && state.staff.permissions[permKey]);
     }
 
@@ -2407,7 +2463,7 @@
       await dbSet('user_profile', state.userProfile);
       await savePortalCache();
       updateUserHeaderUI();
-      if (syncCloud) pushConfigBundleToCloud();
+      if (syncCloud) await pushConfigBundleToCloud();
     }
 
     function updateUserHeaderUI() {
@@ -2644,6 +2700,8 @@
       document.getElementById('cmsFooterText').value = cfg.footerCredits || DEFAULT_SITE_CONFIG.footerCredits;
       document.getElementById('cmsAccent1').value = cfg.accent1 || '';
       document.getElementById('cmsAccent2').value = cfg.accent2 || '';
+      if (/^#[0-9a-f]{6}$/i.test(cfg.accent1 || '')) document.getElementById('cmsAccent1Picker').value = cfg.accent1;
+      if (/^#[0-9a-f]{6}$/i.test(cfg.accent2 || '')) document.getElementById('cmsAccent2Picker').value = cfg.accent2;
       document.getElementById('cmsCardRadius').value = cfg.cardRadius || 28;
       document.getElementById('cmsRadiusVal').textContent = cfg.cardRadius || 28;
       document.getElementById('cmsGlassBlur').value = cfg.glassBlur || 28;
@@ -2668,23 +2726,26 @@
       applySiteVisualConfig();
       addAuditLog('UI', 'Updated portal branding, colors & visual layout');
       await savePortalCache();
-      pushConfigBundleToCloud();
+      await pushConfigBundleToCloud();
       showToast('Site visuals saved & synced to everyone!');
     }
 
     async function resetVisualDefaults() {
-      if (!hasPerm('manageVisuals')) return;
+      if (!hasPerm('manageVisuals')) return showToast('Permission denied.');
       state.siteConfig = JSON.parse(JSON.stringify(DEFAULT_SITE_CONFIG));
       applySiteVisualConfig();
       populateVisualStudioForm();
       addAuditLog('UI', 'Reset site visuals to default');
       await savePortalCache();
-      pushConfigBundleToCloud();
-      showToast('Visuals reset to default.');
+      await pushConfigBundleToCloud();
+      showToast('Visuals reset to default & synced.');
     }
 
     function toggleVisualClickEdit() {
-      if (!state.editorMode || !hasPerm('manageVisuals')) return showToast('Enable Editor Mode (with Visuals permission) first.');
+      if (!hasPerm('manageVisuals')) return showToast('Permission denied.');
+      if (!state.editorMode) {
+        toggleEditorMode(true);
+      }
       state.visualClickEdit = !state.visualClickEdit;
       document.body.classList.toggle('visual-edit-active', state.visualClickEdit);
       document.getElementById('liveVisualEditToggleBtn').textContent = state.visualClickEdit ? '🎨 Click-to-Edit UI: ON' : '🎨 Click-to-Edit UI: OFF';
@@ -2735,6 +2796,7 @@
     /* =====================================================================
        AUDIT LOGGING (CATEGORIZED & SEARCHABLE)
        ===================================================================== */
+    let logSyncDebounceTimer = null;
     function addAuditLog(category, action) {
       const actor = state.staff ? state.staff.name : (state.userProfile ? state.userProfile.username : 'System');
       const role = state.staff ? state.staff.role : 'USER';
@@ -2750,6 +2812,13 @@
       if (state.logs.length > 400) state.logs.length = 400;
       dbSet('logs', state.logs);
       renderAuditLogs();
+      // Sync logs to Drive in background (debounced) so Owner sees live logs from all devices
+      if (category !== 'SYNC' && state.driveUrl) {
+        clearTimeout(logSyncDebounceTimer);
+        logSyncDebounceTimer = setTimeout(() => {
+          pushKeyToCloud('logs', state.logs.slice(0, 300), { silent: true });
+        }, 1200);
+      }
     }
 
     function setLogCategory(cat) {
@@ -2841,7 +2910,6 @@
 
         return `
           <article class="glass glass-card-hover overflow-hidden flex flex-col cursor-pointer" onclick="openCarDetailModal('${esc(car.id)}')">
-            <!-- Full Uncropped Mobile-Ratio Image Stage (No 4K UHD badge, Full Image Visible All Sides) -->
             <div class="media-frame-mobile">
               <img src="${esc(img)}" alt="" aria-hidden="true" onerror="this.src='${CAR_FALLBACK_IMG}'" class="bg-blur-fill" />
               <img src="${esc(img)}" alt="${esc(car.name)}" loading="lazy" onerror="this.src='${CAR_FALLBACK_IMG}'" class="fg-full-img" />
@@ -2857,7 +2925,6 @@
                 </div>
               </div>
 
-              <!-- Clean Single-Line Info Rows -->
               <div class="space-y-2">
                 <div class="px-3.5 py-2 rounded-2xl glass-sub flex items-center justify-between gap-2">
                   <span class="text-[11px] font-bold uppercase text-muted-dyn whitespace-nowrap">Stg 1 – Stg 7</span>
@@ -3532,7 +3599,9 @@
        SECTION 4: VERIFIED TYRE CODES (LOCKED WHEN PAID — BUY WITH CREDITS OR DM)
        ===================================================================== */
     function isTyreFree(t) {
-      return !t.price || !String(t.price).trim() || String(t.price).trim().toLowerCase() === 'free' || parseFlexiblePrice(t.price, false) === 0 && !/[a-z]/i.test(String(t.price));
+      const raw = String(t && t.price !== undefined && t.price !== null ? t.price : '').trim();
+      if (!raw || raw.toLowerCase() === 'free') return true;
+      return parseFlexiblePrice(raw, false) === 0 && !/[a-z]/i.test(raw);
     }
 
     function isTyreUnlockedByUser(t) {
@@ -4062,23 +4131,32 @@
 
       await savePortalCache();
       renderCarInfoGrid();
+      if (state.calc.carId === carObj.id) selectCalcCar(carObj.id);
+      if (document.getElementById('view-garage').classList.contains('active')) renderGarageView();
       closeModal('carEditorModal');
-      showToast(`Saved "${carObj.name}"!`);
-      pushKeyToCloud('cars', state.cars);
+      showToast(`Saved "${carObj.name}" — syncing to all devices...`);
+      await pushKeyToCloud('cars', state.cars);
+      if (catVal) await pushConfigBundleToCloud();
     }
 
     async function deleteCar(carId) {
-      if (!state.editorMode || !hasPerm('deleteCars')) return showToast('Permission denied.');
+      if (!state.editorMode || !hasPerm('deleteCars')) return showToast('Enable Editor Mode with Delete Cars permission first.');
       const car = state.cars.find(c => c.id === carId);
       if (!car) return;
       const ok = await openConfirmDialog({ title: 'Delete Vehicle', message: `Permanently delete "${car.name}"?`, confirmText: 'Delete', danger: true });
       if (!ok) return;
       state.cars = state.cars.filter(c => c.id !== carId);
+      if (state.calc.carId === carId) {
+        state.calc.carId = null;
+        document.getElementById('calcSelectedBanner').classList.add('hidden');
+        document.getElementById('calcCarSearch').value = '';
+        updateCalculatorOutput();
+      }
       addAuditLog('CARS', `Deleted vehicle "${car.name}"`);
       await savePortalCache();
       renderCarInfoGrid();
-      pushKeyToCloud('cars', state.cars);
-      showToast('Vehicle deleted.');
+      await pushKeyToCloud('cars', state.cars);
+      showToast('Vehicle deleted & synced.');
     }
 
     function openTyreEditorModal(id = null) {
@@ -4118,12 +4196,12 @@
       await savePortalCache();
       renderTyresGrid();
       closeModal('tyreEditorModal');
-      showToast(`Saved tyre code "${obj.name}"!`);
-      pushKeyToCloud('tyres', state.tyres);
+      showToast(`Saved tyre code "${obj.name}" — syncing...`);
+      await pushKeyToCloud('tyres', state.tyres);
     }
 
     async function deleteTyre(id) {
-      if (!state.editorMode || !hasPerm('deleteTyres')) return showToast('Permission denied.');
+      if (!state.editorMode || !hasPerm('deleteTyres')) return showToast('Enable Editor Mode with Delete Tyres permission first.');
       const t = state.tyres.find(x => x.id === id);
       if (!t) return;
       const ok = await openConfirmDialog({ title: 'Delete Tyre Code', message: `Delete tyre code "${t.name}"?`, confirmText: 'Delete', danger: true });
@@ -4132,8 +4210,8 @@
       addAuditLog('TYRES', `Deleted tyre code "${t.name}"`);
       await savePortalCache();
       renderTyresGrid();
-      pushKeyToCloud('tyres', state.tyres);
-      showToast('Tyre code deleted.');
+      await pushKeyToCloud('tyres', state.tyres);
+      showToast('Tyre code deleted & synced.');
     }
 
     function openEventEditorModal(id = null) {
@@ -4173,12 +4251,12 @@
       await savePortalCache();
       renderEventsGrid();
       closeModal('eventEditorModal');
-      pushKeyToCloud('events', state.events);
-      showToast('Grind event saved!');
+      await pushKeyToCloud('events', state.events);
+      showToast('Grind event saved & synced!');
     }
 
     async function deleteEvent(id) {
-      if (!state.editorMode || !hasPerm('manageCommunity')) return;
+      if (!state.editorMode || !hasPerm('manageCommunity')) return showToast('Permission denied.');
       const ev = state.events.find(x => x.id === id);
       if (!ev) return;
       const ok = await openConfirmDialog({ title: 'Delete Event', message: `Delete "${ev.title}"?`, confirmText: 'Delete', danger: true });
@@ -4187,8 +4265,8 @@
       addAuditLog('UI', `Deleted event "${ev.title}"`);
       await savePortalCache();
       renderEventsGrid();
-      pushKeyToCloud('events', state.events);
-      showToast('Event removed.');
+      await pushKeyToCloud('events', state.events);
+      showToast('Event removed & synced.');
     }
 
     function openDriverEditorModal(id = null) {
@@ -4225,12 +4303,12 @@
       await savePortalCache();
       renderDriversGrid();
       closeModal('driverEditorModal');
-      pushKeyToCloud('drivers', state.drivers);
-      showToast('Driver profile saved!');
+      await pushKeyToCloud('drivers', state.drivers);
+      showToast('Driver profile saved & synced!');
     }
 
     async function deleteDriver(id) {
-      if (!state.editorMode || !hasPerm('manageCommunity')) return;
+      if (!state.editorMode || !hasPerm('manageCommunity')) return showToast('Permission denied.');
       const d = state.drivers.find(x => x.id === id);
       if (!d) return;
       const ok = await openConfirmDialog({ title: 'Delete Driver', message: `Remove "${d.name}"?`, confirmText: 'Delete', danger: true });
@@ -4239,17 +4317,18 @@
       addAuditLog('UI', `Removed driver "${d.name}"`);
       await savePortalCache();
       renderDriversGrid();
-      pushKeyToCloud('drivers', state.drivers);
-      showToast('Driver removed.');
+      await pushKeyToCloud('drivers', state.drivers);
+      showToast('Driver removed & synced.');
     }
 
     function openPointsEditorModal() {
-      if (!state.editorMode || !hasPerm('managePoints')) return showToast('Permission denied.');
+      if (!state.editorMode || !hasPerm('managePoints')) return showToast('Enable Editor Mode first.');
       document.getElementById('pointsEditorTextarea').value = state.points.join('\n');
       openModal('pointsEditorModal');
     }
 
     async function saveCalcPoints() {
+      if (!hasPerm('managePoints')) return showToast('Permission denied.');
       const lines = document.getElementById('pointsEditorTextarea').value.split('\n').map(s => s.trim()).filter(Boolean);
       if (!lines.length) return showToast('Enter at least one point.');
       state.points = lines;
@@ -4257,8 +4336,8 @@
       await savePortalCache();
       renderCalcPoints();
       closeModal('pointsEditorModal');
-      pushConfigBundleToCloud();
-      showToast('Calculator points saved!');
+      await pushConfigBundleToCloud();
+      showToast('Calculator points saved & synced!');
     }
 
     /* =====================================================================
@@ -4273,7 +4352,7 @@
     function handleVersionClick() {
       state.versionClicks++;
       clearTimeout(state.versionClickTimer);
-      state.versionClickTimer = setTimeout(() => { state.versionClicks = 0; }, 5500);
+      state.versionClickTimer = setTimeout(() => { state.versionClicks = 0; }, 6500);
       if (state.versionClicks >= 20) {
         state.versionClicks = 0;
         document.getElementById('loginErrorMsg').classList.add('hidden');
@@ -4296,18 +4375,16 @@
       const email = document.getElementById('loginEmail').value.trim().toLowerCase();
       const pass = document.getElementById('loginPass').value;
 
-      // 1. Owner Auth
+      // 1. Owner Auth (Full Unconditional Permissions)
       if (email === OWNER_MAIL && verifyOwnerPass(pass)) {
         state.failedLogins = 0;
-        const fullPerms = {};
-        ALL_PERMS.forEach(p => fullPerms[p] = true);
-        state.staff = { name: 'Hyper_DarkStar', email: OWNER_MAIL, role: 'OWNER', permissions: fullPerms };
+        state.staff = normalizeStaffSession({ name: 'Hyper_DarkStar', email: OWNER_MAIL, role: 'OWNER' });
         try { sessionStorage.setItem('rds_staff_session', JSON.stringify(state.staff)); } catch (_) {}
         addAuditLog('AUTH', 'Owner signed into Command Center');
         closeModal('staffLoginModal');
         updateStaffUI();
         switchView('settings');
-        showToast('Welcome back, Owner Hyper_DarkStar!');
+        showToast('Welcome back, Owner Hyper_DarkStar! Enable Editor Mode to edit on-screen.');
         return;
       }
 
@@ -4316,12 +4393,12 @@
       const found = state.admins.find(a => (a.email || '').toLowerCase() === email && a.passHash === hash);
       if (found) {
         state.failedLogins = 0;
-        state.staff = {
+        state.staff = normalizeStaffSession({
           name: found.displayName || found.email,
           email: found.email,
           role: found.role || 'ADMIN',
           permissions: found.permissions || {}
-        };
+        });
         try { sessionStorage.setItem('rds_staff_session', JSON.stringify(state.staff)); } catch (_) {}
         addAuditLog('AUTH', `${state.staff.role} ${state.staff.name} signed in`);
         closeModal('staffLoginModal');
@@ -4348,17 +4425,23 @@
       state.editorMode = false;
       state.visualClickEdit = false;
       document.body.classList.remove('visual-edit-active');
-      try { sessionStorage.removeItem('rds_staff_session'); } catch (_) {}
+      try {
+        sessionStorage.removeItem('rds_staff_session');
+        sessionStorage.removeItem('rds_editor_mode');
+      } catch (_) {}
       updateStaffUI();
       renderNavigationBar();
       renderCarInfoGrid();
       renderTyresGrid();
+      renderEventsGrid();
+      renderDriversGrid();
       showToast('Signed out of Staff Command Center.');
     }
 
     function toggleEditorMode(forceVal) {
-      if (!state.staff) return;
+      if (!state.staff) return showToast('Sign in as Staff or Owner first.');
       state.editorMode = typeof forceVal === 'boolean' ? forceVal : !state.editorMode;
+      try { sessionStorage.setItem('rds_editor_mode', state.editorMode ? '1' : '0'); } catch (_) {}
       if (!state.editorMode) {
         state.visualClickEdit = false;
         document.body.classList.remove('visual-edit-active');
@@ -4394,20 +4477,36 @@
     function updateStaffUI() {
       const panel = document.getElementById('staffSettingsPanel');
       const banner = document.getElementById('editorBanner');
+      const hdrEditBtn = document.getElementById('headerEditorToggleBtn');
+      const hdrEditLbl = document.getElementById('headerEditorLabel');
+
+      if (state.staff) state.staff = normalizeStaffSession(state.staff);
 
       if (!state.staff) {
         panel.classList.add('hidden');
         document.body.classList.remove('editor-active');
         banner.classList.add('hidden');
         banner.classList.remove('flex');
+        if (hdrEditBtn) hdrEditBtn.classList.add('hidden');
         return;
       }
 
+      const owner = isOwnerSession(state.staff);
       panel.classList.remove('hidden');
       document.getElementById('staffSessionInfo').textContent = `${state.staff.name} (${state.staff.role})`;
       document.getElementById('bannerStaffName').textContent = state.staff.name;
       document.getElementById('bannerStaffRole').textContent = state.staff.role;
       document.getElementById('driveEndpointInput').value = state.driveUrl;
+      const syncSel = document.getElementById('syncIntervalSelect');
+      if (syncSel) syncSel.value = String(state.syncIntervalMs || 5000);
+
+      if (hdrEditBtn && hdrEditLbl) {
+        hdrEditBtn.classList.remove('hidden');
+        hdrEditLbl.textContent = state.editorMode ? '⚡ Edit: ON' : '⚡ Edit: OFF';
+        hdrEditBtn.className = state.editorMode
+          ? 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/25 hover:bg-emerald-500/35 border border-emerald-400/60 text-xs font-extrabold text-accent transition'
+          : 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-xs font-extrabold text-amber-300 transition';
+      }
 
       const btn = document.getElementById('editorModeToggleBtn');
       btn.textContent = state.editorMode ? 'ON — Click to Disable' : 'OFF — Click to Enable';
@@ -4417,8 +4516,8 @@
       banner.classList.toggle('hidden', !state.editorMode);
       banner.classList.toggle('flex', state.editorMode);
 
-      // Gate each Command Center tab strictly by granular permissions
-      document.getElementById('otabBtn-admins').classList.toggle('hidden', state.staff.role !== 'OWNER');
+      // Gate each Command Center tab strictly by granular permissions (Owner gets ALL)
+      document.getElementById('otabBtn-admins').classList.toggle('hidden', !owner);
       document.getElementById('otabBtn-economy').classList.toggle('hidden', !hasPerm('manageEconomy'));
       document.getElementById('otabBtn-codes').classList.toggle('hidden', !hasPerm('manageCodes'));
       document.getElementById('otabBtn-categories').classList.toggle('hidden', !hasPerm('manageCategories'));
@@ -4451,7 +4550,7 @@
     }
 
     function openCreateStaffModal(staffId = null) {
-      if (!state.staff || state.staff.role !== 'OWNER') return;
+      if (!isOwnerSession()) return showToast('Only the Owner can manage Admins & Mods.');
       const existing = staffId ? state.admins.find(a => a.id === staffId) : null;
       document.getElementById('staffModalTitle').textContent = existing ? `👑 Edit ${existing.displayName}` : '👑 Create Admin / Moderator';
       document.getElementById('editStaffId').value = existing ? existing.id : '';
@@ -4475,7 +4574,7 @@
 
     async function saveStaffAccount(e) {
       e.preventDefault();
-      if (!state.staff || state.staff.role !== 'OWNER') return;
+      if (!isOwnerSession()) return showToast('Only the Owner can save staff accounts.');
       const editId = document.getElementById('editStaffId').value;
       const email = document.getElementById('newStaffEmail').value.trim().toLowerCase();
       const rawPass = document.getElementById('newStaffPass').value;
@@ -4513,12 +4612,12 @@
       await savePortalCache();
       renderStaffAccountsList();
       closeModal('createStaffModal');
-      pushKeyToCloud('admins', state.admins);
-      showToast(`Saved staff account: ${acc.displayName}`);
+      await pushKeyToCloud('admins', state.admins);
+      showToast(`Saved & synced staff account: ${acc.displayName}`);
     }
 
     async function removeStaffAccount(id) {
-      if (!state.staff || state.staff.role !== 'OWNER') return;
+      if (!isOwnerSession()) return showToast('Only the Owner can revoke staff access.');
       const acc = state.admins.find(a => a.id === id);
       if (!acc) return;
       const ok = await openConfirmDialog({ title: 'Revoke Staff Access', message: `Remove staff access for ${acc.displayName || acc.email}?`, confirmText: 'Revoke', danger: true });
@@ -4527,8 +4626,8 @@
       addAuditLog('STAFF', `Owner revoked access for ${acc.email}`);
       await savePortalCache();
       renderStaffAccountsList();
-      pushKeyToCloud('admins', state.admins);
-      showToast('Staff access revoked.');
+      await pushKeyToCloud('admins', state.admins);
+      showToast('Staff access revoked & synced.');
     }
 
     function renderStaffAccountsList() {
@@ -4644,8 +4743,8 @@
       addAuditLog('ECONOMY', `${state.staff.name} changed ${u.username}'s credits (${delta >= 0 ? '+' : ''}${fmtNum(delta)} → ${fmtNum(after)})`);
       await savePortalCache();
       renderAdminUsersList();
-      pushConfigBundleToCloud();
-      showToast(`Updated ${u.username}'s balance to ${fmtNum(after)}!`);
+      await pushConfigBundleToCloud();
+      showToast(`Updated ${u.username}'s balance to ${fmtNum(after)} & synced!`);
     }
 
     /* =====================================================================
@@ -4695,20 +4794,20 @@
       await savePortalCache();
       renderAdminRedeemCodesList();
       closeModal('redeemCreatorModal');
-      pushConfigBundleToCloud();
-      showToast(`Created redeem code: ${obj.code}`);
+      await pushConfigBundleToCloud();
+      showToast(`Created & synced redeem code: ${obj.code}`);
     }
 
     async function deleteRedeemCode(id) {
-      if (!hasPerm('manageCodes')) return;
+      if (!hasPerm('manageCodes')) return showToast('Permission denied.');
       const c = state.redeemCodes.find(x => x.id === id);
       if (!c) return;
       state.redeemCodes = state.redeemCodes.filter(x => x.id !== id);
       addAuditLog('CODES', `Deleted redeem code ${c.code}`);
       await savePortalCache();
       renderAdminRedeemCodesList();
-      pushConfigBundleToCloud();
-      showToast('Redeem code deleted.');
+      await pushConfigBundleToCloud();
+      showToast('Redeem code deleted & synced.');
     }
 
     function renderAdminRedeemCodesList() {
@@ -4782,7 +4881,7 @@
     }
 
     async function moveNavCategory(idx, dir) {
-      if (!hasPerm('manageCategories')) return;
+      if (!hasPerm('manageCategories')) return showToast('Permission denied.');
       const target = idx + dir;
       if (target < 0 || target >= state.navCategories.length) return;
       [state.navCategories[idx], state.navCategories[target]] = [state.navCategories[target], state.navCategories[idx]];
@@ -4790,7 +4889,7 @@
       renderCategoriesManager();
       addAuditLog('UI', 'Reordered navigation tabs');
       await savePortalCache();
-      pushConfigBundleToCloud();
+      await pushConfigBundleToCloud();
     }
 
     function openNavCategoryEditor(catId = null) {
@@ -4836,12 +4935,12 @@
       renderNavigationBar();
       renderCategoriesManager();
       closeModal('navCategoryModal');
-      pushConfigBundleToCloud();
+      await pushConfigBundleToCloud();
       showToast('Navigation updated & synced!');
     }
 
     async function deleteNavCategory(catId) {
-      if (!hasPerm('manageCategories')) return;
+      if (!hasPerm('manageCategories')) return showToast('Permission denied.');
       const cat = state.navCategories.find(c => c.id === catId && !c.builtin);
       if (!cat) return;
       const ok = await openConfirmDialog({ title: 'Delete Custom Tab', message: `Delete custom tab "${cat.label}"?`, confirmText: 'Delete', danger: true });
@@ -4851,12 +4950,12 @@
       await savePortalCache();
       renderNavigationBar();
       renderCategoriesManager();
-      pushConfigBundleToCloud();
-      showToast('Custom tab deleted.');
+      await pushConfigBundleToCloud();
+      showToast('Custom tab deleted & synced.');
     }
 
     async function addCarCategoryPrompt() {
-      if (!hasPerm('manageCategories')) return;
+      if (!hasPerm('manageCategories')) return showToast('Permission denied.');
       const name = await openPromptDialog({ title: 'Add Vehicle Category', message: 'Enter a new optional vehicle category:', placeholder: 'e.g. Muscle, Drift, Limited', confirmText: 'Add' });
       if (!name || !name.trim()) return;
       if (!state.carCategories.includes(name.trim())) state.carCategories.push(name.trim());
@@ -4864,30 +4963,30 @@
       await savePortalCache();
       renderCategoriesManager();
       populateCategoryFilter();
-      pushConfigBundleToCloud();
-      showToast('Car category added!');
+      await pushConfigBundleToCloud();
+      showToast('Car category added & synced!');
     }
 
     async function moveCarCategory(idx, dir) {
-      if (!hasPerm('manageCategories')) return;
+      if (!hasPerm('manageCategories')) return showToast('Permission denied.');
       const t = idx + dir;
       if (t < 0 || t >= state.carCategories.length) return;
       [state.carCategories[idx], state.carCategories[t]] = [state.carCategories[t], state.carCategories[idx]];
       await savePortalCache();
       renderCategoriesManager();
       populateCategoryFilter();
-      pushConfigBundleToCloud();
+      await pushConfigBundleToCloud();
     }
 
     async function deleteCarCategory(idx) {
-      if (!hasPerm('manageCategories')) return;
+      if (!hasPerm('manageCategories')) return showToast('Permission denied.');
       const removed = state.carCategories.splice(idx, 1)[0];
       addAuditLog('UI', `Removed vehicle category "${removed}"`);
       await savePortalCache();
       renderCategoriesManager();
       populateCategoryFilter();
-      pushConfigBundleToCloud();
-      showToast('Car category removed.');
+      await pushConfigBundleToCloud();
+      showToast('Car category removed & synced.');
     }
 
     /* =====================================================================
@@ -4922,8 +5021,22 @@
     }
 
     /* =====================================================================
-       GOOGLE DRIVE LIVE CLOUD SYNC ENGINE (ALL DATA & USERS SYNCED)
+       GOOGLE DRIVE LIVE CLOUD SYNC ENGINE (5-SEC AUTO POLL + WRITE QUEUE)
        ===================================================================== */
+    let crossTabChannel = null;
+    try {
+      if (typeof BroadcastChannel !== 'undefined') {
+        crossTabChannel = new BroadcastChannel('rds_portal_live_sync_v4');
+        crossTabChannel.onmessage = () => {
+          syncFromCloud(false);
+        };
+      }
+    } catch (_) {}
+
+    function notifyOtherTabs() {
+      try { if (crossTabChannel) crossTabChannel.postMessage({ t: Date.now() }); } catch (_) {}
+    }
+
     async function savePortalCache() {
       await Promise.all([
         dbSet('cars', state.cars),
@@ -4943,127 +5056,316 @@
         navCategories: state.navCategories,
         carCategories: state.carCategories,
         usersDirectory: state.usersDirectory,
-        redeemCodes: state.redeemCodes
+        redeemCodes: state.redeemCodes,
+        bundleUpdatedAt: Date.now()
       };
     }
 
     function setSyncStatus(mode, text) {
       const dot = document.getElementById('syncDot');
-      dot.className = 'status-dot ' + (mode === 'syncing' ? 'syncing' : mode === 'offline' ? 'offline' : '');
-      document.getElementById('syncText').textContent = text;
+      if (dot) dot.className = 'status-dot ' + (mode === 'syncing' ? 'syncing' : mode === 'offline' ? 'offline' : '');
+      const txt = document.getElementById('syncText');
+      if (txt) txt.textContent = text;
     }
+
+    async function setSyncIntervalMs(msVal) {
+      const ms = Math.max(3000, parseInt(msVal, 10) || 5000);
+      state.syncIntervalMs = ms;
+      await dbSet('sync_interval_ms', ms);
+      startLiveSyncLoop();
+      showToast(`Live auto-sync set to every ${ms / 1000}s!`);
+    }
+
+    function startLiveSyncLoop() {
+      if (state.syncTimerId) clearInterval(state.syncTimerId);
+      state.syncTimerId = setInterval(() => {
+        if (!document.hidden && navigator.onLine !== false) {
+          syncFromCloud(false);
+        }
+      }, state.syncIntervalMs || 5000);
+    }
+
+    // Serialized write queue prevents Google Apps Script DriveApp race conditions!
+    let cloudWriteChain = Promise.resolve();
 
     async function saveDriveEndpoint() {
       const url = document.getElementById('driveEndpointInput').value.trim();
       state.driveUrl = url;
       await dbSet('drive_url', url);
       addAuditLog('SYNC', 'Updated Google Drive Apps Script URL');
-      showToast('Drive URL saved!');
+      showToast('Drive URL saved! Testing connection...');
+      testDriveConnection();
     }
 
-    async function pushKeyToCloud(key, payload) {
-      if (!state.driveUrl) return;
-      setSyncStatus('syncing', 'Syncing...');
+    function pushKeyToCloud(key, payload, opts = {}) {
+      if (!state.driveUrl) return Promise.resolve(false);
+      const stamp = Date.now();
+      state.localKeyUpdatedAt[key] = stamp;
+
+      cloudWriteChain = cloudWriteChain.then(async () => {
+        state.activeWritesCount++;
+        if (!opts.silent) setSyncStatus('syncing', 'Syncing...');
+        try {
+          const resp = await fetch(state.driveUrl, {
+            method: 'POST',
+            redirect: 'follow',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'save', key, payload, updatedAt: stamp })
+          });
+          const text = await resp.text();
+          let ok = resp.ok;
+          try {
+            const parsed = JSON.parse(text);
+            if (parsed && parsed.ok === false) ok = false;
+          } catch (_) {
+            // If Google returned an HTML login/error page instead of JSON, flag it
+            if (text.trim().startsWith('<')) ok = false;
+          }
+
+          if (ok) {
+            state.lastSyncSuccessAt = Date.now();
+            setSyncStatus('ok', 'Live Sync');
+            notifyOtherTabs();
+            return true;
+          } else {
+            setSyncStatus('offline', 'Sync Err');
+            if (!opts.silent) showToast('Drive rejected write — click "🔌 Test Drive" in Settings to verify script.');
+            return false;
+          }
+        } catch (err) {
+          setSyncStatus('offline', 'Local');
+          if (!opts.silent) showToast('Could not reach Drive — saved locally.');
+          return false;
+        } finally {
+          state.activeWritesCount = Math.max(0, state.activeWritesCount - 1);
+        }
+      });
+      return cloudWriteChain;
+    }
+
+    // Conflict-safe config push: merges latest remote usersDirectory before pushing so concurrent players never overwrite each other
+    async function pushConfigBundleToCloud(opts = {}) {
+      if (!state.driveUrl) return false;
       try {
-        await fetch(state.driveUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ action: 'save', key, payload, updatedAt: Date.now() })
-        });
-        setSyncStatus('ok', 'Synced');
-      } catch (_) {
-        setSyncStatus('offline', 'Local');
-      }
+        const resp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`, { cache: 'no-store', redirect: 'follow' });
+        const data = await resp.json();
+        const remoteCfg = data && data.config ? (data.config.payload || data.config) : null;
+        if (remoteCfg && remoteCfg.usersDirectory && typeof remoteCfg.usersDirectory === 'object') {
+          Object.entries(remoteCfg.usersDirectory).forEach(([uid, remoteU]) => {
+            const localU = state.usersDirectory[uid];
+            if (!localU || ((remoteU.updatedAt || 0) > (localU.updatedAt || 0) && verifyUserRecord(remoteU))) {
+              state.usersDirectory[uid] = remoteU;
+            }
+          });
+        }
+      } catch (_) {}
+      return pushKeyToCloud('config', buildConfigBundle(), opts);
     }
 
-    function pushConfigBundleToCloud() {
-      return pushKeyToCloud('config', buildConfigBundle());
-    }
-
-    async function pushAllToCloud() {
+    async function pushAllToCloud(showAlertToast = true) {
       if (!state.driveUrl) return showToast('Configure your Google Drive URL first.');
       if (state.staff && !hasPerm('syncCloud')) return showToast('Permission denied.');
       setSyncStatus('syncing', 'Pushing...');
+      const results = [];
+      // Push sequentially through write queue so Google Drive LockService never drops a file
+      results.push(await pushKeyToCloud('cars', state.cars, { silent: true }));
+      results.push(await pushKeyToCloud('tyres', state.tyres, { silent: true }));
+      results.push(await pushKeyToCloud('events', state.events, { silent: true }));
+      results.push(await pushKeyToCloud('drivers', state.drivers, { silent: true }));
+      results.push(await pushKeyToCloud('admins', state.admins, { silent: true }));
+      results.push(await pushKeyToCloud('logs', state.logs.slice(0, 300), { silent: true }));
+      results.push(await pushConfigBundleToCloud({ silent: true }));
+
+      const allOk = results.every(Boolean);
+      if (allOk) {
+        addAuditLog('SYNC', 'Full portal database pushed to Google Drive');
+        setSyncStatus('ok', 'Live Sync');
+        if (showAlertToast) showToast('☁️ Everything synced to Google Drive for all devices!');
+      } else {
+        setSyncStatus('offline', 'Sync Err');
+        if (showAlertToast) showToast('⚠️ Some items failed to push — click "🔌 Test Drive" in Settings.');
+      }
+      return allOk;
+    }
+
+    async function testDriveConnection() {
+      const box = document.getElementById('driveDiagBox');
+      if (box) {
+        box.classList.remove('hidden');
+        box.textContent = '⏳ Testing Google Drive GET (read) & POST (write)...';
+      }
+      if (!state.driveUrl) {
+        if (box) box.textContent = '❌ No Google Apps Script URL configured.';
+        return;
+      }
+      let readOk = false, writeOk = false, readInfo = '', writeInfo = '';
       try {
-        await Promise.all([
-          pushKeyToCloud('cars', state.cars),
-          pushKeyToCloud('tyres', state.tyres),
-          pushKeyToCloud('events', state.events),
-          pushKeyToCloud('drivers', state.drivers),
-          pushKeyToCloud('admins', state.admins),
-          pushKeyToCloud('logs', state.logs),
-          pushConfigBundleToCloud()
-        ]);
-        addAuditLog('SYNC', 'Full portal database synced to Google Drive');
-        setSyncStatus('ok', 'Synced');
-        showToast('Everything synced to Google Drive!');
-      } catch (_) {
-        setSyncStatus('offline', 'Failed');
-        showToast('Sync failed — saved safely locally.');
+        const gResp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`, { cache: 'no-store', redirect: 'follow' });
+        const gText = await gResp.text();
+        const gJson = JSON.parse(gText);
+        readOk = gResp.ok && typeof gJson === 'object';
+        readInfo = readOk ? `Keys found: ${Object.keys(gJson).join(', ') || '(empty vault)'}` : 'Unexpected GET response';
+      } catch (err) {
+        readInfo = 'GET failed (check Web App access = Anyone)';
+      }
+
+      try {
+        const pResp = await fetch(state.driveUrl, {
+          method: 'POST',
+          redirect: 'follow',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ action: 'save', key: 'healthcheck', payload: { ping: Date.now() }, updatedAt: Date.now() })
+        });
+        const pText = await pResp.text();
+        const pJson = JSON.parse(pText);
+        writeOk = pResp.ok && pJson && pJson.ok === true;
+        writeInfo = writeOk ? 'Write verified (Drive vault writable!)' : 'POST returned: ' + pText.slice(0, 80);
+      } catch (err) {
+        writeInfo = 'POST blocked/failed — re-deploy Code.gs as Web App (Execute as: Me, Who has access: Anyone)';
+      }
+
+      if (box) {
+        box.innerHTML = `
+          <div>${readOk ? '✅' : '❌'} <strong>Read (GET):</strong> ${esc(readInfo)}</div>
+          <div class="mt-1">${writeOk ? '✅' : '❌'} <strong>Write (POST):</strong> ${esc(writeInfo)}</div>
+        `;
+      }
+      if (readOk && writeOk) {
+        setSyncStatus('ok', 'Live Sync');
+        showToast('✅ Google Drive Read & Write verified!');
+      } else {
+        setSyncStatus('offline', 'Check Drive');
+        showToast('⚠️ Drive connection issue — check diagnostic box in Settings.');
       }
     }
 
+    function isAnyEditorModalOpen() {
+      const editModals = ['carEditorModal', 'tyreEditorModal', 'eventEditorModal', 'driverEditorModal', 'createStaffModal', 'redeemCreatorModal', 'navCategoryModal', 'pointsEditorModal', 'profileModal'];
+      return editModals.some(id => document.getElementById(id)?.classList.contains('open'));
+    }
+
     async function syncFromCloud(manual = false) {
-      if (!state.driveUrl) return;
-      setSyncStatus('syncing', 'Syncing...');
+      if (!state.driveUrl || state.isSyncingPull) return;
+      // Never clobber an active push in flight!
+      if (!manual && state.activeWritesCount > 0) return;
+
+      state.isSyncingPull = true;
+      if (manual) setSyncStatus('syncing', 'Syncing...');
+
       try {
-        const resp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`);
-        const data = await resp.json();
+        const resp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`, { cache: 'no-store', redirect: 'follow' });
+        const rawText = await resp.text();
+        if (rawText.trim().startsWith('<')) throw new Error('HTML response from Apps Script');
+        const data = JSON.parse(rawText);
+
         if (data && typeof data === 'object') {
-          const extract = k => {
-            const v = data[k];
-            if (!v) return null;
-            return v.payload !== undefined ? v.payload : v;
-          };
-          const cloudCars = extract('cars');
-          const cloudTyres = extract('tyres');
-          const cloudEvents = extract('events');
-          const cloudDrivers = extract('drivers');
-          const cloudAdmins = extract('admins');
-          const cloudLogs = extract('logs');
-          const cloudConfig = extract('config');
+          const fingerprint = sha256(rawText).slice(0, 20);
+          const changed = manual || fingerprint !== state.lastCloudFingerprint;
 
-          if (Array.isArray(cloudCars) && cloudCars.length) state.cars = cloudCars;
-          if (Array.isArray(cloudTyres) && cloudTyres.length) state.tyres = cloudTyres;
-          if (Array.isArray(cloudEvents) && cloudEvents.length) state.events = cloudEvents;
-          if (Array.isArray(cloudDrivers) && cloudDrivers.length) state.drivers = cloudDrivers;
-          if (Array.isArray(cloudAdmins)) state.admins = cloudAdmins;
-          if (Array.isArray(cloudLogs)) state.logs = cloudLogs;
+          if (changed) {
+            state.lastCloudFingerprint = fingerprint;
 
-          if (cloudConfig && typeof cloudConfig === 'object') {
-            if (Array.isArray(cloudConfig.calcPoints) && cloudConfig.calcPoints.length) state.points = cloudConfig.calcPoints;
-            if (cloudConfig.siteConfig) state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...cloudConfig.siteConfig };
-            if (Array.isArray(cloudConfig.navCategories) && cloudConfig.navCategories.length) state.navCategories = cloudConfig.navCategories;
-            if (Array.isArray(cloudConfig.carCategories)) state.carCategories = cloudConfig.carCategories;
-            if (Array.isArray(cloudConfig.redeemCodes)) state.redeemCodes = cloudConfig.redeemCodes;
-            if (cloudConfig.usersDirectory && typeof cloudConfig.usersDirectory === 'object') {
-              // Merge verified cloud users directory with local profile
-              state.usersDirectory = { ...state.usersDirectory, ...cloudConfig.usersDirectory };
-              if (state.userProfile) initOrVerifyUserProfile(state.userProfile);
+            const shouldAccept = (key) => {
+              const entry = data[key];
+              if (!entry) return false;
+              const cloudTs = Number(entry.updatedAt) || 0;
+              const localTs = Number(state.localKeyUpdatedAt[key]) || 0;
+              // Never overwrite a newer local edit made in the last 12 seconds
+              if (localTs > 0 && cloudTs < localTs && (Date.now() - localTs) < 12000) return false;
+              return true;
+            };
+
+            const extract = k => {
+              const v = data[k];
+              if (!v) return null;
+              return v.payload !== undefined ? v.payload : v;
+            };
+
+            if (shouldAccept('cars')) {
+              const cloudCars = extract('cars');
+              if (Array.isArray(cloudCars)) state.cars = cloudCars;
+            }
+            if (shouldAccept('tyres')) {
+              const cloudTyres = extract('tyres');
+              if (Array.isArray(cloudTyres)) state.tyres = cloudTyres;
+            }
+            if (shouldAccept('events')) {
+              const cloudEvents = extract('events');
+              if (Array.isArray(cloudEvents)) state.events = cloudEvents;
+            }
+            if (shouldAccept('drivers')) {
+              const cloudDrivers = extract('drivers');
+              if (Array.isArray(cloudDrivers)) state.drivers = cloudDrivers;
+            }
+            if (shouldAccept('admins')) {
+              const cloudAdmins = extract('admins');
+              if (Array.isArray(cloudAdmins)) state.admins = cloudAdmins;
+            }
+            if (shouldAccept('logs')) {
+              const cloudLogs = extract('logs');
+              if (Array.isArray(cloudLogs)) state.logs = cloudLogs;
+            }
+
+            if (shouldAccept('config')) {
+              const cloudConfig = extract('config');
+              if (cloudConfig && typeof cloudConfig === 'object') {
+                if (Array.isArray(cloudConfig.calcPoints) && cloudConfig.calcPoints.length) state.points = cloudConfig.calcPoints;
+                if (cloudConfig.siteConfig) state.siteConfig = { ...DEFAULT_SITE_CONFIG, ...cloudConfig.siteConfig };
+                if (Array.isArray(cloudConfig.navCategories) && cloudConfig.navCategories.length) state.navCategories = cloudConfig.navCategories;
+                if (Array.isArray(cloudConfig.carCategories)) state.carCategories = cloudConfig.carCategories;
+                if (Array.isArray(cloudConfig.redeemCodes)) state.redeemCodes = cloudConfig.redeemCodes;
+                if (cloudConfig.usersDirectory && typeof cloudConfig.usersDirectory === 'object') {
+                  Object.entries(cloudConfig.usersDirectory).forEach(([uid, remoteU]) => {
+                    const localU = state.usersDirectory[uid];
+                    if (!localU || (remoteU.updatedAt || 0) >= (localU.updatedAt || 0)) {
+                      state.usersDirectory[uid] = remoteU;
+                    }
+                  });
+                  if (state.userProfile) {
+                    const prevCredits = state.userProfile.credits;
+                    initOrVerifyUserProfile(state.userProfile);
+                    await dbSet('user_profile', state.userProfile);
+                    if (state.userProfile.credits !== prevCredits && document.getElementById('walletModal').classList.contains('open')) {
+                      openWalletModal();
+                    }
+                  }
+                }
+              }
+            }
+
+            await savePortalCache();
+            applySiteVisualConfig();
+            renderNavigationBar();
+            // Refresh visible views smoothly without disrupting any open edit modal
+            if (!isAnyEditorModalOpen()) {
+              renderCarInfoGrid();
+              renderTyresGrid();
+              renderEventsGrid();
+              renderDriversGrid();
+              renderCalcPoints();
+              if (state.calc.carId) updateCalculatorOutput();
+              if (document.getElementById('view-garage').classList.contains('active')) renderGarageView();
+              if (state.staff) {
+                renderStaffAccountsList();
+                renderAdminUsersList();
+                renderAdminRedeemCodesList();
+                renderCategoriesManager();
+                renderAuditLogs();
+              }
             }
           }
 
-          await savePortalCache();
-          applySiteVisualConfig();
-          renderNavigationBar();
-          renderCarInfoGrid();
-          renderTyresGrid();
-          renderEventsGrid();
-          renderDriversGrid();
-          renderCalcPoints();
-          renderStaffAccountsList();
-          renderAdminUsersList();
-          renderAdminRedeemCodesList();
-          renderCategoriesManager();
-          renderAuditLogs();
-          setSyncStatus('ok', 'Synced');
+          state.lastSyncSuccessAt = Date.now();
+          setSyncStatus('ok', 'Live Sync');
           if (manual) showToast('Synced latest data from Google Drive!');
         } else {
           setSyncStatus('ok', 'Ready');
         }
       } catch (_) {
         setSyncStatus('offline', 'Local');
-        if (manual) showToast('Using offline cache (check Drive connection).');
+        if (manual) showToast('Offline cache active (click "🔌 Test Drive" in Settings to check URL).');
+      } finally {
+        state.isSyncingPull = false;
       }
     }
 
@@ -5090,37 +5392,43 @@ function doGet(e) {
 }
 
 function doPost(e) {
-  const body = JSON.parse(e.postData.contents || '{}');
-  const root = getOrCreateFolder_(DriveApp.getRootFolder(), VAULT_FOLDER_NAME);
+  const lock = LockService.getScriptLock();
+  lock.waitLock(15000);
+  try {
+    const body = JSON.parse((e && e.postData && e.postData.contents) || '{}');
+    const root = getOrCreateFolder_(DriveApp.getRootFolder(), VAULT_FOLDER_NAME);
 
-  if (body.action === 'uploadImage' && body.dataUrl) {
-    const mediaFolder = getOrCreateFolder_(root, MEDIA_FOLDER_NAME);
-    const bytes = Utilities.base64Decode(body.dataUrl.split(',')[1]);
-    const blob = Utilities.newBlob(bytes, body.mimeType || 'image/webp', body.filename || ('rds_img_' + Date.now() + '.webp'));
-    const file = mediaFolder.createFile(blob);
-    file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-    return ContentService.createTextOutput(JSON.stringify({
-      ok: true,
-      url: 'https://lh3.googleusercontent.com/d/' + file.getId() + '=w3840'
-    })).setMimeType(ContentService.MimeType.JSON);
+    if (body.action === 'uploadImage' && body.dataUrl) {
+      const mediaFolder = getOrCreateFolder_(root, MEDIA_FOLDER_NAME);
+      const bytes = Utilities.base64Decode(body.dataUrl.split(',')[1]);
+      const blob = Utilities.newBlob(bytes, body.mimeType || 'image/webp', body.filename || ('rds_img_' + Date.now() + '.webp'));
+      const file = mediaFolder.createFile(blob);
+      file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
+      return ContentService.createTextOutput(JSON.stringify({
+        ok: true,
+        url: 'https://lh3.googleusercontent.com/d/' + file.getId() + '=w3840'
+      })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    if (body.action === 'save' && body.key) {
+      const fname = String(body.key).replace(/[^a-z0-9_-]/gi, '') + '.json';
+      const content = JSON.stringify({ payload: body.payload, updatedAt: body.updatedAt || Date.now() });
+      const it = root.getFilesByName(fname);
+      if (it.hasNext()) it.next().setContent(content);
+      else root.createFile(fname, content, MimeType.PLAIN_TEXT);
+      return ContentService.createTextOutput(JSON.stringify({ ok: true, key: body.key })).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'Unknown action' })).setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
   }
-
-  if (body.action === 'save' && body.key) {
-    const fname = body.key.replace(/[^a-z0-9_-]/gi, '') + '.json';
-    const content = JSON.stringify({ payload: body.payload, updatedAt: body.updatedAt || Date.now() });
-    const it = root.getFilesByName(fname);
-    if (it.hasNext()) it.next().setContent(content);
-    else root.createFile(fname, content, MimeType.PLAIN_TEXT);
-    return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
-  }
-
-  return ContentService.createTextOutput(JSON.stringify({ ok: false })).setMimeType(ContentService.MimeType.JSON);
 }`;
       openModal('appsScriptModal');
     }
 
     /* =====================================================================
-       BOOT SEQUENCE
+       BOOT SEQUENCE (LIVE 5-SECOND POLLING + TAB-FOCUS & ONLINE SYNC)
        ===================================================================== */
     async function bootApp() {
       const savedPrefs = await dbGet('user_prefs');
@@ -5134,6 +5442,9 @@ function doPost(e) {
 
       const savedDrive = await dbGet('drive_url');
       if (savedDrive) state.driveUrl = savedDrive;
+
+      const savedInterval = await dbGet('sync_interval_ms');
+      if (savedInterval && Number(savedInterval) >= 3000) state.syncIntervalMs = Number(savedInterval);
 
       const savedGarages = await dbGet('user_garages');
       if (savedGarages && Array.isArray(savedGarages.garages) && savedGarages.garages.length) {
@@ -5164,9 +5475,13 @@ function doPost(e) {
 
       initOrVerifyUserProfile(cProfile);
 
+      // Restore & normalize Staff/Owner session + Editor Mode state cleanly
       try {
         const ss = JSON.parse(sessionStorage.getItem('rds_staff_session') || 'null');
-        if (ss && ss.email) state.staff = ss;
+        if (ss && ss.email) {
+          state.staff = normalizeStaffSession(ss);
+          state.editorMode = sessionStorage.getItem('rds_editor_mode') === '1';
+        }
       } catch (_) {}
 
       initMotionCanvas();
@@ -5186,8 +5501,15 @@ function doPost(e) {
         setTimeout(() => openProfileModal(true), 350);
       }
 
-      // Background pull from your pre-connected Google Drive Cloud Vault
-      syncFromCloud(false);
+      // Immediate pull + continuous 5-second live sync across all devices
+      await syncFromCloud(false);
+      startLiveSyncLoop();
+
+      // Instant sync whenever user switches back to the tab or reconnects
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) syncFromCloud(false);
+      });
+      window.addEventListener('online', () => syncFromCloud(false));
     }
 
     window.addEventListener('DOMContentLoaded', bootApp);
