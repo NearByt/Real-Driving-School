@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Real Driving School — Car Values, Garages &amp; Tyre Codes</title>
-  <meta name="description" content="Real Driving School (RDS) Portal v6.0: Car Value Calculator, Ordered Vehicle Index, Multi-Garage Portfolio, Anti-Cheat Dual-Balance Wallet (Free Credits vs RDS Money), Protected Tyre Codes & Live Google Drive Sync." />
+  <meta name="description" content="Real Driving School (RDS) Portal v7.0: Car Value Calculator with Range Estimates, Ordered Vehicle Index, Multi-Garage Portfolio, Unified Wallet (Free-First / Paid-Next Telemetry), Coupons & Lifetime Free VIP, Protected Tyre Codes & Live Google Drive Sync." />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,15 +16,16 @@
 
   <style>
     /* =====================================================================
-       10 LIQUID GLASS THEMES, SURFACE TOKENS & MOBILE BOTTOM DOCK
+       10 LIQUID GLASS THEMES, SURFACE TOKENS & IPAD/MOBILE SHARP HEADER
        ===================================================================== */
     :root {
       --bg-base: #050a14;
       --bg-mesh-1: rgba(0, 255, 136, 0.18);
       --bg-mesh-2: rgba(56, 189, 248, 0.18);
       --bg-mesh-3: rgba(139, 92, 246, 0.15);
-      --glass-bg: rgba(14, 22, 40, 0.58);
+      --glass-bg: rgba(14, 22, 40, 0.62);
       --glass-bg-strong: rgba(8, 14, 28, 0.95);
+      --header-bg: rgba(9, 15, 29, 0.90);
       --glass-border: rgba(255, 255, 255, 0.15);
       --glass-specular: rgba(255, 255, 255, 0.30);
       --glass-shadow: 0 22px 60px rgba(0, 0, 0, 0.46), inset 0 1px 0 rgba(255, 255, 255, 0.18);
@@ -49,6 +50,7 @@
       --bg-mesh-2: rgba(244, 63, 94, 0.18);
       --bg-mesh-3: rgba(251, 191, 36, 0.12);
       --glass-bg: rgba(18, 12, 14, 0.78);
+      --header-bg: rgba(16, 10, 12, 0.92);
       --glass-border: rgba(255, 107, 0, 0.32);
       --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 150, 60, 0.25);
       --accent: #ff6b00;
@@ -62,7 +64,8 @@
       --bg-mesh-2: rgba(192, 132, 252, 0.24);
       --bg-mesh-3: rgba(236, 72, 153, 0.16);
       --glass-bg: rgba(255, 255, 255, 0.10);
-      --glass-bg-strong: rgba(12, 22, 46, 0.92);
+      --glass-bg-strong: rgba(12, 22, 46, 0.93);
+      --header-bg: rgba(11, 22, 46, 0.88);
       --glass-border: rgba(255, 255, 255, 0.32);
       --glass-shadow: 0 24px 64px rgba(3, 10, 28, 0.45), inset 0 1.5px 0 rgba(255, 255, 255, 0.42);
       --accent: #38bdf8;
@@ -76,6 +79,7 @@
       --bg-mesh-2: rgba(236, 72, 153, 0.18);
       --bg-mesh-3: rgba(99, 102, 241, 0.22);
       --glass-bg: rgba(24, 12, 44, 0.64);
+      --header-bg: rgba(18, 9, 34, 0.91);
       --glass-border: rgba(216, 180, 254, 0.26);
       --accent: #d8b4fe;
       --accent-2: #f472b6;
@@ -88,6 +92,7 @@
       --bg-mesh-2: rgba(34, 211, 238, 0.20);
       --bg-mesh-3: rgba(232, 121, 249, 0.20);
       --glass-bg: rgba(28, 10, 34, 0.70);
+      --header-bg: rgba(24, 8, 30, 0.91);
       --glass-border: rgba(244, 114, 182, 0.36);
       --glass-shadow: 0 0 28px rgba(244, 114, 182, 0.18), 0 18px 46px rgba(0, 0, 0, 0.6);
       --accent: #f472b6;
@@ -101,6 +106,7 @@
       --bg-mesh-2: rgba(217, 119, 6, 0.12);
       --bg-mesh-3: rgba(120, 113, 108, 0.12);
       --glass-bg: rgba(16, 15, 13, 0.84);
+      --header-bg: rgba(13, 12, 10, 0.94);
       --glass-border: rgba(234, 179, 8, 0.34);
       --glass-shadow: 0 24px 60px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(254, 240, 138, 0.28);
       --accent: #facc15;
@@ -114,6 +120,7 @@
       --bg-mesh-2: rgba(163, 230, 53, 0.20);
       --bg-mesh-3: rgba(99, 102, 241, 0.24);
       --glass-bg: rgba(6, 28, 36, 0.56);
+      --header-bg: rgba(5, 23, 30, 0.91);
       --glass-border: rgba(45, 212, 191, 0.28);
       --accent: #2dd4bf;
       --accent-2: #a3e635;
@@ -126,6 +133,7 @@
       --bg-mesh-2: rgba(249, 115, 22, 0.18);
       --bg-mesh-3: rgba(190, 18, 60, 0.18);
       --glass-bg: rgba(26, 8, 12, 0.76);
+      --header-bg: rgba(22, 7, 10, 0.93);
       --glass-border: rgba(251, 113, 133, 0.34);
       --accent: #ff3b5c;
       --accent-2: #f97316;
@@ -138,6 +146,7 @@
       --bg-mesh-2: rgba(34, 211, 238, 0.22);
       --bg-mesh-3: rgba(37, 99, 235, 0.24);
       --glass-bg: rgba(5, 20, 44, 0.62);
+      --header-bg: rgba(4, 16, 36, 0.91);
       --glass-border: rgba(56, 189, 248, 0.28);
       --accent: #22d3ee;
       --accent-2: #60a5fa;
@@ -151,6 +160,7 @@
       --bg-mesh-3: rgba(168, 85, 247, 0.16);
       --glass-bg: rgba(255, 255, 255, 0.78);
       --glass-bg-strong: rgba(255, 255, 255, 0.96);
+      --header-bg: rgba(255, 255, 255, 0.94);
       --glass-border: rgba(15, 23, 42, 0.11);
       --glass-specular: rgba(255, 255, 255, 0.95);
       --glass-shadow: 0 18px 45px rgba(15, 23, 42, 0.09), inset 0 1px 0 rgba(255, 255, 255, 1);
@@ -174,7 +184,7 @@
       background-color: var(--bg-base);
       color: var(--text-primary);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
+      overflow-x: clip;
       transition: background-color 0.35s ease, color 0.3s ease;
     }
 
@@ -195,6 +205,7 @@
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
+      transform: translate3d(0, 0, 0);
       background-image:
         radial-gradient(circle at 12% 14%, var(--bg-mesh-1), transparent 46%),
         radial-gradient(circle at 88% 18%, var(--bg-mesh-2), transparent 48%),
@@ -254,14 +265,39 @@
       pointer-events: none;
     }
 
+    /* Dedicated iPad/WebKit-Safe Sticky Header */
+    .glass-header {
+      background: var(--header-bg);
+      border: 1px solid var(--glass-specular);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      border-radius: 9999px;
+      position: sticky;
+      top: 10px;
+      z-index: 60;
+      isolation: isolate;
+      transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    @supports (backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px)) {
+      .glass-header::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        z-index: -1;
+        pointer-events: none;
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+      }
+    }
+
     .glass-sub {
       background: rgba(255, 255, 255, 0.055);
       border: 1px solid var(--glass-border);
       border-radius: 18px;
     }
-    [data-theme="solar-prism"] .glass-sub {
-      background: rgba(15, 23, 42, 0.045);
-    }
+    [data-theme="solar-prism"] .glass-sub { background: rgba(15, 23, 42, 0.045); }
 
     .glass-card-hover {
       transition: transform var(--ease), border-color var(--ease), box-shadow var(--ease);
@@ -286,18 +322,27 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Navigation Scrollbars & Arrows (Desktop Top + Mobile Bottom Dock) */
+    /* Navigation Scrollbars & Arrows */
     .nav-scroll-wrap {
       position: relative;
+      z-index: 3;
       display: flex;
       align-items: center;
       gap: 4px;
       min-width: 0;
+      transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
     .nav-pills {
+      position: relative;
+      z-index: 3;
       scrollbar-width: none;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      transform: translate3d(0, 0, 0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
     }
     .nav-pills::-webkit-scrollbar { display: none; }
     .nav-arrow-btn {
@@ -305,7 +350,7 @@
       height: 26px;
       border-radius: 9999px;
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.10);
+      background: rgba(255, 255, 255, 0.12);
       color: var(--text-primary);
       display: inline-flex;
       align-items: center;
@@ -327,6 +372,7 @@
       transition: var(--ease);
       white-space: nowrap;
       border-radius: var(--btn-radius);
+      transform: translateZ(0);
     }
     .nav-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.10); }
     .nav-btn.active {
@@ -343,12 +389,12 @@
       bottom: max(10px, env(safe-area-inset-bottom));
       z-index: 90;
       background: var(--glass-bg-strong);
-      backdrop-filter: blur(32px) saturate(210%);
-      -webkit-backdrop-filter: blur(32px) saturate(210%);
       border: 1px solid var(--glass-specular);
       box-shadow: 0 18px 50px rgba(0, 0, 0, 0.68), 0 0 24px var(--accent-glow);
       border-radius: 9999px;
       padding: 6px 8px;
+      isolation: isolate;
+      transform: translate3d(0, 0, 0);
     }
     .mobile-nav-btn {
       min-height: 38px;
@@ -362,8 +408,8 @@
     }
 
     @media (max-width: 767px) {
-      .app-shell { padding-bottom: 78px; }
-      #toastStack { bottom: 76px; }
+      .app-shell { padding-bottom: 82px; }
+      #toastStack { bottom: 78px; }
     }
 
     /* Inputs & Buttons */
@@ -468,7 +514,7 @@
     .addon-toggle.active .pill-switch { background: var(--accent); }
     .addon-toggle.active .pill-switch::after { transform: translateX(18px); background: var(--accent-ink); }
 
-    /* Horizontal Landscape Media Frames (19.5 / 9 Uncropped Full View) */
+    /* Horizontal Landscape Media Frames */
     .media-frame-landscape {
       position: relative;
       width: 100%;
@@ -529,7 +575,7 @@
       border-radius: 14px;
     }
 
-    /* Progress bar for spending telemetry */
+    /* Spending Progress Bars */
     .spend-bar-track {
       width: 100%;
       height: 8px;
@@ -561,7 +607,7 @@
       100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
     }
 
-    /* Wide Horizontal Modals */
+    /* Modals */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -641,9 +687,9 @@
   <div class="app-shell relative z-10 flex flex-col min-h-screen">
 
     <!-- =================================================================
-         SINGLE-ROW HORIZONTAL LIQUID GLASS HEADER (DESKTOP NAV + DUAL WALLET)
+         SINGLE-ROW SHARP HEADER (IPAD/SAFARI SAFE + UNIFIED WALLET)
          ================================================================= -->
-    <header class="glass sticky top-2.5 z-50 mx-auto mt-2.5 w-[min(1440px,calc(100%-16px))] !rounded-full px-3 sm:px-4 py-2 flex flex-nowrap items-center justify-between gap-2 sm:gap-3">
+    <header class="glass-header mx-auto mt-2.5 w-[min(1440px,calc(100%-16px))] px-3 sm:px-4 py-2 flex flex-nowrap items-center justify-between gap-2 sm:gap-3">
       <!-- Brand Logo & Title -->
       <div class="flex items-center gap-2.5 cursor-pointer shrink-0 min-w-0" onclick="handleBrandClick()">
         <div id="brandLogoWrap" data-cms-key="brandLogo" class="w-9 h-9 rounded-2xl bg-accent-grad grid place-items-center font-black text-xs tracking-tight overflow-hidden shrink-0">RDS</div>
@@ -654,13 +700,13 @@
       </div>
 
       <!-- Desktop Horizontal Scrollable Navigation with Arrows -->
-      <div class="nav-scroll-wrap hidden md:flex flex-1 min-w-0 max-w-[720px]">
+      <div class="nav-scroll-wrap hidden md:flex flex-1 min-w-0 max-w-[740px]">
         <button type="button" id="navArrowLeft" class="nav-arrow-btn" onclick="scrollNavBar(-180)" title="Scroll left" aria-label="Scroll left">‹</button>
         <nav id="dynamicNavBar" class="nav-pills flex-1 flex flex-nowrap items-center gap-1.5 overflow-x-auto py-0.5"></nav>
         <button type="button" id="navArrowRight" class="nav-arrow-btn" onclick="scrollNavBar(180)" title="Scroll right" aria-label="Scroll right">›</button>
       </div>
 
-      <!-- Top-Right Controls: Quick Edit, Sync Dot, Dual-Balance Wallet Pill, Circular PFP -->
+      <!-- Top-Right Controls: Quick Edit, Sync Dot, Unified Wallet Pill + VIP Badge, Circular PFP -->
       <div class="flex flex-nowrap items-center gap-1.5 sm:gap-2 shrink-0">
         <button type="button" id="headerEditorToggleBtn" onclick="toggleEditorMode()" title="Toggle Staff Editor Mode" class="hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/50 text-[11px] font-extrabold text-amber-300 transition">
           <span id="headerEditorLabel">⚡ Edit</span>
@@ -671,14 +717,15 @@
           <span id="syncText" class="hidden xl:inline">Live Sync</span>
         </button>
 
-        <!-- Dual-Balance Wallet Trigger (RDS Money + Free Credits) -->
-        <button type="button" onclick="openWalletModal()" title="Dual-Balance Wallet: RDS Money & Free Credits" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-xs font-extrabold transition shadow-sm">
-          <span class="inline-flex items-center gap-1" title="RDS Money (For Paid Tyres & Utilities)">
+        <!-- Unified Wallet Trigger (Free-First / Paid-Next + VIP Crown) -->
+        <button type="button" onclick="openWalletModal()" title="Unified Wallet (Free Credits + RDS Money + Coupons & VIP)" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/40 text-xs font-extrabold transition shadow-sm">
+          <span id="headerVipBadge" class="hidden px-1.5 py-0.5 rounded-full bg-amber-400/25 border border-amber-300/60 text-[10px] font-black text-amber-300">👑 VIP</span>
+          <span class="inline-flex items-center gap-1" title="RDS Money (Paid Balance)">
             <span>💵</span>
             <span class="font-mono-num text-amber-300 whitespace-nowrap" id="headerMoneyVal">$0</span>
           </span>
           <span class="text-white/25 hidden sm:inline">|</span>
-          <span class="hidden sm:inline-flex items-center gap-1" title="Free Credits (For Calcs & Garages)">
+          <span class="hidden sm:inline-flex items-center gap-1" title="Free Credits (Used First)">
             <span>💎</span>
             <span class="font-mono-num text-accent whitespace-nowrap" id="headerCreditsVal">$5M</span>
           </span>
@@ -725,7 +772,6 @@
           </div>
         </div>
 
-        <!-- Horizontal Search + Category + Sort Order Bar -->
         <div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5 mb-5">
           <div class="relative flex-1 min-w-[200px]">
             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">🔍</span>
@@ -743,18 +789,17 @@
           </select>
         </div>
 
-        <!-- Horizontal Landscape Car Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="carInfoGrid"></div>
       </section>
 
       <!-- ---------------------------------------------------------------
-           VIEW 2: CAR VALUE CALCULATOR
+           VIEW 2: CAR VALUE CALCULATOR WITH RANGE ESTIMATES
            --------------------------------------------------------------- -->
       <section class="view-section" id="view-calculator">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div class="min-w-0">
             <h1 data-cms-key="calcTitle" class="title-grad text-2xl sm:text-3xl font-black tracking-tight">Car Value Calculator</h1>
-            <p data-cms-key="calcSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Pick your vehicle, Stage 1–7 (Stock or Max), and add-ons to compute Estimated Value &amp; price range.</p>
+            <p data-cms-key="calcSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Pick your vehicle, Stage 1–7 (Stock or Max), and add-ons to compute Estimated Value &amp; market range.</p>
           </div>
           <div class="flex items-center gap-2 flex-wrap">
             <div id="calcQuotaBanner" class="px-3.5 py-1.5 rounded-full glass-sub text-xs font-extrabold flex items-center gap-2"></div>
@@ -847,8 +892,8 @@
             <div id="calcLockedOverlay" class="hidden absolute inset-0 z-20 bg-slate-950/92 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center gap-3">
               <div class="text-3xl">🔒</div>
               <div class="font-black text-base text-amber-300">Insufficient Balance for Calculation</div>
-              <p class="text-xs text-muted-dyn max-w-xs" id="calcLockedMsg">You have used your free calculations. Top up or redeem a code to continue.</p>
-              <button class="rds-btn rds-btn-primary px-5 py-2 text-xs" onclick="openWalletModal()">💎 Open Dual Wallet</button>
+              <p class="text-xs text-muted-dyn max-w-xs" id="calcLockedMsg">You have used your free calculations. Top up or redeem a coupon/VIP code to continue.</p>
+              <button class="rds-btn rds-btn-primary px-5 py-2 text-xs" onclick="openWalletModal()">💎 Open Unified Wallet</button>
             </div>
 
             <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/15 to-sky-500/15 border border-emerald-400/35 text-center mb-3.5">
@@ -950,7 +995,7 @@
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div class="min-w-0">
             <h1 data-cms-key="tyresTitle" class="title-grad text-2xl sm:text-3xl font-black tracking-tight">Protected Tyre Codes</h1>
-            <p data-cms-key="tyresSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Click any design to copy free codes, or unlock protected premium tyre codes instantly with verified RDS Money.</p>
+            <p data-cms-key="tyresSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Click any design to copy free codes, apply discount coupons, or unlock protected premium tyre codes instantly.</p>
           </div>
           <button class="rds-btn rds-btn-primary px-4 py-2 text-xs sm:text-sm staff-only" onclick="openTyreEditorModal()">＋ Add Tyre Code</button>
         </div>
@@ -964,16 +1009,16 @@
       </section>
 
       <!-- ---------------------------------------------------------------
-           VIEW 5: MY SPENDING & DUAL-BALANCE TELEMETRY
+           VIEW 5: MY SPENDING & UNIFIED WALLET TELEMETRY
            --------------------------------------------------------------- -->
       <section class="view-section" id="view-spending">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div class="min-w-0">
-            <h1 data-cms-key="spendingTitle" class="title-grad text-2xl sm:text-3xl font-black tracking-tight">My Spending &amp; Dual Wallet Tracker</h1>
-            <p data-cms-key="spendingSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Track your Free Credits, verified RDS Money, total spent, free quotas, and signed ledger activity.</p>
+            <h1 data-cms-key="spendingTitle" class="title-grad text-2xl sm:text-3xl font-black tracking-tight">My Spending &amp; Unified Wallet Telemetry</h1>
+            <p data-cms-key="spendingSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Track Free-First / Paid-Next balances, Lifetime Free VIP status, active coupons, and your signed V7 ledger.</p>
           </div>
           <div class="flex items-center gap-2">
-            <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="openWalletModal()">💎 Dual Wallet &amp; Redeem</button>
+            <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="openWalletModal()">💎 Wallet &amp; Coupons</button>
           </div>
         </div>
 
@@ -981,17 +1026,17 @@
           <div class="glass p-4 border-amber-400/40">
             <div class="text-[10px] font-extrabold uppercase tracking-wider text-amber-300">💵 RDS Money (Paid)</div>
             <div class="font-mono-num text-xl sm:text-2xl font-black text-amber-300 mt-1 truncate" id="spendKpiMoney">$0</div>
-            <div class="text-[10px] text-muted-dyn mt-0.5">Unlocks Paid Tyres + All</div>
+            <div class="text-[10px] text-muted-dyn mt-0.5">Paid Tyres &amp; Paid-Next</div>
           </div>
           <div class="glass p-4 border-emerald-400/40">
             <div class="text-[10px] font-extrabold uppercase tracking-wider text-accent">💎 Free Credits</div>
             <div class="font-mono-num text-xl sm:text-2xl font-black text-accent mt-1 truncate" id="spendKpiCredits">$5,000,000</div>
-            <div class="text-[10px] text-muted-dyn mt-0.5" id="spendKpiCreditsNote">For Calcs &amp; Garages</div>
+            <div class="text-[10px] text-muted-dyn mt-0.5" id="spendKpiCreditsNote">Free-First for Calcs/Garages</div>
           </div>
           <div class="glass p-4">
-            <div class="text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn">Total Received</div>
-            <div class="font-mono-num text-xl sm:text-2xl font-black text-accent-2 mt-1 truncate" id="spendKpiEarned">$5,000,000</div>
-            <div class="text-[10px] text-muted-dyn mt-0.5" id="spendKpiIntegrity">🛡️ Anti-Fraud Verified</div>
+            <div class="text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn">VIP &amp; Coupons</div>
+            <div class="text-base sm:text-lg font-black text-amber-300 mt-1 truncate" id="spendKpiVip">Standard</div>
+            <div class="text-[10px] text-muted-dyn mt-0.5" id="spendKpiCoupons">0 active coupons</div>
           </div>
           <div class="glass p-4">
             <div class="text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn">Total Spent</div>
@@ -1011,7 +1056,7 @@
           <div class="glass p-4 sm:p-5 md:col-span-5 space-y-3.5">
             <div class="flex items-center justify-between">
               <h3 class="text-sm sm:text-base font-black">📊 Spending Breakdown</h3>
-              <span class="text-[11px] font-bold text-muted-dyn">All-Time</span>
+              <span class="text-[11px] font-bold text-accent" id="spendKpiIntegrity">🛡️ Signed V7</span>
             </div>
             <div id="spendCategoryBars" class="space-y-3"></div>
           </div>
@@ -1101,7 +1146,7 @@
       <section class="view-section" id="view-settings">
         <div class="mb-4">
           <h1 data-cms-key="settingsTitle" class="title-grad text-2xl sm:text-3xl font-black tracking-tight">Settings &amp; Personalization</h1>
-          <p data-cms-key="settingsSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Choose from 10 Liquid Glass themes, tune motion graphics, inspect your dual-balance wallet, and back up your garages.</p>
+          <p data-cms-key="settingsSubtitle" class="text-xs sm:text-sm text-muted-dyn mt-0.5">Choose from 10 Liquid Glass themes, tune motion graphics, inspect your unified wallet, and back up your garages.</p>
         </div>
 
         <div class="glass p-4 sm:p-5 mb-5">
@@ -1124,7 +1169,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div class="glass p-5">
-            <h3 class="text-base font-black mb-3">👤 Profile, Dual Wallet &amp; Display</h3>
+            <h3 class="text-base font-black mb-3">👤 Profile, Unified Wallet &amp; Display</h3>
             <div class="flex items-center justify-between gap-3 py-2.5 border-b border-white/10">
               <div class="min-w-0">
                 <div class="font-bold text-sm">Driver Profile &amp; PFP</div>
@@ -1134,8 +1179,8 @@
             </div>
             <div class="flex items-center justify-between gap-3 py-2.5 border-b border-white/10">
               <div class="min-w-0">
-                <div class="font-bold text-sm">Dual Wallet &amp; Spending Tracker</div>
-                <div class="text-xs text-muted-dyn truncate">Manage Free Credits vs RDS Money &amp; view full ledger</div>
+                <div class="font-bold text-sm">Unified Wallet, Coupons &amp; VIP</div>
+                <div class="text-xs text-muted-dyn truncate">Free-First / Paid-Next telemetry &amp; redeem coupons</div>
               </div>
               <div class="flex gap-1.5 shrink-0">
                 <button class="rds-btn px-3 py-1.5 text-xs" onclick="switchView('spending')">📊 Spending</button>
@@ -1183,9 +1228,9 @@
 
             <div class="flex flex-nowrap items-center gap-2 overflow-x-auto pb-2 mb-5 nav-pills" id="ownerTabsBar">
               <button class="rds-btn px-4 py-2 text-xs owner-tab-btn rds-btn-primary" data-otab="overview" onclick="switchOwnerTab('overview')">⚡ Overview &amp; Drive Sync</button>
-              <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="economy" id="otabBtn-economy" onclick="switchOwnerTab('economy')">💎 Dual Economy &amp; Limits</button>
+              <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="economy" id="otabBtn-economy" onclick="switchOwnerTab('economy')">💎 Economy, VIP &amp; Limits</button>
               <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="admins" id="otabBtn-admins" onclick="switchOwnerTab('admins')">👑 Admins &amp; Mods</button>
-              <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="codes" id="otabBtn-codes" onclick="switchOwnerTab('codes')">🎟️ Redeem Codes</button>
+              <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="codes" id="otabBtn-codes" onclick="switchOwnerTab('codes')">🎟️ Coupons &amp; Codes</button>
               <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="categories" id="otabBtn-categories" onclick="switchOwnerTab('categories')">🗂️ Categories &amp; Nav</button>
               <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="visuals" id="otabBtn-visuals" onclick="switchOwnerTab('visuals')">🎨 Edit Everything Studio</button>
               <button class="rds-btn px-4 py-2 text-xs owner-tab-btn" data-otab="logs" id="otabBtn-logs" onclick="switchOwnerTab('logs')">📜 Logs &amp; Analytics</button>
@@ -1203,7 +1248,7 @@
 
               <div class="p-4 sm:p-5 rounded-2xl glass-sub">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-                  <h3 class="text-sm sm:text-base font-extrabold">☁️ Google Drive Live Cloud Sync</h3>
+                  <h3 class="text-sm sm:text-base font-extrabold">☁️ Google Drive Live Cloud Sync (Merge-Safe v7)</h3>
                   <div class="flex items-center gap-2 flex-wrap">
                     <select id="syncIntervalSelect" class="rds-input !w-36 !py-1.5 !px-3 text-xs font-bold" onchange="setSyncIntervalMs(this.value)">
                       <option value="3000">Auto-Sync: 3s</option>
@@ -1212,7 +1257,7 @@
                       <option value="20000">Auto-Sync: 20s</option>
                     </select>
                     <button class="rds-btn px-3 py-1.5 text-xs" onclick="testDriveConnection()">🔌 Test Drive</button>
-                    <button class="rds-btn rds-btn-primary px-3 py-1.5 text-xs" onclick="openAppsScriptModal()">📜 Get Fixed Code.gs</button>
+                    <button class="rds-btn rds-btn-primary px-3 py-1.5 text-xs" onclick="openAppsScriptModal()">📜 Get Merge-Safe Code.gs</button>
                   </div>
                 </div>
                 <label class="block text-[11px] font-bold uppercase tracking-wider text-muted-dyn mb-1.5">Connected Google Drive Apps Script Web App URL</label>
@@ -1226,10 +1271,10 @@
               </div>
             </div>
 
-            <!-- TAB 2: DUAL-BALANCE ECONOMY, LIMITS & PLAYER CONTROLS -->
+            <!-- TAB 2: UNIFIED ECONOMY, LIFETIME VIP & PLAYER CONTROLS -->
             <div class="owner-tab-panel hidden space-y-5" id="otab-economy">
               <div class="grid grid-cols-2 md:grid-cols-6 gap-2.5">
-                <div class="p-3 rounded-2xl glass-sub"><div class="text-[10px] font-bold uppercase text-muted-dyn">Drivers</div><div class="font-mono-num text-lg font-black mt-0.5" id="adminEcoDrivers">0</div></div>
+                <div class="p-3 rounded-2xl glass-sub"><div class="text-[10px] font-bold uppercase text-muted-dyn">Drivers / VIPs</div><div class="font-mono-num text-lg font-black mt-0.5" id="adminEcoDrivers">0</div></div>
                 <div class="p-3 rounded-2xl glass-sub"><div class="text-[10px] font-bold uppercase text-amber-300">RDS Money Held</div><div class="font-mono-num text-lg font-black text-amber-300 mt-0.5 truncate" id="adminEcoMoneyHeld">$0</div></div>
                 <div class="p-3 rounded-2xl glass-sub"><div class="text-[10px] font-bold uppercase text-accent">Free Credits Held</div><div class="font-mono-num text-lg font-black text-accent mt-0.5 truncate" id="adminEcoHeld">$0</div></div>
                 <div class="p-3 rounded-2xl glass-sub"><div class="text-[10px] font-bold uppercase text-muted-dyn">Tyre Revenue</div><div class="font-mono-num text-lg font-black text-amber-300 mt-0.5 truncate" id="adminEcoTyreRev">$0</div></div>
@@ -1240,51 +1285,30 @@
               <form onsubmit="saveEconomyRulesConfig(event)" class="p-4 sm:p-5 rounded-2xl bg-emerald-500/10 border border-emerald-400/35 space-y-3.5">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <h3 class="text-sm sm:text-base font-black text-accent">⚙️ Dual-Balance Rules &amp; Auto-"Charge After" Pricing</h3>
-                    <p class="text-xs text-muted-dyn">Control starter Free Credits vs RDS Money, free calculation/garage quotas, and whether Protected Tyres strictly require RDS Money.</p>
+                    <h3 class="text-sm sm:text-base font-black text-accent">⚙️ Unified Wallet Rules (Free-First / Paid-Next) &amp; Quotas</h3>
+                    <p class="text-xs text-muted-dyn">Configure starter balances, free quotas, auto-charge fees, and whether Protected Tyres require RDS Money.</p>
                   </div>
                   <button type="submit" class="rds-btn rds-btn-primary px-4 py-2 text-xs">💾 Save &amp; Sync Rules</button>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-emerald-300 mb-1">Starter Free Credits</label>
-                    <input type="text" id="ecoStarterCredits" class="rds-input !py-2 text-xs font-mono-num" placeholder="e.g. 5M" />
-                  </div>
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Starter RDS Money</label>
-                    <input type="text" id="ecoStarterMoney" class="rds-input !py-2 text-xs font-mono-num" placeholder="e.g. 0" />
-                  </div>
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-muted-dyn mb-1">Free Calcs Allowed</label>
-                    <input type="number" min="0" id="ecoFreeCalcs" class="rds-input !py-2 text-xs font-mono-num" placeholder="10" />
-                  </div>
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Calc Charge After</label>
-                    <input type="text" id="ecoCalcFee" class="rds-input !py-2 text-xs font-mono-num" placeholder="100K" />
-                  </div>
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-muted-dyn mb-1">Free Garages</label>
-                    <input type="number" min="1" id="ecoFreeGarages" class="rds-input !py-2 text-xs font-mono-num" placeholder="2" />
-                  </div>
-                  <div>
-                    <label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Garage Charge After</label>
-                    <input type="text" id="ecoGarageFee" class="rds-input !py-2 text-xs font-mono-num" placeholder="500K" />
-                  </div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-emerald-300 mb-1">Starter Free Credits</label><input type="text" id="ecoStarterCredits" class="rds-input !py-2 text-xs font-mono-num" placeholder="e.g. 5M" /></div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Starter RDS Money</label><input type="text" id="ecoStarterMoney" class="rds-input !py-2 text-xs font-mono-num" placeholder="e.g. 0" /></div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-muted-dyn mb-1">Free Calcs Allowed</label><input type="number" min="0" id="ecoFreeCalcs" class="rds-input !py-2 text-xs font-mono-num" placeholder="10" /></div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Calc Charge After</label><input type="text" id="ecoCalcFee" class="rds-input !py-2 text-xs font-mono-num" placeholder="100K" /></div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-muted-dyn mb-1">Free Garages</label><input type="number" min="1" id="ecoFreeGarages" class="rds-input !py-2 text-xs font-mono-num" placeholder="2" /></div>
+                  <div><label class="block text-[10px] font-extrabold uppercase text-amber-300 mb-1">Garage Charge After</label><input type="text" id="ecoGarageFee" class="rds-input !py-2 text-xs font-mono-num" placeholder="500K" /></div>
                 </div>
                 <label class="inline-flex items-center gap-2 text-xs font-bold cursor-pointer pt-1">
                   <input type="checkbox" id="ecoAllowCreditsForTyres" />
-                  <span>Allow Free Credits to buy Paid Tyre Codes (Leave UNCHECKED to strictly require verified 💵 RDS Money)</span>
+                  <span>Allow Free Credits to buy Paid Tyre Codes (Unchecked = Paid Tyres strictly require verified 💵 RDS Money)</span>
                 </label>
               </form>
 
               <div class="p-4 rounded-2xl glass-sub space-y-2.5">
                 <h3 class="text-sm font-black text-accent-2">💬 Top-Up RDS Money — DM Contacts</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  <div>
-                    <label class="block text-[10px] font-bold uppercase text-muted-dyn mb-1">Top-Up Message Text</label>
-                    <input type="text" id="adminTopUpMsgInput" class="rds-input !py-2 text-xs" placeholder="To add RDS Money, DM:" />
-                  </div>
+                  <div><label class="block text-[10px] font-bold uppercase text-muted-dyn mb-1">Top-Up Message Text</label><input type="text" id="adminTopUpMsgInput" class="rds-input !py-2 text-xs" placeholder="To add RDS Money, DM:" /></div>
                   <div>
                     <label class="block text-[10px] font-bold uppercase text-muted-dyn mb-1">DM Usernames (Comma-separated)</label>
                     <div class="flex gap-2">
@@ -1298,8 +1322,8 @@
               <div class="space-y-2.5">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <div>
-                    <h3 class="text-sm sm:text-base font-black text-accent">👥 Player Dual-Balances &amp; Spending Control</h3>
-                    <p class="text-xs text-muted-dyn">Separately manage 💵 RDS Money and 💎 Free Credits for any driver.</p>
+                    <h3 class="text-sm sm:text-base font-black text-accent">👥 Player Balances, Lifetime VIP &amp; Spending Control</h3>
+                    <p class="text-xs text-muted-dyn">Grant 👑 Lifetime Free VIP, adjust 💵 RDS Money or 💎 Free Credits, or inspect spending.</p>
                   </div>
                   <input type="text" id="adminUserSearch" class="rds-input !w-64 !py-2 text-xs" placeholder="Search username or ID..." oninput="renderAdminUsersList()" />
                 </div>
@@ -1319,14 +1343,14 @@
               <div id="staffAccountsList" class="space-y-2.5"></div>
             </div>
 
-            <!-- TAB 4: REDEEM CODES STUDIO -->
+            <!-- TAB 4: COUPONS & REDEEM CODES STUDIO -->
             <div class="owner-tab-panel hidden space-y-4" id="otab-codes">
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <h3 class="text-base font-black text-amber-300">🎟️ Redeem Codes Studio</h3>
-                  <p class="text-xs text-muted-dyn">Generate limited-use codes that grant 💵 RDS Money, 💎 Free Credits, unlock paid Tyre Codes, or award VIP notes.</p>
+                  <h3 class="text-base font-black text-amber-300">🎟️ Coupons, VIP Passes &amp; Redeem Codes Studio</h3>
+                  <p class="text-xs text-muted-dyn">Create codes for 💵 RDS Money, 💎 Free Credits, 👑 Lifetime Free VIP, 🏷️ Tyre Discount Coupons, or 🛞 Direct Tyre Unlocks.</p>
                 </div>
-                <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="openRedeemCodeCreator()">＋ Create Redeem Code</button>
+                <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="openRedeemCodeCreator()">＋ Create Code / Coupon</button>
               </div>
               <div id="adminRedeemCodesList" class="space-y-2.5"></div>
             </div>
@@ -1455,8 +1479,8 @@
               <div class="flex items-center gap-1.5 flex-wrap" id="logCategoryPills">
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn rds-btn-primary" data-lcat="ALL" onclick="setLogCategory('ALL')">All</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="TYRE_SALES" onclick="setLogCategory('TYRE_SALES')">💰 Tyre Sales</button>
-                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="ECONOMY" onclick="setLogCategory('ECONOMY')">💎 Credits &amp; Money</button>
-                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CODES" onclick="setLogCategory('CODES')">🎟️ Redeem Codes</button>
+                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="ECONOMY" onclick="setLogCategory('ECONOMY')">💎 Credits &amp; VIP</button>
+                <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CODES" onclick="setLogCategory('CODES')">🎟️ Coupons</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="CARS" onclick="setLogCategory('CARS')">🏎️ Cars</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="TYRES" onclick="setLogCategory('TYRES')">🛞 Tyre Codes</button>
                 <button class="rds-btn px-3 py-1 text-[11px] log-cat-btn" data-lcat="AUTH" onclick="setLogCategory('AUTH')">🛡️ Auth &amp; Anti-Cheat</button>
@@ -1479,16 +1503,18 @@
         Made by <strong class="text-accent font-extrabold">Hyper_DarkStar</strong> • Credits to <strong class="text-accent font-extrabold">HS1</strong> &amp; <strong class="text-accent-2 font-extrabold">RDS Team</strong>
       </div>
       <div class="text-xs text-muted-dyn/80">
-        <span data-cms-key="footerPortalLabel">Real Driving School</span> • <span id="webVersionTrigger" onclick="handleVersionClick()">v6.0.0</span>
+        <span data-cms-key="footerPortalLabel">Real Driving School</span> • <span id="webVersionTrigger" onclick="handleVersionClick()">v7.0.0</span>
       </div>
     </footer>
   </div>
 
   <!-- ===================================================================
-       DEDICATED MOBILE BOTTOM SCROLL DOCK (VISIBLE ON MOBILE < 768px)
+       DEDICATED MOBILE BOTTOM SCROLL DOCK WITH QUICK ARROWS
        =================================================================== -->
   <nav id="mobileBottomDock" class="md:hidden flex items-center gap-1" aria-label="Mobile Navigation">
+    <button type="button" id="mobileNavLeft" class="nav-arrow-btn" onclick="scrollMobileNav(-150)" aria-label="Scroll left">‹</button>
     <div id="mobileNavBar" class="nav-pills flex-1 flex flex-nowrap items-center gap-1.5 overflow-x-auto"></div>
+    <button type="button" id="mobileNavRight" class="nav-arrow-btn" onclick="scrollMobileNav(150)" aria-label="Scroll right">›</button>
   </nav>
 
   <!-- ===================================================================
@@ -1502,7 +1528,7 @@
       </div>
       <form onsubmit="saveUserProfile(event)" class="space-y-4">
         <div id="profileWelcomeBonus" class="p-3 rounded-2xl bg-emerald-500/15 border border-emerald-400/35 text-xs font-bold text-accent text-center">
-          🎁 New Driver Bonus automatically added to your verified dual-balance wallet!
+          🎁 New Driver Bonus automatically added to your verified unified wallet!
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
           <div class="sm:col-span-4 flex flex-col items-center gap-2.5">
@@ -1529,12 +1555,15 @@
   </div>
 
   <!-- ===================================================================
-       MODAL: ANTI-CHEAT DUAL-BALANCE WALLET (RDS MONEY vs FREE CREDITS)
+       MODAL: UNIFIED WALLET (FREE-FIRST / PAID-NEXT + COUPONS + VIP)
        =================================================================== -->
   <div class="modal-backdrop" id="walletModal" onclick="if(event.target===this) closeModal('walletModal')">
-    <div class="modal-box w-[min(780px,96vw)] p-5 sm:p-6">
+    <div class="modal-box w-[min(800px,96vw)] p-5 sm:p-6">
       <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-white/10">
-        <div class="text-lg font-black">💎 Anti-Cheat Dual-Balance Wallet</div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-lg font-black">💎 Unified Wallet &amp; Coupons</span>
+          <span id="walletVipStatusPill" class="hidden px-2.5 py-0.5 rounded-full bg-amber-400/20 border border-amber-300/60 text-[11px] font-black text-amber-300">👑 LIFETIME FREE VIP</span>
+        </div>
         <div class="flex items-center gap-2">
           <button class="rds-btn px-3 py-1.5 text-xs" onclick="closeModal('walletModal');switchView('spending')">📊 Full Spending</button>
           <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('walletModal')">×</button>
@@ -1544,31 +1573,36 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
         <div class="md:col-span-6 space-y-3">
           <div class="grid grid-cols-2 gap-2.5">
-            <div class="p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/10 border border-amber-400/45 text-center">
-              <div class="text-[10px] font-extrabold uppercase tracking-wider text-amber-300">💵 RDS Money</div>
-              <div class="font-mono-num text-xl sm:text-2xl font-black text-amber-300 my-1 truncate" id="walletMoneyDisplay">$0</div>
-              <div class="text-[10px] text-muted-dyn">Paid Tyres &amp; All</div>
-            </div>
             <div class="p-3.5 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-sky-500/10 border border-emerald-400/45 text-center">
               <div class="text-[10px] font-extrabold uppercase tracking-wider text-accent">💎 Free Credits</div>
               <div class="font-mono-num text-xl sm:text-2xl font-black text-accent my-1 truncate" id="walletCreditsDisplay">$5,000,000</div>
-              <div class="text-[10px] text-muted-dyn" id="walletCreditsScope">Calcs &amp; Garages</div>
+              <div class="text-[10px] text-muted-dyn" id="walletCreditsScope">Spent First (Utilities)</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/10 border border-amber-400/45 text-center">
+              <div class="text-[10px] font-extrabold uppercase tracking-wider text-amber-300">💵 RDS Money</div>
+              <div class="font-mono-num text-xl sm:text-2xl font-black text-amber-300 my-1 truncate" id="walletMoneyDisplay">$0</div>
+              <div class="text-[10px] text-muted-dyn">Paid Tyres &amp; Paid-Next</div>
             </div>
           </div>
 
           <div class="p-2.5 rounded-2xl glass-sub flex items-center justify-between text-[11px] px-3.5">
-            <span class="text-muted-dyn">Earned: <strong class="font-mono-num text-accent-2" id="walletEarnedDisplay">$5M</strong></span>
+            <span class="text-muted-dyn">Total: <strong class="font-mono-num text-white" id="walletCombinedDisplay">$5M</strong></span>
             <span class="text-muted-dyn">Spent: <strong class="font-mono-num text-rose-400" id="walletSpentDisplay">$0</strong></span>
-            <span class="text-accent font-bold truncate" id="walletIntegrityBadge">🛡️ Signed</span>
+            <span class="text-accent font-bold truncate" id="walletIntegrityBadge">🛡️ Signed V7</span>
+          </div>
+
+          <div id="walletCouponsBox" class="p-3 rounded-2xl glass-sub space-y-1.5">
+            <div class="text-[10px] font-extrabold uppercase tracking-wider text-accent-2">🏷️ My Active Discount Coupons</div>
+            <div id="walletCouponsList" class="flex flex-wrap gap-1.5"></div>
           </div>
 
           <div class="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-400/35">
-            <div class="text-xs font-extrabold text-amber-300 mb-2" id="walletTopUpMsgDisplay" data-cms-key="walletTopUpText">To add RDS Money or balance, DM:</div>
+            <div class="text-xs font-extrabold text-amber-300 mb-2" id="walletTopUpMsgDisplay" data-cms-key="walletTopUpText">To add RDS Money or VIP, DM:</div>
             <div id="walletTopUpDmList" class="flex flex-wrap gap-2"></div>
           </div>
 
           <form onsubmit="redeemUserCode(event)" class="p-3.5 rounded-2xl glass-sub">
-            <label class="block text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn mb-1.5">🎟️ Redeem Promo / Gift Code</label>
+            <label class="block text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn mb-1.5">🎟️ Redeem Coupon / VIP / Gift Code</label>
             <div class="flex gap-2">
               <input type="text" id="redeemCodeInput" class="rds-input flex-1 uppercase font-mono-num !py-2 text-xs" placeholder="ENTER CODE..." required />
               <button type="submit" class="rds-btn rds-btn-primary px-4 py-2 text-xs">Redeem</button>
@@ -1580,7 +1614,7 @@
           <div class="grid grid-cols-3 gap-2 text-center text-[11px]" id="walletCategoryMini"></div>
           <div>
             <div class="text-[10px] font-extrabold uppercase tracking-wider text-muted-dyn mb-1.5">Recent Signed Activity</div>
-            <div id="walletLedgerList" class="space-y-1.5 max-h-64 overflow-y-auto pr-1"></div>
+            <div id="walletLedgerList" class="space-y-1.5 max-h-72 overflow-y-auto pr-1"></div>
           </div>
         </div>
       </div>
@@ -1675,7 +1709,7 @@
 
   <!-- MODAL: TYRE CODE VIEWER -->
   <div class="modal-backdrop" id="tyreViewModal" onclick="if(event.target===this) closeModal('tyreViewModal')">
-    <div class="modal-box w-[min(820px,96vw)] p-5 sm:p-6" id="tyreViewContent"></div>
+    <div class="modal-box w-[min(840px,96vw)] p-5 sm:p-6" id="tyreViewContent"></div>
   </div>
 
   <!-- MODAL: STAFF TYRE CODE EDITOR -->
@@ -1809,8 +1843,8 @@
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_deleteCars" /> 🗑️ Delete Cars</label>
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageTyres" checked /> 🛞 Add/Edit Tyres</label>
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_deleteTyres" /> 🗑️ Delete Tyres</label>
-            <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageEconomy" /> 💎 Economy &amp; Limits</label>
-            <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageCodes" /> 🎟️ Redeem Codes</label>
+            <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageEconomy" /> 💎 Economy &amp; VIP</label>
+            <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageCodes" /> 🎟️ Coupons &amp; Codes</label>
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_managePoints" checked /> 📌 Calc Points</label>
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageCommunity" checked /> 🔥 Events &amp; Drivers</label>
             <label class="flex items-center gap-2 p-2 rounded-xl bg-white/5 cursor-pointer"><input type="checkbox" id="perm_manageCategories" /> 🗂️ Categories</label>
@@ -1827,16 +1861,16 @@
     </div>
   </div>
 
-  <!-- MODAL: CREATE REDEEM CODE (SUPPORTS RDS MONEY, FREE CREDITS, TYRE, CUSTOM) -->
+  <!-- MODAL: CREATE COUPON / VIP / REDEEM CODE -->
   <div class="modal-backdrop" id="redeemCreatorModal" onclick="if(event.target===this) closeModal('redeemCreatorModal')">
     <div class="modal-box w-[min(560px,96vw)] p-6">
       <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-white/10">
-        <div class="text-lg font-black">🎟️ Create Redeem Code</div>
+        <div class="text-lg font-black">🎟️ Create Coupon / VIP / Redeem Code</div>
         <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('redeemCreatorModal')">×</button>
       </div>
       <form onsubmit="saveRedeemCode(event)" class="space-y-3.5">
         <div class="flex gap-2">
-          <div class="flex-1"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Code String</label><input type="text" id="rcCode" class="rds-input uppercase font-mono-num" required placeholder="e.g. RDS10M" /></div>
+          <div class="flex-1"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Code String</label><input type="text" id="rcCode" class="rds-input uppercase font-mono-num" required placeholder="e.g. RDSVIP50" /></div>
           <button type="button" class="rds-btn px-3.5 self-end py-2.5 text-xs" onclick="document.getElementById('rcCode').value='RDS'+Math.random().toString(36).slice(2,7).toUpperCase()">🎲 Random</button>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1845,6 +1879,8 @@
             <select id="rcType" class="rds-input" onchange="toggleRedeemTypeFields()">
               <option value="money">💵 RDS Money (Paid Balance)</option>
               <option value="credits">💎 Free Credits (Utilities)</option>
+              <option value="vip">👑 Lifetime Free VIP Pass</option>
+              <option value="discount">🏷️ Tyre Discount Coupon (%)</option>
               <option value="tyre">🛞 Unlock Paid Tyre Code</option>
               <option value="custom">🎁 Custom Reward Note</option>
             </select>
@@ -1852,8 +1888,9 @@
           <div><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Max Global Uses</label><input type="number" id="rcMaxUses" class="rds-input" min="1" value="50" required /></div>
         </div>
         <div id="rcCreditsField"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Amount (e.g. 5M)</label><input type="text" id="rcAmount" class="rds-input" value="5M" /></div>
+        <div id="rcDiscountField" class="hidden"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Discount Percentage (5% – 100%)</label><input type="number" id="rcDiscountPct" class="rds-input" min="5" max="100" value="25" /></div>
         <div id="rcTyreField" class="hidden"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Select Tyre Code to Unlock</label><select id="rcTyreId" class="rds-input"></select></div>
-        <div id="rcCustomField" class="hidden"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Custom Reward Message</label><input type="text" id="rcCustomLabel" class="rds-input" placeholder="e.g. VIP Role Ticket" /></div>
+        <div id="rcCustomField" class="hidden"><label class="block text-[11px] font-bold uppercase text-muted-dyn mb-1">Custom Reward Message</label><input type="text" id="rcCustomLabel" class="rds-input" placeholder="e.g. Exclusive Garage Slot" /></div>
         <div class="flex justify-end gap-2.5 pt-1">
           <button type="button" class="rds-btn px-4 py-2 text-xs" onclick="closeModal('redeemCreatorModal')">Cancel</button>
           <button type="submit" class="rds-btn rds-btn-primary px-5 py-2 text-xs">Create Code</button>
@@ -1904,22 +1941,23 @@
     </div>
   </div>
 
-  <!-- MODAL: GOOGLE DRIVE APPS SCRIPT (Code.gs) VIEWER -->
+  <!-- MODAL: MERGE-SAFE GOOGLE DRIVE APPS SCRIPT (Code.gs) VIEWER -->
   <div class="modal-backdrop" id="appsScriptModal" onclick="if(event.target===this) closeModal('appsScriptModal')">
     <div class="modal-box w-[min(780px,96vw)] p-6">
       <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-white/10">
-        <div class="text-lg font-black">☁️ Fixed Google Drive Vault Script (Code.gs)</div>
+        <div class="text-lg font-black">☁️ Merge-Safe Google Drive Vault Script (v7 Code.gs)</div>
         <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('appsScriptModal')">×</button>
       </div>
       <div class="p-3 rounded-2xl bg-amber-500/10 border border-amber-400/35 text-xs text-amber-200 mb-3 space-y-1">
-        <div><strong>How to enable Live Google Drive Sync in 20 seconds:</strong></div>
-        <div>1. Paste the script below into <code>Code.gs</code> in Google Apps Script and click Save.</div>
-        <div>2. Click <strong>Deploy → Manage deployments → Edit (✏️) → Version: New version → Deploy</strong> (Execute as: <strong>Me</strong>, Access: <strong>Anyone</strong>).</div>
+        <div><strong>Race-Condition-Proof Cloud Sync Setup:</strong></div>
+        <div>1. Paste this script into <code>Code.gs</code> in Google Apps Script and Save.</div>
+        <div>2. Select <strong>authorizeDrive</strong> in the top toolbar and click <strong>▶ Run</strong> once to approve Google Drive write permissions.</div>
+        <div>3. Click <strong>Deploy → Manage deployments → Edit (✏️) → Version: New version → Deploy</strong> (Execute as: <strong>Me</strong>, Access: <strong>Anyone</strong>).</div>
       </div>
       <pre id="appsScriptCodeBox" class="p-3.5 rounded-2xl bg-black/60 border border-emerald-400/30 font-mono-num text-[11px] text-emerald-300 overflow-x-auto max-h-72"></pre>
       <div class="flex justify-end gap-2.5 mt-4">
         <button class="rds-btn px-4 py-2 text-xs" onclick="closeModal('appsScriptModal')">Close</button>
-        <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="copyText(document.getElementById('appsScriptCodeBox').textContent, 'Fixed Code.gs copied!')">📋 Copy Code.gs</button>
+        <button class="rds-btn rds-btn-primary px-4 py-2 text-xs" onclick="copyText(document.getElementById('appsScriptCodeBox').textContent, 'Merge-Safe Code.gs copied!')">📋 Copy Code.gs</button>
       </div>
     </div>
   </div>
@@ -1942,7 +1980,7 @@
 
   <script>
     /* =====================================================================
-       SECURITY, XSS ESCAPING, PURE-JS SHA-256 & V6 DUAL-BALANCE SEALING
+       SECURITY, XSS ESCAPING, PURE-JS SHA-256 & V7 UNIFIED WALLET SEALING
        ===================================================================== */
     function esc(str) {
       if (str === null || str === undefined) return '';
@@ -2010,10 +2048,11 @@
       return diff === 0;
     }
 
-    // Dual-Balance Anti-Cheat Cryptographic Ledger Signatures (V6 + backward-compatible V5/V4)
+    // Anti-Cheat Cryptographic Ledger Signatures (V7 + backward-compatible V4/V5/V6)
     const LEDGER_SALT_V4 = 'RDS_V4_HYPER_INTEGRITY_SEAL_9941';
     const LEDGER_SALT_V5 = 'RDS_V5_ANTI_DUPE_LEDGER_SEAL_77821';
     const LEDGER_SALT_V6 = 'RDS_V6_DUAL_BALANCE_VAULT_SEAL_88419';
+    const LEDGER_SALT_V7 = 'RDS_V7_UNIFIED_VIP_COUPON_SEAL_91407';
 
     function ensureUserEconomyFields(u) {
       if (!u) return u;
@@ -2025,6 +2064,8 @@
         u.rdsMoney = Math.max(0, Math.round(Number(u.rdsMoney) || 0));
       }
       u.credits = u.freeCredits + u.rdsMoney;
+      u.isLifetimeVip = Boolean(u.isLifetimeVip);
+      u.coupons = Array.isArray(u.coupons) ? u.coupons : [];
       u.unlockedTyres = Array.isArray(u.unlockedTyres) ? [...new Set(u.unlockedTyres)] : [];
       u.redeemedCodes = Array.isArray(u.redeemedCodes) ? [...new Set(u.redeemedCodes)] : [];
       u.ledger = Array.isArray(u.ledger) ? u.ledger : [];
@@ -2055,27 +2096,35 @@
       return sha256([u.id, Math.round(Number(u.credits) || 0), u.totalEarned || 0, u.totalSpent || 0, `${sp.tyres}:${sp.calcs}:${sp.garages}:${sp.other}`, `${u.calcUsed || 0}:${u.paidCalcsCount || 0}:${u.paidGaragesCount || 0}`, (u.unlockedTyres || []).slice().sort().join(','), (u.redeemedCodes || []).slice().sort().join(','), LEDGER_SALT_V5].join('|')).slice(0, 28);
     }
 
+    function signUserRecordV6(u) {
+      const sp = u.spending || { tyres: 0, calcs: 0, garages: 0, other: 0 };
+      return sha256([u.id, u.freeCredits || 0, u.rdsMoney || 0, u.totalEarned || 0, u.totalSpent || 0, `${sp.tyres}:${sp.calcs}:${sp.garages}:${sp.other}`, `${u.calcUsed || 0}:${u.paidCalcsCount || 0}:${u.paidGaragesCount || 0}`, (u.unlockedTyres || []).slice().sort().join(','), (u.redeemedCodes || []).slice().sort().join(','), LEDGER_SALT_V6].join('|')).slice(0, 32);
+    }
+
     function signUserRecord(u) {
       ensureUserEconomyFields(u);
       const sp = u.spending;
+      const cpStr = u.coupons.map(c => `${c.id}:${c.pct}:${c.used ? 1 : 0}`).sort().join(',');
       return sha256([
         u.id,
         u.freeCredits,
         u.rdsMoney,
+        u.isLifetimeVip ? 'VIP1' : 'VIP0',
+        cpStr,
         u.totalEarned,
         u.totalSpent,
         `${sp.tyres}:${sp.calcs}:${sp.garages}:${sp.other}`,
         `${u.calcUsed}:${u.paidCalcsCount}:${u.paidGaragesCount}`,
         u.unlockedTyres.slice().sort().join(','),
         u.redeemedCodes.slice().sort().join(','),
-        LEDGER_SALT_V6
+        LEDGER_SALT_V7
       ].join('|')).slice(0, 32);
     }
 
     function verifyUserRecord(u) {
       if (!u || !u.id || !u.sig) return false;
       if (u.sig === signUserRecord(u)) return true;
-      if (u.sig === signUserRecordV5(u) || u.sig === signUserRecordV4(u)) {
+      if (u.sig === signUserRecordV6(u) || u.sig === signUserRecordV5(u) || u.sig === signUserRecordV4(u)) {
         u.sig = signUserRecord(u);
         return true;
       }
@@ -2195,10 +2244,10 @@
 
     const DEFAULT_POINTS = [
       'All car values and ranges are verified community estimates maintained by the RDS Team.',
-      'Select Stage 1–7 and Stock/Max condition to compute an accurate Estimated Value.',
+      'Select Stage 1–7 and Stock/Max condition to compute an accurate Estimated Value & market range.',
       'For Livery value: entering 3 digits or fewer (e.g. 15) or decimals (e.g. 2.5) automatically calculates in Millions (15M / 2.5M). Blank counts as 0.',
-      'Dual-Balance Wallet: Free Credits cover extra Calculations & Garages; verified RDS Money unlocks Protected Paid Tyre Codes.',
-      'Speed telemetry covers Stage 1 to Stage 6 in both MPH and KMPH (No Turbo vs. Turbo).'
+      'Unified Wallet (Free-First / Paid-Next): Free Credits cover extra Calculations & Garages first; RDS Money unlocks Protected Paid Tyre Codes & applies discount coupons.',
+      'Lifetime Free VIP members enjoy unlimited free car calculations and unlimited free garages permanently.'
     ];
 
     const DEFAULT_NAV_CATEGORIES = [
@@ -2233,9 +2282,9 @@
       cardRadius: 24,
       glassBlur: 28,
       defaultTheme: '',
-      topUpMessage: 'To add RDS Money or balance, DM:',
+      topUpMessage: 'To add RDS Money or VIP, DM:',
       topUpDmUsers: ['hyper_legend_1_og'],
-      versionMajor: 6,
+      versionMajor: 7,
       versionMinor: 0,
       versionPatch: 0,
       texts: {}
@@ -2352,7 +2401,7 @@
     ];
 
     /* =====================================================================
-       APPLICATION STATE & ANTI-DUPE LOCKS
+       APPLICATION STATE & ANTI-DUPE / SYNC LOCKS
        ===================================================================== */
     const state = {
       cars: [],
@@ -2375,6 +2424,7 @@
       prefs: { theme: 'midnight-mint', currency: '$', motion: 'high' },
       driveUrl: DEFAULT_DRIVE_URL,
       calc: { carId: null, billedCarId: null, stage: 7, tier: 'max', addons: { premium: false, police: false, coating: false, rainbowSmoke: false, livery: false }, liveryRaw: '' },
+      selectedTyreCouponId: '',
       eventFilter: 'ALL',
       logCategory: 'ALL',
       spendFilter: 'ALL',
@@ -2392,6 +2442,8 @@
       isSyncingPull: false,
       activeWritesCount: 0,
       localKeyUpdatedAt: {},
+      dirtyKeys: new Set(),
+      pendingUserSync: false,
       lastCloudFingerprint: '',
       lastSyncSuccessAt: 0,
       codeBuildHash: ''
@@ -2400,7 +2452,7 @@
     const txLocks = { buyingTyres: new Set(), redeeming: false, creatingGarage: false };
 
     /* =====================================================================
-       DESKTOP + MOBILE BOTTOM DOCK NAVIGATION
+       DESKTOP + MOBILE BOTTOM DOCK NAVIGATION WITH SCROLL ARROWS
        ===================================================================== */
     function renderNavigationBar() {
       const desktopNav = document.getElementById('dynamicNavBar');
@@ -2431,7 +2483,7 @@
         const activeMobileBtn = mobileNav.querySelector('.active');
         if (activeMobileBtn) activeMobileBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
-      requestAnimationFrame(updateNavArrows);
+      requestAnimationFrame(() => { updateNavArrows(); updateMobileNavArrows(); });
     }
 
     function scrollNavBar(deltaPx) {
@@ -2439,6 +2491,13 @@
       if (!nav) return;
       nav.scrollBy({ left: deltaPx, behavior: 'smooth' });
       setTimeout(updateNavArrows, 220);
+    }
+
+    function scrollMobileNav(deltaPx) {
+      const nav = document.getElementById('mobileNavBar');
+      if (!nav) return;
+      nav.scrollBy({ left: deltaPx, behavior: 'smooth' });
+      setTimeout(updateMobileNavArrows, 220);
     }
 
     function updateNavArrows() {
@@ -2450,15 +2509,30 @@
       rightBtn.classList.toggle('at-edge', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4);
     }
 
+    function updateMobileNavArrows() {
+      const nav = document.getElementById('mobileNavBar');
+      const leftBtn = document.getElementById('mobileNavLeft');
+      const rightBtn = document.getElementById('mobileNavRight');
+      if (!nav || !leftBtn || !rightBtn) return;
+      leftBtn.classList.toggle('at-edge', nav.scrollLeft <= 4);
+      rightBtn.classList.toggle('at-edge', nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 4);
+    }
+
     function initNavScrollInteractions() {
       const nav = document.getElementById('dynamicNavBar');
-      if (!nav || nav.dataset.scrollBound) return;
-      nav.dataset.scrollBound = '1';
-      nav.addEventListener('wheel', e => {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); nav.scrollLeft += e.deltaY * 1.15; updateNavArrows(); }
-      }, { passive: false });
-      nav.addEventListener('scroll', updateNavArrows, { passive: true });
-      window.addEventListener('resize', updateNavArrows);
+      if (nav && !nav.dataset.scrollBound) {
+        nav.dataset.scrollBound = '1';
+        nav.addEventListener('wheel', e => {
+          if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); nav.scrollLeft += e.deltaY * 1.15; updateNavArrows(); }
+        }, { passive: false });
+        nav.addEventListener('scroll', updateNavArrows, { passive: true });
+      }
+      const mNav = document.getElementById('mobileNavBar');
+      if (mNav && !mNav.dataset.scrollBound) {
+        mNav.dataset.scrollBound = '1';
+        mNav.addEventListener('scroll', updateMobileNavArrows, { passive: true });
+      }
+      window.addEventListener('resize', () => { updateNavArrows(); updateMobileNavArrows(); });
     }
 
     /* =====================================================================
@@ -2476,7 +2550,7 @@
       if (!el) return;
       if (!state.codeBuildHash) state.codeBuildHash = computeSourceBuildHash();
       const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
-      el.textContent = `v${Number(cfg.versionMajor) || 6}.${Number(cfg.versionMinor) || 0}.${Number(cfg.versionPatch) || 0}-${state.codeBuildHash}`;
+      el.textContent = `v${Number(cfg.versionMajor) || 7}.${Number(cfg.versionMinor) || 0}.${Number(cfg.versionPatch) || 0}-${state.codeBuildHash}`;
     }
 
     function bumpWebVersion() {
@@ -2493,8 +2567,11 @@
       const entry = car.stages[stageNum];
       if (entry === null || entry === undefined) return 0;
       if (typeof entry === 'object') {
-        const s = Number(entry.stock) || 0, m = Number(entry.max) || 0;
-        return tier === 'stock' ? (s || m) : (m || s);
+        const hasStock = entry.stock !== null && entry.stock !== undefined && entry.stock !== '';
+        const hasMax = entry.max !== null && entry.max !== undefined && entry.max !== '';
+        const s = hasStock ? Number(entry.stock) || 0 : 0;
+        const m = hasMax ? Number(entry.max) || 0 : 0;
+        return tier === 'stock' ? (hasStock ? s : m) : (hasMax ? m : s);
       }
       const base = Number(entry) || 0;
       return tier === 'stock' ? base : Math.round(base * 1.08);
@@ -2670,25 +2747,30 @@
       if (viewName === 'spending') renderSpendingView();
       if (viewName === 'events') renderEventsGrid();
       if (viewName === 'drivers') renderDriversGrid();
+      reapplyDynamicDomTexts();
     }
 
     function handleBrandClick() { if (!state.visualClickEdit) switchView('cars'); }
 
     /* =====================================================================
-       USER PROFILE & ANTI-CHEAT DUAL-BALANCE ENGINE (FREE CREDITS vs RDS MONEY)
+       USER PROFILE & UNIFIED WALLET ENGINE (FREE-FIRST / PAID-NEXT + VIP)
        ===================================================================== */
     function initOrVerifyUserProfile(storedProfile, shadowSeal) {
       let u = storedProfile;
+      let newlyCreated = false;
       const starterCredits = Math.max(0, Number(state.economyRules.starterCredits) || 5000000);
       const starterMoney = Math.max(0, Number(state.economyRules.starterMoney) || 0);
 
       if (!u || !u.id) {
+        newlyCreated = true;
         u = ensureUserEconomyFields({
           id: 'usr_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7),
           username: 'RDS Driver',
           pfp: '',
           freeCredits: starterCredits,
           rdsMoney: starterMoney,
+          isLifetimeVip: false,
+          coupons: [],
           totalEarned: starterCredits + starterMoney,
           totalSpent: 0,
           spending: { tyres: 0, calcs: 0, garages: 0, other: 0 },
@@ -2712,11 +2794,12 @@
           addAuditLog('AUTH', `Anti-cheat tamper detected on local wallet for ${u.username} (${u.id})`);
           if (cloudU && verifyUserRecord(cloudU)) {
             u = JSON.parse(JSON.stringify(cloudU));
-            showToast('🛡️ Dual-Balance Wallet restored from verified cloud ledger.');
+            showToast('🛡️ Unified Wallet restored from verified cloud ledger.');
           } else {
             u = ensureUserEconomyFields(u);
             u.freeCredits = Math.min(u.freeCredits, starterCredits);
             u.rdsMoney = Math.min(u.rdsMoney, starterMoney);
+            u.isLifetimeVip = false;
             u.credits = u.freeCredits + u.rdsMoney;
             u.sig = signUserRecord(u);
             showToast('🛡️ Wallet re-verified.');
@@ -2729,6 +2812,10 @@
       }
       state.userProfile = u;
       state.usersDirectory[u.id] = JSON.parse(JSON.stringify(u));
+      if (newlyCreated) {
+        dbSet('user_profile', u);
+        dbSet('_vault_seal_v7', u.sig);
+      }
       updateUserHeaderUI();
       updateQuotaBanners();
     }
@@ -2747,13 +2834,13 @@
 
       await Promise.all([
         dbSet('user_profile', state.userProfile),
-        dbSet('_vault_seal_v6', state.userProfile.sig),
+        dbSet('_vault_seal_v7', state.userProfile.sig),
         dbSet('config_bundle', buildConfigBundle())
       ]);
       if (syncCloud) queueBackgroundUserSync();
     }
 
-    // Atomic Dual-Balance Charge Helper (`source`: 'money_only' | 'credits_first')
+    // Atomic Unified Wallet Charge (Free-First / Paid-Next or Strict Paid Money)
     function chargeUserWallet({ amount, source = 'credits_first', category, reason, txId }) {
       const u = state.userProfile;
       if (!u || !verifyUserRecord(u)) {
@@ -2773,7 +2860,7 @@
         fromMoney = cost;
       } else {
         if (u.freeCredits + u.rdsMoney < cost) {
-          return { ok: false, insufficient: true, error: `Insufficient balance. Need ${fmtNum(cost)}, have ${fmtNum(u.freeCredits + u.rdsMoney)}.` };
+          return { ok: false, insufficient: true, error: `Insufficient unified balance. Need ${fmtNum(cost)}, have ${fmtNum(u.freeCredits + u.rdsMoney)}.` };
         }
         fromCredits = Math.min(u.freeCredits, cost);
         fromMoney = cost - fromCredits;
@@ -2813,11 +2900,13 @@
       if (!u) return;
       const moneyEl = document.getElementById('headerMoneyVal');
       const credEl = document.getElementById('headerCreditsVal');
+      const vipEl = document.getElementById('headerVipBadge');
       if (moneyEl) moneyEl.textContent = fmtCompact(u.rdsMoney);
       if (credEl) credEl.textContent = fmtCompact(u.freeCredits);
+      if (vipEl) vipEl.classList.toggle('hidden', !u.isLifetimeVip);
 
       const profBtn = document.getElementById('headerProfileBtn');
-      if (profBtn) profBtn.title = `${u.username || 'Driver'} — Edit Profile & PFP`;
+      if (profBtn) profBtn.title = `${u.username || 'Driver'}${u.isLifetimeVip ? ' (👑 VIP)' : ''} — Edit Profile & PFP`;
       const pfpEl = document.getElementById('headerUserPfp');
       const initEl = document.getElementById('headerUserInitials');
       const safePfp = safeImgUrl(u.pfp);
@@ -2825,7 +2914,7 @@
       else { pfpEl.classList.add('hidden'); initEl.classList.remove('hidden'); initEl.textContent = (u.username || 'DR').slice(0, 2).toUpperCase(); }
 
       const sumEl = document.getElementById('settingsProfileSummary');
-      if (sumEl) sumEl.textContent = `${u.username} • 💵 ${fmtCompact(u.rdsMoney)} • 💎 ${fmtCompact(u.freeCredits)}`;
+      if (sumEl) sumEl.textContent = `${u.username}${u.isLifetimeVip ? ' 👑 VIP' : ''} • 💵 ${fmtCompact(u.rdsMoney)} • 💎 ${fmtCompact(u.freeCredits)}`;
     }
 
     function updateQuotaBanners() {
@@ -2840,7 +2929,8 @@
       const calcsLeft = Math.max(0, freeCalcs - (u.calcUsed || 0));
 
       if (calcEl) {
-        if (calcFee <= 0 || state.staff) calcEl.innerHTML = `<span class="text-accent">🧮 Unlimited Free Calculations</span>`;
+        if (u.isLifetimeVip) calcEl.innerHTML = `<span class="text-amber-300">👑 Lifetime VIP — Unlimited Free Calcs</span>`;
+        else if (calcFee <= 0 || state.staff) calcEl.innerHTML = `<span class="text-accent">🧮 Unlimited Free Calculations</span>`;
         else if (calcsLeft > 0) calcEl.innerHTML = `<span>🧮 Free Calcs: <strong class="text-accent font-mono-num">${calcsLeft}/${freeCalcs}</strong></span><span class="text-muted-dyn">•</span><span class="text-amber-300">After: ${esc(fmtCompact(calcFee))}</span>`;
         else calcEl.innerHTML = `<span class="text-amber-300">💎 Auto-Charge: <strong class="font-mono-num">${esc(fmtCompact(calcFee))}</strong> / new calc</span>`;
       }
@@ -2850,7 +2940,8 @@
       const garsLeft = Math.max(0, freeGars - state.garages.length);
 
       if (garEl) {
-        if (garFee <= 0 || state.staff) garEl.innerHTML = `<span class="text-accent">🏁 Free Garages Unlimited</span>`;
+        if (u.isLifetimeVip) garEl.innerHTML = `<span class="text-amber-300">👑 Lifetime VIP — Unlimited Garages</span>`;
+        else if (garFee <= 0 || state.staff) garEl.innerHTML = `<span class="text-accent">🏁 Free Garages Unlimited</span>`;
         else if (garsLeft > 0) garEl.innerHTML = `<span>🏁 Free Garages Left: <strong class="text-accent font-mono-num">${garsLeft}/${freeGars}</strong></span><span class="text-muted-dyn">•</span><span class="text-amber-300">After: ${esc(fmtCompact(garFee))}</span>`;
         else garEl.innerHTML = `<span class="text-amber-300">💎 Extra Garage: <strong class="font-mono-num">${esc(fmtCompact(garFee))}</strong></span>`;
       }
@@ -2861,7 +2952,7 @@
       document.getElementById('profileModalTitle').textContent = isFirstTime ? '👋 Welcome to Real Driving School' : '👤 Edit Driver Profile';
       const bonusEl = document.getElementById('profileWelcomeBonus');
       bonusEl.classList.toggle('hidden', !isFirstTime);
-      bonusEl.textContent = `🎁 Starter Bonus: ${fmtNum(state.economyRules.starterCredits || 5000000)} Free Credits added to your dual wallet!`;
+      bonusEl.textContent = `🎁 Starter Bonus: ${fmtNum(state.economyRules.starterCredits || 5000000)} Free Credits added to your unified wallet!`;
       document.getElementById('profileCloseBtn').classList.toggle('hidden', isFirstTime);
       document.getElementById('profileUsernameInput').value = isFirstTime ? '' : (u.username || '');
       document.getElementById('profilePfpData').value = u.pfp || '';
@@ -2904,15 +2995,27 @@
       showToast(`Profile saved! Welcome, ${name}!`);
     }
 
+    function getActiveUserCoupons() {
+      const u = ensureUserEconomyFields(state.userProfile);
+      return (u.coupons || []).filter(c => !c.used);
+    }
+
     function openWalletModal() {
       const u = ensureUserEconomyFields(state.userProfile);
       const r = state.economyRules || DEFAULT_ECONOMY_RULES;
+      document.getElementById('walletVipStatusPill').classList.toggle('hidden', !u.isLifetimeVip);
       document.getElementById('walletMoneyDisplay').textContent = fmtNum(u.rdsMoney);
       document.getElementById('walletCreditsDisplay').textContent = fmtNum(u.freeCredits);
-      document.getElementById('walletCreditsScope').textContent = r.allowFreeCreditsForTyres ? 'All Features' : 'Calcs & Garages';
-      document.getElementById('walletEarnedDisplay').textContent = fmtCompact(u.totalEarned);
+      document.getElementById('walletCreditsScope').textContent = r.allowFreeCreditsForTyres ? 'Spent First (All)' : 'Spent First (Utilities)';
+      document.getElementById('walletCombinedDisplay').textContent = fmtCompact(u.credits);
       document.getElementById('walletSpentDisplay').textContent = fmtCompact(u.totalSpent);
-      document.getElementById('walletIntegrityBadge').textContent = verifyUserRecord(u) ? '🛡️ Signed V6' : '⚠️ Verifying';
+      document.getElementById('walletIntegrityBadge').textContent = verifyUserRecord(u) ? '🛡️ Signed V7' : '⚠️ Verifying';
+
+      const activeCoupons = getActiveUserCoupons();
+      const cList = document.getElementById('walletCouponsList');
+      cList.innerHTML = activeCoupons.length
+        ? activeCoupons.map(c => `<span class="px-2.5 py-1 rounded-full bg-sky-500/20 border border-sky-400/45 text-[11px] font-extrabold text-accent-2">🏷️ ${c.pct}% OFF Tyre (${esc(c.code)})</span>`).join('')
+        : `<span class="text-[11px] text-muted-dyn">No active discount coupons. Redeem a code below!</span>`;
 
       const sp = u.spending;
       document.getElementById('walletCategoryMini').innerHTML = `
@@ -2922,7 +3025,7 @@
       `;
 
       const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
-      const topUpMsg = (cfg.texts && cfg.texts.walletTopUpText) || cfg.topUpMessage || 'To add RDS Money or balance, DM:';
+      const topUpMsg = (cfg.texts && cfg.texts.walletTopUpText) || cfg.topUpMessage || 'To add RDS Money or VIP, DM:';
       const dmUsers = Array.isArray(cfg.topUpDmUsers) && cfg.topUpDmUsers.length ? cfg.topUpDmUsers : ['hyper_legend_1_og'];
       document.getElementById('walletTopUpMsgDisplay').textContent = topUpMsg;
       document.getElementById('walletTopUpDmList').innerHTML = dmUsers.map(name => `
@@ -2980,6 +3083,17 @@
           u.ledger.unshift({ id: 'tx_rc_' + Date.now(), time: new Date().toLocaleString(), delta: amt, cat: 'INCOME', currency: 'FREE_CREDITS', reason: `Redeemed Code: ${codeObj.code} (Free Credits)`, balanceAfter: u.credits });
           addAuditLog('CODES', `${u.username} redeemed ${codeObj.code} for +${fmtNum(amt)} Free Credits`);
           showToast(`💎 Redeemed! +${fmtNum(amt)} Free Credits added!`);
+        } else if (codeObj.type === 'vip') {
+          u.isLifetimeVip = true;
+          u.ledger.unshift({ id: 'tx_rc_' + Date.now(), time: new Date().toLocaleString(), delta: 0, cat: 'INCOME', currency: 'VIP_PASS', reason: `Activated Lifetime Free VIP (${codeObj.code})`, balanceAfter: u.credits });
+          addAuditLog('CODES', `${u.username} activated Lifetime Free VIP via ${codeObj.code}`);
+          showToast(`👑 Lifetime Free VIP activated! Unlimited free calcs & garages unlocked!`);
+        } else if (codeObj.type === 'discount') {
+          const pct = Math.min(100, Math.max(5, Number(codeObj.discountPct) || 25));
+          u.coupons.push({ id: 'cpn_' + Date.now(), code: codeObj.code, pct, used: false });
+          u.ledger.unshift({ id: 'tx_rc_' + Date.now(), time: new Date().toLocaleString(), delta: 0, cat: 'INCOME', currency: 'COUPON', reason: `Claimed ${pct}% OFF Tyre Coupon (${codeObj.code})`, balanceAfter: u.credits });
+          addAuditLog('CODES', `${u.username} claimed ${pct}% OFF coupon (${codeObj.code})`);
+          showToast(`🏷️ ${pct}% OFF Tyre Discount Coupon added to your wallet!`);
         } else if (codeObj.type === 'tyre') {
           if (!u.unlockedTyres.includes(codeObj.tyreId)) u.unlockedTyres.push(codeObj.tyreId);
           const t = state.tyres.find(x => x.id === codeObj.tyreId);
@@ -3001,7 +3115,7 @@
     }
 
     /* =====================================================================
-       MY SPENDING & DUAL-BALANCE TRACKER PAGE
+       MY SPENDING & UNIFIED WALLET TELEMETRY PAGE
        ===================================================================== */
     function setSpendFilter(f) {
       state.spendFilter = f;
@@ -3015,26 +3129,28 @@
 
       document.getElementById('spendKpiMoney').textContent = fmtNum(u.rdsMoney);
       document.getElementById('spendKpiCredits').textContent = fmtNum(u.freeCredits);
-      document.getElementById('spendKpiCreditsNote').textContent = r.allowFreeCreditsForTyres ? 'All Portal Features' : 'For Calcs & Garages';
-      document.getElementById('spendKpiEarned').textContent = fmtNum(u.totalEarned);
+      document.getElementById('spendKpiCreditsNote').textContent = r.allowFreeCreditsForTyres ? 'Free-First for All' : 'Free-First for Utilities';
+      document.getElementById('spendKpiVip').textContent = u.isLifetimeVip ? '👑 Lifetime VIP' : 'Standard';
+      const activeCpn = getActiveUserCoupons().length;
+      document.getElementById('spendKpiCoupons').textContent = `${activeCpn} active coupon${activeCpn === 1 ? '' : 's'}`;
       document.getElementById('spendKpiSpent').textContent = fmtNum(u.totalSpent);
       const debitCount = (u.ledger || []).filter(l => (Number(l.delta) || 0) < 0).length;
       document.getElementById('spendKpiTxCount').textContent = `${debitCount} paid transaction${debitCount === 1 ? '' : 's'}`;
-      document.getElementById('spendKpiIntegrity').textContent = verifyUserRecord(u) ? '🛡️ Anti-Cheat Signed V6' : '⚠️ Verifying...';
+      document.getElementById('spendKpiIntegrity').textContent = verifyUserRecord(u) ? '🛡️ Signed V7' : '⚠️ Verifying...';
 
       const freeCalcs = Math.max(0, Number(r.freeCalculations) || 0);
       const calcsLeft = Math.max(0, freeCalcs - (u.calcUsed || 0));
-      document.getElementById('spendKpiCalcQuota').textContent = (Number(r.calcChargeAfter) || 0) > 0 ? `${calcsLeft}/${freeCalcs} free` : 'Unlimited';
+      document.getElementById('spendKpiCalcQuota').textContent = u.isLifetimeVip ? '👑 VIP Free' : ((Number(r.calcChargeAfter) || 0) > 0 ? `${calcsLeft}/${freeCalcs} free` : 'Unlimited');
 
       const freeGars = Math.max(1, Number(r.freeGarages) || 1);
       const garsLeft = Math.max(0, freeGars - state.garages.length);
-      document.getElementById('spendKpiGarageQuota').textContent = (Number(r.garageChargeAfter) || 0) > 0 ? `${garsLeft}/${freeGars} free` : 'Unlimited';
+      document.getElementById('spendKpiGarageQuota').textContent = u.isLifetimeVip ? '👑 VIP Free' : ((Number(r.garageChargeAfter) || 0) > 0 ? `${garsLeft}/${freeGars} free` : 'Unlimited');
 
       const totalSpent = Math.max(1, u.totalSpent);
       const sp = u.spending;
       const cats = [
         { label: '🛞 Protected Tyre Codes Unlocked', amount: sp.tyres, meta: `${u.unlockedTyres.length} unlocked`, color: '#fbbf24' },
-        { label: '🧮 Paid Car Calculations', amount: sp.calcs, meta: `${u.calcUsed} total (${u.paidCalcsCount} paid)`, color: '#38bdf8' },
+        { label: '🧮 Paid Car Calculations', amount: sp.calcs, meta: `${u.calcUsed} metered (${u.paidCalcsCount} paid)`, color: '#38bdf8' },
         { label: '🏁 Extra Garages Created', amount: sp.garages, meta: `${state.garages.length} garages (${u.paidGaragesCount} paid)`, color: '#c084fc' },
         { label: '⚙️ Other / Staff Deductions', amount: sp.other, meta: 'Manual adjustments', color: '#fb7185' }
       ];
@@ -3066,7 +3182,7 @@
             <div class="min-w-0">
               <div class="flex items-center gap-1.5 flex-wrap">
                 <span class="px-2 py-0.5 rounded-full text-[9px] font-black bg-white/10 text-muted-dyn">${esc(catTag)}</span>
-                ${item.currency ? `<span class="px-2 py-0.5 rounded-full text-[9px] font-black ${item.currency === 'RDS_MONEY' ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/15 text-accent'}">${esc(item.currency.replace('_', ' '))}</span>` : ''}
+                ${item.currency ? `<span class="px-2 py-0.5 rounded-full text-[9px] font-black ${item.currency === 'RDS_MONEY' || item.currency === 'VIP_PASS' ? 'bg-amber-500/20 text-amber-300' : 'bg-emerald-500/15 text-accent'}">${esc(item.currency.replace('_', ' '))}</span>` : ''}
                 <span class="font-bold truncate">${esc(item.reason)}</span>
               </div>
               <div class="text-[10px] text-muted-dyn mt-0.5">${esc(item.time)}${item.balanceAfter !== undefined ? ' • Total after: ' + esc(fmtCompact(item.balanceAfter)) : ''}</div>
@@ -3078,7 +3194,7 @@
     }
 
     /* =====================================================================
-       THEMES, MOTION & VISUAL CMS
+       THEMES, MOTION & VISUAL CMS (PERSISTS ACROSS RE-RENDERS)
        ===================================================================== */
     function renderThemeSwatches() {
       const grid = document.getElementById('themeSwatchesGrid');
@@ -3123,6 +3239,16 @@
       updateUserHeaderUI(); updateQuotaBanners(); renderCarInfoGrid(); updateCalculatorOutput(); renderGarageView(); renderSpendingView();
     }
 
+    function reapplyDynamicDomTexts() {
+      const texts = (state.siteConfig && state.siteConfig.texts) || {};
+      Object.keys(texts).forEach(k => {
+        if (k === 'brandLogo') return;
+        let el = document.querySelector(`[data-cms-key="${k}"]`);
+        if (!el && k.startsWith('dom:')) { try { el = document.querySelector(k.slice(4)); } catch (_) {} }
+        if (el) el.textContent = texts[k];
+      });
+    }
+
     function applySiteVisualConfig() {
       const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
       const root = document.documentElement;
@@ -3142,13 +3268,7 @@
       if (cfg.footerCredits && cfg.footerCredits !== DEFAULT_SITE_CONFIG.footerCredits) footerEl.textContent = cfg.footerCredits;
       else footerEl.innerHTML = `Made by <strong class="text-accent font-extrabold">Hyper_DarkStar</strong> • Credits to <strong class="text-accent font-extrabold">HS1</strong> &amp; <strong class="text-accent-2 font-extrabold">RDS Team</strong>`;
 
-      const texts = cfg.texts || {};
-      Object.keys(texts).forEach(k => {
-        if (k === 'brandLogo') return;
-        let el = document.querySelector(`[data-cms-key="${k}"]`);
-        if (!el && k.startsWith('dom:')) { try { el = document.querySelector(k.slice(4)); } catch (_) {} }
-        if (el) el.textContent = texts[k];
-      });
+      reapplyDynamicDomTexts();
       renderWebVersion();
     }
 
@@ -3172,7 +3292,6 @@
       if (blurLbl) blurLbl.textContent = cfg.glassBlur || 28;
       setVal('cmsDefaultTheme', cfg.defaultTheme || '');
 
-      // Populate Dual-Balance Economy & Top-Up DM form fields
       const eco = state.economyRules || DEFAULT_ECONOMY_RULES;
       setVal('ecoStarterCredits', eco.starterCredits ?? 5000000);
       setVal('ecoStarterMoney', eco.starterMoney ?? 0);
@@ -3183,7 +3302,7 @@
       const allowCb = document.getElementById('ecoAllowCreditsForTyres');
       if (allowCb) allowCb.checked = Boolean(eco.allowFreeCreditsForTyres);
 
-      setVal('adminTopUpMsgInput', cfg.topUpMessage || 'To add RDS Money or balance, DM:');
+      setVal('adminTopUpMsgInput', cfg.topUpMessage || 'To add RDS Money or VIP, DM:');
       setVal('adminTopUpUsersInput', (Array.isArray(cfg.topUpDmUsers) ? cfg.topUpDmUsers : ['hyper_legend_1_og']).join(', '));
     }
 
@@ -3203,15 +3322,15 @@
       updateQuotaBanners();
       renderTyresGrid();
       if (document.getElementById('view-spending')?.classList.contains('active')) renderSpendingView();
-      addAuditLog('ECONOMY', `Updated dual economy: ${state.economyRules.freeCalculations} free calcs (then ${fmtCompact(state.economyRules.calcChargeAfter)}), ${state.economyRules.freeGarages} free garages (then ${fmtCompact(state.economyRules.garageChargeAfter)}), Paid Tyres=${state.economyRules.allowFreeCreditsForTyres ? 'Credits+Money' : 'RDS Money Only'}`);
+      addAuditLog('ECONOMY', `Updated unified economy: ${state.economyRules.freeCalculations} free calcs (then ${fmtCompact(state.economyRules.calcChargeAfter)}), ${state.economyRules.freeGarages} free garages (then ${fmtCompact(state.economyRules.garageChargeAfter)}), Paid Tyres=${state.economyRules.allowFreeCreditsForTyres ? 'Credits+Money' : 'RDS Money Only'}`);
       await savePortalCache();
-      pushConfigBundleToCloud();
-      showToast('Dual-balance rules & quotas saved & synced!');
+      pushConfigBundleToCloud({ fullOverwrite: true });
+      showToast('Unified economy rules & quotas saved & synced!');
     }
 
     async function saveTopUpDmConfig() {
       if (!hasPerm('manageEconomy')) return showToast('Permission denied.');
-      const msg = document.getElementById('adminTopUpMsgInput').value.trim() || 'To add RDS Money or balance, DM:';
+      const msg = document.getElementById('adminTopUpMsgInput').value.trim() || 'To add RDS Money or VIP, DM:';
       const users = document.getElementById('adminTopUpUsersInput').value.split(',').map(s => s.trim().replace(/^@/, '')).filter(Boolean);
       state.siteConfig.topUpMessage = msg;
       state.siteConfig.topUpDmUsers = users.length ? users : ['hyper_legend_1_og'];
@@ -3220,7 +3339,7 @@
       bumpWebVersion();
       addAuditLog('ECONOMY', `Updated top-up DM contacts: ${state.siteConfig.topUpDmUsers.join(', ')}`);
       await savePortalCache();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Top-up DM contacts saved & synced!');
     }
 
@@ -3250,7 +3369,7 @@
       applySiteVisualConfig();
       addAuditLog('UI', 'Updated portal branding, colors & visual layout');
       await savePortalCache();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Site visuals saved & synced to everyone!');
     }
 
@@ -3262,7 +3381,7 @@
       populateVisualStudioForm();
       addAuditLog('UI', 'Reset site visuals to default');
       await savePortalCache();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Visuals reset to default & synced.');
     }
 
@@ -3317,7 +3436,7 @@
         });
         if (val === null) return;
         if (/^(https?:\/\/|data:image\/)/i.test(val.trim())) state.siteConfig.logoImg = safeImgUrl(val.trim());
-else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 'RDS'; }
+        else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 'RDS'; }
       } else {
         const val = await openPromptDialog({
           title: 'Edit On-Screen Text',
@@ -3340,7 +3459,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       populateVisualStudioForm();
       addAuditLog('UI', `Edited on-screen element (${key})`);
       await savePortalCache();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Updated & synced to all devices!');
     }, true);
 
@@ -3454,7 +3573,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       byPersonEl.innerHTML = personRows.length ? personRows.map(u => `
         <div class="p-2 rounded-xl bg-white/5 flex items-center justify-between gap-2 cursor-pointer hover:bg-white/10 transition" onclick="openPlayerSpendingModal('${esc(u.id)}')">
           <div class="min-w-0">
-            <div class="font-bold truncate">${esc(u.username || 'Driver')}</div>
+            <div class="font-bold truncate">${esc(u.username || 'Driver')}${u.isLifetimeVip ? ' 👑' : ''}</div>
             <div class="text-[10px] text-muted-dyn truncate">Tyres ${esc(fmtCompact(u.spending.tyres))} • Calcs ${esc(fmtCompact(u.spending.calcs))} • Garages ${esc(fmtCompact(u.spending.garages))}</div>
           </div>
           <span class="font-mono-num font-black text-amber-300 whitespace-nowrap">${esc(fmtNum(u.totalSpent))}</span>
@@ -3485,6 +3604,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     function populateCategoryFilter() {
       const sel = document.getElementById('carCategoryFilter');
       const dl = document.getElementById('carCategorySuggestions');
+      if (!sel) return;
       const cur = sel.value || 'ALL';
       const fromCars = state.cars.map(c => (c.category || '').trim()).filter(Boolean);
       const merged = [...new Set([...state.carCategories, ...fromCars])];
@@ -3493,7 +3613,6 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (dl) dl.innerHTML = merged.map(c => `<option value="${esc(c)}"></option>`).join('');
     }
 
-    // Reorder vehicles in the Featured Order index (Editor Mode + Car permission)
     async function moveCarOrder(carId, dir) {
       if (!state.editorMode || !hasPerm('manageCars')) return showToast('Enable Editor Mode with Car permissions first.');
       const idx = state.cars.findIndex(c => c.id === carId);
@@ -3520,7 +3639,6 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         return matchesCarQuery(c, q);
       });
 
-      // Apply selected sorting order without mutating Featured Order array
       if (sortMode === 'VAL_DESC') {
         filtered = filtered.slice().sort((a, b) => getStagePrice(b, 7, 'max') - getStagePrice(a, 7, 'max'));
       } else if (sortMode === 'VAL_ASC') {
@@ -3592,6 +3710,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           </article>
         `;
       }).join('');
+      reapplyDynamicDomTexts();
     }
 
     function openCarDetailModal(carId) {
@@ -3686,7 +3805,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     /* =====================================================================
-       SECTION 2: CAR VALUE CALCULATOR (DUAL-BALANCE QUOTA & AUTO-CHARGE)
+       SECTION 2: CAR VALUE CALCULATOR (UNIFIED WALLET, VIP & QUOTAS)
        ===================================================================== */
     function initCalculatorStages() {
       const grid = document.getElementById('calcStageGrid');
@@ -3749,7 +3868,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const u = ensureUserEconomyFields(state.userProfile);
 
       if (state.calc.billedCarId !== car.id) {
-        if (!state.staff && calcFee > 0) {
+        if (!state.staff && !u.isLifetimeVip && calcFee > 0) {
           if (u.calcUsed < freeCalcs) {
             u.calcUsed += 1;
             const leftAfter = Math.max(0, freeCalcs - u.calcUsed);
@@ -3766,7 +3885,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
             });
             if (!res.ok) {
               lockOverlay.classList.remove('hidden');
-              document.getElementById('calcLockedMsg').textContent = `Free calculations used (${freeCalcs}/${freeCalcs}). Each extra calculation costs ${fmtNum(calcFee)}, and your combined balance is ${fmtNum(u.credits)}.`;
+              document.getElementById('calcLockedMsg').textContent = `Free calculations used (${freeCalcs}/${freeCalcs}). Each extra calculation costs ${fmtNum(calcFee)}, and your unified balance is ${fmtNum(u.credits)}.`;
               showToast(`🔒 Need ${fmtNum(calcFee)} to calculate!`);
               updateQuotaBanners();
               return;
@@ -3779,10 +3898,8 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
             showToast(`💎 Charged ${fmtCompact(calcFee)} • Credits: ${fmtCompact(u.freeCredits)} | Money: ${fmtCompact(u.rdsMoney)}`);
           }
         } else {
-          u.calcUsed += 1;
           lockOverlay.classList.add('hidden');
           state.calc.billedCarId = car.id;
-          await persistUserProfile(false);
         }
       } else {
         lockOverlay.classList.add('hidden');
@@ -3834,13 +3951,14 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     function computeCarValuation(car, stage, tier, addonsObj, liveryRaw) {
+      const safeAddons = addonsObj || {};
       const stageVal = getStagePrice(car, stage, tier);
       const a = car.addons || {};
       const rows = [{ label: `Stage ${stage} (${tier === 'max' ? 'Max' : 'Stock'})`, amount: stageVal }];
       let total = stageVal;
 
       [['premium', 'Premium'], ['police', 'Police'], ['coating', 'Coating'], ['rainbowSmoke', 'Rainbow smoke']].forEach(([k, label]) => {
-        if (addonsObj[k]) {
+        if (safeAddons[k]) {
           const v = Number(a[k]) || 0;
           total += v;
           rows.push({ label, amount: v });
@@ -3848,7 +3966,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       });
 
       let liveryVal = 0;
-      if (addonsObj.livery) {
+      if (safeAddons.livery) {
         liveryVal = parseFlexiblePrice(liveryRaw, true);
         total += liveryVal;
         rows.push({ label: 'Livery (Custom)', amount: liveryVal });
@@ -3959,10 +4077,38 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     /* =====================================================================
-       SECTION 3: MULTI-GARAGE PORTFOLIO WITH DUAL-BALANCE AUTO-CHARGE
+       SECTION 3: MULTI-GARAGE PORTFOLIO (VIP UNLIMITED + SAFE NORMALIZATION)
        ===================================================================== */
+    function normalizeGaragesList(list) {
+      if (!Array.isArray(list) || !list.length) return [{ id: 'gar_default', name: 'Main Garage', items: [] }];
+      return list.map((g, gi) => ({
+        id: (g && g.id) || ('gar_' + gi + '_' + Date.now()),
+        name: (g && g.name) || 'Main Garage',
+        items: Array.isArray(g && g.items) ? g.items.map((it, ii) => ({
+          entryId: (it && it.entryId) || ('gitem_' + ii + '_' + Date.now()),
+          carId: (it && it.carId) || '',
+          carName: (it && it.carName) || 'Vehicle',
+          carImage: (it && it.carImage) || '',
+          stage: Math.min(7, Math.max(1, Number(it && it.stage) || 1)),
+          tier: (it && it.tier) === 'stock' ? 'stock' : 'max',
+          addons: {
+            premium: Boolean(it && it.addons && it.addons.premium),
+            police: Boolean(it && it.addons && it.addons.police),
+            coating: Boolean(it && it.addons && it.addons.coating),
+            rainbowSmoke: Boolean(it && it.addons && it.addons.rainbowSmoke),
+            livery: Boolean(it && it.addons && it.addons.livery)
+          },
+          liveryVal: Number(it && it.liveryVal) || 0,
+          unitValue: Number(it && it.unitValue) || 0,
+          qty: Math.max(1, Number(it && it.qty) || 1),
+          note: (it && it.note) || '',
+          addedAt: (it && it.addedAt) || ''
+        })) : []
+      }));
+    }
+
     function getTotalGarageUnits() {
-      return state.garages.reduce((sum, g) => sum + g.items.reduce((s, it) => s + (it.qty || 1), 0), 0);
+      return state.garages.reduce((sum, g) => sum + (g.items || []).reduce((s, it) => s + (it.qty || 1), 0), 0);
     }
 
     function getActiveGarage() {
@@ -3986,12 +4132,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (txLocks.creatingGarage) return;
       txLocks.creatingGarage = true;
       try {
+        const u = ensureUserEconomyFields(state.userProfile);
         const r = state.economyRules || DEFAULT_ECONOMY_RULES;
         const freeGars = Math.max(1, Number(r.freeGarages) || 1);
         const garFee = Math.max(0, Number(r.garageChargeAfter) || 0);
-        const needsCharge = !state.staff && garFee > 0 && state.garages.length >= freeGars;
+        const needsCharge = !state.staff && !u.isLifetimeVip && garFee > 0 && state.garages.length >= freeGars;
 
-        const u = ensureUserEconomyFields(state.userProfile);
         if (needsCharge && u.credits < garFee) {
           openWalletModal();
           showToast(`🔒 Free garages limit (${freeGars}) reached. Need ${fmtNum(garFee)} for an extra garage!`);
@@ -3999,8 +4145,8 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         }
 
         const msg = needsCharge
-          ? `You have used all ${freeGars} free garage(s). Creating a new garage will deduct ${fmtNum(garFee)} from your Dual Wallet (Free Credits used first; Combined: ${fmtNum(u.credits)}).`
-          : `Name your new garage (${Math.max(0, freeGars - state.garages.length)} free remaining):`;
+          ? `You have used all ${freeGars} free garage(s). Creating a new garage will deduct ${fmtNum(garFee)} from your Unified Wallet (Free Credits used first; Combined: ${fmtNum(u.credits)}).`
+          : (u.isLifetimeVip ? '👑 Lifetime Free VIP active — name your new free garage:' : `Name your new garage (${Math.max(0, freeGars - state.garages.length)} free remaining):`);
 
         const name = await openPromptDialog({
           title: needsCharge ? `Create Paid Garage (${fmtCompact(garFee)})` : 'Create New Garage',
@@ -4184,7 +4330,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       updateQuotaBanners();
       const tabsBar = document.getElementById('garageTabsBar');
       tabsBar.innerHTML = state.garages.map(g => {
-        const count = g.items.reduce((s, it) => s + (it.qty || 1), 0);
+        const count = (g.items || []).reduce((s, it) => s + (it.qty || 1), 0);
         const active = g.id === state.activeGarageId;
         return `<button class="px-3.5 py-1.5 rounded-full text-xs font-bold inline-flex items-center gap-2 whitespace-nowrap border transition ${active ? 'bg-accent-grad border-transparent' : 'bg-white/5 border-white/15 text-muted-dyn hover:bg-white/10'}" onclick="state.activeGarageId='${esc(g.id)}';saveUserGarages();renderGarageView();">
           🏁 ${esc(g.name)} <span class="px-2 py-0.5 rounded-full bg-black/25 text-[10px] font-extrabold">${count}</span>
@@ -4209,13 +4355,14 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         listEl.innerHTML = garage.items.map(item => {
           const liveCar = state.cars.find(c => c.id === item.carId);
           const img = safeImgUrl((liveCar && liveCar.image) || item.carImage) || CAR_FALLBACK_IMG;
+          const addons = item.addons || {};
           const stageLabel = `S${item.stage || 1} (${item.tier === 'stock' ? 'Stock' : 'Max'})`;
           const tags = [`<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/15 border border-emerald-400/35 text-accent">${esc(stageLabel)}</span>`];
-          if (item.addons.premium) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Premium</span>');
-          if (item.addons.police) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Police</span>');
-          if (item.addons.coating) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Coating</span>');
-          if (item.addons.rainbowSmoke) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Rainbow</span>');
-          if (item.addons.livery) tags.push(`<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/15 border border-sky-400/35 text-accent-2">Livery ${esc(fmtCompact(item.liveryVal || 0))}</span>`);
+          if (addons.premium) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Premium</span>');
+          if (addons.police) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Police</span>');
+          if (addons.coating) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Coating</span>');
+          if (addons.rainbowSmoke) tags.push('<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-white/10">Rainbow</span>');
+          if (addons.livery) tags.push(`<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/15 border border-sky-400/35 text-accent-2">Livery ${esc(fmtCompact(item.liveryVal || 0))}</span>`);
 
           const subtotal = (item.unitValue || 0) * (item.qty || 1);
           return `
@@ -4252,7 +4399,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const activeTotal = garage.items.reduce((s, it) => s + (it.unitValue || 0) * (it.qty || 1), 0);
       const activeUnits = garage.items.reduce((s, it) => s + (it.qty || 1), 0);
       const range = calcRange(activeTotal);
-      const grandTotal = state.garages.reduce((gs, g) => gs + g.items.reduce((s, it) => s + (it.unitValue || 0) * (it.qty || 1), 0), 0);
+      const grandTotal = state.garages.reduce((gs, g) => gs + (g.items || []).reduce((s, it) => s + (it.unitValue || 0) * (it.qty || 1), 0), 0);
 
       document.getElementById('garageTotalVal').textContent = fmtNum(activeTotal);
       document.getElementById('garageTotalRange').textContent = `${fmtNum(range.low)} to ${fmtNum(range.high)}`;
@@ -4275,6 +4422,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const g = getActiveGarage();
       const item = g.items.find(i => i.entryId === entryId);
       if (!item) return;
+      const addons = item.addons || {};
       const liveCar = state.cars.find(c => c.id === item.carId);
       const img = safeImgUrl((liveCar && liveCar.image) || item.carImage) || CAR_FALLBACK_IMG;
       const subtotal = (item.unitValue || 0) * (item.qty || 1);
@@ -4294,9 +4442,9 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Stage</span><strong class="text-accent">Stage ${item.stage || 1} (${item.tier === 'stock' ? 'Stock' : 'Max'})</strong></div>
           <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Quantity</span><strong class="font-mono-num">${item.qty || 1}</strong></div>
           <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Estimated Total</span><strong class="font-mono-num text-accent">${esc(fmtNum(subtotal))}</strong></div>
-          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Premium / Police</span><strong>${item.addons.premium ? '✅' : '—'} / ${item.addons.police ? '✅' : '—'}</strong></div>
-          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Coating / Rainbow</span><strong>${item.addons.coating ? '✅' : '—'} / ${item.addons.rainbowSmoke ? '✅' : '—'}</strong></div>
-          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Livery</span><strong class="font-mono-num">${item.addons.livery ? esc(fmtNum(item.liveryVal || 0)) : 'No'}</strong></div>
+          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Premium / Police</span><strong>${addons.premium ? '✅' : '—'} / ${addons.police ? '✅' : '—'}</strong></div>
+          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Coating / Rainbow</span><strong>${addons.coating ? '✅' : '—'} / ${addons.rainbowSmoke ? '✅' : '—'}</strong></div>
+          <div class="p-2.5 rounded-xl glass-sub"><span class="text-muted-dyn block text-[10px]">Livery</span><strong class="font-mono-num">${addons.livery ? esc(fmtNum(item.liveryVal || 0)) : 'No'}</strong></div>
         </div>
         <div class="p-2.5 rounded-xl glass-sub flex justify-between text-xs mb-4">
           <span class="text-muted-dyn">Estimated Range</span>
@@ -4316,19 +4464,20 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (!g.items.length) return showToast('Garage is empty!');
       const total = g.items.reduce((s, it) => s + (it.unitValue || 0) * (it.qty || 1), 0);
       const lines = g.items.map(it => {
+        const a = it.addons || {};
         const mods = [];
-        if (it.addons.premium) mods.push('Premium');
-        if (it.addons.police) mods.push('Police');
-        if (it.addons.coating) mods.push('Coating');
-        if (it.addons.rainbowSmoke) mods.push('Rainbow smoke');
-        if (it.addons.livery) mods.push(`Livery ${fmtCompact(it.liveryVal)}`);
+        if (a.premium) mods.push('Premium');
+        if (a.police) mods.push('Police');
+        if (a.coating) mods.push('Coating');
+        if (a.rainbowSmoke) mods.push('Rainbow smoke');
+        if (a.livery) mods.push(`Livery ${fmtCompact(it.liveryVal)}`);
         return `• ${it.qty}x ${it.carName} (Stg ${it.stage || 1} ${it.tier === 'stock' ? 'Stock' : 'Max'}${mods.length ? ' | ' + mods.join(', ') : ''}) — ${fmtNum(it.unitValue * it.qty)}`;
       }).join('\n');
       copyText(`🏁 RDS Garage: ${g.name}\n${lines}\nEstimated Total Value: ${fmtNum(total)}\n— Made by Hyper_DarkStar | Credits to HS1 & RDS Team`, 'Garage summary copied!');
     }
 
     /* =====================================================================
-       SECTION 4: PROTECTED TYRE CODES (STRICT RDS MONEY OR DUAL-BALANCE)
+       SECTION 4: PROTECTED TYRE CODES + DISCOUNT COUPONS & UNLOCK ENGINE
        ===================================================================== */
     function isTyreFree(t) {
       const raw = String(t && t.price !== undefined && t.price !== null ? t.price : '').trim();
@@ -4388,15 +4537,23 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           </article>
         `;
       }).join('');
+      reapplyDynamicDomTexts();
     }
 
-    function openTyreViewModal(id) {
+    function selectTyreCoupon(couponId, tyreId) {
+      state.selectedTyreCouponId = couponId || '';
+      openTyreViewModal(tyreId, true);
+    }
+
+    function openTyreViewModal(id, preserveCoupon = false) {
       const t = state.tyres.find(x => x.id === id);
       if (!t) return;
+      if (!preserveCoupon) state.selectedTyreCouponId = '';
+
       const img = safeImgUrl(t.image || t.mediaUrl);
       const free = isTyreFree(t);
       const unlocked = isTyreUnlockedByUser(t);
-      const numericCost = parseFlexiblePrice(t.price, false);
+      const baseCost = parseFlexiblePrice(t.price, false);
       const dmHandle = (t.dmUser || 'hyper_legend_1_og').trim();
       const cfg = state.siteConfig || DEFAULT_SITE_CONFIG;
       const topUpDms = Array.isArray(cfg.topUpDmUsers) && cfg.topUpDmUsers.length ? cfg.topUpDmUsers : [dmHandle];
@@ -4405,7 +4562,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const allowCredits = Boolean(eco.allowFreeCreditsForTyres);
       const u = ensureUserEconomyFields(state.userProfile);
       const availableBal = allowCredits ? (u.freeCredits + u.rdsMoney) : u.rdsMoney;
-      const currencyLabel = allowCredits ? 'Dual Balance (Credits + RDS Money)' : '💵 RDS Money (Paid Balance Only)';
+      const currencyLabel = allowCredits ? 'Unified Balance (Free-First / Paid-Next)' : '💵 RDS Money (Paid Balance Only)';
+
+      const activeCoupons = getActiveUserCoupons();
+      const selectedCoupon = activeCoupons.find(c => c.id === state.selectedTyreCouponId) || null;
+      const discountPct = selectedCoupon ? Math.min(100, Math.max(0, Number(selectedCoupon.pct) || 0)) : 0;
+      const finalCost = Math.max(0, Math.round(baseCost * (100 - discountPct) / 100));
 
       let actionHtml = '';
       if (unlocked) {
@@ -4417,9 +4579,19 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           </div>
         `;
       } else {
-        const canBuy = numericCost > 0;
-        const hasEnough = availableBal >= numericCost;
+        const canBuy = baseCost > 0;
+        const hasEnough = availableBal >= finalCost;
         const isBusy = txLocks.buyingTyres.has(t.id);
+
+        const couponSelectorHtml = canBuy && activeCoupons.length ? `
+          <div class="pt-1">
+            <label class="block text-[10px] font-extrabold uppercase tracking-wider text-accent-2 mb-1">🏷️ Apply Discount Coupon (${activeCoupons.length} available)</label>
+            <select class="rds-input !py-1.5 !px-3 text-xs font-bold" onchange="selectTyreCoupon(this.value, '${esc(t.id)}')">
+              <option value="">No Coupon Applied</option>
+              ${activeCoupons.map(c => `<option value="${esc(c.id)}" ${selectedCoupon && selectedCoupon.id === c.id ? 'selected' : ''}>🏷️ ${c.pct}% OFF (${esc(c.code)})</option>`).join('')}
+            </select>
+          </div>
+        ` : '';
 
         actionHtml = `
           <div class="p-4 rounded-2xl bg-amber-500/10 border border-amber-400/40 space-y-3">
@@ -4430,11 +4602,17 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
 
             ${canBuy ? `
               <div class="p-3 rounded-2xl bg-slate-950/55 border border-white/10 space-y-2">
-                <div class="flex items-center justify-between text-xs"><span class="text-muted-dyn">Instant Unlock Price</span><span class="font-mono-num font-black text-amber-300">${esc(fmtNum(numericCost))}</span></div>
+                <div class="flex items-center justify-between text-xs">
+                  <span class="text-muted-dyn">Instant Unlock Price</span>
+                  <span class="font-mono-num font-black text-amber-300">
+                    ${discountPct > 0 ? `<span class="line-through text-muted-dyn mr-1.5">${esc(fmtNum(baseCost))}</span>` : ''}${finalCost === 0 ? 'FREE (100% Coupon)' : esc(fmtNum(finalCost))}
+                  </span>
+                </div>
                 <div class="flex items-center justify-between text-xs"><span class="text-muted-dyn">Required Wallet</span><span class="text-[11px] font-bold text-white">${esc(currencyLabel)}</span></div>
                 <div class="flex items-center justify-between text-xs"><span class="text-muted-dyn">Your Available</span><span class="font-mono-num font-bold ${hasEnough ? 'text-accent' : 'text-rose-400'}">${esc(fmtNum(availableBal))}</span></div>
+                ${couponSelectorHtml}
                 <button id="buyTyreBtn_${esc(t.id)}" ${isBusy ? 'disabled' : ''} class="rds-btn ${hasEnough ? 'rds-btn-primary' : ''} w-full py-2.5 text-xs sm:text-sm" onclick="buyTyreWithCredits('${esc(t.id)}')">
-                  ${isBusy ? '⏳ Unlocking...' : (hasEnough ? `⚡ Instant Unlock (${esc(fmtCompact(numericCost))})` : `💵 Need RDS Money — DM ${esc(topUpDms.map(x => '@' + x).join(' / '))}`)}
+                  ${isBusy ? '⏳ Unlocking...' : (hasEnough ? (finalCost === 0 ? `🏷️ Unlock FREE with Coupon` : `⚡ Instant Unlock (${esc(fmtCompact(finalCost))})`) : `💵 Need RDS Money — DM ${esc(topUpDms.map(x => '@' + x).join(' / '))}`)}
                 </button>
               </div>
             ` : ''}
@@ -4454,7 +4632,10 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
             <span class="px-2.5 py-0.5 rounded-full font-mono-num text-[11px] font-extrabold ${free || unlocked ? 'bg-emerald-500/15 text-accent' : 'bg-amber-500/15 text-amber-300'}">${free ? 'FREE' : unlocked ? 'OWNED' : '💵 ' + esc(t.price)}</span>
             ${t.madeBy ? `<span class="text-xs text-muted-dyn">Made by <strong class="text-accent-2">${esc(t.madeBy)}</strong></span>` : ''}
           </div>
-          <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('tyreViewModal')">×</button>
+          <div class="flex items-center gap-2">
+            ${state.editorMode && hasPerm('manageTyres') ? `<button class="rds-btn px-3 py-1.5 text-xs" onclick="closeModal('tyreViewModal');openTyreEditorModal('${esc(t.id)}')">✏️ Edit</button>` : ''}
+            <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('tyreViewModal')">×</button>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 ${img ? 'md:grid-cols-12' : ''} gap-4 items-center">
@@ -4465,7 +4646,6 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       openModal('tyreViewModal');
     }
 
-    // Instant Anti-Dupe & Dual-Balance Verified Tyre Unlock
     async function buyTyreWithCredits(id) {
       if (txLocks.buyingTyres.has(id)) return;
       const t = state.tyres.find(x => x.id === id);
@@ -4477,29 +4657,37 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         return;
       }
 
-      const cost = parseFlexiblePrice(t.price, false);
-      if (cost <= 0) return showToast('Contact staff DM to purchase this tyre code.');
+      const baseCost = parseFlexiblePrice(t.price, false);
+      if (baseCost <= 0) return showToast('Contact staff DM to purchase this tyre code.');
 
       const u = ensureUserEconomyFields(state.userProfile);
       if (!verifyUserRecord(u)) return showToast('🛡️ Wallet integrity error — syncing from cloud...');
+
+      const activeCoupons = getActiveUserCoupons();
+      const selectedCoupon = activeCoupons.find(c => c.id === state.selectedTyreCouponId) || null;
+      const discountPct = selectedCoupon ? Math.min(100, Math.max(0, Number(selectedCoupon.pct) || 0)) : 0;
+      const finalCost = Math.max(0, Math.round(baseCost * (100 - discountPct) / 100));
 
       const allowCredits = Boolean((state.economyRules || DEFAULT_ECONOMY_RULES).allowFreeCreditsForTyres);
       const source = allowCredits ? 'credits_first' : 'money_only';
       const avail = allowCredits ? (u.freeCredits + u.rdsMoney) : u.rdsMoney;
 
-      if (avail < cost) {
+      if (avail < finalCost) {
         closeModal('tyreViewModal');
         openWalletModal();
         showToast(allowCredits
           ? 'Not enough balance! DM a staff contact in your Wallet to top up.'
-          : '💵 Paid Tyre Codes require verified RDS Money! DM staff in your Dual Wallet to top up.');
+          : '💵 Paid Tyre Codes require verified RDS Money! DM staff in your Unified Wallet to top up.');
         return;
       }
 
+      const couponNote = selectedCoupon ? ` (with ${discountPct}% OFF coupon ${selectedCoupon.code})` : '';
       const ok = await openConfirmDialog({
         title: 'Unlock Protected Tyre Code',
-        message: `Spend ${fmtNum(cost)} ${allowCredits ? 'from Dual Wallet' : 'RDS Money'} to permanently unlock "${t.name}"?`,
-        confirmText: `Pay ${fmtCompact(cost)}`
+        message: finalCost === 0
+          ? `Use your ${discountPct}% OFF coupon (${selectedCoupon.code}) to permanently unlock "${t.name}" for FREE?`
+          : `Spend ${fmtNum(finalCost)} ${allowCredits ? 'from Unified Wallet' : 'RDS Money'}${couponNote} to permanently unlock "${t.name}"?`,
+        confirmText: finalCost === 0 ? 'Unlock FREE' : `Pay ${fmtCompact(finalCost)}`
       });
       if (!ok) return;
 
@@ -4511,17 +4699,35 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
 
       try {
         const deterministicTxId = `tyre_buy_${u.id}_${t.id}`;
-        const charge = chargeUserWallet({
-          amount: cost,
-          source,
-          category: 'TYRE',
-          reason: `Unlocked Tyre: ${t.name}`,
-          txId: deterministicTxId
-        });
+        if (finalCost > 0) {
+          const charge = chargeUserWallet({
+            amount: finalCost,
+            source,
+            category: 'TYRE',
+            reason: `Unlocked Tyre: ${t.name}${couponNote}`,
+            txId: deterministicTxId
+          });
+          if (!charge.ok) {
+            showToast(charge.error || 'Purchase blocked.');
+            return;
+          }
+        } else {
+          u.txIds.unshift(deterministicTxId);
+          u.ledger.unshift({
+            id: deterministicTxId,
+            time: new Date().toLocaleString(),
+            delta: 0,
+            cat: 'TYRE',
+            currency: 'COUPON',
+            reason: `Unlocked Tyre FREE: ${t.name}${couponNote}`,
+            balanceAfter: u.credits
+          });
+        }
 
-        if (!charge.ok) {
-          showToast(charge.error || 'Purchase blocked.');
-          return;
+        if (selectedCoupon) {
+          const cObj = u.coupons.find(c => c.id === selectedCoupon.id);
+          if (cObj) cObj.used = true;
+          state.selectedTyreCouponId = '';
         }
 
         if (!u.unlockedTyres.includes(t.id)) u.unlockedTyres.push(t.id);
@@ -4537,13 +4743,14 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
             madeBy: t.madeBy || 'RDS Team',
             buyerId: u.id,
             buyerName: u.username || 'Driver',
-            amount: cost,
+            amount: finalCost,
+            couponCode: selectedCoupon ? selectedCoupon.code : '',
             time: new Date().toLocaleString(),
             timestamp: Date.now()
           });
         }
 
-        addAuditLog('TYRE_SALES', `${u.username} unlocked tyre "${t.name}" for ${fmtNum(cost)}`);
+        addAuditLog('TYRE_SALES', `${u.username} unlocked tyre "${t.name}" for ${fmtNum(finalCost)}${couponNote}`);
         renderTyresGrid();
         openTyreViewModal(t.id);
         showToast(`🎉 Unlocked "${t.name}"! Remaining RDS Money: ${fmtCompact(u.rdsMoney)}`);
@@ -4644,6 +4851,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           </article>
         `;
       }).join('');
+      reapplyDynamicDomTexts();
     }
 
     function copyEventDetails(id) {
@@ -4711,6 +4919,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           </article>
         `;
       }).join('');
+      reapplyDynamicDomTexts();
     }
 
     function copyDriverHandle(id) {
@@ -4719,7 +4928,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     /* =====================================================================
-       STAFF EDITORS: 4K UPLOAD, CARS, TYRES, EVENTS, DRIVERS, POINTS
+       STAFF EDITORS: SMART IMAGE UPLOAD, CARS, TYRES, EVENTS, DRIVERS, POINTS
        ===================================================================== */
     function previewEditorImage(inputId, previewId, wrapId) {
       const url = safeImgUrl(document.getElementById(inputId).value);
@@ -4743,18 +4952,20 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       reader.onload = () => {
         const img = new Image();
         img.onload = async () => {
-          const maxW = 2560;
-          let w = img.width, h = img.height;
-          if (w > maxW) { h = Math.round(h * (maxW / w)); w = maxW; }
-          const canvas = document.createElement('canvas');
-          canvas.width = w; canvas.height = h;
-          const ctx = canvas.getContext('2d');
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(img, 0, 0, w, h);
-          const dataUrl = canvas.toDataURL('image/webp', 0.90);
+          const makeDataUrl = (maxW, quality) => {
+            let w = img.width, h = img.height;
+            if (w > maxW) { h = Math.round(h * (maxW / w)); w = maxW; }
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, w, h);
+            return canvas.toDataURL('image/webp', quality);
+          };
 
-          let finalUrl = dataUrl;
+          const uploadDataUrl = makeDataUrl(2560, 0.90);
+          let finalUrl = '';
           if (state.driveUrl) {
             try {
               const resp = await fetch(state.driveUrl, {
@@ -4765,19 +4976,19 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
                   action: 'uploadImage',
                   filename: 'rds_img_' + Date.now() + '.webp',
                   mimeType: 'image/webp',
-                  dataUrl
+                  dataUrl: uploadDataUrl
                 })
               });
               const json = await resp.json();
               if (json && json.url) {
                 finalUrl = json.url;
                 showToast('Image uploaded to Google Drive!');
-              } else {
-                showToast('Image saved locally.');
               }
-            } catch (_) {
-              showToast('Image saved locally.');
-            }
+            } catch (_) {}
+          }
+          if (!finalUrl) {
+            finalUrl = makeDataUrl(960, 0.78);
+            showToast('Image saved locally (compressed for fast sync).');
           }
           document.getElementById(targetInputId).value = finalUrl;
           if (previewId) previewEditorImage(targetInputId, previewId, wrapId);
@@ -4807,14 +5018,15 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const stageGrid = document.getElementById('editStagePricesGrid');
       stageGrid.innerHTML = '';
       for (let i = 1; i <= 7; i++) {
-        const sVal = car ? getStagePrice(car, i, 'stock') : '';
-        const mVal = car ? getStagePrice(car, i, 'max') : '';
+        const rawStage = car && car.stages ? car.stages[i] : null;
+        const sVal = car ? (rawStage && typeof rawStage === 'object' && rawStage.stock !== undefined ? rawStage.stock : getStagePrice(car, i, 'stock')) : '';
+        const mVal = car ? (rawStage && typeof rawStage === 'object' && rawStage.max !== undefined ? rawStage.max : getStagePrice(car, i, 'max')) : '';
         stageGrid.innerHTML += `
           <div class="p-2.5 rounded-2xl glass-sub space-y-1.5">
             <div class="text-xs font-black text-accent">Stage ${i}</div>
             <div class="grid grid-cols-2 gap-1.5">
-              <div><label class="block text-[9px] font-bold uppercase text-muted-dyn mb-0.5">Stock</label><input type="text" id="editStage_${i}_stock" class="rds-input !py-1.5 !px-2 text-xs" value="${esc(sVal || '')}" placeholder="140M" /></div>
-              <div><label class="block text-[9px] font-bold uppercase text-muted-dyn mb-0.5">Max</label><input type="text" id="editStage_${i}_max" class="rds-input !py-1.5 !px-2 text-xs" value="${esc(mVal || '')}" placeholder="155M" /></div>
+              <div><label class="block text-[9px] font-bold uppercase text-muted-dyn mb-0.5">Stock</label><input type="text" id="editStage_${i}_stock" class="rds-input !py-1.5 !px-2 text-xs" value="${esc(sVal !== '' ? sVal : '')}" placeholder="140M" /></div>
+              <div><label class="block text-[9px] font-bold uppercase text-muted-dyn mb-0.5">Max</label><input type="text" id="editStage_${i}_max" class="rds-input !py-1.5 !px-2 text-xs" value="${esc(mVal !== '' ? mVal : '')}" placeholder="155M" /></div>
             </div>
           </div>
         `;
@@ -4853,9 +5065,13 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
 
       const stages = {};
       for (let i = 1; i <= 7; i++) {
-        const stStock = parseFlexiblePrice(document.getElementById(`editStage_${i}_stock`).value, false);
-        const stMax = parseFlexiblePrice(document.getElementById(`editStage_${i}_max`).value, false);
-        stages[i] = { stock: stStock || stMax, max: stMax || stStock };
+        const rawStock = document.getElementById(`editStage_${i}_stock`).value.trim();
+        const rawMax = document.getElementById(`editStage_${i}_max`).value.trim();
+        const hasStock = rawStock !== '';
+        const hasMax = rawMax !== '';
+        const stStock = hasStock ? parseFlexiblePrice(rawStock, false) : (hasMax ? parseFlexiblePrice(rawMax, false) : 0);
+        const stMax = hasMax ? parseFlexiblePrice(rawMax, false) : (hasStock ? parseFlexiblePrice(rawStock, false) : 0);
+        stages[i] = { stock: stStock, max: stMax };
       }
 
       const speeds = {};
@@ -4896,7 +5112,8 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (state.calc.carId === carObj.id) updateCalculatorOutput();
       closeModal('carEditorModal');
       showToast(`Saved "${carObj.name}" — syncing to Drive...`);
-      pushAllToCloud(false);
+      pushKeyToCloud('cars', state.cars);
+      pushConfigBundleToCloud({ silent: true, fullOverwrite: true });
     }
 
     async function deleteCar(carId) {
@@ -4916,7 +5133,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       addAuditLog('CARS', `Deleted vehicle "${car.name}"`);
       await savePortalCache();
       renderCarInfoGrid();
-      pushAllToCloud(false);
+      pushKeyToCloud('cars', state.cars);
       showToast('Vehicle deleted & syncing.');
     }
 
@@ -4956,7 +5173,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       renderTyresGrid();
       closeModal('tyreEditorModal');
       showToast(`Saved tyre code "${obj.name}" — syncing...`);
-      pushAllToCloud(false);
+      pushKeyToCloud('tyres', state.tyres);
     }
 
     async function deleteTyre(id) {
@@ -4970,7 +5187,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       addAuditLog('TYRES', `Deleted tyre code "${t.name}"`);
       await savePortalCache();
       renderTyresGrid();
-      pushAllToCloud(false);
+      pushKeyToCloud('tyres', state.tyres);
       showToast('Tyre code deleted.');
     }
 
@@ -5096,14 +5313,14 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       await savePortalCache();
       renderCalcPoints();
       closeModal('pointsEditorModal');
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Calculator points saved & syncing!');
     }
 
     /* =====================================================================
        STEALTH 20-CLICK AUTH, SIGNED SESSION & OWNER COMMAND CENTER
        ===================================================================== */
-    const SESSION_SECRET = 'RDS_STAFF_SESS_V6_99182';
+    const SESSION_SECRET = 'RDS_STAFF_SESS_V7_99182';
     function signStaffSession(s) {
       return sha256(`${s.email}|${s.role}|${SESSION_SECRET}`).slice(0, 24);
     }
@@ -5399,15 +5616,16 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     /* =====================================================================
-       OWNER / STAFF: DUAL-BALANCE PLAYER CONTROLS & SPENDING INSPECTOR
+       OWNER / STAFF: UNIFIED WALLET, LIFETIME VIP & PLAYER SPENDING CONTROLS
        ===================================================================== */
     function renderAdminUsersList() {
       const el = document.getElementById('adminUsersList');
       if (!el) return;
 
       const allUsers = Object.values(state.usersDirectory || {}).map(u => ensureUserEconomyFields(u));
-      let totalMoneyHeld = 0, totalCreditsHeld = 0, totalTyreRev = 0, totalCalcRev = 0, totalGarRev = 0;
+      let totalMoneyHeld = 0, totalCreditsHeld = 0, totalTyreRev = 0, totalCalcRev = 0, totalGarRev = 0, vipCount = 0;
       allUsers.forEach(u => {
+        if (u.isLifetimeVip) vipCount++;
         totalMoneyHeld += u.rdsMoney;
         totalCreditsHeld += u.freeCredits;
         totalTyreRev += u.spending.tyres;
@@ -5415,7 +5633,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         totalGarRev += u.spending.garages;
       });
       const setTxt = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
-      setTxt('adminEcoDrivers', allUsers.length);
+      setTxt('adminEcoDrivers', `${allUsers.length} / ${vipCount} 👑`);
       setTxt('adminEcoMoneyHeld', fmtCompact(totalMoneyHeld));
       setTxt('adminEcoHeld', fmtCompact(totalCreditsHeld));
       setTxt('adminEcoTyreRev', fmtCompact(totalTyreRev));
@@ -5444,7 +5662,8 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
               <div class="min-w-0">
                 <div class="font-extrabold text-sm flex items-center gap-1.5 flex-wrap">
                   <span class="truncate">${esc(u.username || 'Driver')}</span>
-                  <span class="text-[10px] px-2 py-0.5 rounded-full ${valid ? 'bg-emerald-500/15 text-accent' : 'bg-rose-500/20 text-rose-300'}">${valid ? '🛡️ V6' : '⚠️ Flagged'}</span>
+                  ${u.isLifetimeVip ? `<span class="text-[10px] px-2 py-0.5 rounded-full bg-amber-400/20 border border-amber-300/60 text-amber-300 font-black">👑 VIP</span>` : ''}
+                  <span class="text-[10px] px-2 py-0.5 rounded-full ${valid ? 'bg-emerald-500/15 text-accent' : 'bg-rose-500/20 text-rose-300'}">${valid ? '🛡️ V7' : '⚠️ Flagged'}</span>
                 </div>
                 <div class="text-[11px] text-muted-dyn font-mono-num">
                   💵 <strong class="text-amber-300">${esc(fmtCompact(u.rdsMoney))}</strong> • 💎 <strong class="text-accent">${esc(fmtCompact(u.freeCredits))}</strong> • Spent: <span class="text-rose-300">${esc(fmtCompact(u.totalSpent))}</span>
@@ -5454,9 +5673,10 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
 
             <div class="flex items-center gap-1.5 flex-wrap">
               <button class="rds-btn px-2.5 py-1.5 text-xs" onclick="openPlayerSpendingModal('${esc(u.id)}')">📊 Inspect</button>
-              <button class="rds-btn px-2.5 py-1.5 text-xs border-amber-400/45 text-amber-300" onclick="adjustUserWallet('${esc(u.id)}', 'rdsMoney', 'add')">+ 💵 Money</button>
+              <button class="rds-btn px-2.5 py-1.5 text-xs ${u.isLifetimeVip ? 'bg-amber-500/25 border-amber-400/60 text-amber-300' : ''}" onclick="toggleUserLifetimeVip('${esc(u.id)}')">${u.isLifetimeVip ? '👑 Revoke VIP' : '👑 Grant VIP'}</button>
+              <button class="rds-btn px-2.5 py-1.5 text-xs border-amber-400/45 text-amber-300" onclick="adjustUserWallet('${esc(u.id)}', 'rdsMoney', 'add')">+ 💵</button>
               <button class="rds-btn rds-btn-danger px-2.5 py-1.5 text-xs" onclick="adjustUserWallet('${esc(u.id)}', 'rdsMoney', 'sub')">− 💵</button>
-              <button class="rds-btn rds-btn-primary px-2.5 py-1.5 text-xs" onclick="adjustUserWallet('${esc(u.id)}', 'freeCredits', 'add')">+ 💎 Credits</button>
+              <button class="rds-btn rds-btn-primary px-2.5 py-1.5 text-xs" onclick="adjustUserWallet('${esc(u.id)}', 'freeCredits', 'add')">+ 💎</button>
               <button class="rds-btn px-2.5 py-1.5 text-xs" onclick="adjustUserWallet('${esc(u.id)}', 'freeCredits', 'set')">Set 💎</button>
             </div>
           </div>
@@ -5464,16 +5684,50 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       }).join('');
     }
 
+    async function toggleUserLifetimeVip(userId) {
+      if (!hasPerm('manageEconomy')) return showToast('Permission denied.');
+      const u = ensureUserEconomyFields(state.usersDirectory[userId]);
+      if (!u) return;
+      u.isLifetimeVip = !u.isLifetimeVip;
+      u.updatedAt = Date.now();
+      u.ledger.unshift({
+        id: 'tx_vip_' + Date.now(),
+        time: new Date().toLocaleString(),
+        delta: 0,
+        cat: 'INCOME',
+        currency: 'VIP_PASS',
+        reason: `${u.isLifetimeVip ? 'Granted' : 'Revoked'} Lifetime Free VIP by ${state.staff.name}`,
+        balanceAfter: u.credits
+      });
+      u.sig = signUserRecord(u);
+      state.usersDirectory[userId] = u;
+
+      if (state.userProfile && state.userProfile.id === userId) {
+        state.userProfile = JSON.parse(JSON.stringify(u));
+        await dbSet('user_profile', state.userProfile);
+        await dbSet('_vault_seal_v7', state.userProfile.sig);
+        updateUserHeaderUI();
+        updateQuotaBanners();
+      }
+
+      addAuditLog('ECONOMY', `${state.staff.name} ${u.isLifetimeVip ? 'granted' : 'revoked'} Lifetime Free VIP for ${u.username}`);
+      await savePortalCache();
+      renderAdminUsersList();
+      pushConfigBundleToCloud({ fullOverwrite: false });
+      showToast(`${u.isLifetimeVip ? '👑 Granted' : 'Revoked'} Lifetime Free VIP for ${u.username}!`);
+    }
+
     function openPlayerSpendingModal(userId) {
       const rawU = state.usersDirectory[userId];
       if (!rawU) return;
       const u = ensureUserEconomyFields(JSON.parse(JSON.stringify(rawU)));
       const sp = u.spending;
+      const activeCpn = (u.coupons || []).filter(c => !c.used).length;
       document.getElementById('playerSpendingModalBody').innerHTML = `
         <div class="flex items-center justify-between gap-3 pb-3 mb-4 border-b border-white/10">
           <div>
-            <div class="text-lg font-black">📊 ${esc(u.username || 'Driver')} — Dual-Balance Spending Report</div>
-            <div class="text-xs text-muted-dyn font-mono-num">ID: ${esc(u.id)} • ${verifyUserRecord(rawU) ? '🛡️ Anti-Cheat Signature Valid (V6)' : '⚠️ Signature Mismatch'}</div>
+            <div class="text-lg font-black">📊 ${esc(u.username || 'Driver')} ${u.isLifetimeVip ? '👑 VIP' : ''} — Spending Report</div>
+            <div class="text-xs text-muted-dyn font-mono-num">ID: ${esc(u.id)} • ${verifyUserRecord(rawU) ? '🛡️ Anti-Cheat Signature Valid (V7)' : '⚠️ Signature Mismatch'} • ${activeCpn} active coupon(s)</div>
           </div>
           <button class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-500/30 grid place-items-center text-lg" onclick="closeModal('playerSpendingModal')">×</button>
         </div>
@@ -5554,7 +5808,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (state.userProfile && state.userProfile.id === userId) {
         state.userProfile = JSON.parse(JSON.stringify(u));
         await dbSet('user_profile', state.userProfile);
-        await dbSet('_vault_seal_v6', state.userProfile.sig);
+        await dbSet('_vault_seal_v7', state.userProfile.sig);
         updateUserHeaderUI();
         updateQuotaBanners();
       }
@@ -5562,12 +5816,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       addAuditLog('ECONOMY', `${state.staff.name} adjusted ${u.username}'s ${isMoney ? 'RDS Money' : 'Free Credits'} (${delta >= 0 ? '+' : ''}${fmtNum(delta)} → ${fmtNum(after)})`);
       await savePortalCache();
       renderAdminUsersList();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: false });
       showToast(`Updated ${u.username}'s ${isMoney ? 'RDS Money' : 'Free Credits'} to ${fmtNum(after)}!`);
     }
 
     /* =====================================================================
-       REDEEM CODES STUDIO & NAVIGATION / CATEGORY MANAGER
+       COUPONS, VIP PASSES & REDEEM CODES STUDIO + NAVIGATION MANAGER
        ===================================================================== */
     function openRedeemCodeCreator() {
       if (!hasPerm('manageCodes')) return showToast('Permission denied.');
@@ -5575,6 +5829,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       document.getElementById('rcType').value = 'money';
       document.getElementById('rcMaxUses').value = 50;
       document.getElementById('rcAmount').value = '5M';
+      document.getElementById('rcDiscountPct').value = 25;
       document.getElementById('rcCustomLabel').value = '';
       document.getElementById('rcTyreId').innerHTML = state.tyres.map(t => `<option value="${esc(t.id)}">${esc(t.name)} (${esc(t.price || 'Free')})</option>`).join('');
       toggleRedeemTypeFields();
@@ -5584,6 +5839,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     function toggleRedeemTypeFields() {
       const type = document.getElementById('rcType').value;
       document.getElementById('rcCreditsField').classList.toggle('hidden', type !== 'money' && type !== 'credits');
+      document.getElementById('rcDiscountField').classList.toggle('hidden', type !== 'discount');
       document.getElementById('rcTyreField').classList.toggle('hidden', type !== 'tyre');
       document.getElementById('rcCustomField').classList.toggle('hidden', type !== 'custom');
     }
@@ -5602,17 +5858,18 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         maxUses: Math.max(1, parseInt(document.getElementById('rcMaxUses').value, 10) || 1),
         uses: 0,
         amount: (type === 'money' || type === 'credits') ? parseFlexiblePrice(document.getElementById('rcAmount').value, false) : 0,
+        discountPct: type === 'discount' ? Math.min(100, Math.max(5, parseInt(document.getElementById('rcDiscountPct').value, 10) || 25)) : 0,
         tyreId: type === 'tyre' ? document.getElementById('rcTyreId').value : '',
         customLabel: type === 'custom' ? document.getElementById('rcCustomLabel').value.trim() : '',
         createdBy: state.staff.name
       };
       state.redeemCodes.unshift(obj);
-      addAuditLog('CODES', `Created redeem code ${obj.code} (${obj.type})`);
+      addAuditLog('CODES', `Created code/coupon ${obj.code} (${obj.type})`);
       await savePortalCache();
       renderAdminRedeemCodesList();
       closeModal('redeemCreatorModal');
-      pushConfigBundleToCloud();
-      showToast(`Created redeem code: ${obj.code}`);
+      pushConfigBundleToCloud({ fullOverwrite: true });
+      showToast(`Created code: ${obj.code}`);
     }
 
     async function deleteRedeemCode(id) {
@@ -5620,10 +5877,10 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const c = state.redeemCodes.find(x => x.id === id);
       if (!c) return;
       state.redeemCodes = state.redeemCodes.filter(x => x.id !== id);
-      addAuditLog('CODES', `Deleted redeem code ${c.code}`);
+      addAuditLog('CODES', `Deleted code ${c.code}`);
       await savePortalCache();
       renderAdminRedeemCodesList();
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Redeem code deleted.');
     }
 
@@ -5631,7 +5888,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const el = document.getElementById('adminRedeemCodesList');
       if (!el) return;
       if (!state.redeemCodes.length) {
-        el.innerHTML = `<div class="text-xs text-muted-dyn p-4 rounded-2xl glass-sub text-center">No active redeem codes yet.</div>`;
+        el.innerHTML = `<div class="text-xs text-muted-dyn p-4 rounded-2xl glass-sub text-center">No active codes or coupons yet.</div>`;
         return;
       }
       el.innerHTML = state.redeemCodes.map(c => {
@@ -5639,8 +5896,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           ? `+${fmtNum(c.amount)} 💵 RDS Money`
           : c.type === 'credits'
           ? `+${fmtNum(c.amount)} 💎 Free Credits`
+          : c.type === 'vip'
+          ? `👑 Grants Lifetime Free VIP (Unlimited Calcs & Garages)`
+          : c.type === 'discount'
+          ? `🏷️ ${c.discountPct || 25}% OFF Any Paid Tyre Code`
           : c.type === 'tyre'
-          ? `Unlocks Tyre: ${(state.tyres.find(t => t.id === c.tyreId)?.name) || c.tyreId}`
+          ? `🛞 Unlocks Tyre: ${(state.tyres.find(t => t.id === c.tyreId)?.name) || c.tyreId}`
           : (c.customLabel || 'Custom Reward');
         return `
           <div class="p-3 rounded-2xl glass-sub flex items-center justify-between gap-3 flex-wrap">
@@ -5650,7 +5911,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
               <div class="text-xs text-muted-dyn mt-0.5">${esc(rewardText)}</div>
             </div>
             <div class="flex gap-1.5">
-              <button class="rds-btn px-3 py-1 text-xs" onclick="copyText('${esc(c.code)}', 'Redeem code copied!')">📋 Copy</button>
+              <button class="rds-btn px-3 py-1 text-xs" onclick="copyText('${esc(c.code)}', 'Code copied!')">📋 Copy</button>
               <button class="rds-btn rds-btn-danger px-3 py-1 text-xs" onclick="deleteRedeemCode('${esc(c.id)}')">🗑️</button>
             </div>
           </div>
@@ -5698,7 +5959,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (t < 0 || t >= state.navCategories.length) return;
       [state.navCategories[idx], state.navCategories[t]] = [state.navCategories[t], state.navCategories[idx]];
       renderNavigationBar(); renderCategoriesManager();
-      await savePortalCache(); pushConfigBundleToCloud();
+      await savePortalCache(); pushConfigBundleToCloud({ fullOverwrite: true });
     }
 
     function openNavCategoryEditor(catId = null) {
@@ -5732,7 +5993,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         state.navCategories.splice(state.navCategories.length - 1, 0, { id: 'custom_' + Date.now(), label, icon, enabled, access, builtin: false, content });
       }
       await savePortalCache(); renderNavigationBar(); renderCategoriesManager(); closeModal('navCategoryModal');
-      pushConfigBundleToCloud();
+      pushConfigBundleToCloud({ fullOverwrite: true });
       showToast('Navigation updated & syncing!');
     }
 
@@ -5743,7 +6004,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const ok = await openConfirmDialog({ title: 'Delete Custom Tab', message: `Delete "${cat.label}"?`, confirmText: 'Delete', danger: true });
       if (!ok) return;
       state.navCategories = state.navCategories.filter(c => c.id !== catId);
-      await savePortalCache(); renderNavigationBar(); renderCategoriesManager(); pushConfigBundleToCloud();
+      await savePortalCache(); renderNavigationBar(); renderCategoriesManager(); pushConfigBundleToCloud({ fullOverwrite: true });
     }
 
     async function addCarCategoryPrompt() {
@@ -5751,7 +6012,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const name = await openPromptDialog({ title: 'Add Vehicle Category', message: 'Enter a new optional vehicle category:', placeholder: 'e.g. Muscle, Drift', confirmText: 'Add' });
       if (!name || !name.trim()) return;
       if (!state.carCategories.includes(name.trim())) state.carCategories.push(name.trim());
-      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud();
+      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud({ fullOverwrite: true });
     }
 
     async function moveCarCategory(idx, dir) {
@@ -5759,17 +6020,17 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       const t = idx + dir;
       if (t < 0 || t >= state.carCategories.length) return;
       [state.carCategories[idx], state.carCategories[t]] = [state.carCategories[t], state.carCategories[idx]];
-      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud();
+      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud({ fullOverwrite: true });
     }
 
     async function deleteCarCategory(idx) {
       if (!hasPerm('manageCategories')) return;
       state.carCategories.splice(idx, 1);
-      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud();
+      await savePortalCache(); renderCategoriesManager(); populateCategoryFilter(); pushConfigBundleToCloud({ fullOverwrite: true });
     }
 
     /* =====================================================================
-       USER GARAGE BACKUP & RESTORE
+       USER GARAGE BACKUP & SAFE RESTORE
        ===================================================================== */
     function exportUserGarages() {
       const blob = new Blob([JSON.stringify({ garages: state.garages, activeGarageId: state.activeGarageId }, null, 2)], { type: 'application/json' });
@@ -5788,11 +6049,13 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         try {
           const data = JSON.parse(r.result);
           if (Array.isArray(data.garages) && data.garages.length) {
-            state.garages = data.garages;
-            state.activeGarageId = data.activeGarageId || data.garages[0].id;
+            state.garages = normalizeGaragesList(data.garages);
+            state.activeGarageId = state.garages.some(g => g.id === data.activeGarageId) ? data.activeGarageId : state.garages[0].id;
             await saveUserGarages();
             renderGarageView();
-            showToast('Garages restored!');
+            showToast('Garages safely restored!');
+          } else {
+            showToast('No garages found in backup file.');
           }
         } catch (_) { showToast('Invalid backup file.'); }
       };
@@ -5800,12 +6063,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     }
 
     /* =====================================================================
-       GOOGLE DRIVE LIVE CLOUD SYNC ENGINE & CROSS-TAB ANTI-DUPE SYNC
+       MERGE-SAFE GOOGLE DRIVE LIVE CLOUD SYNC ENGINE (v7) & CROSS-TAB SYNC
        ===================================================================== */
     let crossTabChannel = null;
     try {
       if (typeof BroadcastChannel !== 'undefined') {
-        crossTabChannel = new BroadcastChannel('rds_portal_live_sync_v6');
+        crossTabChannel = new BroadcastChannel('rds_portal_live_sync_v7');
         crossTabChannel.onmessage = ev => {
           const msg = ev.data || {};
           if (msg.type === 'WALLET_SYNC' && msg.profile && verifyUserRecord(msg.profile)) {
@@ -5888,10 +6151,13 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
     let userSyncTimer = null;
 
     function queueBackgroundUserSync() {
+      state.pendingUserSync = true;
+      state.dirtyKeys.add('config');
       clearTimeout(userSyncTimer);
-      userSyncTimer = setTimeout(() => {
-        pushConfigBundleToCloud({ silent: true });
-      }, 400);
+      userSyncTimer = setTimeout(async () => {
+        await pushConfigBundleToCloud({ silent: true, fullOverwrite: false });
+        state.pendingUserSync = false;
+      }, 350);
     }
 
     async function saveDriveEndpoint() {
@@ -5907,27 +6173,42 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (!state.driveUrl) return Promise.resolve(false);
       const stamp = Date.now();
       state.localKeyUpdatedAt[key] = stamp;
+      state.dirtyKeys.add(key);
 
       const task = async () => {
         state.activeWritesCount++;
         if (!opts.silent) setSyncStatus('syncing', 'Syncing...');
         try {
-          const resp = await fetch(state.driveUrl, {
+          const actionName = (key === 'config' && !opts.fullOverwrite) ? 'mergeConfig' : 'save';
+          let resp = await fetch(state.driveUrl, {
             method: 'POST',
             redirect: 'follow',
             headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ action: 'save', key, payload, updatedAt: stamp })
+            body: JSON.stringify({ action: actionName, key, payload, updatedAt: stamp })
           });
-          const text = await resp.text();
+          let text = await resp.text();
           if (text.trim().startsWith('<')) throw new Error('HTML response');
-          const json = JSON.parse(text);
+          let json = JSON.parse(text);
+
+          if (actionName === 'mergeConfig' && !json.ok && String(json.message || '').includes('Unknown action')) {
+            resp = await fetch(state.driveUrl, {
+              method: 'POST',
+              redirect: 'follow',
+              headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+              body: JSON.stringify({ action: 'save', key, payload, updatedAt: stamp })
+            });
+            text = await resp.text();
+            json = JSON.parse(text);
+          }
+
           const ok = Boolean(resp.ok && (json.ok === true || json.status === 'ok'));
           if (ok) {
+            state.dirtyKeys.delete(key);
             state.lastSyncSuccessAt = Date.now();
             if (!opts.silent) setSyncStatus('ok', 'Live Sync');
             notifyOtherTabs();
           } else if (!opts.silent) {
-            setSyncStatus('offline', 'Update Script');
+            setSyncStatus('offline', 'Auth Needed');
           }
           return ok;
         } catch (_) {
@@ -5962,9 +6243,10 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         logs: state.logs.slice(0, 300),
         config: buildConfigBundle()
       };
-      Object.keys(allKeys).forEach(k => { state.localKeyUpdatedAt[k] = stamp; });
+      Object.keys(allKeys).forEach(k => { state.localKeyUpdatedAt[k] = stamp; state.dirtyKeys.add(k); });
 
       let batchOk = false;
+      let errText = '';
       try {
         state.activeWritesCount++;
         const resp = await fetch(state.driveUrl, {
@@ -5974,6 +6256,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
           body: JSON.stringify({ action: 'saveBatch', items: allKeys, updatedAt: stamp })
         });
         const text = await resp.text();
+        errText = text;
         if (!text.trim().startsWith('<')) {
           const parsed = JSON.parse(text);
           if (resp.ok && (parsed.ok === true || parsed.status === 'ok')) batchOk = true;
@@ -5985,6 +6268,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       }
 
       if (batchOk) {
+        Object.keys(allKeys).forEach(k => state.dirtyKeys.delete(k));
         state.lastSyncSuccessAt = Date.now();
         setSyncStatus('ok', 'Live Sync');
         notifyOtherTabs();
@@ -5995,6 +6279,12 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         return true;
       }
 
+      if (errText.includes('permission to call DriveApp')) {
+        setSyncStatus('offline', 'Auth Needed');
+        if (showAlertToast) showToast('🔐 Run "authorizeDrive" once inside Google Apps Script editor to allow Drive writes!');
+        return false;
+      }
+
       const results = [];
       results.push(await pushKeyToCloud('cars', state.cars, { silent: true }));
       results.push(await pushKeyToCloud('tyres', state.tyres, { silent: true }));
@@ -6002,15 +6292,15 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       results.push(await pushKeyToCloud('drivers', state.drivers, { silent: true }));
       results.push(await pushKeyToCloud('admins', state.admins, { silent: true }));
       results.push(await pushKeyToCloud('logs', state.logs.slice(0, 300), { silent: true }));
-      results.push(await pushConfigBundleToCloud({ silent: true }));
+      results.push(await pushConfigBundleToCloud({ silent: true, fullOverwrite: true }));
 
       const allOk = results.every(Boolean);
       if (allOk) {
         setSyncStatus('ok', 'Live Sync');
         if (showAlertToast) showToast('☁️ Synced to Google Drive!');
       } else {
-        setSyncStatus('offline', 'Update Script');
-        if (showAlertToast) showToast('⚠️ Drive rejected POST — click "📜 Get Fixed Code.gs" in Settings and re-deploy!');
+        setSyncStatus('offline', 'Auth Needed');
+        if (showAlertToast) showToast('⚠️ Click "🔌 Test Drive" in Settings to check Drive permissions.');
       }
       return allOk;
     }
@@ -6020,7 +6310,7 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       if (box) { box.classList.remove('hidden'); box.textContent = '⏳ Testing Google Drive GET (read) & POST (write)...'; }
       if (!state.driveUrl) { if (box) box.textContent = '❌ No Google Apps Script URL configured.'; return; }
 
-      let readOk = false, writeOk = false, readInfo = '', writeInfo = '', needsScriptUpdate = false;
+      let readOk = false, writeOk = false, readInfo = '', writeInfo = '', needsScriptUpdate = false, needsAuthApproval = false;
       try {
         const gResp = await fetch(`${state.driveUrl}?action=getAll&t=${Date.now()}`, { cache: 'no-store', redirect: 'follow' });
         const gText = await gResp.text();
@@ -6043,8 +6333,9 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         const pText = await pResp.text();
         const pJson = JSON.parse(pText);
         writeOk = pResp.ok && (pJson.ok === true || pJson.status === 'ok');
-        writeInfo = writeOk ? 'Write verified (Drive vault is live & writable!)' : `POST returned: ${pText.slice(0, 120)}`;
-        if (!writeOk && pText.includes('Unknown action')) needsScriptUpdate = true;
+        writeInfo = writeOk ? 'Write verified (Drive vault is live & writable!)' : `POST returned: ${pText.slice(0, 140)}`;
+        if (!writeOk && pText.includes('permission to call DriveApp')) needsAuthApproval = true;
+        else if (!writeOk && pText.includes('Unknown action')) needsScriptUpdate = true;
       } catch (_) {
         writeInfo = 'POST blocked/failed — re-deploy Code.gs as Web App (Execute as: Me, Access: Anyone)';
       }
@@ -6053,12 +6344,16 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
         box.innerHTML = `
           <div>${readOk ? '✅' : '❌'} <strong>Read (GET):</strong> ${esc(readInfo)}</div>
           <div>${writeOk ? '✅' : '❌'} <strong>Write (POST):</strong> ${esc(writeInfo)}</div>
-          ${needsScriptUpdate ? `<div class="mt-2 text-amber-300 font-sans">⚠️ Update your Apps Script with <strong>📜 Get Fixed Code.gs</strong> and click <strong>Deploy → Manage deployments → Edit → New version → Deploy</strong>.</div>` : ''}
+          ${needsAuthApproval ? `<div class="mt-2 p-2.5 rounded-xl bg-amber-500/15 border border-amber-400/40 text-amber-200 font-sans leading-relaxed">🔐 <strong>Your Code.gs IS updated!</strong> Google just requires a 1-time OAuth permission approval in the Apps Script editor:<br/>1. Open your Google Apps Script project → select <strong>authorizeDrive</strong> (or <strong>doGet</strong>) in the top toolbar → click <strong>▶ Run</strong>.<br/>2. In the popup, click <strong>Review Permissions → Choose your Google account → Advanced → Go to project (unsafe) → Allow</strong>.<br/>3. Return here and click <strong>🔌 Test Drive</strong> again!</div>` : ''}
+          ${needsScriptUpdate ? `<div class="mt-2 text-amber-300 font-sans">⚠️ Paste <strong>📜 Get Merge-Safe Code.gs</strong> into your Apps Script and click <strong>Deploy → Manage deployments → Edit → New version → Deploy</strong>.</div>` : ''}
         `;
       }
       if (readOk && writeOk) {
         setSyncStatus('ok', 'Live Sync');
         showToast('✅ Google Drive Read & Write verified!');
+      } else if (needsAuthApproval) {
+        setSyncStatus('offline', 'Auth Needed');
+        showToast('🔐 Run "authorizeDrive" once in Google Apps Script editor and click Allow!');
       } else {
         setSyncStatus('offline', 'Update Script');
         showToast('⚠️ Update Code.gs in Google Apps Script to enable Write sync.');
@@ -6070,9 +6365,25 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       return editModals.some(id => document.getElementById(id)?.classList.contains('open'));
     }
 
+    function mergeTyreSalesLists(localList, remoteList) {
+      const map = new Map();
+      (Array.isArray(remoteList) ? remoteList : []).forEach(s => { if (s) map.set(s.txId || s.id, s); });
+      (Array.isArray(localList) ? localList : []).forEach(s => { if (s && !map.has(s.txId || s.id)) map.set(s.txId || s.id, s); });
+      return Array.from(map.values()).sort((a, b) => (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0));
+    }
+
+    function mergeRedeemCodesLists(localList, remoteList) {
+      const remoteArr = Array.isArray(remoteList) ? remoteList : [];
+      const localMap = new Map((Array.isArray(localList) ? localList : []).map(c => [c.code, c]));
+      return remoteArr.map(rc => {
+        const lc = localMap.get(rc.code);
+        return lc ? { ...rc, uses: Math.max(Number(rc.uses) || 0, Number(lc.uses) || 0) } : rc;
+      });
+    }
+
     async function syncFromCloud(manual = false) {
       if (!state.driveUrl || state.isSyncingPull) return;
-      if (!manual && state.activeWritesCount > 0) return;
+      if (!manual && (state.activeWritesCount > 0 || state.pendingUserSync)) return;
 
       state.isSyncingPull = true;
       if (manual) setSyncStatus('syncing', 'Syncing...');
@@ -6094,9 +6405,10 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
             const shouldAccept = key => {
               const entry = data[key];
               if (!entry) return false;
+              if (!manual && state.dirtyKeys.has(key)) return false;
               const cloudTs = Number(entry.updatedAt) || 0;
               const localTs = Number(state.localKeyUpdatedAt[key]) || 0;
-              if (localTs > 0 && cloudTs < localTs && (Date.now() - localTs) < 12000) return false;
+              if (!manual && localTs > 0 && cloudTs < localTs) return false;
               return true;
             };
             const extract = k => {
@@ -6134,8 +6446,8 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
                   }
                 }
                 if (Array.isArray(cfg.carCategories)) state.carCategories = cfg.carCategories;
-                if (Array.isArray(cfg.redeemCodes)) state.redeemCodes = cfg.redeemCodes;
-                if (Array.isArray(cfg.tyreSales)) state.tyreSales = cfg.tyreSales;
+                if (Array.isArray(cfg.redeemCodes)) state.redeemCodes = mergeRedeemCodesLists(state.redeemCodes, cfg.redeemCodes);
+                if (Array.isArray(cfg.tyreSales)) state.tyreSales = mergeTyreSalesLists(state.tyreSales, cfg.tyreSales);
                 if (cfg.usersDirectory && typeof cfg.usersDirectory === 'object') {
                   Object.entries(cfg.usersDirectory).forEach(([uid, remoteU]) => {
                     const localU = state.usersDirectory[uid];
@@ -6145,10 +6457,11 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
                   });
                   if (state.userProfile) {
                     const prevTotal = state.userProfile.credits;
+                    const prevVip = state.userProfile.isLifetimeVip;
                     initOrVerifyUserProfile(state.userProfile, null);
                     await dbSet('user_profile', state.userProfile);
-                    await dbSet('_vault_seal_v6', state.userProfile.sig);
-                    if (state.userProfile.credits !== prevTotal && document.getElementById('walletModal').classList.contains('open')) openWalletModal();
+                    await dbSet('_vault_seal_v7', state.userProfile.sig);
+                    if ((state.userProfile.credits !== prevTotal || state.userProfile.isLifetimeVip !== prevVip) && document.getElementById('walletModal').classList.contains('open')) openWalletModal();
                   }
                 }
               }
@@ -6195,9 +6508,24 @@ else { state.siteConfig.logoImg = ''; state.siteConfig.logoText = val.trim() || 
       document.getElementById('appsScriptCodeBox').textContent = `const VAULT_FOLDER_NAME = 'RDS_5TB_Cloud_Vault';
 const MEDIA_FOLDER_NAME = '4K_Media';
 
+// Select "authorizeDrive" in the top Apps Script toolbar and click Run once to grant Drive write access
+function authorizeDrive() {
+  const root = getOrCreateFolder_(DriveApp.getRootFolder(), VAULT_FOLDER_NAME);
+  const f = root.createFile('_auth_check.txt', 'ok', MimeType.PLAIN_TEXT);
+  f.setTrashed(true);
+  Logger.log('Drive write permission authorized!');
+}
+
 function getOrCreateFolder_(parent, name) {
   const it = parent.getFoldersByName(name);
   return it.hasNext() ? it.next() : parent.createFolder(name);
+}
+
+function readJsonFile_(root, key) {
+  const fname = String(key).replace(/[^a-z0-9_-]/gi, '') + '.json';
+  const it = root.getFilesByName(fname);
+  if (!it.hasNext()) return null;
+  try { return JSON.parse(it.next().getBlob().getDataAsString()); } catch (_) { return null; }
 }
 
 function writeJsonFile_(root, key, payload, updatedAt) {
@@ -6206,6 +6534,42 @@ function writeJsonFile_(root, key, payload, updatedAt) {
   const it = root.getFilesByName(fname);
   if (it.hasNext()) it.next().setContent(content);
   else root.createFile(fname, content, MimeType.PLAIN_TEXT);
+}
+
+function mergeConfigPayloads_(existing, incoming) {
+  const base = existing && typeof existing === 'object' ? existing : {};
+  const inc = incoming && typeof incoming === 'object' ? incoming : {};
+  const merged = Object.assign({}, base, inc);
+
+  const mergedUsers = Object.assign({}, base.usersDirectory || {});
+  const incUsers = inc.usersDirectory || {};
+  Object.keys(incUsers).forEach(function(uid) {
+    const cur = mergedUsers[uid];
+    const nxt = incUsers[uid];
+    if (!cur || (Number(nxt.updatedAt) || 0) >= (Number(cur.updatedAt) || 0)) {
+      mergedUsers[uid] = nxt;
+    }
+  });
+  merged.usersDirectory = mergedUsers;
+
+  const salesMap = {};
+  (base.tyreSales || []).concat(inc.tyreSales || []).forEach(function(s) {
+    if (s) salesMap[s.txId || s.id] = s;
+  });
+  merged.tyreSales = Object.keys(salesMap).map(function(k) { return salesMap[k]; })
+    .sort(function(a, b) { return (Number(b.timestamp) || 0) - (Number(a.timestamp) || 0); });
+
+  const baseCodes = {};
+  (base.redeemCodes || []).forEach(function(c) { if (c && c.code) baseCodes[c.code] = c; });
+  merged.redeemCodes = (inc.redeemCodes || base.redeemCodes || []).map(function(c) {
+    const prev = baseCodes[c.code];
+    if (prev && (Number(prev.uses) || 0) > (Number(c.uses) || 0)) {
+      return Object.assign({}, c, { uses: prev.uses });
+    }
+    return c;
+  });
+
+  return merged;
 }
 
 function jsonOut_(obj) {
@@ -6217,10 +6581,8 @@ function doGet(e) {
   const keys = ['cars', 'tyres', 'events', 'drivers', 'admins', 'logs', 'config'];
   const out = {};
   keys.forEach(function(k) {
-    const it = root.getFilesByName(k + '.json');
-    if (it.hasNext()) {
-      try { out[k] = JSON.parse(it.next().getBlob().getDataAsString()); } catch (_) {}
-    }
+    const data = readJsonFile_(root, k);
+    if (data) out[k] = data;
   });
   return jsonOut_(out);
 }
@@ -6243,10 +6605,23 @@ function doPost(e) {
       return jsonOut_({ ok: true, status: 'ok', url: 'https://lh3.googleusercontent.com/d/' + file.getId() + '=w3840' });
     }
 
+    if (act === 'mergeConfig' && body.payload) {
+      const existing = readJsonFile_(root, 'config');
+      const merged = mergeConfigPayloads_(existing ? existing.payload : null, body.payload);
+      writeJsonFile_(root, 'config', merged, body.updatedAt || Date.now());
+      return jsonOut_({ ok: true, status: 'ok', merged: true });
+    }
+
     if (act === 'saveBatch' && body.items && typeof body.items === 'object') {
       const stamp = body.updatedAt || Date.now();
       Object.keys(body.items).forEach(function(k) {
-        writeJsonFile_(root, k, body.items[k], stamp);
+        if (k === 'config') {
+          const existing = readJsonFile_(root, 'config');
+          const merged = mergeConfigPayloads_(existing ? existing.payload : null, body.items[k]);
+          writeJsonFile_(root, 'config', merged, stamp);
+        } else {
+          writeJsonFile_(root, k, body.items[k], stamp);
+        }
       });
       return jsonOut_({ ok: true, status: 'ok', batch: true, updatedAt: stamp });
     }
@@ -6267,7 +6642,7 @@ function doPost(e) {
     }
 
     /* =====================================================================
-       FAIL-SAFE BOOT SEQUENCE (INSTANT RENDER + V5 -> V6 AUTO-UPGRADE)
+       FAIL-SAFE BOOT SEQUENCE (INSTANT RENDER + V4/V5/V6 -> V7 AUTO-UPGRADE)
        ===================================================================== */
     async function bootApp() {
       try {
@@ -6286,14 +6661,14 @@ function doPost(e) {
 
         const savedGarages = await dbGet('user_garages');
         if (savedGarages && Array.isArray(savedGarages.garages) && savedGarages.garages.length) {
-          state.garages = savedGarages.garages;
-          state.activeGarageId = savedGarages.activeGarageId || state.garages[0].id;
+          state.garages = normalizeGaragesList(savedGarages.garages);
+          state.activeGarageId = state.garages.some(g => g.id === savedGarages.activeGarageId) ? savedGarages.activeGarageId : state.garages[0].id;
         }
 
-        const [cCars, cTyres, cEvents, cDrivers, cAdmins, cLogs, cBundle, cProfile, cSealV6, cSealV5] = await Promise.all([
+        const [cCars, cTyres, cEvents, cDrivers, cAdmins, cLogs, cBundle, cProfile, cSealV7, cSealV6, cSealV5] = await Promise.all([
           dbGet('cars'), dbGet('tyres'), dbGet('events'), dbGet('drivers'),
           dbGet('admins'), dbGet('logs'), dbGet('config_bundle'), dbGet('user_profile'),
-          dbGet('_vault_seal_v6'), dbGet('_vault_seal_v5')
+          dbGet('_vault_seal_v7'), dbGet('_vault_seal_v6'), dbGet('_vault_seal_v5')
         ]);
 
         state.cars = (Array.isArray(cCars) && cCars.length) ? cCars : DEFAULT_CARS;
@@ -6320,7 +6695,7 @@ function doPost(e) {
           if (Array.isArray(cBundle.tyreSales)) state.tyreSales = cBundle.tyreSales;
         }
 
-        initOrVerifyUserProfile(cProfile, cSealV6 || cSealV5);
+        initOrVerifyUserProfile(cProfile, cSealV7 || cSealV6 || cSealV5);
 
         try {
           const ss = JSON.parse(sessionStorage.getItem('rds_staff_session') || 'null');
